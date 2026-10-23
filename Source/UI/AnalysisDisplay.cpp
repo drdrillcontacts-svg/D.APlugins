@@ -123,7 +123,17 @@ void AnalysisDisplay::paint(juce::Graphics &g) {
         "SPECTRAL HISTORY", "ECHO / FREQUENCY FIELD", "DYNAMICS TRANSFER", "FOUR-BAND RESPONSE",
         "HARMONIC TRANSFER", "TRANSIENT / SUSTAIN", "STEREO VECTORSCOPE", "SIBILANCE DETECTION",
         "GATE TRANSFER", "CHAIN / FREQUENCY FIELD"};
-    label(g, look, captions[int(kind)], {60, 198, 570, 19}, 11, muted,
+    juce::String metrics;
+    if (kind == da::Kind::Comp || kind == da::Kind::Sess || kind == da::Kind::Gate)
+        metrics = "GR " + juce::String(gr, 1) + " dB";
+    else if (kind == da::Kind::Stereo) {
+        double l=0,r=0,lr=0;
+        for (const auto &f : phase) { l+=f.left*f.left;r+=f.right*f.right;lr+=f.left*f.right; }
+        metrics = l*r>1e-12 && juce::Time::currentTimeMillis()-lastAudio<350
+            ? "CORR " + juce::String(std::clamp(lr/std::sqrt(l*r),-1.,1.),2) : "CORR --";
+    } else metrics = "IN " + juce::String(inDb,1) + " / OUT " + juce::String(outDb,1) + " dBFS";
+    label(g, look, metrics, {60,198,300,19}, 11, silver);
+    label(g, look, captions[int(kind)], {370, 198, 260, 19}, 11, muted,
           juce::Justification::centredRight);
 }
 void AnalysisDisplay::graph(juce::Graphics &g, juce::Rectangle<float> r) {

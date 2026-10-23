@@ -138,6 +138,8 @@ def render(spec,advanced=False):
  d.text('EXAMPLE TRACE',715,355,11,GREY);meter(d,881,180,7,151,-9);meter(d,893,180,7,151,-10);d.text('OUT',886,161,12,WHITE)
  captions={'DVerb':'SPECTRAL HISTORY','DDelay':'ECHO / FREQUENCY FIELD','DComp':'DYNAMICS TRANSFER','DEQ':'FOUR-BAND RESPONSE','DSat':'HARMONIC TRANSFER','DTrans':'TRANSIENT / SUSTAIN','DStereo':'STEREO VECTORSCOPE','DSess':'SIBILANCE DETECTION','DGate':'GATE TRANSFER','DFX':'CHAIN / FREQUENCY FIELD'}
  d.text(captions[name],684,355,11,GREY,'end')
+ metrics='GR 3.1 dB' if name in ['DComp','DSess','DGate'] else 'CORR +0.82' if name=='DStereo' else 'IN -12.0 / OUT -9.0 dBFS'
+ d.text(metrics,114,355,11,WHITE)
  d.text('LEARNING',956,170,15,WHITE)
  button(d,'INPUT-AWARE LEARN',956,185,180,30);button(d,'LOAD FILE',956,224,180,30)
  button(d,'LEARN ALL',956,263,180,34,True);button(d,'DETAILS / LOG',956,308,180,30)
