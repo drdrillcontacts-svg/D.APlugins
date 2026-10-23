@@ -1,5 +1,5 @@
-D.A / FINAL SELECTED REFERENCE — SVG REVIEW 01
-10 standalone editable SVGs, 1200 x 1600. No runtime editor or DSP changes.
+D.A / FINAL SELECTED REFERENCE — SVG REVIEW 02 / COMPACT
+10 standalone editable SVGs, 1200 x 1300. No runtime editor or DSP changes.
 This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
 Its purple/amber palette, real DA mark, inset visual, reference pane,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
@@ -23,6 +23,9 @@ Design fixes for review:
   stronger small-label weight/contrast, larger small-button height and wider choices.
   Product name and logo are unchanged. DVerb Character and EQ Learn placement adjusted
   only to prevent collisions from the larger typography.
+- Review fix 04: removed the screen notch/arc left by the deleted large knob.
+  Learning actions now form one horizontal toolbar. The focused numeric field and
+  control panels move up, and the canvas is 300 px shorter; no blank centre is retained.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 

@@ -42,11 +42,11 @@ class D(Base):
    if max(rgb)<185:color='#'+''.join(f'{min(v+28,255):02x}' for v in rgb)
   return super().text(t,x,y,size,color,align,track,font,weight)
  def __init__(self,n):
-  super().__init__(n,('SVG','Final reference','',1200,1600,PURPLE,'Arial, Helvetica, sans-serif','final'))
+  super().__init__(n,('SVG','Final reference','',1200,1300,PURPLE,'Arial, Helvetica, sans-serif','final'))
   self.c=PURPLE;self.values={p['id']:EXAMPLES.get(n,{}).get(p['id'],p['initial']) for p in META[n]}
   self.parts[0]=self.parts[0].replace('#242729','#222224').replace('#17191b','#131315').replace('#35383a','#18181b').replace('#202325','#27272a')
   self.raw('<defs><linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#37373a"/><stop offset=".15" stop-color="#242427"/><stop offset="1" stop-color="#0c0c0e"/></linearGradient></defs>')
-  self.rect(30,26,1140,1548,'url(#matte)','#323235',30,True);self.rect(35,31,1130,1538,'none','#ffffff07',26)
+  self.rect(30,26,1140,1248,'url(#matte)','#323235',30,True);self.rect(35,31,1130,1238,'none','#ffffff07',26)
   self.raw(f'<g id="brand-logo" transform="translate(77 85) scale({155/LOGO["width"]})">')
   for p in LOGO['paths']:
    attrs=' '.join(f'{k}="{html.escape(v,quote=True)}"' for k,v in p.items() if k!='fill');self.raw(f'<path {attrs} fill="#d1d1d3"/>')
@@ -76,7 +76,7 @@ class D(Base):
    self.line(x+t*w,y+h/2-a,x+t*w,y+h/2+a,'#7d6e96',1.5)
  def display(self):
   self.rect(52,190,1096,378,'url(#bevel)','#29292c',29)
-  self.raw('<path d="M89 207 H1110 Q1130 207 1130 229 V528 Q1130 549 1110 549 H798 Q600 405 402 549 H89 Q70 549 70 528 V229 Q70 207 89 207Z" fill="#0e0e11" stroke="#222226"/>')
+  self.raw('<path d="M89 207 H1110 Q1130 207 1130 229 V528 Q1130 549 1110 549 H89 Q70 549 70 528 V229 Q70 207 89 207Z" fill="#0e0e11" stroke="#222226"/>')
   self.text('INPUT / '+ROLE[self.n]+' / ILLUSTRATIVE',151,244,10,PURPLE,track=.7)
   self.meter(84,277,'IN');self.meter(1097,277,'OUT')
   self.line(869,231,869,510,'#303035');self.text('REFERENCE',890,247,12,'#c6c6ce',track=.3)
@@ -89,17 +89,17 @@ class D(Base):
    self.parts[i]=self.parts[i].replace('#596a60','#645971').replace('#9a82e5',PURPLE)
   if self.n=='DDelay':self.text('SYNC / 120 BPM / DOTTED EIGHTH / 375 ms',164,523,9,'#b5a7c8',track=.4)
  def primary(self,p):
-  x=600;v=self.values[p['id']]
+  x=91;v=self.values[p['id']]
   self.raw(f'<g id="param-{p["id"]}"><title>{html.escape(p["name"])}</title>')
-  self.text(LABEL(p),x,905,23,'#e0e0e4','middle',2.5)
-  self.text(VALUE(self.n,p,v),x,948,31,PURPLE,'middle',.2)
-  self.text('PRECISION CONTROL',x,975,9,'#94949d','middle',2)
+  self.text(LABEL(p),x,710,23,'#e0e0e4','start',2.5)
+  self.text(VALUE(self.n,p,v),355,717,31,PURPLE,'start',.2)
+  self.text('PRECISION CONTROL',1110,709,9,'#94949d','end',2)
   self.raw('</g>')
-  if p['learnable']:self.button('learn-'+p['id'],'LEARN',752,913,86,25,False);self.parts[-2]=self.parts[-2].replace('#d0d0d5',AMBER)
+  if p['learnable']:self.button('learn-'+p['id'],'LEARN',570,690,86,29,False);self.parts[-2]=self.parts[-2].replace('#d0d0d5',AMBER)
  def learning(self):
-  self.cut(929,700,225,251,'#111114','#36363b',12)
-  self.text('LEARNING',949,732,12,'#d0d0d6',track=.5)
-  for i,(id,t) in enumerate([('capture','CAPTURE INPUT'),('reference','LOAD REFERENCE'),('learn-all','LEARN ALL'),('log','DETAILS / LOG')]):self.button(id,t,946,751+i*44,191,33,i==2)
+  self.cut(55,590,1090,72,'#111114','#36363b',10)
+  self.text('LEARNING',76,632,12,'#d0d0d6',track=.5)
+  for i,(id,t) in enumerate([('capture','CAPTURE INPUT'),('reference','LOAD REFERENCE'),('learn-all','LEARN ALL'),('log','DETAILS / LOG')]):self.button(id,t,230+i*219,608,205,36,i==2)
  def mini(self,p,x,y,r=29):
   v=self.values[p['id']];disabled=self.n=='DDelay' and p['id'] in ['time','modulation']
   self.raw(f'<g id="param-{p["id"]}"'+(' opacity=".48"' if disabled else '')+'><title>'+html.escape(p['name'])+'</title>')
@@ -128,46 +128,46 @@ class D(Base):
   self.text(title,73,y-13,10,'#a4a4ae',track=1.4)
   self.cut(55,y,1090,h,'#17171b','#3a3a40',11)
  def bottom(self):
-  self.text('PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES',74,1530,8,'#9999a6',track=.7)
-  for i,(id,t) in enumerate([('preview','PREVIEW'),('apply','APPLY'),('reject','REJECT'),('undo','UNDO')]):self.button(id,t,74+i*164,1541,150,29,i==1,False)
-  self.text('DESIGN REVIEW / NO LIVE AUDIO',1130,1560,8,'#9393a0','end',1)
+  self.text('PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES',74,1227,8,'#9999a6',track=.7)
+  for i,(id,t) in enumerate([('preview','PREVIEW'),('apply','APPLY'),('reject','REJECT'),('undo','UNDO')]):self.button(id,t,74+i*164,1238,150,29,i==1,False)
+  self.text('DESIGN REVIEW / NO LIVE AUDIO',1130,1257,8,'#9393a0','end',1)
 rows=[]
 for n,params in META.items():
  d=D(n);lookup={p['id']:p for p in params};p=lookup[PRIMARY[n]]
  main=MAIN[n];advanced=[p['id'] for p in params if p['id'] not in main+[PRIMARY[n]]]
  d.display();d.primary(p);d.learning()
- d.panel(GROUPS[n][0],1000,177)
- for i,id in enumerate(main):d.mini(lookup[id],100+(i+.5)*1000/len(main),1081,28)
- d.panel(GROUPS[n][1],1211,229)
- d.text('ADVANCED / EXPANDED FOR REVIEW',1130,1198,8,'#a596bc','end',.7)
+ d.panel(GROUPS[n][0],753,177)
+ for i,id in enumerate(main):d.mini(lookup[id],100+(i+.5)*1000/len(main),834,28)
+ d.panel(GROUPS[n][1],966,229)
+ d.text('ADVANCED / EXPANDED FOR REVIEW',1130,953,8,'#a596bc','end',.7)
  if n=='DEQ':
   for j,b in enumerate([1,3,4]):
-   x=83+j*357;d.text('BAND 0'+str(b),x+12,1238,11,PURPLE,track=1)
+   x=83+j*357;d.text('BAND 0'+str(b),x+12,993,11,PURPLE,track=1)
    for k,suffix in enumerate(['freq','gain','q','shape']):
-    p=lookup[f'b{b}{suffix}'];y=1260+k*43
+    p=lookup[f'b{b}{suffix}'];y=1015+k*43
     d.raw(f'<g id="param-{p["id"]}"><title>{html.escape(p["name"])}</title>')
     d.text(LABEL(p),x+12,y+12,10,'#aaaab5',track=.2)
     d.text('BELL' if suffix=='shape' else VALUE(n,p,d.values[p['id']]),x+306,y+12,14,'#d1d1dc','end',.1)
     if p['learnable']:d.circle(x+98,y+8,2.3,AMBER,'none')
     d.raw('</g>')
     if p['learnable']:d.button('learn-'+p['id'],'LEARN',x+130,y-6,88,25)
-   if j<2:d.line(x+331,1234,x+331,1419,'#35353e')
+   if j<2:d.line(x+331,989,x+331,1174,'#35353e')
  else:
   for i,id in enumerate(advanced):
-   x=100+(i+.5)*1000/len(advanced);y=1310
-   if n=='DVerb' and id=='mode':x=930;y=1394
+   x=100+(i+.5)*1000/len(advanced);y=1065
+   if n=='DVerb' and id=='mode':x=930;y=1149
    d.mini(lookup[id],x,y,24)
   if len(advanced)==1:
-   d.text('ALL PARAMETERS VISIBLE / NO DUPLICATED CONTROLS',600,1413,9,'#8f8f9d','middle',.8)
+   d.text('ALL PARAMETERS VISIBLE / NO DUPLICATED CONTROLS',600,1168,9,'#8f8f9d','middle',.8)
  d.bottom();d.finish(OUT/(n+'.svg'))
  for p in params:rows.append([n,p['id'],p['name'],'primary' if p['id']==PRIMARY[n] else 'main' if p['id'] in main else 'advanced',p['min'],p['max'],d.values[p['id']],p['unit'],'yes' if p['learnable'] else 'no'])
-css='body{background:#111115;color:#d4d4de;font:16px Arial;margin:32px}h1{font-weight:400}p{line-height:1.9;color:#aaaaba}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}article{background:#1b1b21;border:1px solid #373741;border-radius:14px;padding:16px}a{color:inherit;text-decoration:none}img{width:100%;height:700px;object-fit:contain}h2{font-weight:400}'
-page=f'<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.A / Final selected reference / SVG review</title><style>{css}</style><h1>D.A / FINAL REFERENCE — SVG REVIEW 01</h1><p dir="rtl">همین مرجع نهایی با رنگ بنفش و کهرباییِ تصویر جدید؛ هر ده پلاگین برای بررسی، نه نسخهٔ اجرایی. کنترل‌های تکراری حذف و مقدارها و واحدها اصلاح شده‌اند. روی هر تصویر کلیک کنید تا SVG اصلی را در اندازهٔ کامل ببینید.</p><main>'
+css='body{background:#111115;color:#d4d4de;font:16px Arial;margin:32px}h1{font-weight:400}p{line-height:1.9;color:#aaaaba}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}article{background:#1b1b21;border:1px solid #373741;border-radius:14px;padding:16px}a{color:inherit;text-decoration:none}img{width:100%;height:auto;object-fit:contain}h2{font-weight:400}'
+page=f'<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.A / Final selected reference / SVG review</title><style>{css}</style><h1>D.A / FINAL REFERENCE — SVG REVIEW 02 / COMPACT</h1><p dir="rtl">همین مرجع نهایی با رنگ بنفش و کهرباییِ تصویر جدید؛ هر ده پلاگین برای بررسی، نه نسخهٔ اجرایی. کنترل‌های تکراری حذف و مقدارها و واحدها اصلاح شده‌اند. روی هر تصویر کلیک کنید تا SVG اصلی را در اندازهٔ کامل ببینید.</p><main>'
 for n in META:page+=f'<article><a href="{n}.svg"><h2>{n}</h2><img src="{n}.svg" alt="{n} review prototype" loading="lazy"></a></article>'
 (OUT/'Preview.html').write_text(page+'</main></html>')
 s=io.StringIO();writer=csv.writer(s);writer.writerow(['plugin','parameter_id','label','section','minimum','maximum','design_value','unit','learn_eligible']);writer.writerows(rows);(OUT/'Control_Review.csv').write_text(s.getvalue())
-(OUT/'READ_ME_FA_EN.txt').write_text('''D.A / FINAL SELECTED REFERENCE — SVG REVIEW 01
-10 standalone editable SVGs, 1200 x 1600. No runtime editor or DSP changes.
+(OUT/'READ_ME_FA_EN.txt').write_text('''D.A / FINAL SELECTED REFERENCE — SVG REVIEW 02 / COMPACT
+10 standalone editable SVGs, 1200 x 1300. No runtime editor or DSP changes.
 This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
 Its purple/amber palette, real DA mark, inset visual, reference pane,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
@@ -191,6 +191,9 @@ Design fixes for review:
   stronger small-label weight/contrast, larger small-button height and wider choices.
   Product name and logo are unchanged. DVerb Character and EQ Learn placement adjusted
   only to prevent collisions from the larger typography.
+- Review fix 04: removed the screen notch/arc left by the deleted large knob.
+  Learning actions now form one horizontal toolbar. The focused numeric field and
+  control panels move up, and the canvas is 300 px shorter; no blank centre is retained.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
@@ -206,9 +209,9 @@ pending the approved runtime implementation; SVG buttons do not implement intera
 اصلاح شده‌اند. فایل CSV برای بررسی دامنه، مقدار نمونه، محل کنترل و امکان Learn است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.
 ''')
-archive=OUT.parent/'DAPlugins_FinalReference_SVG_Review01.zip'
+archive=OUT.parent/'DAPlugins_FinalReference_SVG_Review02_Compact.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
  for p in sorted(OUT.iterdir()):
-  if p.name!='LogoPaths.json':z.write(p,'DAPlugins_FinalReference_Review01/'+p.name)
+  if p.name!='LogoPaths.json':z.write(p,'DAPlugins_FinalReference_Review02_Compact/'+p.name)
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None;assert sum(n.endswith('.svg') for n in z.namelist())==10
 print('PASS ten final-reference SVGs / 92 unique real controls / vector logo / ZIP CRC:',archive)
