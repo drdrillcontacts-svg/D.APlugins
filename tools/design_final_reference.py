@@ -79,10 +79,7 @@ class D(Base):
   self.raw('<path d="M89 207 H1110 Q1130 207 1130 229 V528 Q1130 549 1110 549 H89 Q70 549 70 528 V229 Q70 207 89 207Z" fill="#0e0e11" stroke="#222226"/>')
   self.text('INPUT / '+ROLE[self.n]+' / ILLUSTRATIVE',151,244,10,PURPLE,track=.7)
   self.meter(84,277,'IN');self.meter(1097,277,'OUT')
-  self.line(869,231,869,510,'#303035');self.text('REFERENCE',890,247,12,'#c6c6ce',track=.3)
-  self.text('EXAMPLE',890,269,8,'#8c849b',track=1)
-  self.wave(892,312,184,151)
-  start=len(self.parts);super().graph(163,284,683,209)
+  start=len(self.parts);super().graph(163,284,900,209)
   for i in range(start,len(self.parts)):
    self.parts[i]=self.parts[i].replace('id="illustrative-visual"','id="input-visual"')
    # Keep the screen vocabulary violet, as in the final selected reference.
@@ -91,7 +88,7 @@ class D(Base):
  def learning(self):
   self.cut(55,590,1090,72,'#111114','#36363b',10)
   self.text('LEARNING',76,632,12,'#d0d0d6',track=.5)
-  for i,(id,t) in enumerate([('capture','CAPTURE INPUT'),('reference','LOAD REFERENCE'),('learn-all','LEARN ALL'),('log','DETAILS / LOG')]):self.button(id,t,230+i*219,608,205,36,i==2)
+  for i,(id,t) in enumerate([('capture','CAPTURE INPUT'),('reference','REFERENCE...'),('learn-all','LEARN ALL'),('log','DETAILS / LOG')]):self.button(id,t,230+i*219,608,205,36,i==2)
  def mini(self,p,x,y,r=29,force_knob=False):
   v=self.values[p['id']];disabled=self.n=='DDelay' and p['id'] in ['time','modulation']
   self.raw(f'<g id="param-{p["id"]}"'+(' opacity=".48"' if disabled else '')+'><title>'+html.escape(p['name'])+'</title>')
@@ -154,14 +151,14 @@ for n,params in META.items():
  d.bottom();d.finish(OUT/(n+'.svg'))
  for p in params:rows.append([n,p['id'],p['name'],'main' if p['id'] in main else 'advanced',p['min'],p['max'],d.values[p['id']],p['unit'],'yes' if p['learnable'] else 'no'])
 css='body{background:#111115;color:#d4d4de;font:16px Arial;margin:32px}h1{font-weight:400}p{line-height:1.9;color:#aaaaba}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}article{background:#1b1b21;border:1px solid #373741;border-radius:14px;padding:16px}a{color:inherit;text-decoration:none}img{width:100%;height:auto;object-fit:contain}h2{font-weight:400}'
-page=f'<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.A / Final selected reference / SVG review</title><style>{css}</style><h1>D.A / FINAL REFERENCE — SVG REVIEW 03 / SMALL KNOBS</h1><p dir="rtl">همین مرجع نهایی با رنگ بنفش و کهرباییِ تصویر جدید؛ هر ده پلاگین برای بررسی، نه نسخهٔ اجرایی. کنترل‌های تکراری حذف و مقدارها و واحدها اصلاح شده‌اند. روی هر تصویر کلیک کنید تا SVG اصلی را در اندازهٔ کامل ببینید.</p><main>'
+page=f'<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>D.A / Final selected reference / SVG review</title><style>{css}</style><h1>D.A / FINAL REFERENCE — SVG REVIEW 04 / OPTIONAL REFERENCE</h1><p dir="rtl">همین مرجع نهایی با رنگ بنفش و کهرباییِ تصویر جدید؛ هر ده پلاگین برای بررسی، نه نسخهٔ اجرایی. کنترل‌های تکراری حذف و مقدارها و واحدها اصلاح شده‌اند. روی هر تصویر کلیک کنید تا SVG اصلی را در اندازهٔ کامل ببینید.</p><main>'
 for n in META:page+=f'<article><a href="{n}.svg"><h2>{n}</h2><img src="{n}.svg" alt="{n} review prototype" loading="lazy"></a></article>'
-(OUT/'Preview.html').write_text(page+'</main></html>')
+(OUT/'Preview.html').write_text(page+'</main><details><summary>Optional Reference panel / پنل جداگانهٔ مرجع</summary><p>Closed by default in the proposed interface. SVG actions are illustrative only.</p><img src="Reference-Panel.svg" alt="Optional reference panel empty state"></details></html>')
 s=io.StringIO();writer=csv.writer(s,lineterminator="\n");writer.writerow(['plugin','parameter_id','label','section','minimum','maximum','design_value','unit','learn_eligible']);writer.writerows(rows);(OUT/'Control_Review.csv').write_text(s.getvalue())
-(OUT/'READ_ME_FA_EN.txt').write_text('''D.A / FINAL SELECTED REFERENCE — SVG REVIEW 03 / SMALL KNOBS
+(OUT/'READ_ME_FA_EN.txt').write_text('''D.A / FINAL SELECTED REFERENCE — SVG REVIEW 04 / OPTIONAL REFERENCE
 10 standalone editable SVGs, 1200 x 1240. No runtime editor or DSP changes.
-This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
-Its purple/amber palette, real DA mark, inset visual, reference pane,
+This is a review proposal, pending explicit user approval.
+Its purple/amber palette, real DA mark, inset visual, optional separate reference panel,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
 The real repository logo was vector-traced and embedded as paths, not a raster image.
 
@@ -189,6 +186,9 @@ Design fixes for review:
 - Review fix 05: the former large-knob parameter returns as the FIRST small knob in
   the main control row, using the same 28 px radius as its neighbours. No separate
   primary readout is duplicated. The canvas is another 60 px shorter (1240 px tall).
+- Review fix 06: reference waveform and heading removed from every main screen.
+  REFERENCE... represents access to a separate optional panel, closed by default.
+  Reference-Panel.svg shows its empty state; no file or analysis is fabricated.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
@@ -204,9 +204,23 @@ pending the approved runtime implementation; SVG buttons do not implement intera
 اصلاح شده‌اند. فایل CSV برای بررسی دامنه، مقدار نمونه، محل کنترل و امکان Learn است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.
 ''')
-archive=OUT.parent/'DAPlugins_FinalReference_SVG_Review03_SmallKnobs.zip'
+(OUT/'Reference-Panel.svg').write_text('''<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+<title>Optional reference panel — empty state design proposal</title>
+<rect width="800" height="440" rx="18" fill="#111114"/>
+<g font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#d0d0d6">
+<text x="32" y="48" fill="#a28bd0" font-size="24">REFERENCE</text>
+<text x="660" y="48">CLOSE</text>
+<text x="32" y="100">Optional workspace — opened only when requested</text>
+<rect x="32" y="128" width="736" height="160" rx="10" fill="#0e0e11" stroke="#414146"/>
+<text x="400" y="192" text-anchor="middle">No reference file selected</text>
+<text x="400" y="228" text-anchor="middle" fill="#a9a9b5">Load a file when you need reference-based analysis.</text>
+<rect x="32" y="316" width="220" height="48" rx="7" fill="#19191d" stroke="#a28bd0"/>
+<text x="142" y="347" text-anchor="middle" fill="#a28bd0">LOAD REFERENCE</text>
+<text x="32" y="408" font-size="16">SVG proposal only — no file loaded, no analysis performed.</text>
+</g></svg>''')
+archive=OUT.parent/'DAPlugins_FinalReference_SVG_Review04_OptionalReference.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
  for p in sorted(OUT.iterdir()):
-  if p.name!='LogoPaths.json':z.write(p,'DAPlugins_FinalReference_Review03_SmallKnobs/'+p.name)
-with zipfile.ZipFile(archive) as z:assert z.testzip() is None;assert sum(n.endswith('.svg') for n in z.namelist())==10
+  if p.name!='LogoPaths.json':z.write(p,'DAPlugins_FinalReference_Review04_OptionalReference/'+p.name)
+with zipfile.ZipFile(archive) as z:assert z.testzip() is None;assert sum(n.endswith('.svg') for n in z.namelist())==11
 print('PASS ten final-reference SVGs / 92 unique real controls / vector logo / ZIP CRC:',archive)

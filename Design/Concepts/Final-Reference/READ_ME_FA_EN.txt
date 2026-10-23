@@ -1,7 +1,7 @@
-D.A / FINAL SELECTED REFERENCE — SVG REVIEW 03 / SMALL KNOBS
+D.A / FINAL SELECTED REFERENCE — SVG REVIEW 04 / OPTIONAL REFERENCE
 10 standalone editable SVGs, 1200 x 1240. No runtime editor or DSP changes.
-This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
-Its purple/amber palette, real DA mark, inset visual, reference pane,
+This is a review proposal, pending explicit user approval.
+Its purple/amber palette, real DA mark, inset visual, optional separate reference panel,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
 The real repository logo was vector-traced and embedded as paths, not a raster image.
 
@@ -29,6 +29,9 @@ Design fixes for review:
 - Review fix 05: the former large-knob parameter returns as the FIRST small knob in
   the main control row, using the same 28 px radius as its neighbours. No separate
   primary readout is duplicated. The canvas is another 60 px shorter (1240 px tall).
+- Review fix 06: reference waveform and heading removed from every main screen.
+  REFERENCE... represents access to a separate optional panel, closed by default.
+  Reference-Panel.svg shows its empty state; no file or analysis is fabricated.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
