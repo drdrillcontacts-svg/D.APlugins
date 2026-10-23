@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1280" viewBox="0 0 1000 1280" role="img" aria-labelledby="title description">
+<title id="title">D.A Plugins / DSat / Selected Reference / Red</title>
+<desc id="description">Editable design proposal, not a running plugin. Original D.A branding; matte graphite, sculpted controls, neutral highlights and red accents. Graphs are illustrative, not live readings.</desc>
+<defs>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#1a1a1a"/><stop offset=".4" stop-color="#121212"/><stop offset="1" stop-color="#1a1a1a"/></linearGradient>
+ <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#353535"/><stop offset=".15" stop-color="#212121"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient>
+ <linearGradient id="dial" x2="0" y2="1"><stop stop-color="#161616"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+ <radialGradient id="face"><stop stop-color="#232323"/><stop offset=".8" stop-color="#1e1e1e"/><stop offset="1" stop-color="#141414"/></radialGradient>
+ <linearGradient id="fade" x2="0" y2="1"><stop stop-color="#acacac" stop-opacity=".28"/><stop offset="1" stop-color="#acacac" stop-opacity="0"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#000" flood-opacity=".7"/></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1000" height="1280" fill="#0e0e0e"/>
+<rect x="39" y="33" width="922" height="1214" rx="31" fill="#080808" filter="url(#shadow)"/>
+<rect x="40" y="34" width="920" height="1212" rx="30" fill="url(#body)" stroke="#2a2a2a"/>
+<rect x="44" y="38" width="912" height="1204" rx="27" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+
+<g id="preset-header">
+<text x="78" y="100" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="600" fill="#d5d5d5" text-anchor="start" letter-spacing="-1">D.A</text>
+<rect x="295" y="65" width="381" height="46" rx="7" fill="#101010" stroke="#363636"/>
+<text x="313" y="94" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#cacaca" text-anchor="start" letter-spacing="0.4">Factory presets</text>
+<path d="M580 65 L580 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M628 65 L628 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M607 81 l-7 7 7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M649 81 l7 7 -7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="691" y="65" width="47" height="46" rx="7" fill="#111111" stroke="#363636"/>
+<path d="M707 79 h14 v19 h-14 z m4 5 h6 m-6 5 h6" fill="none" stroke="#a6a6a6" stroke-width="1.3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 80 L912 80" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 88 L912 88" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 96 L912 96" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="57" y="137" width="886" height="379" rx="27" fill="url(#bevel)" stroke="#292929"/>
+<rect x="70" y="150" width="860" height="351" rx="18" fill="#0d0d0d" stroke="#232323"/>
+<text x="91" y="236" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#d5d5d5" text-anchor="start" letter-spacing="3">DSAT</text>
+<text x="887" y="237" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#939393" text-anchor="end" letter-spacing="2">RESET</text>
+<g id="illustrative-display">
+<text x="91" y="193" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8c8c8c" text-anchor="start" letter-spacing="2.4">COLOUR / SATURATION</text>
+<circle cx="865" cy="189" r="2.5" fill="#767676" stroke="none"/>
+<text x="881" y="193" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#686868" text-anchor="end" letter-spacing="1">STUDY</text>
+<path d="M230 370 L770 370" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M230 370 L230 227" fill="none" stroke="#2c2c2c" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260 365 L742 230" fill="none" stroke="#494949" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260.00 364.95 L264.80 364.78 L269.60 364.59 L274.40 364.38 L279.20 364.16 L284.00 363.92 L288.80 363.66 L293.60 363.38 L298.40 363.07 L303.20 362.74 L308.00 362.38 L312.80 362.00 L317.60 361.58 L322.40 361.13 L327.20 360.64 L332.00 360.12 L336.80 359.56 L341.60 358.95 L346.40 358.29 L351.20 357.59 L356.00 356.84 L360.80 356.02 L365.60 355.15 L370.40 354.22 L375.20 353.23 L380.00 352.16 L384.80 351.03 L389.60 349.82 L394.40 348.53 L399.20 347.16 L404.00 345.71 L408.80 344.18 L413.60 342.55 L418.40 340.85 L423.20 339.05 L428.00 337.16 L432.80 335.18 L437.60 333.11 L442.40 330.96 L447.20 328.72 L452.00 326.41 L456.80 324.01 L461.60 321.54 L466.40 319.01 L471.20 316.41 L476.00 313.76 L480.80 311.06 L485.60 308.33 L490.40 305.57 L495.20 302.79 L500.00 300.00 L504.80 297.21 L509.60 294.43 L514.40 291.67 L519.20 288.94 L524.00 286.24 L528.80 283.59 L533.60 280.99 L538.40 278.46 L543.20 275.99 L548.00 273.59 L552.80 271.28 L557.60 269.04 L562.40 266.89 L567.20 264.82 L572.00 262.84 L576.80 260.95 L581.60 259.15 L586.40 257.45 L591.20 255.82 L596.00 254.29 L600.80 252.84 L605.60 251.47 L610.40 250.18 L615.20 248.97 L620.00 247.84 L624.80 246.77 L629.60 245.78 L634.40 244.85 L639.20 243.98 L644.00 243.16 L648.80 242.41 L653.60 241.71 L658.40 241.05 L663.20 240.44 L668.00 239.88 L672.80 239.36 L677.60 238.87 L682.40 238.42 L687.20 238.00 L692.00 237.62 L696.80 237.26 L701.60 236.93 L706.40 236.62 L711.20 236.34 L716.00 236.08 L720.80 235.84 L725.60 235.62 L730.40 235.41 L735.20 235.22 L740.00 235.05" fill="none" stroke="#c5c5c5" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="230" y="399" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#787878" text-anchor="start" letter-spacing="1.6">INPUT</text>
+<text x="770" y="399" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#787878" text-anchor="end" letter-spacing="1.6">TRANSFER</text>
+<text x="93" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9b9b9b" text-anchor="start" letter-spacing="1.6">CAPTURE</text>
+<circle cx="81" cy="441" r="3" fill="#df4b4f" stroke="none"/>
+<text x="215" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#717171" text-anchor="start" letter-spacing="1.6">REFERENCE</text>
+<text x="887" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="1.6">DETAILS</text>
+</g>
+<g id="param-drive">
+<text x="91" y="596" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#d1d1d1" text-anchor="start" letter-spacing="3">DRIVE</text>
+<text x="90" y="650" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="400" fill="#eeeeee" text-anchor="start" letter-spacing="0.1">+6 dB</text>
+<text x="91" y="682" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#999999" text-anchor="start" letter-spacing="2">PRECISION CONTROL</text>
+<text x="887" y="622" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="2">LEARN</text>
+</g>
+<g id="param-tone">
+<title>Tone</title>
+<text x="172.0" y="834" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">TONE</text>
+<circle cx="172.0" cy="891" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="172.0" cy="887" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="172.0" cy="887" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="172.0" cy="887" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M191.5284867607623 887.2431148591352 L200.20781420998998 887.3511659076397" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="172.0" y="945" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">10 kHz</text>
+<circle cx="196.2" cy="830" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-mode">
+<text x="336.0" y="834" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">CHARACTER</text>
+<rect x="278.0" y="861" width="116" height="43" rx="7" fill="#141414" stroke="#3a3a3a"/>
+<text x="336.0" y="888" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9c9c9" text-anchor="middle" letter-spacing="0.2">SOFT</text>
+</g>
+<g id="param-density">
+<title>Density</title>
+<text x="500.0" y="834" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">DENSITY</text>
+<circle cx="500.0" cy="891" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="500.0" cy="887" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="500.0" cy="887" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="500.0" cy="887" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M500.0 867.47 L500.0 858.79" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500.0" y="945" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">50%</text>
+</g>
+<g id="param-mix">
+<title>Mix</title>
+<text x="664.0" y="834" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">MIX</text>
+<circle cx="664.0" cy="891" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="664.0" cy="887" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="664.0" cy="887" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="664.0" cy="887" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M664.0 867.47 L664.0 858.79" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="664.0" y="945" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">50%</text>
+</g>
+<g id="param-output">
+<title>Output</title>
+<text x="828.0" y="834" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">OUTPUT</text>
+<circle cx="828.0" cy="891" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="828.0" cy="887" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="828.0" cy="887" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="828.0" cy="887" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M841.8097954365733 873.1902045634267 L847.9474822972725 867.0525177027275" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="828.0" y="945" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+</g>
+<path d="M76 1098 L924 1098" fill="none" stroke="#333333" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="165" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">CAPTURE INPUT</text>
+<text x="382" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">REFERENCE</text>
+<text x="602" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="middle" letter-spacing="1.2">LEARN ALL</text>
+<text x="817" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">DETAILS / LOG</text>
+<text x="76" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#969696" text-anchor="start" letter-spacing="1.6">D.A PLUGINS</text>
+<text x="924" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#929292" text-anchor="end" letter-spacing="1">DESIGN STUDY / NO LIVE AUDIO</text>
+</svg>
