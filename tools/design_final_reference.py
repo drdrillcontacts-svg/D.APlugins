@@ -28,6 +28,19 @@ MAIN={'DVerb':['predelay','size','tone','mix','width','density'],
 'DFX':['driveOn','drive','filterOn','filter','delayOn','time']}
 GROUPS={'DVerb':('SPACE & CHARACTER','DIFFUSION & COLOUR'), 'DDelay':('ECHO & COLOUR','SYNC / MOTION / OUTPUT'), 'DComp':('DYNAMICS','KNEE / BLEND / OUTPUT'), 'DEQ':('BAND 02 / SELECTED','BANDS 01 / 03 / 04'), 'DSat':('HARMONIC COLOUR','CHARACTER / OUTPUT'), 'DTrans':('ENVELOPE','OUTPUT'), 'DStereo':('MID / SIDE IMAGE','MONO CHECK'), 'DSess':('SIBILANCE CONTROL','TIMING / OUTPUT'), 'DGate':('OPEN / HOLD / RELEASE','HYSTERESIS / OUTPUT'), 'DFX':('DRIVE / FILTER / DELAY','FEEDBACK / AMBIENCE / OUTPUT')}
 class D(Base):
+ def text(self,t,x,y,size=13,color='#a0a7a6',align='start',track=1,font=None,weight=400):
+  # Logo is vector geometry; the product-name text is intentionally untouched.
+  if str(t)==self.n.upper() and x==278 and y==123:
+   return super().text(t,x,y,size,color,align,track,font,weight)
+  original_size=size
+  size=16 if size<14 else size+6 if size<=19 else size+2
+  track=min(track,.55) if original_size<20 else track
+  if original_size<14:weight=max(weight,600)
+  elif original_size<=19:weight=max(weight,500)
+  if color.startswith('#') and len(color)==7:
+   rgb=[int(color[i:i+2],16) for i in (1,3,5)]
+   if max(rgb)<185:color='#'+''.join(f'{min(v+28,255):02x}' for v in rgb)
+  return super().text(t,x,y,size,color,align,track,font,weight)
  def __init__(self,n):
   super().__init__(n,('SVG','Final reference','',1200,1600,PURPLE,'Arial, Helvetica, sans-serif','final'))
   self.c=PURPLE;self.values={p['id']:EXAMPLES.get(n,{}).get(p['id'],p['initial']) for p in META[n]}
@@ -48,7 +61,8 @@ class D(Base):
  def cut(self,x,y,w,h,fill='#17171a',stroke='#353539',cut=8):
   self.path(f'M{x+cut} {y} H{x+w-cut} L{x+w} {y+cut} V{y+h-cut} L{x+w-cut} {y+h} H{x+cut} L{x} {y+h-cut} V{y+cut} Z',stroke,1,fill=fill)
  def button(self,id,t,x,y,w,h,accent=False,enabled=True):
-  self.raw(f'<g id="action-{id}"'+(' opacity=".5"' if not enabled else '')+'>')
+  h=max(h,25)
+  self.raw(f'<g id="action-{id}"'+(' opacity=".75"' if not enabled else '')+'>')
   self.cut(x,y,w,h,'#19191d',PURPLE if accent else '#414146',7)
   self.text(t,x+w/2,y+h/2+4,11,PURPLE if accent else '#d0d0d5','middle',.3)
   self.raw('</g>')
@@ -93,7 +107,7 @@ class D(Base):
   if p['discrete']:
    opts=OPTIONS.get(self.n+':'+p['id'],['BELL','LOW SHELF','HIGH SHELF'] if self.n=='DEQ' and p['id'].endswith('shape') else ['OFF','ON'])
    if len(opts)<=4:
-    ww=190 if len(opts)>2 else 156;cw=ww/len(opts)
+    ww=len(opts)*(116 if len(opts)==3 else 100) if len(opts)>2 else 156;cw=ww/len(opts)
     for oi,t in enumerate(opts):
      xx=x-ww/2+oi*cw;active=oi==int(v)
      self.cut(xx,y-20,cw-4,39,'#24212b' if active else '#141418',PURPLE if active else '#393940',5)
@@ -107,7 +121,7 @@ class D(Base):
    if p['unit']=='Hz':f=math.log(v/p['min'])/math.log(p['max']/p['min'])
    a=math.radians(-225+270*f);self.line(x+math.cos(a)*r*.62,y+math.sin(a)*r*.62,x+math.cos(a)*r*.9,y+math.sin(a)*r*.9,'#ceced4',2)
    self.text(VALUE(self.n,p,v),x,y+r+26,14,'#d2d2db','middle',.1)
-  if p['learnable']:self.circle(x+len(LABEL(p))*3.2+12,y-r-23,2.4,AMBER,'none')
+  if p['learnable']:self.circle(x+len(LABEL(p))*4.7+12,y-r-23,2.4,AMBER,'none')
   self.raw('</g>')
   if p['learnable']:self.button('learn-'+p['id'],'LEARN',x-34,y+r+36,68,18,False)
  def panel(self,title,y,h):
@@ -136,10 +150,13 @@ for n,params in META.items():
     d.text('BELL' if suffix=='shape' else VALUE(n,p,d.values[p['id']]),x+306,y+12,14,'#d1d1dc','end',.1)
     if p['learnable']:d.circle(x+98,y+8,2.3,AMBER,'none')
     d.raw('</g>')
-    if p['learnable']:d.button('learn-'+p['id'],'LEARN',x+236,y+19,70,17)
+    if p['learnable']:d.button('learn-'+p['id'],'LEARN',x+130,y-6,88,25)
    if j<2:d.line(x+331,1234,x+331,1419,'#35353e')
  else:
-  for i,id in enumerate(advanced):d.mini(lookup[id],100+(i+.5)*1000/len(advanced),1310,24)
+  for i,id in enumerate(advanced):
+   x=100+(i+.5)*1000/len(advanced);y=1310
+   if n=='DVerb' and id=='mode':x=930;y=1394
+   d.mini(lookup[id],x,y,24)
   if len(advanced)==1:
    d.text('ALL PARAMETERS VISIBLE / NO DUPLICATED CONTROLS',600,1413,9,'#8f8f9d','middle',.8)
  d.bottom();d.finish(OUT/(n+'.svg'))
@@ -169,7 +186,11 @@ Design fixes for review:
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
 - Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
 - Review fix 02: removed the large focused knob, housing, tick dots and pointer from all ten SVGs.
-  Focused parameter name/value and eligible Learn action remain; small knobs are unchanged.
+  Focused parameter name/value and eligible Learn action remain; small knobs were retained.
+- Review fix 03: all non-brand text enlarged (minimum 16 SVG px), less letter spacing,
+  stronger small-label weight/contrast, larger small-button height and wider choices.
+  Product name and logo are unchanged. DVerb Character and EQ Learn placement adjusted
+  only to prevent collisions from the larger typography.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 

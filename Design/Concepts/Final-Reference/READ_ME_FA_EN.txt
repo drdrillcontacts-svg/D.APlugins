@@ -18,7 +18,11 @@ Design fixes for review:
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
 - Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
 - Review fix 02: removed the large focused knob, housing, tick dots and pointer from all ten SVGs.
-  Focused parameter name/value and eligible Learn action remain; small knobs are unchanged.
+  Focused parameter name/value and eligible Learn action remain; small knobs were retained.
+- Review fix 03: all non-brand text enlarged (minimum 16 SVG px), less letter spacing,
+  stronger small-label weight/contrast, larger small-button height and wider choices.
+  Product name and logo are unchanged. DVerb Character and EQ Learn placement adjusted
+  only to prevent collisions from the larger typography.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
