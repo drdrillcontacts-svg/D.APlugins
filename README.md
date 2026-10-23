@@ -1,17 +1,69 @@
-# D.A Plugins — UI Reference Match Bundle
+# D.A Plugins
 
-This revision follows the user's supplied visual reference: premium dark hardware-style panels, carbon-black background, thin crimson rails, waveform and analysis panels, rotary controls, reference-learning section, advanced controls and output meters.
+**LEARN THE SOUND. RECREATE THE FEEL.**
 
-## UI mockups
-`Design/UI-Mockups/` contains one large PNG design reference for each plugin: DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.
+Development checkpoint for ten JUCE audio effects. **This is not a completed or release-ready bundle.**
+The original UI assets remain in `Design/UI-Mockups/`. Runtime controls are JUCE components, not PNGs.
 
-## Build
-Requires CMake 3.22+ and a C++ toolchain supported by JUCE:
-```bash
-cmake -S . -B build
-cmake --build build --config Release
+## Current implementation
+
+- Separate DSP paths for DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.
+- Shared metadata for 90 parameters; parameter, band/module and all-parameter proposal scopes.
+- Deterministic audio-feature estimates, with explicit uncertainty. **No trained neural model.**
+- Reversible proposal lifecycle and stale-result protection.
+- JUCE wiring for attached controls, input capture, asynchronous estimation/reference decoding,
+  reference/description mode selection, approval controls and real peak/GR readings.
+- Portable tests; plugin-format builds and host behavior still need verification.
+
+Full acceptance gaps, per-plugin status, validated commands and next steps: [docs/STATUS.md](docs/STATUS.md).
+Algorithms, policy-based versus audio-derived suggestions, and limitations: [docs/LEARNING.md](docs/LEARNING.md).
+
+## Portable build and tests (no JUCE/system audio dependencies)
+
+Requires CMake 3.22+ and a C++17 compiler:
+
+```sh
+cmake -S . -B build-core -DDA_BUILD_PLUGINS=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build build-core --parallel 2
+ctest --test-dir build-core --output-on-failure
 ```
-GitHub Actions workflow is in `.github/workflows/build.yml`.
 
-## Important implementation status
-The JUCE editor source has been restyled toward the reference design. The ten PNGs are visual design mockups; the runtime editor is still a shared code scaffold and does not yet reproduce every pixel/detail of every mockup. AI reference analysis and Learn & Match are placeholders, and DSP is not yet a finished individual algorithm per plugin. The build has not been verified in GitHub Actions.
+## Plugin builds
+
+JUCE 8.0.6 is fetched from an immutable, SHA-256 verified source archive. Internet access is required
+on first configuration. Review JUCE's licensing terms before distribution; this repository does not
+grant a JUCE commercial license. Existing `LICENSE-NOTICE.txt` is preserved.
+
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release --parallel 2
+ctest --test-dir build -C Release --output-on-failure
+```
+
+Windows: Visual Studio 2022 C++ desktop tools and Windows SDK. macOS: Xcode command-line tools.
+Linux: GCC/Clang, pkg-config and JUCE development dependencies, e.g. on Ubuntu:
+
+```sh
+sudo apt-get install build-essential cmake pkg-config libasound2-dev libjack-jackd2-dev \
+  libfreetype6-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev \
+  libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libgl1-mesa-dev
+```
+
+All ten targets request VST3 and Standalone; AU is requested only on macOS. IDs are distinct four-character
+codes. Build products go under `build/<Plugin>_artefacts/Release/`. CI is configured for Linux, Windows and
+macOS; configuration is not evidence of a successful run. No installer, signing or notarization yet.
+
+## Development audition workflow (host integration unverified)
+
+1. Play non-silent input. Choose **Input-aware estimate**, **Reference tonal/image guide**, or
+   **Description-guided estimate**. Recognized adjectives: dark, warm, wide, smooth, cinematic.
+2. Press a parameter Learn button, a band/module button, or Learn all. Recording collects 65,536 input
+   samples; decoding/analysis/estimation runs off the audio callback. Capture times out in the UI after 15 s.
+3. Inspect current/proposed values, reason and heuristic confidence score. Parameters are not changed yet.
+4. Preview to audition; Apply to retain; Reject to restore the pre-preview values; Undo restores one
+   previous learning operation. A manual/host change invalidates old proposals. Closing the editor
+   restores an unaccepted preview. DAW automation and simultaneous edits still need stress testing.
+5. Reference WAV/AIFF/FLAC support depends on JUCE's registered basic decoders. Only the first 30 seconds
+   are analyzed; references are not copied into plugin state. Input-only analysis is never an exact match.
+
+Do not use this checkpoint on irreplaceable sessions without backups.

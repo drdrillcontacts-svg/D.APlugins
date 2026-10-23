@@ -1,105 +1,326 @@
 #include "PluginEditor.h"
-
+#include <chrono>
+#include <set>
 namespace {
-const juce::Colour bg(0xff070809), panel(0xff0e1012), panel2(0xff151719),
- red(0xffff1738), redDark(0xff6f0b1c), white(0xffe8e9e9), grey(0xff85898e), grid(0xff292c30);
-juce::StringArray controls(juce::String n) {
- if(n=="DVerb") return {"PRE-DELAY","SIZE","DECAY","AI MATCH","TONE","MIX","WIDTH"};
- if(n=="DDelay") return {"TIME","FEEDBACK","FILTER","AI MATCH","TONE","MIX","WIDTH"};
- if(n=="DComp") return {"THRESHOLD","RATIO","ATTACK","AI MATCH","RELEASE","MIX","MAKE UP"};
- if(n=="DEQ") return {"LOW","BODY","PRESENCE","AI MATCH","AIR","MIX","GAIN"};
- if(n=="DSat") return {"DRIVE","TONE","DENSITY","AI MATCH","COLOR","MIX","OUTPUT"};
- if(n=="DTrans") return {"ATTACK","SUSTAIN","SENSITIVITY","AI MATCH","SHAPE","MIX","OUTPUT"};
- if(n=="DStereo") return {"WIDTH","DEPTH","CENTER","AI MATCH","SIDE","MIX","MONO"};
- if(n=="DSess") return {"FREQ","THRESHOLD","RANGE","AI MATCH","FOCUS","MIX","OUTPUT"};
- if(n=="DGate") return {"THRESHOLD","HOLD","ATTACK","AI MATCH","RELEASE","RANGE","OUTPUT"};
- return {"SPACE","COLOR","MOTION","AI MATCH","TONE","MIX","OUTPUT"};
+const juce::Colour background(0xff090b0e), panel(0xff15181c), red(0xffe9163e), text(0xfff2f0f1),
+    muted(0xffaeb2ba);
+template <class T> bool ready(std::future<T> &f) {
+    return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
 }
-juce::String subtitle(juce::String n) {
- if(n=="DVerb") return "AI REVERB LEARNING"; if(n=="DDelay") return "AI DELAY LEARNING";
- if(n=="DComp") return "AI COMPRESSION"; if(n=="DEQ") return "AI EQUALIZER";
- if(n=="DSat") return "AI SATURATION"; if(n=="DTrans") return "AI TRANSIENT DESIGNER";
- if(n=="DStereo") return "AI STEREO DESIGNER"; if(n=="DSess") return "AI DE-ESSER";
- if(n=="DGate") return "AI GATE & EXPANDER"; return "AI MULTI-EFFECTS";
+} // namespace
+DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcessor &p)
+    : AudioProcessorEditor(&p), processor(p), session(p.currentValues()),
+      lastValues(session.values) {
+    setResizable(true, true);
+    setResizeLimits(940, 720, 1500, 1100);
+    for (size_t i = 0; i < p.metadata.size(); ++i) {
+        const auto &meta = p.metadata[i];
+        auto control = std::make_unique<Control>();
+        control->knob.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+        control->knob.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 20);
+        control->knob.setColour(juce::Slider::rotarySliderFillColourId, red);
+        control->knob.setColour(juce::Slider::textBoxTextColourId, text);
+        control->knob.setColour(juce::Slider::textBoxOutlineColourId, panel);
+        control->knob.setTextValueSuffix(" " + juce::String(meta.unit));
+        control->knob.setTooltip(meta.module + " / " + meta.name +
+                                 "; heuristic suggestions require approval");
+        control->label.setText(meta.module + " / " + meta.name, juce::dontSendNotification);
+        control->label.setJustificationType(juce::Justification::centred);
+        control->label.setColour(juce::Label::textColourId, text);
+        control->label.setFont(juce::Font(juce::FontOptions(12.f)));
+        control->learn.onClick = [this, id = meta.id] { startLearn(id); };
+        control->attachment =
+            std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
+                p.parameters, meta.id, control->knob);
+        addAndMakeVisible(control->knob);
+        addAndMakeVisible(control->label);
+        addAndMakeVisible(control->learn);
+        controls.push_back(std::move(control));
+    }
+    std::set<std::string> seen;
+    for (const auto &meta : p.metadata)
+        if (seen.insert(meta.module).second) {
+            auto button = std::make_unique<juce::TextButton>("Learn " + juce::String(meta.module));
+            button->onClick = [this, module = meta.module] { startLearn(module); };
+            addAndMakeVisible(*button);
+            modules.push_back(std::move(button));
+        }
+    for (auto *button : {&learnAll, &loadReference, &preview, &apply, &reject, &undo}) {
+        button->setColour(juce::TextButton::buttonColourId, panel);
+        button->setColour(juce::TextButton::textColourOffId, text);
+        addAndMakeVisible(*button);
+    }
+    learnAll.setColour(juce::TextButton::buttonColourId, red);
+    apply.setColour(juce::TextButton::buttonColourId, red);
+    mode.addItem("Input-aware estimate", 1);
+    mode.addItem("Reference tonal/image guide", 2);
+    mode.addItem("Description-guided estimate", 3);
+    mode.setSelectedId(1);
+    addAndMakeVisible(mode);
+    description.setTextToShowWhenEmpty("Goals: dark, warm, wide, smooth, cinematic", muted);
+    addAndMakeVisible(description);
+    results.setMultiLine(true);
+    results.setReadOnly(true);
+    results.setColour(juce::TextEditor::backgroundColourId, panel);
+    results.setColour(juce::TextEditor::textColourId, text);
+    results.setText("Development checkpoint — not a finished suite.\nSuggestions use deterministic "
+                    "audio features, not a neural model. Reference guidance is not iterative "
+                    "output matching.\nReverb/shimmer quality, matching accuracy and all host "
+                    "workflows require further validation. See docs/STATUS.md.");
+    addAndMakeVisible(results);
+    status.setColour(juce::Label::textColourId, text);
+    addAndMakeVisible(status);
+    setStatus("Ready — play audio, choose a scope, inspect suggestions before applying");
+    learnAll.onClick = [this] { startLearn("all"); };
+    loadReference.onClick = [this] { load(); };
+    preview.onClick = [this] {
+        syncManual();
+        if (session.preview())
+            write();
+        else
+            setStatus("No current suggestion to preview");
+    };
+    apply.onClick = [this] {
+        syncManual();
+        if (session.apply())
+            write();
+        else
+            setStatus("No current suggestion to apply");
+    };
+    reject.onClick = [this] {
+        syncManual();
+        session.reject();
+        ++session.revision;
+        capturing = false;
+        write();
+    };
+    undo.onClick = [this] {
+        syncManual();
+        if (session.undo())
+            write();
+        else
+            setStatus("No learning operation to undo");
+    };
+    setSize(1120, p.metadata.size() > 12 ? 970 : 850);
+    startTimerHz(15);
 }
+DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
+    stopTimer();
+    syncManual();
+    if (session.status == "Previewing") {
+        session.reject();
+        processor.writeValues(session.values);
+    }
 }
-DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcessor& p)
- : AudioProcessorEditor(&p), processor(p) {
- setSize(900,620);
- auto names=controls(p.getName());
- const char* ids[]={"amount","mix","tone","width"};
- for(int i=0;i<7;++i) {
-   knobs[i].setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-   knobs[i].setTextBoxStyle(juce::Slider::TextBoxBelow,false,55,17);
-   knobs[i].setColour(juce::Slider::rotarySliderFillColourId,red);
-   knobs[i].setColour(juce::Slider::rotarySliderOutlineColourId,grid);
-   knobs[i].setColour(juce::Slider::thumbColourId,white);
-   knobs[i].setColour(juce::Slider::textBoxTextColourId,white);
-   knobs[i].setColour(juce::Slider::textBoxBackgroundColourId,panel);
-   knobs[i].setColour(juce::Slider::textBoxOutlineColourId,panel);
-   addAndMakeVisible(knobs[i]);
-   knobLabels[i].setText(names[i],juce::dontSendNotification);
-   knobLabels[i].setJustificationType(juce::Justification::centred);
-   knobLabels[i].setColour(juce::Label::textColourId,grey);
-   knobLabels[i].setFont(juce::Font(9.0f,juce::Font::bold));
-   addAndMakeVisible(knobLabels[i]);
- }
- for(int i=0;i<4;++i) attachments[i]=std::make_unique<Attachment>(p.parameters,ids[i],knobs[i]);
- for(auto* b:{&loadReference,&learnButton,&matchButton}) {
-   b->setColour(juce::TextButton::buttonColourId,b==&learnButton?red:(b==&matchButton?redDark:panel2));
-   b->setColour(juce::TextButton::textColourOffId,white);
-   b->setColour(juce::TextButton::textColourOnId,white);
-   addAndMakeVisible(*b);
- }
- loadReference.onClick=[this]{statusText="REFERENCE SLOT SELECTED  /  FILE LOADING NOT IMPLEMENTED";status.setText(statusText,juce::dontSendNotification);};
- learnButton.onClick=[this]{statusText="LEARN MODE  /  CONNECT AN AUDIO ANALYSIS MODEL";status.setText(statusText,juce::dontSendNotification);};
- matchButton.onClick=[this]{statusText="AI MATCH IS A UI PLACEHOLDER IN THIS BUILD";status.setText(statusText,juce::dontSendNotification);};
- modeBox.addItem("ROOM",1);modeBox.addItem("HALL",2);modeBox.addItem("PLATE",3);modeBox.addItem("SHIMMER",4);modeBox.setSelectedId(2);
- modeBox.setColour(juce::ComboBox::backgroundColourId,panel2);modeBox.setColour(juce::ComboBox::textColourId,white);modeBox.setColour(juce::ComboBox::outlineColourId,grid);addAndMakeVisible(modeBox);
- status.setText(statusText,juce::dontSendNotification);status.setColour(juce::Label::textColourId,grey);status.setFont(juce::Font(9.0f,juce::Font::bold));addAndMakeVisible(status);
+void DAPluginAudioProcessorEditor::setStatus(const juce::String &s) {
+    status.setText(s, juce::dontSendNotification);
 }
-void DAPluginAudioProcessorEditor::paint(juce::Graphics& g) {
- auto n=processor.getName();g.fillAll(bg);
- // brushed-metal top rail and red edge
- g.setColour(red);g.fillRect(0,0,getWidth(),3);g.setColour(juce::Colour(0xff202326));g.fillRect(0,3,getWidth(),43);
- g.setColour(white);g.setFont(juce::Font(22.0f,juce::Font::bold));g.drawText("D.A",20,7,48,27,juce::Justification::centredLeft);
- g.setColour(red);g.drawText("PLUGINS",69,9,86,24,juce::Justification::centredLeft);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("LEARN THE SOUND  /  RECREATE THE FEEL",20,31,330,12,juce::Justification::left);
- g.setColour(white);g.setFont(juce::Font(17.0f,juce::Font::bold));g.drawText(n.toUpperCase(),getWidth()/2-100,7,200,23,juce::Justification::centred);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText(subtitle(n),getWidth()/2-100,28,200,12,juce::Justification::centred);
- g.setColour(grey);g.drawText("V1.0     ◉  ⚙  ×",getWidth()-130,14,112,18,juce::Justification::right);
- // Main analysis screen
- g.setColour(panel);g.fillRoundedRectangle(14,55,getWidth()-28,152,8);
- g.setColour(grid);g.drawRoundedRectangle(14,55,getWidth()-28,152,8,1);
- g.setColour(panel2);g.fillRoundedRectangle(24,65,160,132,5);g.fillRoundedRectangle(194,65,420,132,5);g.fillRoundedRectangle(624,65, getWidth()-658,132,5);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));
- g.drawText("INPUT",32,71,100,12,juce::Justification::left);g.drawText("AI MATCH / ANALYSIS",205,71,180,12,juce::Justification::left);g.drawText("REFERENCE",635,71,120,12,juce::Justification::left);
- // red analysis grid and curve
- for(int i=0;i<8;++i)g.setColour(grid),g.drawLine(205.0f+i*56,89,205.0f+i*56,184,1.0f);
- for(int i=0;i<5;++i)g.setColour(grid),g.drawLine(205,91+i*22,604,91+i*22,1.0f);
- juce::Path curve;curve.startNewSubPath(207,102);
- for(int i=1;i<100;++i){float x=207+i*3.95f;float y=105+66.0f*(float(i)/100.0f)+10.0f*std::sin(i*.19f);curve.lineTo(x,y);}
- g.setColour(red.withAlpha(.22f));juce::Path fill=curve;fill.lineTo(600,184);fill.lineTo(207,184);fill.closeSubPath();g.fillPath(fill);
- g.setColour(red);g.strokePath(curve,juce::PathStrokeType(1.6f));
- // waveform strokes
- for(int i=0;i<65;++i){float x=35+i*2.0f;float h=8+std::abs(std::sin(i*.62f))*36;g.setColour(i%5==0?red:grey);g.drawLine(x,143-h/2,x,143+h/2,1.2f);}
- for(int i=0;i<65;++i){float x=638+i*2.0f;float h=4+std::abs(std::sin(i*.48f+1))*19;g.setColour(grey.withAlpha(.75f));g.drawLine(x,143-h/2,x,143+h/2,1.0f);}
- // lower modules
- g.setColour(panel);g.fillRoundedRectangle(14,217,getWidth()-28,118,8);g.setColour(grid);g.drawRoundedRectangle(14,217,getWidth()-28,118,8,1);
- g.setColour(panel);g.fillRoundedRectangle(14,344,430,210,8);g.fillRoundedRectangle(454,344,310,210,8);g.fillRoundedRectangle(774,217,112,337,8);
- g.setColour(grid);g.drawRoundedRectangle(14,344,430,210,8,1);g.drawRoundedRectangle(454,344,310,210,8,1);g.drawRoundedRectangle(774,217,112,337,8,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("REFERENCE MODE",25,352,150,14,juce::Justification::left);g.drawText("ADVANCED / CHARACTER",466,352,220,14,juce::Justification::left);g.drawText("OUTPUT",785,226,90,14,juce::Justification::centred);
- // output meter
- for(int i=0;i<22;++i){int y=257+i*11;g.setColour(i<15?red:(i<19?juce::Colour(0xff8e182a):grid));g.fillRect(796,y,10,7);g.fillRect(813,y,10,7);}
- g.setColour(grid);g.drawLine(790,505,870,505,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f));g.drawText("IN / OUT",790,516,80,12,juce::Justification::centred);
- // footer frame
- g.setColour(panel2);g.fillRect(14,563,getWidth()-28,39);g.setColour(redDark);g.fillRect(14,563,getWidth()-28,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("D.A  |  "+n.toUpperCase(),25,576,250,15,juce::Justification::left);
- g.drawText("POWERED BY D.A NEURAL ENGINE  /  PROTOTYPE",getWidth()-340,576,310,15,juce::Justification::right);
+void DAPluginAudioProcessorEditor::syncManual() {
+    auto values = processor.currentValues();
+    bool changed = false;
+    for (size_t i = 0; i < values.size(); ++i)
+        if (std::abs(values[i] - lastValues[i]) > 1e-5f)
+            changed = true;
+    if (changed) {
+        session.reject();
+        session.values = values;
+        ++session.revision;
+        lastValues = values;
+        setStatus("Manual/host change — older suggestions invalidated");
+    }
+}
+void DAPluginAudioProcessorEditor::write() {
+    processor.writeValues(session.values);
+    lastValues = processor.currentValues();
+    setStatus(session.status);
+}
+void DAPluginAudioProcessorEditor::startLearn(std::string requestedScope) {
+    syncManual();
+    if (capturing || learnWork.valid() || referenceWork.valid()) {
+        setStatus("Analysis busy — cancel or wait");
+        return;
+    }
+    session.reject();
+    ++session.revision;
+    write();
+    try {
+        objective = {};
+        if (mode.getSelectedId() == 2) {
+            objective.mode = da::Mode::Reference;
+            if (!reference.valid())
+                throw std::runtime_error("Reference unavailable — load a non-silent audio file");
+        }
+        if (mode.getSelectedId() == 3)
+            objective = da::describe(description.getText().toStdString());
+        if (!processor.requestCapture())
+            throw std::runtime_error("Capture busy — play audio to finish the pending capture");
+        scope = std::move(requestedScope);
+        captureRevision = session.revision;
+        capturing = true;
+        captureStarted = juce::Time::currentTimeMillis();
+        setStatus("Analyzing — capturing 65,536 input samples; keep audio playing");
+    } catch (const std::exception &e) {
+        setStatus(juce::String("Failed: ") + e.what());
+    }
+}
+void DAPluginAudioProcessorEditor::launch(std::vector<float> l, std::vector<float> r, double sr) {
+    auto kind = processor.kind;
+    auto values = session.values;
+    auto target = reference;
+    auto goal = objective;
+    auto selected = scope;
+    auto revision = captureRevision;
+    learnWork = std::async(std::launch::async, [l = std::move(l), r = std::move(r), sr, kind,
+                                                values, target, goal, selected, revision] {
+        auto features = da::analyze(l.data(), r.data(), l.size(), sr);
+        return da::learn(kind, features, &target, goal, values, selected, revision);
+    });
+}
+void DAPluginAudioProcessorEditor::load() {
+    if (capturing || learnWork.valid() || referenceWork.valid()) {
+        setStatus("Analysis busy");
+        return;
+    }
+    chooser = std::make_unique<juce::FileChooser>("Choose reference (first 30 seconds analyzed)",
+                                                  juce::File{}, "*.wav;*.aiff;*.aif;*.flac");
+    auto safe = juce::Component::SafePointer<DAPluginAudioProcessorEditor>(this);
+    chooser->launchAsync(
+        juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectFiles,
+        [safe](const juce::FileChooser &c) {
+            if (!safe)
+                return;
+            auto file = c.getResult();
+            if (!file.existsAsFile()) {
+                safe->setStatus("Cancelled — no reference selected");
+                return;
+            }
+            safe->session.reject();
+            ++safe->session.revision;
+            safe->write();
+            safe->reference = {};
+            safe->setStatus("Analyzing reference — decoding up to 30 seconds on worker");
+            safe->referenceWork = std::async(std::launch::async, [file] {
+                juce::AudioFormatManager formats;
+                formats.registerBasicFormats();
+                std::unique_ptr<juce::AudioFormatReader> reader(formats.createReaderFor(file));
+                if (!reader || reader->numChannels == 0 || reader->sampleRate < 8000 ||
+                    reader->sampleRate > 384000 || reader->lengthInSamples < 1024)
+                    throw std::runtime_error("Unsupported, invalid or too-short reference file");
+                int length = int(std::min<juce::int64>(reader->lengthInSamples,
+                                                       juce::int64(reader->sampleRate * 30)));
+                juce::AudioBuffer<float> buffer(2, length);
+                buffer.clear();
+                if (!reader->read(&buffer, 0, length, 0, true, true))
+                    throw std::runtime_error("Reference decode failed");
+                if (reader->numChannels == 1)
+                    buffer.copyFrom(1, 0, buffer, 0, 0, length);
+                auto f = da::analyze(buffer.getReadPointer(0), buffer.getReadPointer(1),
+                                     size_t(length), reader->sampleRate);
+                if (!f.valid())
+                    throw std::runtime_error("Reference is silent or invalid");
+                return f;
+            });
+        });
+}
+void DAPluginAudioProcessorEditor::timerCallback() {
+    syncManual();
+    std::vector<float> l, r;
+    double sr = 0;
+    if (processor.takeCapture(l, r, sr)) {
+        if (capturing && captureRevision == session.revision) {
+            capturing = false;
+            launch(std::move(l), std::move(r), sr);
+        } else
+            capturing = false;
+    }
+    if (capturing && juce::Time::currentTimeMillis() - captureStarted > 15000) {
+        capturing = false;
+        ++session.revision;
+        setStatus("Failed — capture timed out; transport must be running");
+    }
+    if (ready(referenceWork))
+        try {
+            auto analyzedReference = referenceWork.get();
+            if (referenceRevision != session.revision) {
+                setStatus("Cancelled — stale reference analysis discarded");
+                return;
+            }
+            reference = analyzedReference;
+            setStatus("Reference available — RMS " + juce::String(da::db(float(reference.rms)), 1) +
+                      " dBFS; guidance is not an exact match");
+        } catch (const std::exception &e) {
+            setStatus(juce::String("Reference unavailable: ") + e.what());
+        }
+    if (ready(learnWork))
+        try {
+            auto proposal = learnWork.get();
+            juce::String message(proposal.limitation);
+            for (auto &s : proposal.values) {
+                const auto &p = processor.metadata[s.index];
+                message += "\n" + juce::String(p.module + " / " + p.name) + ": " +
+                           juce::String(session.values[s.index], 2) + " -> " +
+                           juce::String(s.value, 2) + " " + juce::String(p.unit) + " (confidence " +
+                           juce::String(s.confidence, 2) + ")\n" + juce::String(s.reason);
+            }
+            if (session.offer(std::move(proposal))) {
+                results.setText(message);
+                setStatus(session.status);
+            } else
+                setStatus("Cancelled — stale analysis discarded");
+        } catch (const std::exception &e) {
+            setStatus(juce::String("Failed: ") + e.what());
+        }
+    repaint();
+}
+void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) {
+    g.fillAll(background);
+    g.setColour(red);
+    g.fillRect(0, 0, getWidth(), 3);
+    g.setColour(text);
+    g.setFont(juce::Font(juce::FontOptions(24.f, juce::Font::bold)));
+    g.drawText("D.A PLUGINS  /  " + processor.getName(), 20, 12, 600, 32,
+               juce::Justification::left);
+    g.setFont(juce::Font(juce::FontOptions(12.f)));
+    g.setColour(muted);
+    g.drawText("LEARN THE SOUND. RECREATE THE FEEL.    |    Analysis-based development build", 20,
+               45, 850, 24, juce::Justification::left);
+    g.setColour(panel);
+    g.fillRoundedRectangle(16.f, 78.f, float(getWidth() - 32), 56.f, 6.f);
+    float in = processor.inputPeak.load(), out = processor.outputPeak.load(),
+          gr = processor.reduction.load();
+    g.setColour(text);
+    g.drawText("IN " + juce::String(da::db(in), 1) + " dBFS    OUT " +
+                   juce::String(da::db(out), 1) + " dBFS    GR " + juce::String(gr, 1) + " dB",
+               30, 86, 530, 22, juce::Justification::left);
+    g.setColour(red);
+    g.fillRect(30.f, 116.f,
+               float(std::clamp((da::db(out) + 60) / 60, 0.f, 1.f)) * float(getWidth() - 60), 5.f);
 }
 void DAPluginAudioProcessorEditor::resized() {
- modeBox.setBounds(25,374,185,25);loadReference.setBounds(25,406,185,27);learnButton.setBounds(25,443,185,30);matchButton.setBounds(25,483,185,27);
- status.setBounds(25,520,410,20);
- for(int i=0;i<7;++i){int x=24+i*123;knobLabels[i].setBounds(x,224,110,17);knobs[i].setBounds(x+5,239,100,88);}
+    int width = getWidth(), columns = 4, cell = (width - 32) / columns,
+        rows = int((controls.size() + 3) / 4);
+    int top = 144, cellHeight = std::min(140, (getHeight() - 440) / std::max(rows, 1));
+    for (size_t i = 0; i < controls.size(); ++i) {
+        int x = 16 + int(i % 4) * cell, y = top + int(i / 4) * cellHeight;
+        auto &c = *controls[i];
+        c.label.setBounds(x, y, cell, 26);
+        c.knob.setBounds(x + 8, y + 26, cell - 16, cellHeight - 54);
+        c.learn.setBounds(x + 16, y + cellHeight - 26, cell - 32, 24);
+    }
+    int y = top + rows * cellHeight + 8;
+    int mw = (width - 32) / std::max(1, int(modules.size()));
+    for (size_t i = 0; i < modules.size(); ++i)
+        modules[i]->setBounds(16 + int(i) * mw, y, mw - 5, 26);
+    y += 34;
+    mode.setBounds(16, y, 270, 28);
+    loadReference.setBounds(296, y, 160, 28);
+    description.setBounds(466, y, width - 482, 28);
+    y += 36;
+    int bw = (width - 32) / 6, i = 0;
+    for (auto *b : {&learnAll, &preview, &apply, &reject, &undo})
+        b->setBounds(16 + bw * i++, y, bw - 6, 28);
+    y += 35;
+    status.setBounds(16, y, width - 32, 28);
+    y += 32;
+    results.setBounds(16, y, width - 32, std::max(50, getHeight() - y - 16));
 }
