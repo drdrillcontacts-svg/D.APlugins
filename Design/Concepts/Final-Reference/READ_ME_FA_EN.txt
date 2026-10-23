@@ -1,9 +1,21 @@
-D.A / FINAL SELECTED REFERENCE — SVG REVIEW 05 / ANALOG KNOBS
+D.A / FINAL SELECTED REFERENCE — SVG REVIEW 06 / PER-PLUGIN NOIR PALETTE
 10 standalone editable SVGs, 1200 x 1240. No runtime editor or DSP changes.
 This is a review proposal, pending explicit user approval.
-Its purple/amber palette, real DA mark, inset visual, optional separate reference panel,
-IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
+Noir black chassis retained across all ten plugins, with a distinct signature accent
+colour per plugin (only DVerb uses the purple #a28bd0 accent).
 The real repository logo was vector-traced and embedded as paths, not a raster image.
+
+Per-plugin accent colours alongside Noir Black:
+- DVerb:   #a28bd0 (Violet / Purple)
+- DDelay:  #6cb8d6 (Cyan / Ice Blue)
+- DComp:   #d4a259 (Amber / Gold)
+- DEQ:     #68c29a (Emerald / Mint)
+- DSat:    #d86c6c (Crimson / Red)
+- DTrans:  #de8854 (Copper / Orange)
+- DStereo: #6f95de (Cobalt / Blue)
+- DSess:   #5cc2be (Teal / Turquoise)
+- DGate:   #b3c662 (Lime / Olive Gold)
+- DFX:     #cf7ca8 (Rose / Magenta)
 
 Design fixes for review:
 - Each of the 92 actual parameter IDs appears exactly ONCE as a control.
@@ -18,35 +30,24 @@ Design fixes for review:
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
 - Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
 - Review fix 02: removed the large focused knob, housing, tick dots and pointer from all ten SVGs.
-  Focused parameter name/value and eligible Learn action remain; small knobs were retained.
 - Review fix 03: all non-brand text enlarged (minimum 16 SVG px), less letter spacing,
   stronger small-label weight/contrast, larger small-button height and wider choices.
-  Product name and logo are unchanged. DVerb Character and EQ Learn placement adjusted
-  only to prevent collisions from the larger typography.
+  Product name and logo are unchanged.
 - Review fix 04: removed the screen notch/arc left by the deleted large knob.
-  Learning actions now form one horizontal toolbar. The focused numeric field and
-  control panels move up, and the canvas is shorter; no blank centre is retained.
+  Learning actions now form one horizontal toolbar.
 - Review fix 05: the former large-knob parameter returns as the FIRST small knob in
-  the main control row, using the same radius as its neighbours. No separate
-  primary readout is duplicated. The canvas is another 60 px shorter (1240 px tall).
+  the main control row, using the same 28 px radius as its neighbours.
 - Review fix 06: reference waveform and heading removed from every main screen.
   REFERENCE... represents access to a separate optional panel, closed by default.
   Reference-Panel.svg shows its empty state; no file or analysis is fabricated.
-- Review fix 07: redesigned all rotary controls as larger analog hardware knobs
-  (knurled grip ridges, 21-step outer calibration ticks, brushed cap, high-contrast
-  needle pointer with amber tip), separated segmented switch buttons with explicit
-  gaps and housing (fixing DDelay Stereo / Ping Pong overlap), and refined panel
-  framing across all ten SVGs.
+- Review fix 07: restored the previous clean minimalist knob style (r=28 main, r=24 advanced),
+  kept the separated discrete switch buttons (fixing DDelay Stereo / Ping Pong overlap),
+  and assigned each plugin its own distinct accent colour alongside Noir Black, with only
+  DVerb using purple (#a28bd0).
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
-Open Preview.html locally after extracting. Click a product to open its SVG at full size.
-Control_Review.csv lists every ID, section, range, example value and Learn eligibility.
-For reporting issues, name product + control/section and describe overlap, label, spacing,
-missing control or preferred interaction. Actual drag/keyboard/focus/scaling/host tests are
-pending the approved runtime implementation; SVG buttons do not implement interactions.
-
 این‌ها SVG برای بررسی شما هستند، نه پلاگین اجراشده. فایل Preview.html را باز کنید.
-ناب‌ها در هر ده طرح به شکل آنالوگ بزرگ‌تر و خواناتر طراحی شده‌اند و فاصلهٔ بین دکمه‌های
-انتخابی (مثل Stereo و Ping Pong در DDelay) اصلاح شده است.
+ناب‌ها به همان سبک قبلی برگشته‌اند، مشکل فاصلهٔ Stereo / Ping Pong در DDelay برطرف شده،
+و در کنار بدنهٔ Noir Black برای هر پلاگین یک رنگ مجزا در نظر گرفته شده که فقط DVerb بنفش است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.
