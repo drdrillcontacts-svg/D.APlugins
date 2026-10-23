@@ -5,6 +5,17 @@
 Development checkpoint for ten JUCE audio effects. **This is not a completed or release-ready bundle.**
 The original UI assets remain in `Design/UI-Mockups/`. Runtime controls are JUCE components, not PNGs.
 
+## New hardware UI collection
+
+The user’s DVerb hardware reference and original logo now guide all ten product-specific layouts.
+Open **[the ten-design gallery](Design/UI-Previews/index.html)** for high-resolution PNG/SVG studies,
+or run `python tools/serve_designs.py` for the local viewer. These are explicitly design previews, not
+native screenshots. The actual JUCE editor uses custom controls, attached parameters, live signal
+views and per-product sections rather than a screenshot or the previous four-column grid.
+
+See **[UI design / implementation / reproduction notes](docs/UI-DESIGN.md)** for details and the native
+snapshot test runner. Full plugin/host validation of this new UI revision remains pending.
+
 ## Current implementation
 
 - Separate DSP paths for DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.

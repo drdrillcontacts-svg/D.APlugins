@@ -28,14 +28,18 @@ plugin is **Partially implemented**.
 
 ### Runtime UI (all ten): Implemented but not fully tested
 
-A reusable carbon-black/crimson parameter-grid editor replaces the old mock waveform and fake meters.
-Each product has its own parameter set and band/module buttons. Real APVTS attachments, level/GR
-readings, description entry, mode selector, asynchronous reference picker/decoder, proposal explanations,
-preview/apply/reject/undo and status handling are wired.
+The new Carbon / Crimson revision follows the user's supplied DVerb enclosure and logo. It replaces
+that checkpoint's generic grid with product-specific control arrangements: four EQ band strips, four
+DFX modules, reverb mode/advanced sections and dedicated dynamics/field displays. Hardware-style
+JUCE controls, embedded fonts/logo, per-parameter learning and proposal approval are wired. Actual
+sample telemetry feeds waveform/spectrum/history/vectorscope views; modeled transfer/response
+curves use current parameters. Window scaling preserves the 1200×1120 design aspect ratio.
 
-**Distinct purpose-specific layouts, reusable custom hardware knobs, spectrum/waveform views and
-accessibility/resizing audits are Not implemented.** A shared grid is not claimed as ten finished
-professional interfaces. Small-cell layout at minimum size needs visual review. No UI was run in this sandbox.
+Ten high-resolution PNG/SVG **design studies** and a collection viewer are included, explicitly labeled
+as illustrative—not native screenshots. `docs/UI-DESIGN.md` documents the distinction and provides a
+native snapshot/attachment test runner added to Linux CI. In this sandbox the new UI code is syntax-
+checked, not linked/run. Detailed native visual parity, accessibility, automation and performance
+checks remain outstanding. This revision does not complete the overall bundle's learning/DSP acceptance.
 
 ### Universal learning: Partially implemented
 
@@ -96,7 +100,10 @@ for mono/stereo/default/min/max and invalid samples, silence, effect tails and l
 verified to increase with a louder real analyzed signal. It does not prove every proposal is a useful estimate.
 
 CI requests all ten VST3/Standalone targets on Ubuntu/Windows/macOS, plus AU on macOS, with tests and
-format-only artifact uploads. CI run results must be checked independently before claiming artifacts.
+format-only artifact uploads. The prior `03e6088` checkpoint subsequently passed all three plugin CI jobs and core tests in
+[run 39878691566](https://github.com/drdrillcontacts-svg/D.APlugins/actions/runs/39878691566).
+That evidence applies to the prior UI, **not** this Carbon / Crimson revision; its new native build/snapshot
+jobs must pass independently before claiming current artifacts.
 No release, installer, signing or notarization was authorized or performed.
 
 ## Precise resumption checklist (do not mark this bundle complete)
@@ -116,8 +123,9 @@ No release, installer, signing or notarization was authorized or performed.
    baseline/error/retest reporting per effect and joint DFX/module optimization; preserve incapable-target explanations.
 8. Test actual WAV/AIFF/FLAC loading (mono/multichannel/truncated/oversized/silent/unsupported), worker
    failures, reference changes, no transport, cancellation and stale results under simultaneous automation.
-9. Implement ten distinct purpose-specific mockup-inspired layouts, accessible custom controls and actual
-   analysis views. Host/manual before-after audition and proposal history need usability tests.
+9. Validate the now-implemented purpose-specific hardware layouts/custom controls/analysis views in real
+   JUCE screenshots and DAWs. Review visual parity with the user's reference, screen-reader/contrast/resize
+   behavior, and host/manual before-after audition/proposal usability.
 10. Formalize model feature schema, parameter strategy registration, backend selection and independently
     validated optional trained-model adapter. Keep deterministic fallback explicitly identified.
 11. Run pluginval/DAW validation and listening/mono-compatibility tests on every supported format/platform.

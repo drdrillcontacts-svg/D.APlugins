@@ -1,0 +1,7 @@
+{
+  "name": "da-design-renderer",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": { "render": "node render_designs.cjs" },
+  "dependencies": { "@resvg/resvg-js": "2.6.2" }
+}

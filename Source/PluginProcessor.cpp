@@ -13,18 +13,21 @@ juce::AudioProcessorValueTreeState::ParameterLayout makeLayout(da::Kind kind) {
     return layout;
 }
 } // namespace
-DAPluginAudioProcessor::DAPluginAudioProcessor()
+DAPluginAudioProcessor::DAPluginAudioProcessor(const juce::String &product)
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-      kind(da::kindForName(DA_PLUGIN_NAME)), metadata(da::parameters(kind)),
-      parameters(*this, nullptr, "PARAMETERS", makeLayout(kind)), engine(kind) {
+      productName(product), kind(da::kindForName(product.toStdString())),
+      metadata(da::parameters(kind)), parameters(*this, nullptr, "PARAMETERS", makeLayout(kind)),
+      engine(kind) {
     for (size_t i = 0; i < metadata.size(); ++i)
         raw[i] = parameters.getRawParameterValue(metadata[i].id);
 }
 void DAPluginAudioProcessor::prepareToPlay(double sr, int) {
     engine.prepare(sr);
     captureRate = sr;
+    displaySampleRate.store(std::isfinite(sr) ? std::clamp(sr, 8000., 384000.) : 48000.,
+                            std::memory_order_relaxed);
 }
 bool DAPluginAudioProcessor::isBusesLayoutSupported(const BusesLayout &l) const {
     return l.getMainInputChannelSet() == l.getMainOutputChannelSet() &&
@@ -54,12 +57,31 @@ void DAPluginAudioProcessor::processBlock(juce::AudioBuffer<float> &b, juce::Mid
     std::array<float, 64> values{};
     for (size_t i = 0; i < metadata.size(); ++i)
         values[i] = raw[i]->load(std::memory_order_relaxed);
-    engine.process(b.getWritePointer(0), b.getNumChannels() > 1 ? b.getWritePointer(1) : nullptr,
-                   count, values.data());
+    // Bounded stack scratch preserves the dry waveform while the core processes in place.
+    std::array<da::ScopeFrame, 256> frames{};
+    for (size_t offset = 0; offset < count; offset += frames.size()) {
+        size_t n = std::min(frames.size(), count - offset);
+        for (size_t i = 0; i < n; ++i) {
+            float a = b.getSample(0, int(offset + i));
+            float z = b.getSample(b.getNumChannels() > 1 ? 1 : 0, int(offset + i));
+            frames[i].input = std::isfinite(a) && std::isfinite(z)
+                                  ? (std::clamp(a, -32.f, 32.f) + std::clamp(z, -32.f, 32.f)) * .5f
+                                  : 0;
+        }
+        auto *left = b.getWritePointer(0) + offset;
+        auto *right = b.getNumChannels() > 1 ? b.getWritePointer(1) + offset : nullptr;
+        engine.process(left, right, n, values.data());
+        for (size_t i = 0; i < n; ++i) {
+            frames[i].left = left[i];
+            frames[i].right = right ? right[i] : left[i];
+            frames[i].output = (frames[i].left + frames[i].right) * .5f;
+        }
+        scopeFifo.push(frames.data(), n);
+    }
     float out = 0;
     for (int c = 0; c < b.getNumChannels(); ++c)
         out = std::max(out, b.getMagnitude(c, 0, b.getNumSamples()));
-    inputPeak.store(in, std::memory_order_relaxed);
+    inputPeak.store(std::isfinite(in) ? in : 0.f, std::memory_order_relaxed);
     outputPeak.store(out, std::memory_order_relaxed);
     reduction.store(engine.reductionDb(), std::memory_order_relaxed);
 }

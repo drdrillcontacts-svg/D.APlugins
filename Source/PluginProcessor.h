@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/ScopeFifo.h"
 #include "Core/Suite.h"
 #include <JuceHeader.h>
 #include <atomic>
@@ -7,14 +8,14 @@
 #endif
 class DAPluginAudioProcessor final : public juce::AudioProcessor {
   public:
-    DAPluginAudioProcessor();
+    explicit DAPluginAudioProcessor(const juce::String &product = DA_PLUGIN_NAME);
     void prepareToPlay(double, int) override;
     void releaseResources() override {}
     bool isBusesLayoutSupported(const BusesLayout &) const override;
     void processBlock(juce::AudioBuffer<float> &, juce::MidiBuffer &) override;
     juce::AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return DA_PLUGIN_NAME; }
+    const juce::String getName() const override { return productName; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     bool isMidiEffect() const override { return false; }
@@ -28,6 +29,7 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     void changeProgramName(int, const juce::String &) override {}
     void getStateInformation(juce::MemoryBlock &) override;
     void setStateInformation(const void *, int) override;
+    const juce::String productName;
     const da::Kind kind;
     const std::vector<da::Parameter> metadata;
     juce::AudioProcessorValueTreeState parameters;
@@ -36,6 +38,8 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     // Single audio producer, single message-thread consumer; ownership changes via release/acquire.
     bool requestCapture();
     bool takeCapture(std::vector<float> &, std::vector<float> &, double &);
+    da::ScopeFifo scopeFifo;
+    std::atomic<double> displaySampleRate{48000};
     std::atomic<float> inputPeak{0}, outputPeak{0}, reduction{0};
 
   private:

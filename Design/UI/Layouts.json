@@ -1,0 +1,1669 @@
+[
+  {
+    "name": "DVerb",
+    "subtitle": "REVERB LEARNING",
+    "advancedTitle": "SPACE & CHARACTER",
+    "slogan": "ROOM / HALL / PLATE / SHIMMER",
+    "controls": [
+      {
+        "id": "predelay",
+        "label": "PRE-DELAY",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "size",
+        "label": "SIZE",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "decay",
+        "label": "DECAY",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "tone",
+        "label": "TONE",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mode",
+        "label": "CHARACTER",
+        "rect": [
+          64,
+          722,
+          432,
+          70
+        ],
+        "style": "choice",
+        "options": [
+          "ROOM",
+          "HALL",
+          "PLATE",
+          "SHIMMER"
+        ]
+      },
+      {
+        "id": "density",
+        "label": "DENSITY",
+        "rect": [
+          550,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "diffusion",
+        "label": "DIFFUSION",
+        "rect": [
+          700,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "modulation",
+        "label": "MODULATION",
+        "rect": [
+          850,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "lowcut",
+        "label": "LOW CUT",
+        "rect": [
+          550,
+          863,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "midcut",
+        "label": "MID CUT",
+        "rect": [
+          700,
+          863,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN SPACE",
+        "scope": "Space",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN COLOUR",
+        "scope": "Colour",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DDelay",
+    "subtitle": "STEREO DELAY",
+    "advancedTitle": "ECHO ARCHITECTURE",
+    "slogan": "TIME / FEEDBACK / MOVEMENT",
+    "controls": [
+      {
+        "id": "time",
+        "label": "TIME",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "feedback",
+        "label": "FEEDBACK",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "filter",
+        "label": "FILTER",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "pingpong",
+        "label": "STEREO ROUTING",
+        "rect": [
+          550,
+          736,
+          450,
+          70
+        ],
+        "style": "choice",
+        "options": [
+          "STEREO",
+          "PING-PONG"
+        ]
+      },
+      {
+        "id": "modulation",
+        "label": "MODULATION",
+        "rect": [
+          700,
+          842,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN ECHO",
+        "scope": "Echo",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DComp",
+    "subtitle": "DYNAMICS COMPRESSOR",
+    "advancedTitle": "DYNAMICS CHARACTER",
+    "slogan": "CONTROL THE ENERGY. KEEP THE FEEL.",
+    "controls": [
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "ratio",
+        "label": "RATIO",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "makeup",
+        "label": "MAKEUP",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "knee",
+        "label": "KNEE",
+        "rect": [
+          550,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          700,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN DYNAMICS",
+        "scope": "Dynamics",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DEQ",
+    "subtitle": "FOUR-BAND EQUALIZER",
+    "advancedTitle": "TONAL OBJECTIVE",
+    "slogan": "FOUR BANDS. ONE COHERENT SOUND.",
+    "controls": [
+      {
+        "id": "b1freq",
+        "label": "FREQ",
+        "rect": [
+          55,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b1gain",
+        "label": "GAIN",
+        "rect": [
+          139,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b1q",
+        "label": "Q",
+        "rect": [
+          223,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b1shape",
+        "label": "",
+        "rect": [
+          60,
+          610,
+          242,
+          40
+        ],
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ]
+      },
+      {
+        "id": "b2freq",
+        "label": "FREQ",
+        "rect": [
+          333,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b2gain",
+        "label": "GAIN",
+        "rect": [
+          417,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b2q",
+        "label": "Q",
+        "rect": [
+          501,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b2shape",
+        "label": "",
+        "rect": [
+          338,
+          610,
+          242,
+          40
+        ],
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ]
+      },
+      {
+        "id": "b3freq",
+        "label": "FREQ",
+        "rect": [
+          611,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b3gain",
+        "label": "GAIN",
+        "rect": [
+          695,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b3q",
+        "label": "Q",
+        "rect": [
+          779,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b3shape",
+        "label": "",
+        "rect": [
+          616,
+          610,
+          242,
+          40
+        ],
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ]
+      },
+      {
+        "id": "b4freq",
+        "label": "FREQ",
+        "rect": [
+          889,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b4gain",
+        "label": "GAIN",
+        "rect": [
+          973,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b4q",
+        "label": "Q",
+        "rect": [
+          1057,
+          449,
+          84,
+          157
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "b4shape",
+        "label": "",
+        "rect": [
+          894,
+          610,
+          242,
+          40
+        ],
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "title": "01 / LOW",
+        "rect": [
+          48,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "02 / LOW MID",
+        "rect": [
+          326,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "03 / PRESENCE",
+        "rect": [
+          604,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "04 / AIR",
+        "rect": [
+          882,
+          412,
+          266,
+          274
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN BAND 1",
+        "scope": "Band 1",
+        "rect": [
+          64,
+          654,
+          234,
+          24
+        ]
+      },
+      {
+        "title": "LEARN BAND 2",
+        "scope": "Band 2",
+        "rect": [
+          342,
+          654,
+          234,
+          24
+        ]
+      },
+      {
+        "title": "LEARN BAND 3",
+        "scope": "Band 3",
+        "rect": [
+          620,
+          654,
+          234,
+          24
+        ]
+      },
+      {
+        "title": "LEARN BAND 4",
+        "scope": "Band 4",
+        "rect": [
+          898,
+          654,
+          234,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "bands",
+    "learningRect": [
+      48,
+      712,
+      464,
+      312
+    ],
+    "advancedRect": [
+      530,
+      712,
+      494,
+      312
+    ]
+  },
+  {
+    "name": "DSat",
+    "subtitle": "HARMONIC SATURATION",
+    "advancedTitle": "SATURATION CHARACTER",
+    "slogan": "SOFT / HARD / ASYMMETRIC",
+    "controls": [
+      {
+        "id": "drive",
+        "label": "DRIVE",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "tone",
+        "label": "TONE",
+        "rect": [
+          230,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "density",
+        "label": "DENSITY",
+        "rect": [
+          392,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          805,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          970,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mode",
+        "label": "CHARACTER",
+        "rect": [
+          550,
+          736,
+          450,
+          70
+        ],
+        "style": "choice",
+        "options": [
+          "SOFT",
+          "HARD",
+          "ASYMMETRIC"
+        ]
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN COLOUR",
+        "scope": "Colour",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DTrans",
+    "subtitle": "TRANSIENT DESIGNER",
+    "advancedTitle": "ENVELOPE BEHAVIOUR",
+    "slogan": "ATTACK / BODY / SUSTAIN",
+    "controls": [
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "sustain",
+        "label": "SUSTAIN",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "sensitivity",
+        "label": "SENSITIVITY",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "shape",
+        "label": "SHAPE",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN ENVELOPE",
+        "scope": "Envelope",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DStereo",
+    "subtitle": "STEREO DESIGNER",
+    "advancedTitle": "MID / SIDE FIELD",
+    "slogan": "WIDTH WITHOUT LOSING THE CENTRE.",
+    "controls": [
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "depth",
+        "label": "DEPTH",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "center",
+        "label": "CENTER",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "side",
+        "label": "SIDE",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mono",
+        "label": "MONO MONITOR",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "choice",
+        "options": [
+          "STEREO",
+          "MONO"
+        ]
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN IMAGE",
+        "scope": "Image",
+        "rect": [
+          548.0,
+          991,
+          450.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DSess",
+    "subtitle": "INTELLIGENT DE-ESSER",
+    "advancedTitle": "DETECTION ENVELOPE",
+    "slogan": "FOCUS THE BAND. PRESERVE THE VOICE.",
+    "controls": [
+      {
+        "id": "frequency",
+        "label": "DETECT FREQ",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "range",
+        "label": "RANGE",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "focus",
+        "label": "FOCUS",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          550,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          700,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN SIBILANCE",
+        "scope": "Sibilance",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DGate",
+    "subtitle": "GATE & EXPANDER",
+    "advancedTitle": "GATE CHARACTER",
+    "slogan": "KEEP THE PERFORMANCE. CONTROL THE FLOOR.",
+    "controls": [
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          68,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          224,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "hold",
+        "label": "HOLD",
+        "rect": [
+          380,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          684,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "range",
+        "label": "RANGE",
+        "rect": [
+          840,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          996,
+          422,
+          136,
+          212
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "hysteresis",
+        "label": "HYSTERESIS",
+        "rect": [
+          550,
+          734,
+          144,
+          123
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [],
+    "modules": [
+      {
+        "title": "LEARN GATE",
+        "scope": "Gate",
+        "rect": [
+          548.0,
+          991,
+          225.0,
+          24
+        ]
+      },
+      {
+        "title": "LEARN OUTPUT",
+        "scope": "Output",
+        "rect": [
+          778.0,
+          991,
+          225.0,
+          24
+        ]
+      }
+    ],
+    "primaryStyle": "standard",
+    "learningRect": [
+      48,
+      684,
+      464,
+      340
+    ],
+    "advancedRect": [
+      530,
+      684,
+      494,
+      340
+    ]
+  },
+  {
+    "name": "DFX",
+    "subtitle": "MODULAR MULTI-EFFECTS",
+    "advancedTitle": "MASTER CONTROLS",
+    "slogan": "SATURATION > FILTER > DELAY > AMBIENCE",
+    "controls": [
+      {
+        "id": "driveOn",
+        "label": "",
+        "rect": [
+          218,
+          420,
+          84,
+          46
+        ],
+        "style": "toggle",
+        "options": [
+          "OFF",
+          "ON"
+        ]
+      },
+      {
+        "id": "drive",
+        "label": "DRIVE",
+        "rect": [
+          54.0,
+          469,
+          254.0,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "filterOn",
+        "label": "",
+        "rect": [
+          496,
+          420,
+          84,
+          46
+        ],
+        "style": "toggle",
+        "options": [
+          "OFF",
+          "ON"
+        ]
+      },
+      {
+        "id": "filter",
+        "label": "FILTER",
+        "rect": [
+          332.0,
+          469,
+          254.0,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "delayOn",
+        "label": "",
+        "rect": [
+          774,
+          420,
+          84,
+          46
+        ],
+        "style": "toggle",
+        "options": [
+          "OFF",
+          "ON"
+        ]
+      },
+      {
+        "id": "time",
+        "label": "TIME",
+        "rect": [
+          610.0,
+          469,
+          84.66666666666667,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "feedback",
+        "label": "FEEDBACK",
+        "rect": [
+          694.6666666666666,
+          469,
+          84.66666666666667,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "delayMix",
+        "label": "ECHO MIX",
+        "rect": [
+          779.3333333333334,
+          469,
+          84.66666666666667,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "reverbOn",
+        "label": "",
+        "rect": [
+          1052,
+          420,
+          84,
+          46
+        ],
+        "style": "toggle",
+        "options": [
+          "OFF",
+          "ON"
+        ]
+      },
+      {
+        "id": "decay",
+        "label": "DECAY",
+        "rect": [
+          888.0,
+          469,
+          127.0,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "reverbMix",
+        "label": "SPACE MIX",
+        "rect": [
+          1015.0,
+          469,
+          127.0,
+          170
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          559,
+          756,
+          200,
+          192
+        ],
+        "style": "rotary",
+        "options": []
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          793,
+          756,
+          200,
+          192
+        ],
+        "style": "rotary",
+        "options": []
+      }
+    ],
+    "sections": [
+      {
+        "title": "01 / SATURATION",
+        "rect": [
+          48,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "02 / FILTER",
+        "rect": [
+          326,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "03 / DELAY",
+        "rect": [
+          604,
+          412,
+          266,
+          274
+        ]
+      },
+      {
+        "title": "04 / AMBIENCE",
+        "rect": [
+          882,
+          412,
+          266,
+          274
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN MODULE",
+        "scope": "Saturation",
+        "rect": [
+          64,
+          652,
+          234,
+          26
+        ]
+      },
+      {
+        "title": "LEARN MODULE",
+        "scope": "Filter",
+        "rect": [
+          342,
+          652,
+          234,
+          26
+        ]
+      },
+      {
+        "title": "LEARN MODULE",
+        "scope": "Delay",
+        "rect": [
+          620,
+          652,
+          234,
+          26
+        ]
+      },
+      {
+        "title": "LEARN MODULE",
+        "scope": "Ambience",
+        "rect": [
+          898,
+          652,
+          234,
+          26
+        ]
+      }
+    ],
+    "primaryStyle": "chain",
+    "learningRect": [
+      48,
+      712,
+      464,
+      312
+    ],
+    "advancedRect": [
+      530,
+      712,
+      494,
+      312
+    ]
+  }
+]
