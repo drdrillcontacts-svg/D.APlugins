@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" role="img" aria-labelledby="title desc">
+<title id="title">D.A / DDelay / Matte 02 design proposal</title><desc id="desc">Original function-led layout. Matte black and restrained product-specific accent. Static illustrative graphics, not live measurements.</desc>
+<defs><linearGradient id="shell" x2="0" y2="1"><stop stop-color="#1d1f20"/><stop offset="1" stop-color="#151718"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#343638"/><stop offset="1" stop-color="#202223"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity=".4"/></filter></defs>
+<rect width="1280" height="900" fill="#101213"/>
+<rect x="31" y="28" width="1218" height="844" rx="19" fill="#090b0c" filter="url(#soft)"/>
+<rect x="32" y="27" width="1216" height="844" rx="18" fill="url(#shell)" stroke="#303334"/>
+<path d="M52 28 H1228" stroke="#ffffff" stroke-opacity=".045"/>
+
+<text x="80" y="77" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#929895" text-anchor="start" letter-spacing="2.5">D.A / MATTE SERIES</text>
+<text x="78" y="133" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" fill="#e0e2df" text-anchor="start" letter-spacing="-1">DDelay</text>
+<text x="278" y="128" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#91aeb8" text-anchor="start" letter-spacing="2">REPEATS IN TIME</text>
+<text x="1199" y="77" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#808784" text-anchor="end" letter-spacing="2">FACTORY / 50</text>
+<text x="1098" y="126" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#babfba" text-anchor="end" letter-spacing="0.4">Init / Design study</text>
+<path d="M1138 114 l-6 6 6 6 M1180 114 l6 6 -6 6" fill="none" stroke="#8e9691" stroke-width="1.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80 157 L1200 157" fill="none" stroke="#343839" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="190" width="1120" height="234" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="102" y="220" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">ECHO TIMELINE / ILLUSTRATIVE</text>
+<path d="M130 350 L1150 350" fill="none" stroke="#3a4143" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M170 350 L170 235" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="170" cy="235" r="4" fill="#91aeb8" stroke="none"/>
+<text x="170" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">1</text>
+<path d="M320 350 L320 264" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="320" cy="264" r="4" fill="#91aeb8" stroke="none"/>
+<text x="320" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">2</text>
+<path d="M470 350 L470 287" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="470" cy="287" r="4" fill="#91aeb8" stroke="none"/>
+<text x="470" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">3</text>
+<path d="M620 350 L620 305" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="620" cy="305" r="4" fill="#91aeb8" stroke="none"/>
+<text x="620" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">4</text>
+<path d="M770 350 L770 319" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="770" cy="319" r="4" fill="#91aeb8" stroke="none"/>
+<text x="770" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">5</text>
+<path d="M920 350 L920 330" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="920" cy="330" r="4" fill="#91aeb8" stroke="none"/>
+<text x="920" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">6</text>
+<path d="M1070 350 L1070 338" fill="none" stroke="#91aeb8" stroke-width="3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1070" cy="338" r="4" fill="#91aeb8" stroke="none"/>
+<text x="1070" y="385" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#85969a" text-anchor="middle" letter-spacing="0">7</text>
+<text x="104" y="285" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#91aeb8" text-anchor="start" letter-spacing="1.6">L</text>
+<text x="104" y="321" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6c797e" text-anchor="start" letter-spacing="1.6">R</text>
+<g id="param-time">
+<title>time / Time</title>
+<text x="80" y="487" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">TIME</text>
+<text x="80" y="519" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">375 ms</text>
+<path d="M80 542 L310 542" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80 542 L123.03151575787894 542" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="120.03151575787894" y="535" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-sync">
+<title>sync / Tempo sync</title>
+<text x="350" y="487" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">TEMPO</text>
+<text x="350" y="519" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">FREE MS</text>
+<text x="580" y="516" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#91aeb8" text-anchor="end" letter-spacing="1.4">SELECT</text>
+</g>
+<g id="param-division">
+<title>division / Note division</title>
+<text x="80" y="587" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">DIVISION</text>
+<text x="80" y="619" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">1/8</text>
+<text x="310" y="616" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#91aeb8" text-anchor="end" letter-spacing="1.4">SELECT</text>
+</g>
+<g id="param-pingpong">
+<title>pingpong / Ping-pong</title>
+<text x="350" y="587" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">ROUTING</text>
+<text x="350" y="619" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">PING PONG</text>
+<text x="580" y="616" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#91aeb8" text-anchor="end" letter-spacing="1.4">SELECT</text>
+</g>
+<g id="param-feedback">
+<title>feedback / Feedback</title>
+<text x="700" y="487" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FEEDBACK</text>
+<text x="700" y="519" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">35%</text>
+<path d="M700 542 L1200 542" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M700 542 L884.2105263157895 542" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="881.2105263157895" y="535" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-filter">
+<title>filter / Filter</title>
+<text x="700" y="587" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FILTER</text>
+<circle cx="691" cy="583" r="2" fill="#91aeb8" stroke="none"/>
+<text x="700" y="619" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">6 kHz</text>
+<path d="M700 642 L1200 642" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M700 642 L1077.9268047811147 642" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1074.9268047811147" y="635" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-mix">
+<title>mix / Mix</title>
+<text x="80" y="716" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">MIX</text>
+<text x="80" y="748" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">25%</text>
+<path d="M80 771 L330 771" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80 771 L142.5 771" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="139.5" y="764" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-width">
+<title>width / Width</title>
+<text x="370" y="716" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">WIDTH</text>
+<circle cx="361" cy="712" r="2" fill="#91aeb8" stroke="none"/>
+<text x="370" y="748" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">100%</text>
+<path d="M370 771 L620 771" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 771 L495.0 771" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="492.0" y="764" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-modulation">
+<title>modulation / Modulation</title>
+<text x="660" y="716" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">MODULATION</text>
+<text x="660" y="748" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">10%</text>
+<path d="M660 771 L910 771" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M660 771 L685.0 771" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="682.0" y="764" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<g id="param-output">
+<title>output / Output</title>
+<text x="950" y="716" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">OUTPUT</text>
+<text x="950" y="748" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" fill="#d4d9d1" text-anchor="start" letter-spacing="0.2">0 dB</text>
+<path d="M950 771 L1200 771" fill="none" stroke="#373c3d" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M950 771 L1116.6666666666667 771" fill="none" stroke="#91aeb8" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1113.6666666666667" y="764" width="6" height="14" rx="2" fill="#c9cfc7" stroke="none"/>
+</g>
+<path d="M80 803 L1200 803" fill="none" stroke="#333839" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="80" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">CAPTURE INPUT</text>
+<text x="260" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">REFERENCE</text>
+<text x="446" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#91aeb8" text-anchor="start" letter-spacing="1.4">LEARN ALL</text>
+<text x="803" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">DETAILS / LOG</text>
+<text x="1200" y="838" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#6e7872" text-anchor="end" letter-spacing="1.4">02 / STATIC DESIGN PROPOSAL</text>
+</svg>

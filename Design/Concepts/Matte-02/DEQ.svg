@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" role="img" aria-labelledby="title desc">
+<title id="title">D.A / DEQ / Matte 02 design proposal</title><desc id="desc">Original function-led layout. Matte black and restrained product-specific accent. Static illustrative graphics, not live measurements.</desc>
+<defs><linearGradient id="shell" x2="0" y2="1"><stop stop-color="#1d1f20"/><stop offset="1" stop-color="#151718"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#343638"/><stop offset="1" stop-color="#202223"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity=".4"/></filter></defs>
+<rect width="1280" height="900" fill="#101213"/>
+<rect x="31" y="28" width="1218" height="844" rx="19" fill="#090b0c" filter="url(#soft)"/>
+<rect x="32" y="27" width="1216" height="844" rx="18" fill="url(#shell)" stroke="#303334"/>
+<path d="M52 28 H1228" stroke="#ffffff" stroke-opacity=".045"/>
+
+<text x="80" y="77" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#929895" text-anchor="start" letter-spacing="2.5">D.A / MATTE SERIES</text>
+<text x="78" y="133" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" fill="#e0e2df" text-anchor="start" letter-spacing="-1">DEQ</text>
+<text x="278" y="128" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b2bca1" text-anchor="start" letter-spacing="2">FOUR BANDS. ONE CLEAR VIEW.</text>
+<text x="1199" y="77" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#808784" text-anchor="end" letter-spacing="2">FACTORY / 50</text>
+<text x="1098" y="126" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#babfba" text-anchor="end" letter-spacing="0.4">Init / Design study</text>
+<path d="M1138 114 l-6 6 6 6 M1180 114 l6 6 -6 6" fill="none" stroke="#8e9691" stroke-width="1.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80 157 L1200 157" fill="none" stroke="#343839" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="190" width="1120" height="323" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="102" y="220" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">FREQUENCY RESPONSE / ILLUSTRATIVE</text>
+<path d="M120 247 L120 449" fill="none" stroke="#2c3330" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="485" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#7e8b7d" text-anchor="middle" letter-spacing="0">20 Hz</text>
+<path d="M340 247 L340 449" fill="none" stroke="#2c3330" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="340" y="485" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#7e8b7d" text-anchor="middle" letter-spacing="0">100</text>
+<path d="M560 247 L560 449" fill="none" stroke="#2c3330" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="560" y="485" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#7e8b7d" text-anchor="middle" letter-spacing="0">1k</text>
+<path d="M780 247 L780 449" fill="none" stroke="#2c3330" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="780" y="485" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#7e8b7d" text-anchor="middle" letter-spacing="0">5k</text>
+<path d="M1140 247 L1140 449" fill="none" stroke="#2c3330" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1140" y="485" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#7e8b7d" text-anchor="middle" letter-spacing="0">20k</text>
+<path d="M120 345 L1160 345" fill="none" stroke="#424b40" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M120.00 344.99 L125.20 344.99 L130.40 344.98 L135.60 344.97 L140.80 344.96 L146.00 344.93 L151.20 344.91 L156.40 344.86 L161.60 344.81 L166.80 344.73 L172.00 344.63 L177.20 344.49 L182.40 344.31 L187.60 344.07 L192.80 343.78 L198.00 343.40 L203.20 342.94 L208.40 342.37 L213.60 341.69 L218.80 340.88 L224.00 339.94 L229.20 338.84 L234.40 337.60 L239.60 336.22 L244.80 334.70 L250.00 333.06 L255.20 331.32 L260.40 329.51 L265.60 327.66 L270.80 325.83 L276.00 324.05 L281.20 322.37 L286.40 320.85 L291.60 319.53 L296.80 318.45 L302.00 317.66 L307.20 317.17 L312.40 317.01 L317.60 317.18 L322.80 317.67 L328.00 318.48 L333.20 319.56 L338.40 320.90 L343.60 322.44 L348.80 324.15 L354.00 325.97 L359.20 327.86 L364.40 329.78 L369.60 331.69 L374.80 333.56 L380.00 335.38 L385.20 337.12 L390.40 338.78 L395.60 340.37 L400.80 341.89 L406.00 343.37 L411.20 344.82 L416.40 346.27 L421.60 347.75 L426.80 349.27 L432.00 350.86 L437.20 352.54 L442.40 354.33 L447.60 356.23 L452.80 358.24 L458.00 360.35 L463.20 362.55 L468.40 364.82 L473.60 367.12 L478.80 369.41 L484.00 371.65 L489.20 373.79 L494.40 375.77 L499.60 377.56 L504.80 379.09 L510.00 380.33 L515.20 381.25 L520.40 381.81 L525.60 382.00 L530.80 381.81 L536.00 381.25 L541.20 380.34 L546.40 379.10 L551.60 377.57 L556.80 375.79 L562.00 373.81 L567.20 371.69 L572.40 369.47 L577.60 367.20 L582.80 364.94 L588.00 362.73 L593.20 360.60 L598.40 358.59 L603.60 356.71 L608.80 354.98 L614.00 353.41 L619.20 352.02 L624.40 350.78 L629.60 349.70 L634.80 348.77 L640.00 347.96 L645.20 347.28 L650.40 346.71 L655.60 346.22 L660.80 345.80 L666.00 345.44 L671.20 345.12 L676.40 344.84 L681.60 344.58 L686.80 344.33 L692.00 344.08 L697.20 343.82 L702.40 343.55 L707.60 343.25 L712.80 342.93 L718.00 342.58 L723.20 342.19 L728.40 341.77 L733.60 341.30 L738.80 340.78 L744.00 340.22 L749.20 339.61 L754.40 338.94 L759.60 338.23 L764.80 337.47 L770.00 336.66 L775.20 335.80 L780.40 334.91 L785.60 333.97 L790.80 333.01 L796.00 332.02 L801.20 331.01 L806.40 329.99 L811.60 328.97 L816.80 327.96 L822.00 326.96 L827.20 326.00 L832.40 325.07 L837.60 324.19 L842.80 323.38 L848.00 322.63 L853.20 321.96 L858.40 321.38 L863.60 320.89 L868.80 320.51 L874.00 320.23 L879.20 320.06 L884.40 320.00 L889.60 320.06 L894.80 320.23 L900.00 320.51 L905.20 320.89 L910.40 321.38 L915.60 321.96 L920.80 322.63 L926.00 323.38 L931.20 324.19 L936.40 325.07 L941.60 326.00 L946.80 326.96 L952.00 327.96 L957.20 328.97 L962.40 329.99 L967.60 331.01 L972.80 332.02 L978.00 333.01 L983.20 333.97 L988.40 334.91 L993.60 335.80 L998.80 336.66 L1004.00 337.47 L1009.20 338.23 L1014.40 338.94 L1019.60 339.60 L1024.80 340.21 L1030.00 340.77 L1035.20 341.29 L1040.40 341.75 L1045.60 342.17 L1050.80 342.55 L1056.00 342.88 L1061.20 343.18 L1066.40 343.45 L1071.60 343.68 L1076.80 343.88 L1082.00 344.05 L1087.20 344.21 L1092.40 344.34 L1097.60 344.45 L1102.80 344.54 L1108.00 344.62 L1113.20 344.69 L1118.40 344.75 L1123.60 344.79 L1128.80 344.83 L1134.00 344.87 L1139.20 344.89 L1144.40 344.91 L1149.60 344.93 L1154.80 344.95 L1160.00 344.96" fill="none" stroke="#b2bca1" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="80" y="546" width="265" height="236" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="102" y="576" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">BAND 01</text>
+<g id="param-b1freq">
+<title>b1freq / Frequency</title>
+<text x="102" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FREQUENCY</text>
+<text x="323" y="607" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">100 Hz</text>
+<path d="M102 624 L323 624" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b1gain">
+<title>b1gain / Gain</title>
+<text x="102" y="649" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">GAIN</text>
+<circle cx="93" cy="645" r="2" fill="#b2bca1" stroke="none"/>
+<text x="323" y="649" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0 dB</text>
+<path d="M102 666 L323 666" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b1q">
+<title>b1q / Q</title>
+<text x="102" y="691" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">Q</text>
+<text x="323" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0.707</text>
+<path d="M102 708 L323 708" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b1shape">
+<title>b1shape / Bell/Low shelf/High shelf</title>
+<text x="102" y="733" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">SHAPE</text>
+<text x="323" y="733" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">BELL</text>
+<path d="M102 750 L323 750" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="365" y="546" width="265" height="236" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="387" y="576" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">BAND 02</text>
+<g id="param-b2freq">
+<title>b2freq / Frequency</title>
+<text x="387" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FREQUENCY</text>
+<text x="608" y="607" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">400 Hz</text>
+<path d="M387 624 L608 624" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b2gain">
+<title>b2gain / Gain</title>
+<text x="387" y="649" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">GAIN</text>
+<circle cx="378" cy="645" r="2" fill="#b2bca1" stroke="none"/>
+<text x="608" y="649" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0 dB</text>
+<path d="M387 666 L608 666" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b2q">
+<title>b2q / Q</title>
+<text x="387" y="691" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">Q</text>
+<text x="608" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0.707</text>
+<path d="M387 708 L608 708" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b2shape">
+<title>b2shape / Bell/Low shelf/High shelf</title>
+<text x="387" y="733" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">SHAPE</text>
+<text x="608" y="733" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">BELL</text>
+<path d="M387 750 L608 750" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="650" y="546" width="265" height="236" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="672" y="576" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">BAND 03</text>
+<g id="param-b3freq">
+<title>b3freq / Frequency</title>
+<text x="672" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FREQUENCY</text>
+<text x="893" y="607" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">2.5 kHz</text>
+<path d="M672 624 L893 624" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b3gain">
+<title>b3gain / Gain</title>
+<text x="672" y="649" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">GAIN</text>
+<circle cx="663" cy="645" r="2" fill="#b2bca1" stroke="none"/>
+<text x="893" y="649" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0 dB</text>
+<path d="M672 666 L893 666" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b3q">
+<title>b3q / Q</title>
+<text x="672" y="691" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">Q</text>
+<text x="893" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0.707</text>
+<path d="M672 708 L893 708" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b3shape">
+<title>b3shape / Bell/Low shelf/High shelf</title>
+<text x="672" y="733" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">SHAPE</text>
+<text x="893" y="733" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">BELL</text>
+<path d="M672 750 L893 750" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="935" y="546" width="265" height="236" rx="10" fill="#151819" stroke="#292d2e"/>
+<text x="957" y="576" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#858d88" text-anchor="start" letter-spacing="2">BAND 04</text>
+<g id="param-b4freq">
+<title>b4freq / Frequency</title>
+<text x="957" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">FREQUENCY</text>
+<text x="1178" y="607" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">10 kHz</text>
+<path d="M957 624 L1178 624" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b4gain">
+<title>b4gain / Gain</title>
+<text x="957" y="649" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">GAIN</text>
+<circle cx="948" cy="645" r="2" fill="#b2bca1" stroke="none"/>
+<text x="1178" y="649" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0 dB</text>
+<path d="M957 666 L1178 666" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b4q">
+<title>b4q / Q</title>
+<text x="957" y="691" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">Q</text>
+<text x="1178" y="691" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">0.707</text>
+<path d="M957 708 L1178 708" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="param-b4shape">
+<title>b4shape / Bell/Low shelf/High shelf</title>
+<text x="957" y="733" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#969e98" text-anchor="start" letter-spacing="1.2">SHAPE</text>
+<text x="1178" y="733" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d1d6ce" text-anchor="end" letter-spacing="0.1">BELL</text>
+<path d="M957 750 L1178 750" fill="none" stroke="#303536" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M80 803 L1200 803" fill="none" stroke="#333839" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="80" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">CAPTURE INPUT</text>
+<text x="260" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">REFERENCE</text>
+<text x="446" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#b2bca1" text-anchor="start" letter-spacing="1.4">LEARN ALL</text>
+<text x="803" y="838" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a0a79f" text-anchor="start" letter-spacing="1.4">DETAILS / LOG</text>
+<text x="1200" y="838" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#6e7872" text-anchor="end" letter-spacing="1.4">02 / STATIC DESIGN PROPOSAL</text>
+</svg>
