@@ -1,7 +1,7 @@
 plugin,parameter_id,label,section,minimum,maximum,design_value,unit,learn_eligible
 DVerb,predelay,Pre-delay,main,0,200,20,ms,yes
 DVerb,size,Size,main,0,1,0.6,%,no
-DVerb,decay,Decay,primary,0.1,12,2.4,s,yes
+DVerb,decay,Decay,main,0.1,12,2.4,s,yes
 DVerb,tone,Tone,main,500,18000,10000,Hz,yes
 DVerb,mix,Mix,main,0,1,0.25,,no
 DVerb,width,Width,main,0,2,1,,yes
@@ -20,8 +20,8 @@ DDelay,mix,Mix,main,0,1,0.25,,no
 DDelay,width,Width,main,0,2,1,,yes
 DDelay,output,Output,advanced,-24,12,0,dB,no
 DDelay,sync,Tempo sync,advanced,0,1,1,,no
-DDelay,division,Note division,primary,0,14,7,,no
-DComp,threshold,Threshold,primary,-60,0,-18,dB,yes
+DDelay,division,Note division,main,0,14,7,,no
+DComp,threshold,Threshold,main,-60,0,-18,dB,yes
 DComp,ratio,Ratio,main,1,20,4,:1,yes
 DComp,attack,Attack,main,0.1,200,15,ms,yes
 DComp,release,Release,main,10,2000,150,ms,yes
@@ -34,7 +34,7 @@ DEQ,b1gain,Gain,advanced,-18,18,1.5,dB,yes
 DEQ,b1q,Q,advanced,0.2,8,0.707,,no
 DEQ,b1shape,Bell/Low shelf/High shelf,advanced,0,2,0,,no
 DEQ,b2freq,Frequency,main,20,20000,400,Hz,no
-DEQ,b2gain,Gain,primary,-18,18,-2.5,dB,yes
+DEQ,b2gain,Gain,main,-18,18,-2.5,dB,yes
 DEQ,b2q,Q,main,0.2,8,0.707,,no
 DEQ,b2shape,Bell/Low shelf/High shelf,main,0,2,0,,no
 DEQ,b3freq,Frequency,advanced,20,20000,2500,Hz,no
@@ -45,25 +45,25 @@ DEQ,b4freq,Frequency,advanced,20,20000,10000,Hz,no
 DEQ,b4gain,Gain,advanced,-18,18,1,dB,yes
 DEQ,b4q,Q,advanced,0.2,8,0.707,,no
 DEQ,b4shape,Bell/Low shelf/High shelf,advanced,0,2,0,,no
-DSat,drive,Drive,primary,0,30,6,dB,yes
+DSat,drive,Drive,main,0,30,6,dB,yes
 DSat,tone,Tone,main,500,18000,10000,Hz,yes
 DSat,mode,Soft/Hard/Asymmetric,advanced,0,2,0,,no
 DSat,density,Density,main,0,1,0.5,,no
 DSat,mix,Mix,main,0,1,0.5,,no
 DSat,output,Output,advanced,-24,12,0,dB,no
-DTrans,attack,Attack,primary,-18,18,3.5,dB,yes
+DTrans,attack,Attack,main,-18,18,3.5,dB,yes
 DTrans,sustain,Sustain,main,-18,18,-1.5,dB,no
 DTrans,sensitivity,Sensitivity,main,0,1,0.5,,yes
 DTrans,shape,Shape,main,0.2,3,1,,no
 DTrans,mix,Mix,main,0,1,1,,no
 DTrans,output,Output,advanced,-24,12,0,dB,no
-DStereo,width,Width,primary,0,2,1.25,,yes
+DStereo,width,Width,main,0,2,1.25,,yes
 DStereo,depth,Depth,main,0,1,0,,no
 DStereo,center,Center,main,-18,6,0,dB,no
 DStereo,side,Side,main,-18,6,0,dB,yes
 DStereo,mix,Mix,main,0,1,1,,no
 DStereo,mono,Mono monitor,advanced,0,1,0,,no
-DSess,frequency,Detection frequency,primary,2000,12000,6000,Hz,yes
+DSess,frequency,Detection frequency,main,2000,12000,6000,Hz,yes
 DSess,threshold,Threshold,main,-60,0,-24,dB,yes
 DSess,range,Range,main,0,18,6,dB,yes
 DSess,attack,Attack,advanced,0.1,30,1,ms,no
@@ -71,7 +71,7 @@ DSess,release,Release,advanced,10,500,80,ms,yes
 DSess,focus,Focus,main,0.2,1,0.6,,yes
 DSess,mix,Mix,main,0,1,1,,no
 DSess,output,Output,advanced,-24,12,0,dB,no
-DGate,threshold,Threshold,primary,-80,0,-45,dB,yes
+DGate,threshold,Threshold,main,-80,0,-45,dB,yes
 DGate,attack,Attack,main,0.1,100,2,ms,yes
 DGate,hold,Hold,main,0,500,50,ms,no
 DGate,release,Release,main,5,2000,150,ms,yes
@@ -89,5 +89,5 @@ DFX,delayMix,Delay mix,advanced,0,1,0.2,,no
 DFX,reverbOn,Enable ambience,advanced,0,1,1,,no
 DFX,decay,Decay,advanced,0.1,8,1.5,s,yes
 DFX,reverbMix,Ambience mix,advanced,0,1,0.2,,no
-DFX,mix,Mix,primary,0,1,0.5,,no
+DFX,mix,Mix,main,0,1,0.5,,no
 DFX,output,Output,advanced,-24,12,0,dB,no
