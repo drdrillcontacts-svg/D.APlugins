@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1280" viewBox="0 0 1000 1280" role="img" aria-labelledby="title description">
+<title id="title">D.A Plugins / DFX / Noir 01 concept</title>
+<desc id="description">Editable design proposal, not a running plugin. Original D.A branding; matte graphite, sculpted controls, restrained violet and amber. Graphs are illustrative, not live readings.</desc>
+<defs>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#19191b"/><stop offset=".4" stop-color="#111113"/><stop offset="1" stop-color="#19191b"/></linearGradient>
+ <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#343436"/><stop offset=".15" stop-color="#202022"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+ <linearGradient id="dial" x2="0" y2="1"><stop stop-color="#151517"/><stop offset="1" stop-color="#29292c"/></linearGradient>
+ <radialGradient id="face"><stop stop-color="#222225"/><stop offset=".8" stop-color="#1d1d20"/><stop offset="1" stop-color="#131315"/></radialGradient>
+ <linearGradient id="fade" x2="0" y2="1"><stop stop-color="#9580ef" stop-opacity=".28"/><stop offset="1" stop-color="#9580ef" stop-opacity="0"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#000" flood-opacity=".7"/></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1000" height="1280" fill="#0d0d0f"/>
+<rect x="39" y="33" width="922" height="1214" rx="31" fill="#080809" filter="url(#shadow)"/>
+<rect x="40" y="34" width="920" height="1212" rx="30" fill="url(#body)" stroke="#29292b"/>
+<rect x="44" y="38" width="912" height="1204" rx="27" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+
+<g id="top-bar">
+<text x="78" y="100" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#d4d1d8" text-anchor="start" letter-spacing="-1">D.A</text>
+<rect x="300" y="65" width="376" height="46" rx="6" fill="#0f0f11" stroke="#38373d"/>
+<text x="317" y="94" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#aaa6b0" text-anchor="start" letter-spacing="0.7">Factory presets / 50</text>
+<path d="M581 65 L581 111" fill="none" stroke="#3c3c40" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M629 65 L629 111" fill="none" stroke="#3c3c40" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M609 82 l-6 6 6 6" fill="none" stroke="#bbb6c1" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M648 82 l6 6 -6 6" fill="none" stroke="#bbb6c1" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="691" y="65" width="46" height="46" rx="6" fill="#111113" stroke="#38373d"/>
+<path d="M706 79 h13 v18 h-13 z m4 5 h5 m-5 5 h5" fill="none" stroke="#a7a0b0" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 80 L911 80" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 88 L911 88" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 96 L911 96" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="57" y="137" width="886" height="357" rx="28" fill="url(#bevel)" stroke="#29282e"/>
+<path d="M85 149 H915 Q931 149 931 166 V458 Q931 480 910 480 H668 Q500 382 332 480 H90 Q70 480 70 458 V166 Q70 149 85 149Z" fill="#0d0c10" stroke="#202024"/>
+<text x="91" y="236" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="500" fill="#d2cdd9" text-anchor="start" letter-spacing="4">DFX</text>
+<text x="887" y="237" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b656f" text-anchor="end" letter-spacing="2">RESET</text>
+<g id="illustrative-display">
+<text x="91" y="193" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8a8990" text-anchor="start" letter-spacing="2.4">FLOW / MULTI EFFECT</text>
+<circle cx="865" cy="189" r="2.5" fill="#72628f" stroke="none"/>
+<text x="881" y="193" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#66636e" text-anchor="end" letter-spacing="1">STUDY</text>
+<rect x="161" y="261" width="145" height="87" rx="12" fill="#121114" stroke="#333039"/>
+<text x="176" y="284" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#796a91" text-anchor="start" letter-spacing="1.6">01</text>
+<text x="233" y="316" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c0aecf" text-anchor="middle" letter-spacing="2">DRIVE</text>
+<path d="M311 305 h21 m-5 -4 l5 4 -5 4" fill="none" stroke="#7c668f" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="338" y="261" width="145" height="87" rx="12" fill="#121114" stroke="#333039"/>
+<text x="353" y="284" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#796a91" text-anchor="start" letter-spacing="1.6">02</text>
+<text x="410" y="316" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c0aecf" text-anchor="middle" letter-spacing="2">FILTER</text>
+<path d="M488 305 h21 m-5 -4 l5 4 -5 4" fill="none" stroke="#7c668f" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="515" y="261" width="145" height="87" rx="12" fill="#121114" stroke="#333039"/>
+<text x="530" y="284" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#796a91" text-anchor="start" letter-spacing="1.6">03</text>
+<text x="587" y="316" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c0aecf" text-anchor="middle" letter-spacing="2">DELAY</text>
+<path d="M665 305 h21 m-5 -4 l5 4 -5 4" fill="none" stroke="#7c668f" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="692" y="261" width="145" height="87" rx="12" fill="#121114" stroke="#333039"/>
+<text x="707" y="284" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#796a91" text-anchor="start" letter-spacing="1.6">04</text>
+<text x="764" y="316" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c0aecf" text-anchor="middle" letter-spacing="2">SPACE</text>
+<text x="93" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9b979f" text-anchor="start" letter-spacing="1.6">CAPTURE</text>
+<circle cx="81" cy="441" r="3" fill="#79747e" stroke="none"/>
+<text x="215" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#706b77" text-anchor="start" letter-spacing="1.6">REFERENCE</text>
+<text x="887" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9983ce" text-anchor="end" letter-spacing="1.6">DETAILS</text>
+</g>
+<g id="param-mix">
+<title>mix / Mix</title>
+<circle cx="500" cy="636" r="178" fill="#1c1c1f" stroke="none"/>
+<circle cx="500" cy="636" r="178" fill="none" stroke="#28282c"/>
+<circle cx="362.82" cy="773.18" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="343.05" cy="750.03" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="327.14" cy="724.07" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="315.5" cy="695.95" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="308.39" cy="666.35" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="306.0" cy="636.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="308.39" cy="605.65" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="315.5" cy="576.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="327.14" cy="547.93" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="343.05" cy="521.97" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="362.82" cy="498.82" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="385.97" cy="479.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="411.93" cy="463.14" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="440.05" cy="451.5" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="469.65" cy="444.39" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="500.0" cy="442.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="530.35" cy="444.39" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="559.95" cy="451.5" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="588.07" cy="463.14" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="614.03" cy="479.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="637.18" cy="498.82" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="656.95" cy="521.97" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="672.86" cy="547.93" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="684.5" cy="576.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="691.61" cy="605.65" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="694.0" cy="636.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="691.61" cy="666.35" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="684.5" cy="695.95" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="672.86" cy="724.07" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="656.95" cy="750.03" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="637.18" cy="773.18" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="500" cy="641" r="159" fill="#050506" filter="url(#shadow)"/>
+<circle cx="500" cy="636" r="159" fill="url(#bevel)" stroke="none"/>
+<circle cx="500" cy="636" r="155" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="500" cy="636" r="151" fill="none" stroke="#ffffff08"/>
+<path d="M500.0 527.5 L500.0 494.95" fill="none" stroke="#d8d6dc" stroke-width="4" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500" y="857" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#d8d6dd" text-anchor="middle" letter-spacing="3">MIX</text>
+<text x="500" y="896" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#a795ed" text-anchor="middle" letter-spacing="1">50%</text>
+</g>
+<text x="500" y="920" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#57525d" text-anchor="middle" letter-spacing="2">PRECISION CONTROL</text>
+<g id="param-driveOn">
+<text x="182.5" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#918899" text-anchor="middle" letter-spacing="1">SATURATION</text>
+<rect x="129.5" y="962" width="106" height="38" rx="7" fill="#18141e" stroke="#493a5c"/>
+<text x="182.5" y="986" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#b5a0d9" text-anchor="middle" letter-spacing="0.5">ON</text>
+</g>
+<g id="param-drive">
+<title>drive / Drive</title>
+<circle cx="309.5" cy="990" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="309.5" cy="985" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="309.5" cy="985" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="309.5" cy="985" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M294.4 988.0 L289.86 988.91" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="309.5" y="1031" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">+3 dB</text>
+<text x="309.5" y="946" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">DRIVE</text>
+<circle cx="349.5" cy="942" r="2" fill="#bb8a4d" stroke="none"/>
+</g>
+<g id="param-filterOn">
+<text x="436.5" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#918899" text-anchor="middle" letter-spacing="1">FILTER</text>
+<rect x="383.5" y="962" width="106" height="38" rx="7" fill="#18141e" stroke="#493a5c"/>
+<text x="436.5" y="986" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#b5a0d9" text-anchor="middle" letter-spacing="0.5">ON</text>
+</g>
+<g id="param-filter">
+<title>filter / Low pass</title>
+<circle cx="563.5" cy="990" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="563.5" cy="985" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="563.5" cy="985" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="563.5" cy="985" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M577.91 990.44 L582.23 992.07" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="563.5" y="1031" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">12 kHz</text>
+<text x="563.5" y="946" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">LOW PASS</text>
+<circle cx="603.5" cy="942" r="2" fill="#bb8a4d" stroke="none"/>
+</g>
+<g id="param-delayOn">
+<text x="690.5" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#918899" text-anchor="middle" letter-spacing="1">DELAY</text>
+<rect x="637.5" y="962" width="106" height="38" rx="7" fill="#18141e" stroke="#493a5c"/>
+<text x="690.5" y="986" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#b5a0d9" text-anchor="middle" letter-spacing="0.5">ON</text>
+</g>
+<g id="param-time">
+<title>time / Time</title>
+<circle cx="817.5" cy="990" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="817.5" cy="985" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="817.5" cy="985" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="817.5" cy="985" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M802.4 988.04 L797.87 988.95" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="817.5" y="1031" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">250 ms</text>
+<text x="817.5" y="946" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">TIME</text>
+</g>
+<g id="param-feedback">
+<title>feedback / Feedback</title>
+<circle cx="182.5" cy="1091" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="182.5" cy="1086" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="182.5" cy="1086" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="182.5" cy="1086" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M171.61 1075.11 L168.34 1071.84" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="182.5" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">30%</text>
+<text x="182.5" y="1047" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">FEEDBACK</text>
+</g>
+<g id="param-delayMix">
+<title>delayMix / Delay mix</title>
+<circle cx="309.5" cy="1091" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="309.5" cy="1086" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="309.5" cy="1086" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="309.5" cy="1086" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M294.29 1083.59 L289.73 1082.87" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="309.5" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">20%</text>
+<text x="309.5" y="1047" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">DELAY MIX</text>
+</g>
+<g id="param-reverbOn">
+<text x="436.5" y="1044" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#918899" text-anchor="middle" letter-spacing="1">AMBIENCE</text>
+<rect x="383.5" y="1063" width="106" height="38" rx="7" fill="#18141e" stroke="#493a5c"/>
+<text x="436.5" y="1087" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#b5a0d9" text-anchor="middle" letter-spacing="0.5">ON</text>
+</g>
+<g id="param-decay">
+<title>decay / Decay</title>
+<circle cx="563.5" cy="1091" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="563.5" cy="1086" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="563.5" cy="1086" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="563.5" cy="1086" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M548.12 1085.23 L543.5 1085.01" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="563.5" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">1.50 s</text>
+<text x="563.5" y="1047" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">DECAY</text>
+<circle cx="603.5" cy="1043" r="2" fill="#bb8a4d" stroke="none"/>
+</g>
+<g id="param-reverbMix">
+<title>reverbMix / Ambience mix</title>
+<circle cx="690.5" cy="1091" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="690.5" cy="1086" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="690.5" cy="1086" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="690.5" cy="1086" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M675.29 1083.59 L670.73 1082.87" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="690.5" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">20%</text>
+<text x="690.5" y="1047" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">REVERB MIX</text>
+</g>
+<g id="param-output">
+<title>output / Output</title>
+<circle cx="817.5" cy="1091" r="26" fill="#050506" filter="url(#shadow)"/>
+<circle cx="817.5" cy="1086" r="26" fill="url(#bevel)" stroke="none"/>
+<circle cx="817.5" cy="1086" r="22" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="817.5" cy="1086" r="18" fill="none" stroke="#ffffff08"/>
+<path d="M828.39 1075.11 L831.66 1071.84" fill="none" stroke="#d8d6dc" stroke-width="2" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="817.5" y="1132" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#c7c5ce" text-anchor="middle" letter-spacing="0.3">0 dB</text>
+<text x="817.5" y="1047" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#929198" text-anchor="middle" letter-spacing="1.2">OUTPUT</text>
+</g>
+<path d="M83 1141 L917 1141" fill="none" stroke="#28252e" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="165" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">CAPTURE INPUT</text>
+<text x="382" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">REFERENCE</text>
+<text x="602" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#d39c55" text-anchor="middle" letter-spacing="1.3">LEARN ALL</text>
+<text x="817" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">DETAILS / LOG</text>
+<text x="84" y="1220" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#625b6d" text-anchor="start" letter-spacing="2">D.A PLUGINS / NOIR 01</text>
+<text x="916" y="1220" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#625b6d" text-anchor="end" letter-spacing="1.3">DESIGN STUDY / NO LIVE AUDIO</text>
+<circle cx="66" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="75" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="546" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="75" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="1218" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="925" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="546" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="925" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="1218" r="2.8" fill="#222126" stroke="#111113"/>
+</svg>

@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1280" viewBox="0 0 1000 1280" role="img" aria-labelledby="title description">
+<title id="title">D.A Plugins / DEQ / Noir 01 concept</title>
+<desc id="description">Editable design proposal, not a running plugin. Original D.A branding; matte graphite, sculpted controls, restrained violet and amber. Graphs are illustrative, not live readings.</desc>
+<defs>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#19191b"/><stop offset=".4" stop-color="#111113"/><stop offset="1" stop-color="#19191b"/></linearGradient>
+ <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#343436"/><stop offset=".15" stop-color="#202022"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+ <linearGradient id="dial" x2="0" y2="1"><stop stop-color="#151517"/><stop offset="1" stop-color="#29292c"/></linearGradient>
+ <radialGradient id="face"><stop stop-color="#222225"/><stop offset=".8" stop-color="#1d1d20"/><stop offset="1" stop-color="#131315"/></radialGradient>
+ <linearGradient id="fade" x2="0" y2="1"><stop stop-color="#9580ef" stop-opacity=".28"/><stop offset="1" stop-color="#9580ef" stop-opacity="0"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#000" flood-opacity=".7"/></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1000" height="1280" fill="#0d0d0f"/>
+<rect x="39" y="33" width="922" height="1214" rx="31" fill="#080809" filter="url(#shadow)"/>
+<rect x="40" y="34" width="920" height="1212" rx="30" fill="url(#body)" stroke="#29292b"/>
+<rect x="44" y="38" width="912" height="1204" rx="27" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+
+<g id="top-bar">
+<text x="78" y="100" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" fill="#d4d1d8" text-anchor="start" letter-spacing="-1">D.A</text>
+<rect x="300" y="65" width="376" height="46" rx="6" fill="#0f0f11" stroke="#38373d"/>
+<text x="317" y="94" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#aaa6b0" text-anchor="start" letter-spacing="0.7">Factory presets / 50</text>
+<path d="M581 65 L581 111" fill="none" stroke="#3c3c40" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M629 65 L629 111" fill="none" stroke="#3c3c40" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M609 82 l-6 6 6 6" fill="none" stroke="#bbb6c1" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M648 82 l6 6 -6 6" fill="none" stroke="#bbb6c1" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="691" y="65" width="46" height="46" rx="6" fill="#111113" stroke="#38373d"/>
+<path d="M706 79 h13 v18 h-13 z m4 5 h5 m-5 5 h5" fill="none" stroke="#a7a0b0" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 80 L911 80" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 88 L911 88" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 96 L911 96" fill="none" stroke="#a9a5af" stroke-width="1.7" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="57" y="137" width="886" height="357" rx="28" fill="url(#bevel)" stroke="#29282e"/>
+<path d="M85 149 H915 Q931 149 931 166 V458 Q931 480 910 480 H668 Q500 382 332 480 H90 Q70 480 70 458 V166 Q70 149 85 149Z" fill="#0d0c10" stroke="#202024"/>
+<text x="91" y="236" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="500" fill="#d2cdd9" text-anchor="start" letter-spacing="4">DEQ</text>
+<text x="887" y="237" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b656f" text-anchor="end" letter-spacing="2">RESET</text>
+<g id="illustrative-display">
+<text x="91" y="193" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8a8990" text-anchor="start" letter-spacing="2.4">SCULPT / FOUR-BAND EQUALIZER</text>
+<circle cx="865" cy="189" r="2.5" fill="#72628f" stroke="none"/>
+<text x="881" y="193" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#66636e" text-anchor="end" letter-spacing="1">STUDY</text>
+<path d="M190 230 L190 365" fill="none" stroke="#232228" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 230 L345 365" fill="none" stroke="#232228" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M500 230 L500 365" fill="none" stroke="#232228" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M655 230 L655 365" fill="none" stroke="#232228" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M810 230 L810 365" fill="none" stroke="#232228" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 300 L870 300" fill="none" stroke="#38353f" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 298.89 L135 298.57 L140 298.18 L145 297.71 L150 297.16 L155 296.53 L160 295.81 L165 295.00 L170 294.12 L175 293.17 L180 292.17 L185 291.14 L190 290.11 L195 289.09 L200 288.13 L205 287.25 L210 286.48 L215 285.85 L220 285.39 L225 285.10 L230 285.00 L235 285.10 L240 285.39 L245 285.85 L250 286.48 L255 287.25 L260 288.13 L265 289.09 L270 290.11 L275 291.14 L280 292.17 L285 293.17 L290 294.12 L295 295.00 L300 295.81 L305 296.53 L310 297.16 L315 297.71 L320 298.18 L325 298.57 L330 298.89 L335 299.15 L340 299.36 L345 299.52 L350 299.65 L355 299.74 L360 299.82 L365 299.87 L370 299.91 L375 299.94 L380 299.96 L385 299.97 L390 299.98 L395 299.99 L400 299.99 L405 299.99 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 300.00 L450 300.00 L455 300.00 L460 300.00 L465 300.00 L470 300.00 L475 300.00 L480 300.00 L485 300.00 L490 300.00 L495 300.00 L500 300.00 L505 300.00 L510 300.00 L515 300.00 L520 300.00 L525 300.00 L530 300.00 L535 300.00 L540 300.00 L545 300.00 L550 300.00 L555 300.00 L560 300.00 L565 300.00 L570 300.00 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 300.00 L635 300.00 L640 300.00 L645 300.00 L650 300.00 L655 300.00 L660 300.00 L665 300.00 L670 300.00 L675 300.00 L680 300.00 L685 300.00 L690 300.00 L695 300.00 L700 300.00 L705 300.00 L710 300.00 L715 300.00 L720 300.00 L725 300.00 L730 300.00 L735 300.00 L740 300.00 L745 300.00 L750 300.00 L755 300.00 L760 300.00 L765 300.00 L770 300.00 L775 300.00 L780 300.00 L785 300.00 L790 300.00 L795 300.00 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#796794" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="230" cy="285" r="4" fill="#b9a3f1" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.01 L215 300.01 L220 300.01 L225 300.02 L230 300.03 L235 300.05 L240 300.08 L245 300.11 L250 300.16 L255 300.24 L260 300.33 L265 300.46 L270 300.64 L275 300.87 L280 301.16 L285 301.53 L290 302.00 L295 302.58 L300 303.28 L305 304.12 L310 305.11 L315 306.25 L320 307.55 L325 309.00 L330 310.58 L335 312.29 L340 314.09 L345 315.94 L350 317.81 L355 319.63 L360 321.36 L365 322.95 L370 324.33 L375 325.46 L380 326.31 L385 326.82 L390 327.00 L395 326.82 L400 326.31 L405 325.46 L410 324.33 L415 322.95 L420 321.36 L425 319.63 L430 317.81 L435 315.94 L440 314.09 L445 312.29 L450 310.58 L455 309.00 L460 307.55 L465 306.25 L470 305.11 L475 304.12 L480 303.28 L485 302.58 L490 302.00 L495 301.53 L500 301.16 L505 300.87 L510 300.64 L515 300.46 L520 300.33 L525 300.24 L530 300.16 L535 300.11 L540 300.08 L545 300.05 L550 300.03 L555 300.02 L560 300.01 L565 300.01 L570 300.01 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 300.00 L635 300.00 L640 300.00 L645 300.00 L650 300.00 L655 300.00 L660 300.00 L665 300.00 L670 300.00 L675 300.00 L680 300.00 L685 300.00 L690 300.00 L695 300.00 L700 300.00 L705 300.00 L710 300.00 L715 300.00 L720 300.00 L725 300.00 L730 300.00 L735 300.00 L740 300.00 L745 300.00 L750 300.00 L755 300.00 L760 300.00 L765 300.00 L770 300.00 L775 300.00 L780 300.00 L785 300.00 L790 300.00 L795 300.00 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#796794" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="390" cy="327" r="4" fill="#b9a3f1" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.00 L215 300.00 L220 300.00 L225 300.00 L230 300.00 L235 300.00 L240 300.00 L245 300.00 L250 300.00 L255 300.00 L260 300.00 L265 300.00 L270 300.00 L275 300.00 L280 300.00 L285 300.00 L290 300.00 L295 300.00 L300 300.00 L305 300.00 L310 300.00 L315 300.00 L320 300.00 L325 300.00 L330 300.00 L335 300.00 L340 300.00 L345 300.00 L350 300.00 L355 300.00 L360 300.00 L365 300.00 L370 300.00 L375 300.00 L380 300.00 L385 300.00 L390 300.00 L395 300.00 L400 300.00 L405 300.00 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 299.99 L450 299.99 L455 299.98 L460 299.97 L465 299.96 L470 299.94 L475 299.91 L480 299.87 L485 299.81 L490 299.73 L495 299.62 L500 299.48 L505 299.29 L510 299.06 L515 298.75 L520 298.37 L525 297.90 L530 297.33 L535 296.64 L540 295.84 L545 294.91 L550 293.85 L555 292.67 L560 291.38 L565 289.98 L570 288.52 L575 287.01 L580 285.49 L585 284.00 L590 282.59 L595 281.30 L600 280.17 L605 279.25 L610 278.56 L615 278.14 L620 278.00 L625 278.14 L630 278.56 L635 279.25 L640 280.17 L645 281.30 L650 282.59 L655 284.00 L660 285.49 L665 287.01 L670 288.52 L675 289.98 L680 291.38 L685 292.67 L690 293.85 L695 294.91 L700 295.84 L705 296.64 L710 297.33 L715 297.90 L720 298.37 L725 298.75 L730 299.06 L735 299.29 L740 299.48 L745 299.62 L750 299.73 L755 299.81 L760 299.87 L765 299.91 L770 299.94 L775 299.96 L780 299.97 L785 299.98 L790 299.99 L795 299.99 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#796794" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="620" cy="278" r="4" fill="#b9a3f1" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.00 L215 300.00 L220 300.00 L225 300.00 L230 300.00 L235 300.00 L240 300.00 L245 300.00 L250 300.00 L255 300.00 L260 300.00 L265 300.00 L270 300.00 L275 300.00 L280 300.00 L285 300.00 L290 300.00 L295 300.00 L300 300.00 L305 300.00 L310 300.00 L315 300.00 L320 300.00 L325 300.00 L330 300.00 L335 300.00 L340 300.00 L345 300.00 L350 300.00 L355 300.00 L360 300.00 L365 300.00 L370 300.00 L375 300.00 L380 300.00 L385 300.00 L390 300.00 L395 300.00 L400 300.00 L405 300.00 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 300.00 L450 300.00 L455 300.00 L460 300.00 L465 300.00 L470 300.00 L475 300.00 L480 300.00 L485 300.00 L490 300.00 L495 300.00 L500 300.00 L505 300.00 L510 300.00 L515 300.00 L520 300.00 L525 300.00 L530 300.00 L535 300.00 L540 300.00 L545 300.00 L550 300.00 L555 300.00 L560 300.00 L565 300.00 L570 300.00 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 299.99 L635 299.99 L640 299.99 L645 299.98 L650 299.97 L655 299.95 L660 299.93 L665 299.90 L670 299.86 L675 299.81 L680 299.74 L685 299.65 L690 299.53 L695 299.38 L700 299.18 L705 298.95 L710 298.66 L715 298.32 L720 297.92 L725 297.45 L730 296.93 L735 296.34 L740 295.69 L745 294.99 L750 294.26 L755 293.50 L760 292.75 L765 292.00 L770 291.30 L775 290.65 L780 290.09 L785 289.63 L790 289.28 L795 289.07 L800 289.00 L805 289.07 L810 289.28 L815 289.63 L820 290.09 L825 290.65 L830 291.30 L835 292.00 L840 292.75 L845 293.50 L850 294.26 L855 294.99 L860 295.69 L865 296.34 L870 296.93" fill="none" stroke="#796794" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="800" cy="289" r="4" fill="#b9a3f1" stroke="none"/>
+<path d="M130 298.89 L135 298.57 L140 298.18 L145 297.71 L150 297.16 L155 296.53 L160 295.81 L165 295.00 L170 294.12 L175 293.17 L180 292.17 L185 291.14 L190 290.11 L195 289.09 L200 288.13 L205 287.25 L210 286.49 L215 285.86 L220 285.40 L225 285.12 L230 285.03 L235 285.15 L240 285.46 L245 285.97 L250 286.65 L255 287.49 L260 288.46 L265 289.56 L270 290.74 L275 292.01 L280 293.33 L285 294.71 L290 296.12 L295 297.58 L300 299.09 L305 300.65 L310 302.27 L315 303.96 L320 305.72 L325 307.56 L330 309.47 L335 311.44 L340 313.45 L345 315.46 L350 317.45 L355 319.37 L360 321.18 L365 322.82 L370 324.24 L375 325.40 L380 326.26 L385 326.80 L390 326.98 L395 326.81 L400 326.30 L405 325.46 L410 324.33 L415 322.95 L420 321.36 L425 319.63 L430 317.80 L435 315.94 L440 314.09 L445 312.28 L450 310.57 L455 308.98 L460 307.52 L465 306.21 L470 305.05 L475 304.03 L480 303.15 L485 302.39 L490 301.73 L495 301.16 L500 300.64 L505 300.16 L510 299.69 L515 299.21 L520 298.70 L525 298.13 L530 297.49 L535 296.76 L540 295.92 L545 294.96 L550 293.89 L555 292.69 L560 291.39 L565 289.99 L570 288.53 L575 287.01 L580 285.49 L585 284.00 L590 282.59 L595 281.30 L600 280.17 L605 279.25 L610 278.56 L615 278.14 L620 278.00 L625 278.14 L630 278.56 L635 279.24 L640 280.16 L645 281.28 L650 282.56 L655 283.96 L660 285.42 L665 286.91 L670 288.38 L675 289.80 L680 291.12 L685 292.32 L690 293.38 L695 294.28 L700 295.02 L705 295.59 L710 295.99 L715 296.22 L720 296.29 L725 296.20 L730 295.98 L735 295.63 L740 295.17 L745 294.61 L750 293.99 L755 293.31 L760 292.61 L765 291.91 L770 291.23 L775 290.61 L780 290.06 L785 289.61 L790 289.27 L795 289.06 L800 289.00 L805 289.07 L810 289.28 L815 289.62 L820 290.09 L825 290.65 L830 291.30 L835 292.00 L840 292.75 L845 293.50 L850 294.26 L855 294.99 L860 295.69 L865 296.34 L870 296.93" fill="none" stroke="#b29aee" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="150" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6a6671" text-anchor="middle" letter-spacing="0">20</text>
+<text x="330" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6a6671" text-anchor="middle" letter-spacing="0">100</text>
+<text x="500" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6a6671" text-anchor="middle" letter-spacing="0">1k</text>
+<text x="680" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6a6671" text-anchor="middle" letter-spacing="0">5k</text>
+<text x="850" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6a6671" text-anchor="middle" letter-spacing="0">20k Hz</text>
+<text x="93" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9b979f" text-anchor="start" letter-spacing="1.6">CAPTURE</text>
+<circle cx="81" cy="441" r="3" fill="#79747e" stroke="none"/>
+<text x="215" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#706b77" text-anchor="start" letter-spacing="1.6">REFERENCE</text>
+<text x="887" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9983ce" text-anchor="end" letter-spacing="1.6">DETAILS</text>
+</g>
+<g id="param-b2gain">
+<title>b2gain / Gain</title>
+<circle cx="500" cy="636" r="178" fill="#1c1c1f" stroke="none"/>
+<circle cx="500" cy="636" r="178" fill="none" stroke="#28282c"/>
+<circle cx="362.82" cy="773.18" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="343.05" cy="750.03" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="327.14" cy="724.07" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="315.5" cy="695.95" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="308.39" cy="666.35" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="306.0" cy="636.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="308.39" cy="605.65" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="315.5" cy="576.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="327.14" cy="547.93" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="343.05" cy="521.97" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="362.82" cy="498.82" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="385.97" cy="479.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="411.93" cy="463.14" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="440.05" cy="451.5" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="469.65" cy="444.39" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="500.0" cy="442.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="530.35" cy="444.39" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="559.95" cy="451.5" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="588.07" cy="463.14" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="614.03" cy="479.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="637.18" cy="498.82" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="656.95" cy="521.97" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="672.86" cy="547.93" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="684.5" cy="576.05" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="691.61" cy="605.65" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="694.0" cy="636.0" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="691.61" cy="666.35" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="684.5" cy="695.95" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="672.86" cy="724.07" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="656.95" cy="750.03" r="1.7" fill="#36363b" stroke="none"/>
+<circle cx="637.18" cy="773.18" r="2.2" fill="#727276" stroke="none"/>
+<circle cx="500" cy="641" r="159" fill="#050506" filter="url(#shadow)"/>
+<circle cx="500" cy="636" r="159" fill="url(#bevel)" stroke="none"/>
+<circle cx="500" cy="636" r="155" fill="url(#dial)" stroke="#38383c"/>
+<circle cx="500" cy="636" r="151" fill="none" stroke="#ffffff08"/>
+<path d="M465.12 533.26 L454.66 502.44" fill="none" stroke="#d8d6dc" stroke-width="4" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500" y="857" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#d8d6dd" text-anchor="middle" letter-spacing="3">GAIN</text>
+<text x="500" y="896" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#a795ed" text-anchor="middle" letter-spacing="1">-2.5 dB</text>
+<text x="650" y="857" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#d19a50" text-anchor="middle" letter-spacing="2">LEARN</text>
+</g>
+<text x="500" y="920" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#827591" text-anchor="middle" letter-spacing="1.5">SELECTED / BAND 02</text>
+<rect x="87" y="948" width="192" height="163" rx="10" fill="#141316" stroke="#252329"/>
+<text x="103" y="972" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8a828f" text-anchor="start" letter-spacing="2">BAND 1</text>
+<g id="param-b1freq">
+<text x="103" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">FREQ</text>
+<text x="263" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">100 Hz</text>
+</g>
+<g id="param-b1gain">
+<text x="103" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">GAIN</text>
+<text x="263" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">+1.5 dB</text>
+<circle cx="148" cy="1025" r="2" fill="#b38a52" stroke="none"/>
+</g>
+<g id="param-b1q">
+<text x="103" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">Q</text>
+<text x="263" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">0.707</text>
+</g>
+<g id="param-b1shape">
+<text x="103" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">SHAPE</text>
+<text x="263" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">BELL</text>
+</g>
+<rect x="300" y="948" width="192" height="163" rx="10" fill="#141316" stroke="#4e405d"/>
+<text x="316" y="972" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b2a0ce" text-anchor="start" letter-spacing="2">BAND 2</text>
+<g id="param-b2freq">
+<text x="316" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">FREQ</text>
+<text x="476" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">400 Hz</text>
+</g>
+<g id="mirror-b2gain">
+<text x="316" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">GAIN</text>
+<text x="476" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">-2.5 dB</text>
+<circle cx="361" cy="1025" r="2" fill="#b38a52" stroke="none"/>
+</g>
+<g id="param-b2q">
+<text x="316" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">Q</text>
+<text x="476" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">0.707</text>
+</g>
+<g id="param-b2shape">
+<text x="316" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">SHAPE</text>
+<text x="476" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">BELL</text>
+</g>
+<rect x="513" y="948" width="192" height="163" rx="10" fill="#141316" stroke="#252329"/>
+<text x="529" y="972" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8a828f" text-anchor="start" letter-spacing="2">BAND 3</text>
+<g id="param-b3freq">
+<text x="529" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">FREQ</text>
+<text x="689" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">2.5 kHz</text>
+</g>
+<g id="param-b3gain">
+<text x="529" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">GAIN</text>
+<text x="689" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">+2 dB</text>
+<circle cx="574" cy="1025" r="2" fill="#b38a52" stroke="none"/>
+</g>
+<g id="param-b3q">
+<text x="529" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">Q</text>
+<text x="689" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">0.707</text>
+</g>
+<g id="param-b3shape">
+<text x="529" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">SHAPE</text>
+<text x="689" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">BELL</text>
+</g>
+<rect x="726" y="948" width="192" height="163" rx="10" fill="#141316" stroke="#252329"/>
+<text x="742" y="972" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8a828f" text-anchor="start" letter-spacing="2">BAND 4</text>
+<g id="param-b4freq">
+<text x="742" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">FREQ</text>
+<text x="902" y="1001" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">10 kHz</text>
+</g>
+<g id="param-b4gain">
+<text x="742" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">GAIN</text>
+<text x="902" y="1029" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">+1 dB</text>
+<circle cx="787" cy="1025" r="2" fill="#b38a52" stroke="none"/>
+</g>
+<g id="param-b4q">
+<text x="742" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">Q</text>
+<text x="902" y="1057" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">0.707</text>
+</g>
+<g id="param-b4shape">
+<text x="742" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#746e7d" text-anchor="start" letter-spacing="1">SHAPE</text>
+<text x="902" y="1085" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#bcb5c6" text-anchor="end" letter-spacing="0.3">BELL</text>
+</g>
+<path d="M83 1141 L917 1141" fill="none" stroke="#28252e" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="165" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">CAPTURE INPUT</text>
+<text x="382" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">REFERENCE</text>
+<text x="602" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#d39c55" text-anchor="middle" letter-spacing="1.3">LEARN ALL</text>
+<text x="817" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d8597" text-anchor="middle" letter-spacing="1.3">DETAILS / LOG</text>
+<text x="84" y="1220" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#625b6d" text-anchor="start" letter-spacing="2">D.A PLUGINS / NOIR 01</text>
+<text x="916" y="1220" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#625b6d" text-anchor="end" letter-spacing="1.3">DESIGN STUDY / NO LIVE AUDIO</text>
+<circle cx="66" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="75" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="546" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="75" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="66" cy="1218" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="925" cy="537" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="546" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="925" cy="1209" r="2.8" fill="#222126" stroke="#111113"/>
+<circle cx="934" cy="1218" r="2.8" fill="#222126" stroke="#111113"/>
+</svg>
