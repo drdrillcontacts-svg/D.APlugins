@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc"><title id="title">DEQ / Noir 01 Refined / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#222325"/><stop offset="1" stop-color="#111214"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1440" height="920" rx="0" fill="#101416" stroke="none"/>
+<rect x="30" y="26" width="1380" height="868" rx="27" fill="url(#matte)" stroke="#303235" filter="url(#shadow)"/>
+<rect x="35" y="31" width="1370" height="858" rx="23" fill="none" stroke="#ffffff08"/>
+<text x="65.00" y="78.00" fill="#d6d8d6" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" text-anchor="start" letter-spacing="-0.6">D.A</text>
+<text x="165.00" y="91.00" fill="#d9ded8" font-family="Arial, Helvetica, sans-serif" font-size="33" font-weight="400" text-anchor="start" letter-spacing="-0.5">DEQ</text>
+<text x="166.00" y="118.00" fill="#b5bba0" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="2.3">FOUR-BAND EQ</text>
+<rect x="992" y="56" width="296" height="48" rx="8" fill="#121416" stroke="#363a3b"/>
+<text x="1012.00" y="86.00" fill="#bfc6be" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="400" text-anchor="start" letter-spacing="0.6">01 / Init</text>
+<path d="M1193 57 L1193 103" fill="none" stroke="#353b3d" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1241 57 L1241 103" fill="none" stroke="#353b3d" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1223 74 l-6 6 6 6 M1259 74 l6 6 -6 6" fill="none" stroke="#b4bcb3" stroke-width="1.7" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1287.00" y="124.00" fill="#7a8780" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="end" letter-spacing="1.5">50 FACTORY</text>
+<path d="M1331 72 h21 M1331 80 h21 M1331 88 h21" fill="none" stroke="#939d97" stroke-width="1.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M65 145 L1375 145" fill="none" stroke="#2d3335" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="178" width="1310" height="301" rx="17" fill="#101416" stroke="#2d3437"/>
+<rect x="69" y="182" width="1302" height="293" rx="14" fill="none" stroke="#ffffff04"/>
+<text x="87.00" y="207.00" fill="#88968e" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.8">FOUR-BAND RESPONSE — ILLUSTRATIVE</text>
+<g id="illustrative-visual-1">
+<path d="M103 324.5 L1337 324.5" fill="none" stroke="#465044" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M103.0 324.3 L111.2 324.3 L119.5 324.2 L127.7 324.0 L135.9 323.8 L144.1 323.5 L152.4 323.1 L160.6 322.7 L168.8 322.0 L177.0 321.3 L185.3 320.3 L193.5 319.2 L201.7 317.9 L209.9 316.3 L218.2 314.6 L226.4 312.8 L234.6 310.8 L242.9 308.7 L251.1 306.6 L259.3 304.6 L267.5 302.7 L275.8 301.0 L284.0 299.6 L292.2 298.5 L300.4 297.9 L308.7 297.7 L316.9 297.9 L325.1 298.6 L333.3 299.6 L341.6 301.1 L349.8 302.8 L358.0 304.7 L366.3 306.8 L374.5 309.0 L382.7 311.2 L390.9 313.3 L399.2 315.3 L407.4 317.3 L415.6 319.1 L423.8 320.8 L432.1 322.4 L440.3 323.9 L448.5 325.4 L456.7 326.8 L465.0 328.3 L473.2 329.8 L481.4 331.3 L489.7 333.0 L497.9 334.8 L506.1 336.8 L514.3 338.8 L522.6 341.0 L530.8 343.3 L539.0 345.7 L547.2 348.1 L555.5 350.5 L563.7 352.9 L571.9 355.2 L580.1 357.3 L588.4 359.2 L596.6 360.8 L604.8 362.1 L613.1 363.1 L621.3 363.7 L629.5 363.9 L637.7 363.7 L646.0 363.1 L654.2 362.1 L662.4 360.8 L670.6 359.1 L678.9 357.2 L687.1 355.1 L695.3 352.8 L703.5 350.5 L711.8 348.0 L720.0 345.6 L728.2 343.2 L736.5 340.9 L744.7 338.6 L752.9 336.5 L761.1 334.6 L769.4 332.8 L777.6 331.1 L785.8 329.5 L794.0 328.1 L802.3 326.8 L810.5 325.5 L818.7 324.3 L826.9 323.2 L835.2 322.0 L843.4 320.9 L851.6 319.7 L859.9 318.5 L868.1 317.2 L876.3 315.8 L884.5 314.4 L892.8 312.9 L901.0 311.3 L909.2 309.6 L917.4 307.9 L925.7 306.2 L933.9 304.5 L942.1 302.7 L950.3 301.0 L958.6 299.4 L966.8 297.9 L975.0 296.5 L983.3 295.3 L991.5 294.2 L999.7 293.4 L1007.9 292.8 L1016.2 292.4 L1024.4 292.3 L1032.6 292.4 L1040.8 292.8 L1049.1 293.4 L1057.3 294.2 L1065.5 295.3 L1073.7 296.5 L1082.0 297.9 L1090.2 299.4 L1098.4 301.0 L1106.7 302.7 L1114.9 304.4 L1123.1 306.1 L1131.3 307.8 L1139.6 309.5 L1147.8 311.1 L1156.0 312.6 L1164.2 314.1 L1172.5 315.4 L1180.7 316.6 L1188.9 317.7 L1197.1 318.7 L1205.4 319.6 L1213.6 320.4 L1221.8 321.1 L1230.1 321.7 L1238.3 322.2 L1246.5 322.6 L1254.7 323.0 L1263.0 323.3 L1271.2 323.5 L1279.4 323.7 L1287.6 323.9 L1295.9 324.0 L1304.1 324.1 L1312.3 324.2 L1320.5 324.3 L1328.8 324.3 L1337.0 324.4" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="251.07999999999998" cy="324.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="510.22" cy="324.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="806.38" cy="324.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="1114.88" cy="324.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<text x="103.00" y="451.00" fill="#9ba89c" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">20 Hz</text>
+<text x="386.82" y="451.00" fill="#9ba89c" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">100</text>
+<text x="781.70" y="451.00" fill="#9ba89c" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">1k</text>
+<text x="1077.86" y="451.00" fill="#9ba89c" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">5k</text>
+<text x="1337.00" y="451.00" fill="#9ba89c" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">20k Hz</text>
+<rect x="65" y="515" width="314" height="301" rx="17" fill="#101416" stroke="#2d3437"/>
+<rect x="69" y="519" width="306" height="293" rx="14" fill="none" stroke="#ffffff04"/>
+<text x="87.00" y="544.00" fill="#88968e" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.8">BAND 01</text>
+<g id="param-b1freq"><title>Frequency</title>
+<circle cx="119" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="119" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="119" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="91.42283553372464" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="82.96869823205981" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="80.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="82.96869823205981" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="91.42283553372465" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="104.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="119.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="133.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="146.57716446627535" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="155.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="158.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="155.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="146.57716446627535" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M103.0709653819784 629.8528205648269 L95.87720781254929 627.5282879166841" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="119.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B1 FREQ</text>
+<text x="119.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">100 Hz</text>
+</g>
+<g id="param-b1gain"><title>Gain</title>
+<circle cx="219" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="219" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="219" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="191.42283553372465" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="182.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="180.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="182.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="191.42283553372465" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="204.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="219.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="233.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="246.57716446627535" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="255.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="258.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="255.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="246.57716446627535" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M219.0 618.26 L219.0 610.7" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="219.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B1 GAIN</text>
+<text x="219.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0 dB</text>
+<circle cx="261" cy="578" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b1q"><title>Q</title>
+<circle cx="319" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="319" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="319" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="291.42283553372465" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="282.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="280.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="282.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="291.42283553372465" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="304.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="319.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="333.92465386223853" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="346.57716446627535" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="355.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="358.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="355.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="346.57716446627535" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M304.1446988962276 642.7167110297237 L297.4358532364594 646.2016773012117" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="319.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B1 Q</text>
+<text x="319.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0.707</text>
+</g>
+<g id="param-b1shape"><title>Bell/Low shelf/High shelf</title>
+<text x="86.00" y="737.00" fill="#939f96" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">B1 SHAPE</text>
+<rect x="86.0" y="752" width="87.33333333333333" height="35" rx="6" fill="#242b2b" stroke="#b5bba0"/>
+<text x="129.67" y="774.00" fill="#ccd5c9" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">BELL</text>
+<rect x="178.33333333333331" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="222.00" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">LOW SHELF</text>
+<rect x="270.66666666666663" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="314.33" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">HIGH SHELF</text>
+</g>
+<rect x="397" y="515" width="314" height="301" rx="17" fill="#101416" stroke="#2d3437"/>
+<rect x="401" y="519" width="306" height="293" rx="14" fill="none" stroke="#ffffff04"/>
+<text x="419.00" y="544.00" fill="#88968e" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.8">BAND 02</text>
+<g id="param-b2freq"><title>Frequency</title>
+<circle cx="451" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="451" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="451" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="423.42283553372465" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="414.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="412.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="414.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="423.42283553372465" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="436.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="451.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="465.92465386223853" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="478.57716446627535" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="487.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="490.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="487.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="478.57716446627535" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M445.85282056482686 619.0709653819783 L443.5282879166841 611.8772078125493" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="451.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B2 FREQ</text>
+<text x="451.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">400 Hz</text>
+</g>
+<g id="param-b2gain"><title>Gain</title>
+<circle cx="551" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="551" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="551" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="523.4228355337247" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="514.9686982320599" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="512.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="514.9686982320599" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="523.4228355337247" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="536.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="551.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="565.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="578.5771644662753" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="587.0313017679401" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="590.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="587.0313017679401" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="578.5771644662753" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M551.0 618.26 L551.0 610.7" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="551.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B2 GAIN</text>
+<text x="551.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0 dB</text>
+<circle cx="593" cy="578" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b2q"><title>Q</title>
+<circle cx="651" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="651" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="651" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="623.4228355337247" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="614.9686982320599" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="612.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="614.9686982320599" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="623.4228355337247" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="636.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="651.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="665.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="678.5771644662753" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="687.0313017679401" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="690.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="687.0313017679401" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="678.5771644662753" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M636.1446988962276 642.7167110297237 L629.4358532364594 646.2016773012117" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="651.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B2 Q</text>
+<text x="651.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0.707</text>
+</g>
+<g id="param-b2shape"><title>Bell/Low shelf/High shelf</title>
+<text x="418.00" y="737.00" fill="#939f96" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">B2 SHAPE</text>
+<rect x="418.0" y="752" width="87.33333333333333" height="35" rx="6" fill="#242b2b" stroke="#b5bba0"/>
+<text x="461.67" y="774.00" fill="#ccd5c9" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">BELL</text>
+<rect x="510.3333333333333" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="554.00" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">LOW SHELF</text>
+<rect x="602.6666666666666" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="646.33" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">HIGH SHELF</text>
+</g>
+<rect x="729" y="515" width="314" height="301" rx="17" fill="#101416" stroke="#2d3437"/>
+<rect x="733" y="519" width="306" height="293" rx="14" fill="none" stroke="#ffffff04"/>
+<text x="751.00" y="544.00" fill="#88968e" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.8">BAND 03</text>
+<g id="param-b3freq"><title>Frequency</title>
+<circle cx="783" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="783" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="783" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="755.4228355337247" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="746.9686982320599" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="744.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="746.9686982320599" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="755.4228355337247" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="768.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="783.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="797.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="810.5771644662753" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="819.0313017679401" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="822.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="819.0313017679401" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="810.5771644662753" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M796.495026647146 625.0948571038667 L802.5895548103732 620.6215667636775" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="783.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B3 FREQ</text>
+<text x="783.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">2.5 kHz</text>
+</g>
+<g id="param-b3gain"><title>Gain</title>
+<circle cx="883" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="883" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="883" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="855.4228355337247" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="846.9686982320599" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="844.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="846.9686982320599" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="855.4228355337247" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="868.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="883.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="897.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="910.5771644662753" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="919.0313017679401" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="922.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="919.0313017679401" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="910.5771644662753" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M883.0 618.26 L883.0 610.7" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="883.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B3 GAIN</text>
+<text x="883.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0 dB</text>
+<circle cx="925" cy="578" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b3q"><title>Q</title>
+<circle cx="983" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="983" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="983" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="955.4228355337247" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="946.9686982320599" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="944.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="946.9686982320599" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="955.4228355337247" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="968.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="983.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="997.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1010.5771644662753" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1019.0313017679401" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1022.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1019.0313017679401" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1010.5771644662753" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M968.1446988962276 642.7167110297237 L961.4358532364594 646.2016773012117" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="983.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B3 Q</text>
+<text x="983.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0.707</text>
+</g>
+<g id="param-b3shape"><title>Bell/Low shelf/High shelf</title>
+<text x="750.00" y="737.00" fill="#939f96" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">B3 SHAPE</text>
+<rect x="750.0" y="752" width="87.33333333333333" height="35" rx="6" fill="#242b2b" stroke="#b5bba0"/>
+<text x="793.67" y="774.00" fill="#ccd5c9" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">BELL</text>
+<rect x="842.3333333333334" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="886.00" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">LOW SHELF</text>
+<rect x="934.6666666666666" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="978.33" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">HIGH SHELF</text>
+</g>
+<rect x="1061" y="515" width="314" height="301" rx="17" fill="#101416" stroke="#2d3437"/>
+<rect x="1065" y="519" width="306" height="293" rx="14" fill="none" stroke="#ffffff04"/>
+<text x="1083.00" y="544.00" fill="#88968e" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.8">BAND 04</text>
+<g id="param-b4freq"><title>Frequency</title>
+<circle cx="1115" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="1115" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="1115" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="1087.4228355337245" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1078.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1076.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1078.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1087.4228355337245" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1100.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1115.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1129.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1142.5771644662755" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1151.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1154.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1151.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1142.5771644662755" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M1130.9290346180217 640.1471794351731 L1138.1227921874506 642.4717120833159" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1115.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B4 FREQ</text>
+<text x="1115.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">10 kHz</text>
+</g>
+<g id="param-b4gain"><title>Gain</title>
+<circle cx="1215" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="1215" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="1215" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="1187.4228355337245" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1178.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1176.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1178.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1187.4228355337245" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1200.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1215.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1229.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1242.5771644662755" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1251.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1254.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1251.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1242.5771644662755" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M1215.0 618.26 L1215.0 610.7" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1215.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B4 GAIN</text>
+<text x="1215.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0 dB</text>
+<circle cx="1257" cy="578" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b4q"><title>Q</title>
+<circle cx="1315" cy="640" r="32" fill="#080b0c" stroke="#14191a" stroke-width="1"/>
+<circle cx="1315" cy="635" r="30" fill="#303538" stroke="#42484a" stroke-width="1"/>
+<circle cx="1315" cy="635" r="27" fill="url(#dial)" stroke="#171c1e" stroke-width="1"/>
+<circle cx="1287.4228355337245" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1278.9686982320598" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1276.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1278.9686982320598" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1287.4228355337245" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1300.0753461377615" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1315.0" cy="596.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1329.9246538622385" cy="598.9686982320599" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1342.5771644662755" cy="607.4228355337247" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1351.0313017679402" cy="620.0753461377615" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1354.0" cy="635.0" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1351.0313017679402" cy="649.9246538622385" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<circle cx="1342.5771644662755" cy="662.5771644662753" r="1" fill="#46504d" stroke="none" stroke-width="1"/>
+<path d="M1300.1446988962275 642.7167110297237 L1293.4358532364595 646.2016773012117" fill="none" stroke="#ced5cc" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1315.00" y="582.00" fill="#a0aaa3" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">B4 Q</text>
+<text x="1315.00" y="694.00" fill="#d0d8cd" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="middle" letter-spacing="0.2">0.707</text>
+</g>
+<g id="param-b4shape"><title>Bell/Low shelf/High shelf</title>
+<text x="1082.00" y="737.00" fill="#939f96" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">B4 SHAPE</text>
+<rect x="1082.0" y="752" width="87.33333333333333" height="35" rx="6" fill="#242b2b" stroke="#b5bba0"/>
+<text x="1125.67" y="774.00" fill="#ccd5c9" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">BELL</text>
+<rect x="1174.3333333333333" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="1218.00" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">LOW SHELF</text>
+<rect x="1266.6666666666667" y="752" width="87.33333333333333" height="35" rx="6" fill="#14191b" stroke="#30383b"/>
+<text x="1310.33" y="774.00" fill="#a1ada3" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.3">HIGH SHELF</text>
+</g>
+<path d="M50 850 L1390 850" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="877.00" fill="#b5bba0" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="835.20" y="877.00" fill="#a7b0aa" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1386.00" y="877.00" fill="#77847d" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / R2 / NO LIVE AUDIO</text>
+</svg>

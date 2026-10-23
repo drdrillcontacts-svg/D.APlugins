@@ -1,0 +1,36 @@
+NOIR 01 / REFINED — TEN PRODUCT-SPECIFIC SVG PROPOSALS
+
+Material language: sculpted matte black, restrained highlights, recessed displays,
+small tactile controls. No common giant centre knob and no required purple lighting.
+DVerb sage; DDelay ice blue; DComp copper; DEQ olive; DSat amber; DTrans muted clay;
+DStereo steel; DSess mint; DGate moss; DFX warm silver. All accents are restrained.
+
+Functional hierarchy follows familiar audio-plugin conventions:
+DVerb separates timing/diffusion, spectral colour and wet balance.
+DDelay separates note/routing selectors, feedback colour, free time and wet/output.
+DComp places transfer and GR together, Threshold above its time/ratio/level controls.
+DEQ has a broad response and four complete Freq/Gain/Q/Shape band strips.
+DSat uses one moderately sized OFF-CENTRE drive control, transfer, character and blend.
+DTrans shows two independent attack/body sections and smaller shared controls.
+DStereo separates stereo-field inspection, M/S controls and mono-monitor selection.
+DSess prioritises detection spectrum/range, with time and blend controls secondary.
+DGate prioritises threshold and open/hold/release timing, with exit behaviour separate.
+DFX exposes the fixed drive > filter > delay > ambience chain plus global mix/output.
+
+Professional design intentions, NOT a claim of a universal UI certification:
+- Existing parameter IDs/ranges represented, no fictitious audio module.
+- Explicit labels/units, separated discrete choices, consistent top navigation.
+- Product-specific grouping and conventional meter/graph placement.
+- Scoped Learn eligibility marked only on relevant controls; logs remain explicit.
+- Sync is shown FREE MS initially; Division remains available for a future Sync choice.
+- All graphs and meters are illustrative and intentionally marked as such.
+- Numerical values are source defaults, not measurements of the illustrative graphs.
+
+92 parameter representations, no hidden control omissions. These are static SVG concepts.
+Actual keyboard access, hit areas at each zoom, assistive-technology behaviour, automation,
+contrast validation and host scaling must be tested during implementation. No accessibility,
+ISO, or DAW certification is implied. These SVGs alone do not implement interactions.
+
+برای دیدن همهٔ طرح‌ها Preview.html را بعد از استخراج ZIP باز کنید.
+این بازطراحی همان خانوادهٔ Noir01 است، با ساختار مستقل برای هر پلاگین، نه رنگ‌آمیزی یک قالب.
+هیچ تغییری در DSP یا رابط اجرایی صورت نگرفته؛ پس از تأیید، نوبت پیاده‌سازی و تست می‌رسد.
