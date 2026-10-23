@@ -75,14 +75,8 @@ class D(Base):
    self.parts[i]=self.parts[i].replace('#596a60','#645971').replace('#9a82e5',PURPLE)
   if self.n=='DDelay':self.text('SYNC / 120 BPM / DOTTED EIGHTH / 375 ms',164,523,9,'#b5a7c8',track=.4)
  def primary(self,p):
-  x,y,r=600,695,158;self.raw(f'<g id="param-{p["id"]}"><title>{html.escape(p["name"])}</title>')
-  self.circle(x,y,r+24,'#202023','#2e2e32')
-  for i in range(33):
-   a=math.radians(-225+i*8.4375);self.circle(x+math.cos(a)*(r+42),y+math.sin(a)*(r+42),2 if i%4 else 2.8,'#66666d' if i%4==0 else '#3b3b42','none')
-  self.circle(x,y+8,r+7,'#070709','#121215');self.circle(x,y,r+4,'url(#bevel)','#3c3c40');self.circle(x,y,r,'url(#dial)','#151519');self.circle(x,y,r-5,'none','#ffffff07')
-  v=self.values[p['id']];f=(v-p['min'])/(p['max']-p['min'])
-  if p['unit']=='Hz':f=math.log(v/p['min'])/math.log(p['max']/p['min'])
-  a=math.radians(-225+270*f);self.line(x+math.cos(a)*r*.72,y+math.sin(a)*r*.72,x+math.cos(a)*r*.94,y+math.sin(a)*r*.94,'#d0d0d3',4)
+  x=600;v=self.values[p['id']]
+  self.raw(f'<g id="param-{p["id"]}"><title>{html.escape(p["name"])}</title>')
   self.text(LABEL(p),x,905,23,'#e0e0e4','middle',2.5)
   self.text(VALUE(self.n,p,v),x,948,31,PURPLE,'middle',.2)
   self.text('PRECISION CONTROL',x,975,9,'#94949d','middle',2)
@@ -158,7 +152,7 @@ s=io.StringIO();writer=csv.writer(s);writer.writerow(['plugin','parameter_id','l
 (OUT/'READ_ME_FA_EN.txt').write_text('''D.A / FINAL SELECTED REFERENCE — SVG REVIEW 01
 10 standalone editable SVGs, 1200 x 1600. No runtime editor or DSP changes.
 This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
-Its purple/amber palette, large focused knob, real DA mark, inset visual, reference pane,
+Its purple/amber palette, real DA mark, inset visual, reference pane,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
 The real repository logo was vector-traced and embedded as paths, not a raster image.
 
@@ -174,6 +168,8 @@ Design fixes for review:
 - Details/Log is an explicit action; no report drawer is open automatically.
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
 - Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
+- Review fix 02: removed the large focused knob, housing, tick dots and pointer from all ten SVGs.
+  Focused parameter name/value and eligible Learn action remain; small knobs are unchanged.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
@@ -184,7 +180,7 @@ missing control or preferred interaction. Actual drag/keyboard/focus/scaling/hos
 pending the approved runtime implementation; SVG buttons do not implement interactions.
 
 این‌ها SVG برای بررسی شما هستند، نه پلاگین اجراشده. فایل Preview.html را باز کنید.
-مطابق مرجع نهایی جدید، بنفش، کهربایی و ناب اصلی بزرگ عمداً حفظ شده‌اند.
+رنگ بنفش و کهربایی حفظ شده‌اند؛ طبق اصلاح ۲، ناب بزرگ از هر ده طرح حذف شده است.
 تمام ۹۲ کنترل واقعی فقط یک‌بار آمده‌اند؛ تکرارهای عکس، متن‌های ناخوانا و واحدهای نادرست
 اصلاح شده‌اند. فایل CSV برای بررسی دامنه، مقدار نمونه، محل کنترل و امکان Learn است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.

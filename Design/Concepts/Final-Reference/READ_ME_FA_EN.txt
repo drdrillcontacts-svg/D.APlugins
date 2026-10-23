@@ -1,7 +1,7 @@
 D.A / FINAL SELECTED REFERENCE — SVG REVIEW 01
 10 standalone editable SVGs, 1200 x 1600. No runtime editor or DSP changes.
 This latest user-approved image supersedes earlier no-large-knob and red-only concepts.
-Its purple/amber palette, large focused knob, real DA mark, inset visual, reference pane,
+Its purple/amber palette, real DA mark, inset visual, reference pane,
 IN/OUT meters, dedicated learning dock and two-tier controls are intentionally retained.
 The real repository logo was vector-traced and embedded as paths, not a raster image.
 
@@ -17,6 +17,8 @@ Design fixes for review:
 - Details/Log is an explicit action; no report drawer is open automatically.
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
 - Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
+- Review fix 02: removed the large focused knob, housing, tick dots and pointer from all ten SVGs.
+  Focused parameter name/value and eligible Learn action remain; small knobs are unchanged.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
@@ -27,7 +29,7 @@ missing control or preferred interaction. Actual drag/keyboard/focus/scaling/hos
 pending the approved runtime implementation; SVG buttons do not implement interactions.
 
 این‌ها SVG برای بررسی شما هستند، نه پلاگین اجراشده. فایل Preview.html را باز کنید.
-مطابق مرجع نهایی جدید، بنفش، کهربایی و ناب اصلی بزرگ عمداً حفظ شده‌اند.
+رنگ بنفش و کهربایی حفظ شده‌اند؛ طبق اصلاح ۲، ناب بزرگ از هر ده طرح حذف شده است.
 تمام ۹۲ کنترل واقعی فقط یک‌بار آمده‌اند؛ تکرارهای عکس، متن‌های ناخوانا و واحدهای نادرست
 اصلاح شده‌اند. فایل CSV برای بررسی دامنه، مقدار نمونه، محل کنترل و امکان Learn است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.

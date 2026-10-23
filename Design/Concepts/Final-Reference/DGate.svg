@@ -440,45 +440,6 @@
 <path d="M163 465.83000000000004 H244.95999999999998 V309.08 H497.67 L627.44 465.83000000000004 H846" fill="none" stroke="#a28bd0" stroke-width="1.5" opacity="0.6" stroke-linejoin="round" stroke-linecap="round"/>
 </g>
 <g id="param-threshold"><title>Threshold</title>
-<circle cx="600" cy="695" r="182" fill="#202023" stroke="#2e2e32" stroke-width="1"/>
-<circle cx="458.5786437626905" cy="836.4213562373095" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="439.358493703871" cy="814.1398608984866" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="423.615747130329" cy="789.2793473651996" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="411.6911869633958" cy="762.3779706784441" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="403.8429439193539" cy="734.0180644032257" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="400.24090875896553" cy="704.8135348654837" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="400.96305466556066" cy="675.3965719340879" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="405.9937493610912" cy="646.4039640193472" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="415.2240934977426" cy="618.463313526982" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="428.4542779999456" cy="592.1794511613557" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="445.39790932745257" cy="568.1213431672709" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="465.68820903059634" cy="546.8097749290082" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="488.88595339607957" cy="528.7060775394909" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="514.4889813139437" cy="514.2021413753113" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="541.9430645491075" cy="503.61193285355824" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="570.6539051089277" cy="497.1646980070438" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="600.0" cy="495.0" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="629.3460948910723" cy="497.1646980070438" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="658.0569354508925" cy="503.6119328535582" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="685.5110186860564" cy="514.2021413753114" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="711.1140466039204" cy="528.7060775394909" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="734.3117909694037" cy="546.8097749290082" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="754.6020906725474" cy="568.1213431672709" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="771.5457220000544" cy="592.1794511613557" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="784.7759065022574" cy="618.463313526982" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="794.0062506389088" cy="646.4039640193472" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="799.0369453344395" cy="675.3965719340879" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="799.7590912410344" cy="704.8135348654836" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="796.157056080646" cy="734.0180644032257" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="788.3088130366042" cy="762.3779706784441" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="776.384252869671" cy="789.2793473651996" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="760.641506296129" cy="814.1398608984866" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="741.4213562373095" cy="836.4213562373095" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="600" cy="703" r="165" fill="#070709" stroke="#121215" stroke-width="1"/>
-<circle cx="600" cy="695" r="162" fill="url(#bevel)" stroke="#3c3c40" stroke-width="1"/>
-<circle cx="600" cy="695" r="158" fill="url(#dial)" stroke="#151519" stroke-width="1"/>
-<circle cx="600" cy="695" r="153" fill="none" stroke="#ffffff07" stroke-width="1"/>
-<path d="M566.9772151155323 586.1384674071039 L556.8869197341672 552.8752213370524" fill="none" stroke="#d0d0d3" stroke-width="4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="600.00" y="905.00" fill="#e0e0e4" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="2.5">THRESHOLD</text>
 <text x="600.00" y="948.00" fill="#a28bd0" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="400" text-anchor="middle" letter-spacing="0.2">-45 dB</text>
 <text x="600.00" y="975.00" fill="#94949d" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="2">PRECISION CONTROL</text>

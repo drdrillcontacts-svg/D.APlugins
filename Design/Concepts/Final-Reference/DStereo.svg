@@ -321,45 +321,6 @@
 <path d="M504.5 440.4 L509.5 443.2 L514.5 445.0 L519.5 446.0 L524.3 446.1 L529.2 445.3 L533.9 443.6 L538.5 441.0 L542.9 437.5 L547.3 433.3 L551.4 428.4 L555.4 422.9 L559.1 416.8 L562.7 410.3 L566.0 403.5 L569.1 396.4 L571.9 389.1 L574.4 381.9 L576.7 374.8 L578.7 367.9 L580.4 361.3 L581.8 355.1 L582.9 349.5 L583.7 344.5 L584.1 340.1 L584.3 336.6 L584.1 333.8 L583.7 332.0 L582.9 331.0 L581.8 330.9 L580.4 331.7 L578.7 333.4 L576.7 336.0 L574.4 339.5 L571.9 343.7 L569.1 348.6 L566.0 354.1 L562.7 360.2 L559.1 366.7 L555.4 373.5 L551.4 380.6 L547.3 387.9 L542.9 395.1 L538.5 402.2 L533.9 409.1 L529.2 415.7 L524.3 421.9 L519.5 427.5 L514.5 432.5 L509.5 436.9 L504.5 440.4 L499.5 443.2 L494.5 445.0 L489.5 446.0 L484.7 446.1 L479.8 445.3 L475.1 443.6 L470.5 441.0 L466.1 437.5 L461.7 433.3 L457.6 428.4 L453.6 422.9 L449.9 416.8 L446.3 410.3 L443.0 403.5 L439.9 396.4 L437.1 389.1 L434.6 381.9 L432.3 374.8 L430.3 367.9 L428.6 361.3 L427.2 355.1 L426.1 349.5 L425.3 344.5 L424.9 340.1 L424.7 336.6 L424.9 333.8 L425.3 332.0 L426.1 331.0 L427.2 330.9 L428.6 331.7 L430.3 333.4 L432.3 336.0 L434.6 339.5 L437.1 343.7 L439.9 348.6 L443.0 354.1 L446.3 360.2 L449.9 366.7 L453.6 373.5 L457.6 380.6 L461.7 387.9 L466.1 395.1 L470.5 402.2 L475.1 409.1 L479.8 415.7 L484.7 421.9 L489.5 427.5 L494.5 432.5 L499.5 436.9 L504.5 440.4" fill="none" stroke="#a28bd0" stroke-width="1" opacity="0.2" stroke-linejoin="round" stroke-linecap="round"/>
 </g>
 <g id="param-width"><title>Width</title>
-<circle cx="600" cy="695" r="182" fill="#202023" stroke="#2e2e32" stroke-width="1"/>
-<circle cx="458.5786437626905" cy="836.4213562373095" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="439.358493703871" cy="814.1398608984866" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="423.615747130329" cy="789.2793473651996" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="411.6911869633958" cy="762.3779706784441" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="403.8429439193539" cy="734.0180644032257" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="400.24090875896553" cy="704.8135348654837" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="400.96305466556066" cy="675.3965719340879" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="405.9937493610912" cy="646.4039640193472" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="415.2240934977426" cy="618.463313526982" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="428.4542779999456" cy="592.1794511613557" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="445.39790932745257" cy="568.1213431672709" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="465.68820903059634" cy="546.8097749290082" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="488.88595339607957" cy="528.7060775394909" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="514.4889813139437" cy="514.2021413753113" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="541.9430645491075" cy="503.61193285355824" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="570.6539051089277" cy="497.1646980070438" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="600.0" cy="495.0" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="629.3460948910723" cy="497.1646980070438" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="658.0569354508925" cy="503.6119328535582" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="685.5110186860564" cy="514.2021413753114" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="711.1140466039204" cy="528.7060775394909" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="734.3117909694037" cy="546.8097749290082" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="754.6020906725474" cy="568.1213431672709" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="771.5457220000544" cy="592.1794511613557" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="784.7759065022574" cy="618.463313526982" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="794.0062506389088" cy="646.4039640193472" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="799.0369453344395" cy="675.3965719340879" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="799.7590912410344" cy="704.8135348654836" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="796.157056080646" cy="734.0180644032257" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="788.3088130366042" cy="762.3779706784441" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="776.384252869671" cy="789.2793473651996" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="760.641506296129" cy="814.1398608984866" r="2" fill="#3b3b42" stroke="none" stroke-width="1"/>
-<circle cx="741.4213562373095" cy="836.4213562373095" r="2.8" fill="#66666d" stroke="none" stroke-width="1"/>
-<circle cx="600" cy="703" r="165" fill="#070709" stroke="#121215" stroke-width="1"/>
-<circle cx="600" cy="695" r="162" fill="url(#bevel)" stroke="#3c3c40" stroke-width="1"/>
-<circle cx="600" cy="695" r="158" fill="url(#dial)" stroke="#151519" stroke-width="1"/>
-<circle cx="600" cy="695" r="153" fill="none" stroke="#ffffff07" stroke-width="1"/>
-<path d="M663.20166970831 600.4120169044625 L682.5132910080713 571.510133180826" fill="none" stroke="#d0d0d3" stroke-width="4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="600.00" y="905.00" fill="#e0e0e4" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="2.5">WIDTH</text>
 <text x="600.00" y="948.00" fill="#a28bd0" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="400" text-anchor="middle" letter-spacing="0.2">125%</text>
 <text x="600.00" y="975.00" fill="#94949d" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="2">PRECISION CONTROL</text>
