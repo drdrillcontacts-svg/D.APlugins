@@ -1,4 +1,4 @@
-D.A / FINAL SELECTED REFERENCE — SVG REVIEW 04 / OPTIONAL REFERENCE
+D.A / FINAL SELECTED REFERENCE — SVG REVIEW 05 / ANALOG KNOBS
 10 standalone editable SVGs, 1200 x 1240. No runtime editor or DSP changes.
 This is a review proposal, pending explicit user approval.
 Its purple/amber palette, real DA mark, inset visual, optional separate reference panel,
@@ -27,11 +27,16 @@ Design fixes for review:
   Learning actions now form one horizontal toolbar. The focused numeric field and
   control panels move up, and the canvas is shorter; no blank centre is retained.
 - Review fix 05: the former large-knob parameter returns as the FIRST small knob in
-  the main control row, using the same 28 px radius as its neighbours. No separate
+  the main control row, using the same radius as its neighbours. No separate
   primary readout is duplicated. The canvas is another 60 px shorter (1240 px tall).
 - Review fix 06: reference waveform and heading removed from every main screen.
   REFERENCE... represents access to a separate optional panel, closed by default.
   Reference-Panel.svg shows its empty state; no file or analysis is fabricated.
+- Review fix 07: redesigned all rotary controls as larger analog hardware knobs
+  (knurled grip ridges, 21-step outer calibration ticks, brushed cap, high-contrast
+  needle pointer with amber tip), separated segmented switch buttons with explicit
+  gaps and housing (fixing DDelay Stereo / Ping Pong overlap), and refined panel
+  framing across all ten SVGs.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
@@ -42,7 +47,6 @@ missing control or preferred interaction. Actual drag/keyboard/focus/scaling/hos
 pending the approved runtime implementation; SVG buttons do not implement interactions.
 
 این‌ها SVG برای بررسی شما هستند، نه پلاگین اجراشده. فایل Preview.html را باز کنید.
-رنگ بنفش و کهربایی حفظ شده‌اند؛ طبق اصلاح ۲، ناب بزرگ از هر ده طرح حذف شده است.
-تمام ۹۲ کنترل واقعی فقط یک‌بار آمده‌اند؛ تکرارهای عکس، متن‌های ناخوانا و واحدهای نادرست
-اصلاح شده‌اند. فایل CSV برای بررسی دامنه، مقدار نمونه، محل کنترل و امکان Learn است.
+ناب‌ها در هر ده طرح به شکل آنالوگ بزرگ‌تر و خواناتر طراحی شده‌اند و فاصلهٔ بین دکمه‌های
+انتخابی (مثل Stereo و Ping Pong در DDelay) اصلاح شده است.
 تا تأیید شما هیچ تغییری در رابط اجرایی، پردازش صوت یا وضعیت برنامه ایجاد نشده است.
