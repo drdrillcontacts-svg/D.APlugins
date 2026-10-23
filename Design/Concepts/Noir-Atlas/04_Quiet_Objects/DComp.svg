@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc"><title id="title">DComp / Quiet Objects / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1200" height="840" rx="0" fill="#101416" stroke="none"/>
+<text x="52.00" y="67.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" letter-spacing="2">D.A</text>
+<text x="49.00" y="127.00" fill="#d9ded7" font-family="Arial, sans-serif" font-size="43" font-weight="400" text-anchor="start" letter-spacing="-1">DComp</text>
+<text x="1145.00" y="77.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="end" letter-spacing="1.6">QUIET OBJECTS / DYNAMICS</text>
+<rect x="48" y="167" width="695" height="330" rx="30" fill="#1b2122" stroke="#303b3c" filter="url(#shadow)"/>
+<g id="illustrative-visual">
+<path d="M83 452 L708 207" fill="none" stroke="#465051" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M83 329.5 L708 329.5" fill="none" stroke="#303a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M83.0 452.0 L89.2 449.6 L95.5 447.1 L101.8 444.6 L108.0 442.2 L114.2 439.8 L120.5 437.3 L126.8 434.9 L133.0 432.4 L139.2 430.0 L145.5 427.5 L151.8 425.1 L158.0 422.6 L164.2 420.1 L170.5 417.7 L176.8 415.2 L183.0 412.8 L189.2 410.4 L195.5 407.9 L201.8 405.5 L208.0 403.0 L214.2 400.6 L220.5 398.1 L226.8 395.6 L233.0 393.2 L239.2 390.8 L245.5 388.3 L251.8 385.9 L258.0 383.4 L264.2 380.9 L270.5 378.5 L276.8 376.0 L283.0 373.6 L289.2 371.1 L295.5 368.7 L301.8 366.2 L308.0 363.8 L314.2 361.4 L320.5 358.9 L326.8 356.4 L333.0 354.0 L339.2 351.6 L345.5 349.1 L351.8 346.6 L358.0 344.2 L364.2 341.8 L370.5 339.3 L376.8 336.9 L383.0 334.4 L389.2 331.9 L395.5 329.5 L401.8 327.1 L408.0 324.6 L414.2 324.0 L420.5 323.4 L426.8 322.8 L433.0 322.1 L439.2 321.5 L445.5 320.9 L451.8 320.3 L458.0 319.7 L464.2 319.1 L470.5 318.5 L476.8 317.9 L483.0 317.2 L489.2 316.6 L495.5 316.0 L501.8 315.4 L508.0 314.8 L514.2 314.2 L520.5 313.6 L526.8 313.0 L533.0 312.3 L539.2 311.7 L545.5 311.1 L551.8 310.5 L558.0 309.9 L564.2 309.3 L570.5 308.7 L576.8 308.1 L583.0 307.4 L589.2 306.8 L595.5 306.2 L601.8 305.6 L608.0 305.0 L614.2 304.4 L620.5 303.8 L626.8 303.2 L633.0 302.6 L639.2 301.9 L645.5 301.3 L651.8 300.7 L658.0 300.1 L664.2 299.5 L670.5 298.9 L676.8 298.3 L683.0 297.6 L689.2 297.0 L695.5 296.4 L701.8 295.8 L708.0 295.2" fill="none" stroke="#beaa95" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<rect x="769" y="167" width="383" height="330" rx="30" fill="url(#matte)" stroke="#3d4645" filter="url(#shadow)"/>
+<g id="param-threshold"><title>Threshold</title>
+<text x="804.00" y="214.00" fill="#a9afad" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">THRESHOLD</text>
+<text x="1117.00" y="214.00" fill="#d8dbd5" font-family="Arial, sans-serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">-18 dB</text>
+<path d="M804 274 L1117 274" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1114" cy="208" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-ratio"><title>Ratio</title>
+<text x="804.00" y="308.00" fill="#a9afad" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">RATIO</text>
+<text x="1117.00" y="308.00" fill="#d8dbd5" font-family="Arial, sans-serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">4:1</text>
+<path d="M804 368 L1117 368" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1114" cy="302" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-attack"><title>Attack</title>
+<text x="804.00" y="402.00" fill="#a9afad" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">ATTACK</text>
+<text x="1117.00" y="402.00" fill="#d8dbd5" font-family="Arial, sans-serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">15 ms</text>
+<path d="M804 462 L1117 462" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1114" cy="396" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-release"><title>Release</title>
+<text x="55.00" y="556.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">RELEASE</text>
+<text x="55.00" y="588.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">150 ms</text>
+<path d="M55.0 616.5 L400.3333333333333 616.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M55.0 616.5 L79.29480737018426 616.5" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="76.29480737018426" y="610.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+<circle cx="397.3333333333333" cy="552.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-knee"><title>Knee</title>
+<text x="418.33" y="556.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">KNEE</text>
+<text x="418.33" y="588.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">6 dB</text>
+<path d="M418.3333333333333 616.5 L763.6666666666666 616.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M418.3333333333333 616.5 L504.66666666666663 616.5" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="501.66666666666663" y="610.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<g id="param-makeup"><title>Makeup</title>
+<text x="781.67" y="556.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">MAKEUP</text>
+<text x="781.67" y="588.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">0 dB</text>
+<path d="M781.6666666666666 616.5 L1127.0 616.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M781.6666666666666 616.5 L781.6666666666666 616.5" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="778.6666666666666" y="610.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+<circle cx="1124.0" cy="552.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="55.00" y="660.50" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">MIX</text>
+<text x="55.00" y="692.50" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">100%</text>
+<path d="M55.0 721.0 L400.3333333333333 721.0" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M55.0 721.0 L400.3333333333333 721.0" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="397.3333333333333" y="715.0" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<g id="param-output"><title>Output</title>
+<text x="418.33" y="660.50" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">OUTPUT</text>
+<text x="418.33" y="692.50" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">0 dB</text>
+<path d="M418.3333333333333 721.0 L763.6666666666666 721.0" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M418.3333333333333 721.0 L648.5555555555555 721.0" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="645.5555555555555" y="715.0" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<path d="M50 770 L1150 770" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="797.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="696.00" y="797.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1146.00" y="797.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 04 / NO LIVE AUDIO</text>
+</svg>

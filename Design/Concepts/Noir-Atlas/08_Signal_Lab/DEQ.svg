@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="940" viewBox="0 0 1280 940" role="img" aria-labelledby="title desc"><title id="title">DEQ / Signal Lab / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1280" height="940" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="1232" height="896" rx="4" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<text x="59.00" y="64.00" fill="#a5b3a3" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="1">D.A / SIGNAL LAB / 08</text>
+<text x="57.00" y="126.00" fill="#cbd7ca" font-family="Courier New, monospace" font-size="40" font-weight="400" text-anchor="start" letter-spacing="-1">DEQ</text>
+<text x="1220.00" y="75.00" fill="#a5b3a3" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="end" letter-spacing="1">FOUR-BAND EQ</text>
+<text x="1220.00" y="120.00" fill="#819486" font-family="Courier New, monospace" font-size="10" font-weight="400" text-anchor="end" letter-spacing="0">50 FACTORY / PARAMETER VIEW</text>
+<rect x="59" y="157" width="1162" height="278" rx="0" fill="#11191b" stroke="#46554f"/>
+<g id="illustrative-visual">
+<path d="M177.5 181 L177.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M270.0 181 L270.0 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M362.5 181 L362.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M455.0 181 L455.0 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M547.5 181 L547.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M640.0 181 L640.0 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M732.5 181 L732.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M825.0 181 L825.0 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M917.5 181 L917.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1010.0 181 L1010.0 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1102.5 181 L1102.5 411" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85 227.0 L1195 227.0" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85 273.0 L1195 273.0" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85 319.0 L1195 319.0" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85 365.0 L1195 365.0" fill="none" stroke="#293235" stroke-width="0.6" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85 296.0 L1195 296.0" fill="none" stroke="#465044" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M85.0 295.8 L92.4 295.7 L99.8 295.6 L107.2 295.4 L114.6 295.1 L122.0 294.7 L129.4 294.3 L136.8 293.6 L144.2 292.8 L151.6 291.8 L159.0 290.6 L166.4 289.2 L173.8 287.5 L181.2 285.5 L188.6 283.3 L196.0 280.9 L203.4 278.3 L210.8 275.7 L218.2 273.0 L225.6 270.4 L233.0 267.9 L240.4 265.8 L247.8 264.0 L255.2 262.6 L262.6 261.8 L270.0 261.5 L277.4 261.8 L284.8 262.7 L292.2 264.0 L299.6 265.9 L307.0 268.1 L314.4 270.6 L321.8 273.3 L329.2 276.0 L336.6 278.8 L344.0 281.6 L351.4 284.2 L358.8 286.7 L366.2 289.1 L373.6 291.3 L381.0 293.3 L388.4 295.2 L395.8 297.1 L403.2 299.0 L410.6 300.8 L418.0 302.8 L425.4 304.8 L432.8 307.0 L440.2 309.3 L447.6 311.8 L455.0 314.4 L462.4 317.2 L469.8 320.2 L477.2 323.2 L484.6 326.3 L492.0 329.5 L499.4 332.5 L506.8 335.4 L514.2 338.1 L521.6 340.5 L529.0 342.6 L536.4 344.3 L543.8 345.6 L551.2 346.3 L558.6 346.6 L566.0 346.3 L573.4 345.6 L580.8 344.3 L588.2 342.6 L595.6 340.5 L603.0 338.1 L610.4 335.3 L617.8 332.4 L625.2 329.4 L632.6 326.2 L640.0 323.1 L647.4 320.0 L654.8 317.0 L662.2 314.2 L669.6 311.5 L677.0 308.9 L684.4 306.6 L691.8 304.5 L699.2 302.5 L706.6 300.6 L714.0 298.9 L721.4 297.3 L728.8 295.8 L736.2 294.3 L743.6 292.8 L751.0 291.4 L758.4 289.8 L765.8 288.2 L773.2 286.6 L780.6 284.8 L788.0 283.0 L795.4 281.0 L802.8 279.0 L810.2 276.9 L817.6 274.7 L825.0 272.5 L832.4 270.2 L839.8 268.0 L847.2 265.9 L854.6 263.8 L862.0 261.8 L869.4 260.0 L876.8 258.5 L884.2 257.1 L891.6 256.0 L899.0 255.2 L906.4 254.8 L913.8 254.6 L921.2 254.8 L928.6 255.2 L936.0 256.0 L943.4 257.1 L950.8 258.5 L958.2 260.0 L965.6 261.8 L973.0 263.8 L980.4 265.8 L987.8 268.0 L995.2 270.2 L1002.6 272.4 L1010.0 274.6 L1017.4 276.7 L1024.8 278.8 L1032.2 280.8 L1039.6 282.6 L1047.0 284.3 L1054.4 285.9 L1061.8 287.3 L1069.2 288.6 L1076.6 289.7 L1084.0 290.8 L1091.4 291.6 L1098.8 292.4 L1106.2 293.0 L1113.6 293.6 L1121.0 294.1 L1128.4 294.5 L1135.8 294.8 L1143.2 295.0 L1150.6 295.2 L1158.0 295.4 L1165.4 295.5 L1172.8 295.7 L1180.2 295.7 L1187.6 295.8 L1195.0 295.9" fill="none" stroke="#a5b3a3" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="218.2" cy="296.0" r="3" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+<circle cx="451.3" cy="296.0" r="3" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+<circle cx="717.6999999999999" cy="296.0" r="3" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+<circle cx="995.1999999999999" cy="296.0" r="3" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+</g>
+<path d="M54 157 L64 157" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M59 152 L59 162" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M54 435 L64 435" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M59 430 L59 440" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1216 157 L1226 157" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1221 152 L1221 162" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1216 435 L1226 435" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1221 430 L1221 440" fill="none" stroke="#a5b3a3" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g id="param-b1freq"><title>Frequency</title>
+<text x="62.00" y="505.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B1 FREQ</text>
+<text x="333.00" y="505.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">100 Hz</text>
+<path d="M62.0 559.0 L333.0 559.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b1gain"><title>Gain</title>
+<text x="351.00" y="505.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B1 GAIN</text>
+<text x="622.00" y="505.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0 dB</text>
+<path d="M351.0 559.0 L622.0 559.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="619.0" cy="499.0" r="2" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b1q"><title>Q</title>
+<text x="640.00" y="505.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B1 Q</text>
+<text x="911.00" y="505.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0.707</text>
+<path d="M640.0 559.0 L911.0 559.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b1shape"><title>Bell/Low shelf/High shelf</title>
+<text x="929.00" y="505.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B1 SHAPE</text>
+<text x="1200.00" y="505.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">BELL</text>
+<path d="M929.0 559.0 L1200.0 559.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b2freq"><title>Frequency</title>
+<text x="62.00" y="595.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B2 FREQ</text>
+<text x="333.00" y="595.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">400 Hz</text>
+<path d="M62.0 649.0 L333.0 649.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b2gain"><title>Gain</title>
+<text x="351.00" y="595.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B2 GAIN</text>
+<text x="622.00" y="595.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0 dB</text>
+<path d="M351.0 649.0 L622.0 649.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="619.0" cy="589.0" r="2" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b2q"><title>Q</title>
+<text x="640.00" y="595.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B2 Q</text>
+<text x="911.00" y="595.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0.707</text>
+<path d="M640.0 649.0 L911.0 649.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b2shape"><title>Bell/Low shelf/High shelf</title>
+<text x="929.00" y="595.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B2 SHAPE</text>
+<text x="1200.00" y="595.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">BELL</text>
+<path d="M929.0 649.0 L1200.0 649.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b3freq"><title>Frequency</title>
+<text x="62.00" y="685.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B3 FREQ</text>
+<text x="333.00" y="685.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">2.5 kHz</text>
+<path d="M62.0 739.0 L333.0 739.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b3gain"><title>Gain</title>
+<text x="351.00" y="685.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B3 GAIN</text>
+<text x="622.00" y="685.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0 dB</text>
+<path d="M351.0 739.0 L622.0 739.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="619.0" cy="679.0" r="2" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b3q"><title>Q</title>
+<text x="640.00" y="685.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B3 Q</text>
+<text x="911.00" y="685.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0.707</text>
+<path d="M640.0 739.0 L911.0 739.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b3shape"><title>Bell/Low shelf/High shelf</title>
+<text x="929.00" y="685.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B3 SHAPE</text>
+<text x="1200.00" y="685.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">BELL</text>
+<path d="M929.0 739.0 L1200.0 739.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b4freq"><title>Frequency</title>
+<text x="62.00" y="775.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B4 FREQ</text>
+<text x="333.00" y="775.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">10 kHz</text>
+<path d="M62.0 829.0 L333.0 829.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b4gain"><title>Gain</title>
+<text x="351.00" y="775.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B4 GAIN</text>
+<text x="622.00" y="775.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0 dB</text>
+<path d="M351.0 829.0 L622.0 829.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="619.0" cy="769.0" r="2" fill="#a5b3a3" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b4q"><title>Q</title>
+<text x="640.00" y="775.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B4 Q</text>
+<text x="911.00" y="775.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">0.707</text>
+<path d="M640.0 829.0 L911.0 829.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-b4shape"><title>Bell/Low shelf/High shelf</title>
+<text x="929.00" y="775.00" fill="#a9afad" font-family="Courier New, monospace" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">B4 SHAPE</text>
+<text x="1200.00" y="775.00" fill="#d8dbd5" font-family="Courier New, monospace" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">BELL</text>
+<path d="M929.0 829.0 L1200.0 829.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M50 870 L1230 870" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="897.00" fill="#a5b3a3" font-family="Courier New, monospace" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="742.40" y="897.00" fill="#a7b0aa" font-family="Courier New, monospace" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1226.00" y="897.00" fill="#77847d" font-family="Courier New, monospace" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 08 / NO LIVE AUDIO</text>
+</svg>

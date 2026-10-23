@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="880" viewBox="0 0 1320 880" role="img" aria-labelledby="title desc"><title id="title">DComp / Graphite Console / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1320" height="880" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="1272" height="836" rx="4" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<rect x="40" y="38" width="1240" height="92" rx="5" fill="#15191a" stroke="#3d4547"/>
+<text x="66.00" y="77.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start" letter-spacing="1">D.A</text>
+<text x="171.00" y="96.00" fill="#d7ddd5" font-family="Arial, sans-serif" font-size="33" font-weight="400" text-anchor="start" letter-spacing="0">DComp</text>
+<text x="1255.00" y="78.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="end" letter-spacing="2">GRAPHITE / DYNAMICS</text>
+<circle cx="48" cy="50" r="3" fill="#111516" stroke="#59635f" stroke-width="1"/>
+<path d="M46 50 L50 50" fill="none" stroke="#657069" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="48" cy="829" r="3" fill="#111516" stroke="#59635f" stroke-width="1"/>
+<path d="M46 829 L50 829" fill="none" stroke="#657069" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1272" cy="50" r="3" fill="#111516" stroke="#59635f" stroke-width="1"/>
+<path d="M1270 50 L1274 50" fill="none" stroke="#657069" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1272" cy="829" r="3" fill="#111516" stroke="#59635f" stroke-width="1"/>
+<path d="M1270 829 L1274 829" fill="none" stroke="#657069" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="63" y="151" width="1194" height="297" rx="5" fill="#111718" stroke="#303c3f"/>
+<g id="illustrative-visual">
+<path d="M98 408 L1222 181" fill="none" stroke="#465051" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M98 294.5 L1222 294.5" fill="none" stroke="#303a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M98.0 408.0 L109.2 405.7 L120.5 403.5 L131.7 401.2 L143.0 398.9 L154.2 396.6 L165.4 394.4 L176.7 392.1 L187.9 389.8 L199.2 387.6 L210.4 385.3 L221.6 383.0 L232.9 380.8 L244.1 378.5 L255.4 376.2 L266.6 373.9 L277.8 371.7 L289.1 369.4 L300.3 367.1 L311.6 364.9 L322.8 362.6 L334.0 360.3 L345.3 358.1 L356.5 355.8 L367.8 353.5 L379.0 351.2 L390.2 349.0 L401.5 346.7 L412.7 344.4 L424.0 342.2 L435.2 339.9 L446.4 337.6 L457.7 335.4 L468.9 333.1 L480.2 330.8 L491.4 328.6 L502.6 326.3 L513.9 324.0 L525.1 321.7 L536.4 319.5 L547.6 317.2 L558.8 314.9 L570.1 312.7 L581.3 310.4 L592.6 308.1 L603.8 305.9 L615.0 303.6 L626.3 301.3 L637.5 299.0 L648.8 296.8 L660.0 294.5 L671.2 292.2 L682.5 290.0 L693.7 289.4 L705.0 288.8 L716.2 288.3 L727.4 287.7 L738.7 287.1 L749.9 286.6 L761.2 286.0 L772.4 285.4 L783.6 284.9 L794.9 284.3 L806.1 283.7 L817.4 283.1 L828.6 282.6 L839.8 282.0 L851.1 281.4 L862.3 280.9 L873.6 280.3 L884.8 279.7 L896.0 279.2 L907.3 278.6 L918.5 278.0 L929.8 277.5 L941.0 276.9 L952.2 276.3 L963.5 275.8 L974.7 275.2 L986.0 274.6 L997.2 274.1 L1008.4 273.5 L1019.7 272.9 L1030.9 272.4 L1042.2 271.8 L1053.4 271.2 L1064.6 270.7 L1075.9 270.1 L1087.1 269.5 L1098.4 269.0 L1109.6 268.4 L1120.8 267.8 L1132.1 267.3 L1143.3 266.7 L1154.6 266.1 L1165.8 265.6 L1177.0 265.0 L1188.3 264.4 L1199.5 263.9 L1210.8 263.3 L1222.0 262.7" fill="none" stroke="#beaa95" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-threshold"><title>Threshold</title>
+<text x="130.38" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">THRESHOLD</text>
+<circle cx="130.375" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="130.375" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M144.4195350223491 538.7960480202026 L151.9433930700361 533.3296451738827" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="130.38" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">-18 dB</text>
+<circle cx="192.75" cy="505.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-ratio"><title>Ratio</title>
+<text x="279.12" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">RATIO</text>
+<circle cx="279.125" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="279.125" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M261.77982963439644 549.7174015529594 L252.48777408139455 550.1017238134733" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="279.12" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">4:1</text>
+<circle cx="341.5" cy="505.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-attack"><title>Attack</title>
+<text x="427.88" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">ATTACK</text>
+<circle cx="427.875" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="427.875" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M412.12552020921004 556.3022932233305 L403.6882988927154 560.2142360215433" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="427.88" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">15 ms</text>
+<circle cx="490.25" cy="505.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-release"><title>Release</title>
+<text x="576.62" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">RELEASE</text>
+<circle cx="576.625" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="576.625" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M561.0226028620086 556.6114915455776 L552.664175823799 560.689076302137" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="576.62" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">150 ms</text>
+<circle cx="639.0" cy="505.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-knee"><title>Knee</title>
+<text x="725.38" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">KNEE</text>
+<circle cx="725.375" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="725.375" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M709.3364513156041 542.356615614142 L700.7443716632491 538.7976596931467" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="725.38" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">6 dB</text>
+</g>
+<g id="param-makeup"><title>Makeup</title>
+<text x="874.12" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">MAKEUP</text>
+<circle cx="874.125" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="874.125" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M861.8496262786015 561.2753737213984 L855.2735332135667 567.8514667864333" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="874.12" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+<circle cx="936.5" cy="505.0" r="2" fill="#beaa95" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="1022.88" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">MIX</text>
+<circle cx="1022.875" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1022.875" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1035.1503737213984 561.2753737213984 L1041.7264667864333 567.8514667864333" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1022.88" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">100%</text>
+</g>
+<g id="param-output"><title>Output</title>
+<text x="1171.62" y="504.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">OUTPUT</text>
+<circle cx="1171.625" cy="552.0" r="34" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1171.625" cy="549.0" r="31" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1183.9003737213984 536.7246262786016 L1190.4764667864333 530.1485332135667" fill="none" stroke="#beaa95" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1171.62" y="603.00" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+</g>
+<text x="1252.00" y="121.00" fill="#829188" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="end" letter-spacing="1">50 FACTORY PROGRAMS</text>
+<path d="M50 810 L1270 810" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="837.00" fill="#beaa95" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="765.60" y="837.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1266.00" y="837.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 01 / NO LIVE AUDIO</text>
+</svg>

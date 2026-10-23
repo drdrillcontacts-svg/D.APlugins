@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="920" viewBox="0 0 1380 920" role="img" aria-labelledby="title desc"><title id="title">DSat / Split Architecture / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1380" height="920" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="1332" height="876" rx="18" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<rect x="39" y="39" width="259" height="842" rx="8" fill="#12191a" stroke="#2b383b"/>
+<text x="65.00" y="83.00" fill="#c2aa7a" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="2">D.A / SPLIT</text>
+<text x="63.00" y="151.00" fill="#d7dfd7" font-family="Arial, sans-serif" font-size="40" font-weight="400" text-anchor="start" letter-spacing="-1">DSat</text>
+<text x="65.00" y="191.00" fill="#c2aa7a" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">SATURATION</text>
+<g id="param-drive"><title>Drive</title>
+<text x="67.00" y="318.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">DRIVE</text>
+<text x="67.00" y="350.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">6 dB</text>
+<path d="M67 444 L269 444" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M67 444 L107.4 444" fill="none" stroke="#c2aa7a" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="104.4" y="438" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+<circle cx="266" cy="314" r="2" fill="#c2aa7a" stroke="none" stroke-width="1"/>
+</g>
+<text x="68.00" y="751.00" fill="#84958d" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="2">50 / FACTORY</text>
+<rect x="330" y="59" width="991" height="350" rx="7" fill="#131b1d" stroke="#39474a"/>
+<g id="illustrative-visual">
+<path d="M372 365 L1278 104" fill="none" stroke="#465051" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M372 234.5 L1278 234.5" fill="none" stroke="#303a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M372.0 345.2 L381.1 345.1 L390.1 344.9 L399.2 344.7 L408.2 344.5 L417.3 344.3 L426.4 344.0 L435.4 343.7 L444.5 343.4 L453.5 343.1 L462.6 342.7 L471.7 342.3 L480.7 341.8 L489.8 341.3 L498.8 340.8 L507.9 340.2 L517.0 339.5 L526.0 338.7 L535.1 337.9 L544.1 337.1 L553.2 336.1 L562.3 335.0 L571.3 333.9 L580.4 332.6 L589.4 331.2 L598.5 329.7 L607.6 328.1 L616.6 326.3 L625.7 324.3 L634.7 322.2 L643.8 320.0 L652.9 317.5 L661.9 314.9 L671.0 312.1 L680.0 309.0 L689.1 305.8 L698.2 302.3 L707.2 298.7 L716.3 294.8 L725.3 290.7 L734.4 286.4 L743.5 281.8 L752.5 277.1 L761.6 272.3 L770.6 267.2 L779.7 262.0 L788.8 256.7 L797.8 251.2 L806.9 245.7 L815.9 240.1 L825.0 234.5 L834.1 228.9 L843.1 223.3 L852.2 217.8 L861.2 212.3 L870.3 207.0 L879.4 201.8 L888.4 196.7 L897.5 191.9 L906.5 187.2 L915.6 182.6 L924.7 178.3 L933.7 174.2 L942.8 170.3 L951.8 166.7 L960.9 163.2 L970.0 160.0 L979.0 156.9 L988.1 154.1 L997.1 151.5 L1006.2 149.0 L1015.3 146.8 L1024.3 144.7 L1033.4 142.7 L1042.4 140.9 L1051.5 139.3 L1060.6 137.8 L1069.6 136.4 L1078.7 135.1 L1087.7 134.0 L1096.8 132.9 L1105.9 131.9 L1114.9 131.1 L1124.0 130.3 L1133.0 129.5 L1142.1 128.8 L1151.2 128.2 L1160.2 127.7 L1169.3 127.2 L1178.3 126.7 L1187.4 126.3 L1196.5 125.9 L1205.5 125.6 L1214.6 125.3 L1223.6 125.0 L1232.7 124.7 L1241.8 124.5 L1250.8 124.3 L1259.9 124.1 L1268.9 123.9 L1278.0 123.8" fill="none" stroke="#c2aa7a" stroke-width="2.5" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-tone"><title>Tone</title>
+<text x="339.00" y="486.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">TONE</text>
+<text x="339.00" y="518.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">10 kHz</text>
+<path d="M339.0 619.5 L566.5 619.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M339.0 619.5 L529.18431433968 619.5" fill="none" stroke="#c2aa7a" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="526.18431433968" y="613.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+<circle cx="563.5" cy="482.0" r="2" fill="#c2aa7a" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-mode"><title>Soft/Hard/Asymmetric</title>
+<text x="584.50" y="486.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">CHARACTER</text>
+<text x="584.50" y="518.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">SOFT</text>
+<text x="812.00" y="514.00" fill="#c2aa7a" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="1">SELECT</text>
+</g>
+<g id="param-density"><title>Density</title>
+<text x="830.00" y="486.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">DENSITY</text>
+<text x="830.00" y="518.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">50%</text>
+<path d="M830.0 619.5 L1057.5 619.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M830.0 619.5 L943.75 619.5" fill="none" stroke="#c2aa7a" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="940.75" y="613.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="1075.50" y="486.00" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">MIX</text>
+<text x="1075.50" y="518.00" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">50%</text>
+<path d="M1075.5 619.5 L1303.0 619.5" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M1075.5 619.5 L1189.25 619.5" fill="none" stroke="#c2aa7a" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="1186.25" y="613.5" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<g id="param-output"><title>Output</title>
+<text x="339.00" y="663.50" fill="#a8b1ac" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="0.7">OUTPUT</text>
+<text x="339.00" y="695.50" fill="#d4dad2" font-family="Arial, sans-serif" font-size="26" font-weight="400" text-anchor="start" letter-spacing="0.2">0 dB</text>
+<path d="M339.0 797.0 L566.5 797.0" fill="none" stroke="#3a4345" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M339.0 797.0 L490.66666666666663 797.0" fill="none" stroke="#c2aa7a" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="487.66666666666663" y="791.0" width="6" height="12" rx="2" fill="#c6cdc4" stroke="none"/>
+</g>
+<path d="M50 850 L1330 850" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="877.00" fill="#c2aa7a" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="800.40" y="877.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1326.00" y="877.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 07 / NO LIVE AUDIO</text>
+</svg>

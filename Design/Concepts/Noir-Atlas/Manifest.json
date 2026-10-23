@@ -1,0 +1,99 @@
+{
+  "styles": [
+    {
+      "id": "01",
+      "name": "Graphite Console",
+      "persian": "کنسول گرافیتی",
+      "layout": "console",
+      "width": 1320,
+      "height": 880
+    },
+    {
+      "id": "02",
+      "name": "Atelier",
+      "persian": "آتلیه",
+      "layout": "editorial",
+      "width": 1400,
+      "height": 900
+    },
+    {
+      "id": "03",
+      "name": "Orbital",
+      "persian": "مداری",
+      "layout": "orbital",
+      "width": 1100,
+      "height": 1040
+    },
+    {
+      "id": "04",
+      "name": "Quiet Objects",
+      "persian": "اشیای آرام",
+      "layout": "floating",
+      "width": 1200,
+      "height": 840
+    },
+    {
+      "id": "05",
+      "name": "Monolith",
+      "persian": "مونولیت",
+      "layout": "vertical",
+      "width": 960,
+      "height": 1240
+    },
+    {
+      "id": "06",
+      "name": "Desk Instruments",
+      "persian": "ابزار رومیزی",
+      "layout": "compact",
+      "width": 1440,
+      "height": 760
+    },
+    {
+      "id": "07",
+      "name": "Split Architecture",
+      "persian": "معماری نامتقارن",
+      "layout": "split",
+      "width": 1380,
+      "height": 920
+    },
+    {
+      "id": "08",
+      "name": "Signal Lab",
+      "persian": "آزمایشگاه سیگنال",
+      "layout": "lab",
+      "width": 1280,
+      "height": 940
+    },
+    {
+      "id": "09",
+      "name": "Soft Blocks",
+      "persian": "بلوک‌های نرم",
+      "layout": "pads",
+      "width": 1180,
+      "height": 1000
+    },
+    {
+      "id": "10",
+      "name": "Horizon",
+      "persian": "افق",
+      "layout": "cinematic",
+      "width": 1480,
+      "height": 900
+    }
+  ],
+  "plugins": [
+    "DVerb",
+    "DDelay",
+    "DComp",
+    "DEQ",
+    "DSat",
+    "DTrans",
+    "DStereo",
+    "DSess",
+    "DGate",
+    "DFX"
+  ],
+  "designs": 100,
+  "parameter_representations": 920,
+  "runtime_changes": false
+}

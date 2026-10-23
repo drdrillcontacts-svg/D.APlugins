@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc"><title id="title">DEQ / Desk Instruments / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1440" height="760" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="1392" height="716" rx="18" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<rect x="39" y="38" width="1362" height="684" rx="38" fill="#171b1c" stroke="#3d4546" filter="url(#shadow)"/>
+<text x="77.00" y="83.00" fill="#b5bba0" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="2">D.A / DESK INSTRUMENTS</text>
+<text x="75.00" y="133.00" fill="#d7dcd6" font-family="Arial, sans-serif" font-size="35" font-weight="400" text-anchor="start" letter-spacing="-1">DEQ</text>
+<text x="1360.00" y="110.00" fill="#b5bba0" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="end" letter-spacing="2">FOUR-BAND EQ</text>
+<rect x="75" y="161" width="1290" height="208" rx="19" fill="#111719" stroke="#3b4546"/>
+<g id="illustrative-visual">
+<path d="M108 263.5 L1332 263.5" fill="none" stroke="#465044" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M108.0 263.4 L116.2 263.3 L124.3 263.2 L132.5 263.1 L140.6 262.9 L148.8 262.7 L157.0 262.4 L165.1 262.0 L173.3 261.5 L181.4 260.9 L189.6 260.2 L197.8 259.3 L205.9 258.2 L214.1 257.0 L222.2 255.6 L230.4 254.1 L238.6 252.5 L246.7 250.9 L254.9 249.2 L263.0 247.6 L271.2 246.1 L279.4 244.7 L287.5 243.6 L295.7 242.8 L303.8 242.2 L312.0 242.1 L320.2 242.2 L328.3 242.8 L336.5 243.6 L344.6 244.8 L352.8 246.1 L361.0 247.7 L369.1 249.4 L377.3 251.1 L385.4 252.8 L393.6 254.5 L401.8 256.2 L409.9 257.7 L418.1 259.2 L426.2 260.6 L434.4 261.8 L442.6 263.0 L450.7 264.2 L458.9 265.3 L467.0 266.5 L475.2 267.7 L483.4 269.0 L491.5 270.3 L499.7 271.8 L507.8 273.3 L516.0 275.0 L524.2 276.7 L532.3 278.5 L540.5 280.4 L548.6 282.4 L556.8 284.3 L565.0 286.2 L573.1 288.0 L581.3 289.7 L589.4 291.2 L597.6 292.5 L605.8 293.5 L613.9 294.3 L622.1 294.8 L630.2 295.0 L638.4 294.8 L646.6 294.3 L654.7 293.5 L662.9 292.5 L671.0 291.2 L679.2 289.7 L687.4 288.0 L695.5 286.1 L703.7 284.2 L711.8 282.3 L720.0 280.3 L728.2 278.4 L736.3 276.6 L744.5 274.8 L752.6 273.1 L760.8 271.6 L769.0 270.1 L777.1 268.8 L785.3 267.5 L793.4 266.4 L801.6 265.3 L809.8 264.3 L817.9 263.4 L826.1 262.5 L834.2 261.5 L842.4 260.6 L850.6 259.7 L858.7 258.7 L866.9 257.6 L875.0 256.6 L883.2 255.4 L891.4 254.2 L899.5 252.9 L907.7 251.6 L915.8 250.3 L924.0 248.9 L932.2 247.5 L940.3 246.1 L948.5 244.8 L956.6 243.5 L964.8 242.2 L973.0 241.1 L981.1 240.2 L989.3 239.3 L997.4 238.7 L1005.6 238.2 L1013.8 237.9 L1021.9 237.8 L1030.1 237.9 L1038.2 238.2 L1046.4 238.6 L1054.6 239.3 L1062.7 240.2 L1070.9 241.1 L1079.0 242.2 L1087.2 243.5 L1095.4 244.7 L1103.5 246.1 L1111.7 247.5 L1119.8 248.8 L1128.0 250.2 L1136.2 251.5 L1144.3 252.8 L1152.5 254.0 L1160.6 255.2 L1168.8 256.2 L1177.0 257.2 L1185.1 258.1 L1193.3 258.9 L1201.4 259.6 L1209.6 260.2 L1217.8 260.8 L1225.9 261.3 L1234.1 261.7 L1242.2 262.0 L1250.4 262.3 L1258.6 262.5 L1266.7 262.7 L1274.9 262.9 L1283.0 263.0 L1291.2 263.1 L1299.4 263.2 L1307.5 263.3 L1315.7 263.3 L1323.8 263.4 L1332.0 263.4" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="254.88" cy="263.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="511.92" cy="263.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="805.68" cy="263.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+<circle cx="1111.6799999999998" cy="263.5" r="3" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b1freq"><title>Frequency</title>
+<text x="145.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B1 FREQ</text>
+<circle cx="145.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="145.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M133.74943359900922 477.30603764511915 L127.3205587413356 483.4967720978616" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="145.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">100 Hz</text>
+</g>
+<g id="param-b1gain"><title>Gain</title>
+<text x="307.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B1 GAIN</text>
+<circle cx="307.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="307.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M307.25 449.09 L307.25 440.165" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="307.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+<circle cx="376.0" cy="423.0" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b1q"><title>Q</title>
+<text x="468.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B1 Q</text>
+<circle cx="468.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="468.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M453.9656919719923 473.4298330797608 L446.0455269569882 477.5440293724898" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="468.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b1shape"><title>Bell/Low shelf/High shelf</title>
+<text x="630.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B1 SHAPE</text>
+<circle cx="630.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="630.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M618.4696010254321 477.5303989745679 L612.1586730033422 483.8413269966578" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="630.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">BELL</text>
+</g>
+<g id="param-b2freq"><title>Frequency</title>
+<text x="791.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B2 FREQ</text>
+<circle cx="791.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="791.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M778.962477727033 476.4287112573743 L772.1120193665149 482.1494494309677" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="791.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">400 Hz</text>
+</g>
+<g id="param-b2gain"><title>Gain</title>
+<text x="953.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B2 GAIN</text>
+<circle cx="953.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="953.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M953.25 449.09 L953.25 440.165" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="953.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+<circle cx="1022.0" cy="423.0" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b2q"><title>Q</title>
+<text x="1114.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B2 Q</text>
+<circle cx="1114.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1114.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1099.9656919719923 473.4298330797608 L1092.0455269569882 477.5440293724898" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1114.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b2shape"><title>Bell/Low shelf/High shelf</title>
+<text x="1276.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B2 SHAPE</text>
+<circle cx="1276.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1276.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1264.4696010254322 477.5303989745679 L1258.158673003342 483.8413269966578" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1276.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">BELL</text>
+</g>
+<g id="param-b3freq"><title>Frequency</title>
+<text x="145.75" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B3 FREQ</text>
+<circle cx="145.75" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="145.75" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M129.4236714888332 603.0676192285225 L120.67742407213672 604.8449152438025" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="145.75" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">2.5 kHz</text>
+</g>
+<g id="param-b3gain"><title>Gain</title>
+<text x="307.25" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B3 GAIN</text>
+<circle cx="307.25" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="307.25" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M307.25 583.09 L307.25 574.165" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="307.25" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+<circle cx="376.0" cy="557.0" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b3q"><title>Q</title>
+<text x="468.75" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B3 Q</text>
+<circle cx="468.75" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="468.75" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M453.9656919719923 607.4298330797608 L446.0455269569882 611.5440293724898" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="468.75" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b3shape"><title>Bell/Low shelf/High shelf</title>
+<text x="630.25" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B3 SHAPE</text>
+<circle cx="630.25" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="630.25" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M618.4696010254321 611.5303989745679 L612.1586730033422 617.8413269966578" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="630.25" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">BELL</text>
+</g>
+<g id="param-b4freq"><title>Frequency</title>
+<text x="791.75" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B4 FREQ</text>
+<circle cx="791.75" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="791.75" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M791.7107065427298 583.0900463378731 L791.689656476335 574.1650711617336" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="791.75" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">10 kHz</text>
+</g>
+<g id="param-b4gain"><title>Gain</title>
+<text x="953.25" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B4 GAIN</text>
+<circle cx="953.25" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="953.25" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M953.25 583.09 L953.25 574.165" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="953.25" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+<circle cx="1022.0" cy="557.0" r="2" fill="#b5bba0" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-b4q"><title>Q</title>
+<text x="1114.75" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B4 Q</text>
+<circle cx="1114.75" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1114.75" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1099.9656919719923 607.4298330797608 L1092.0455269569882 611.5440293724898" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1114.75" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b4shape"><title>Bell/Low shelf/High shelf</title>
+<text x="1276.25" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">B4 SHAPE</text>
+<circle cx="1276.25" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1276.25" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1264.4696010254322 611.5303989745679 L1258.158673003342 617.8413269966578" fill="none" stroke="#b5bba0" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1276.25" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">BELL</text>
+</g>
+<path d="M50 690 L1390 690" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="717.00" fill="#b5bba0" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="835.20" y="717.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1386.00" y="717.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 06 / NO LIVE AUDIO</text>
+</svg>
