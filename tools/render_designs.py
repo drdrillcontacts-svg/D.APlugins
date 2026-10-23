@@ -127,9 +127,11 @@ def render(spec,advanced=False):
  d.line(42,799,1158,799,RED,5);d.line(42,799,1158,799,'#f34a63',.7)
  panel(d,[40,38,1120,87])
  d.put(f'<image x="67" y="57" width="106" height="46" href="data:image/png;base64,{LOGO}" opacity=".88"/>')
- d.text(name.upper(),208,79,33,WHITE,spacing=4);d.text(spec['subtitle'],210,103,14,GREY,spacing=2)
+ d.text(name.upper(),208,79,33,WHITE,spacing=4);d.text(spec['subtitle'],210,103,12,GREY,spacing=1)
  d.path('M950 40L900 122H924L974 40Z','none',0,'#ed173b','opacity=".13"');d.line(950,40,900,122,RED,.7)
- d.text('AUDIO GUIDED',1126,75,14,RED,'end');d.text('DESIGN / 0.3',1126,101,12,GREY,'end')
+ d.text('FACTORY PRESET / 50',610,62,11,GREY)
+ button(d,'<',570,72,30,30);button(d,'01 / Init / Factory Default',610,72,275,30);button(d,'>',895,72,30,30)
+ d.text('AUDIO GUIDED',1126,75,14,RED,'end');d.text('DESIGN / 0.4',1126,101,12,GREY,'end')
  panel(d,[48,136,882,236]);panel(d,spec['learningRect']);panel(d,[48,404,1104,236])
  meter(d,64,180,7,151,-12);meter(d,75,180,7,151,-13);d.text('IN',60,161,12,WHITE)
  d.text('READY / MANUAL CONTROL ALWAYS',114,161,12,RED)
@@ -149,7 +151,9 @@ def render(spec,advanced=False):
   if c['advanced']!=advanced:continue
   m=byid[c['id']];x,y,w,h=c['rect'];caption=c['label']
   if caption:d.text(caption,x+w/2,y+15,12 if w<100 else 14,WHITE,'middle')
-  if c['options']:
+  if c['style']=='menu':
+   button(d,c['options'][int(m['initial'])]+'  v',x,y,w,h)
+  elif c['options']:
    top=0 if not caption else 22
    if h>180:top=80
    count=len(c['options']);bh=min(32,max(18,h-top-19))

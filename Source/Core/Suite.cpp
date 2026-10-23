@@ -2,6 +2,15 @@
 #include <cctype>
 #include <stdexcept>
 namespace da {
+double syncedDelayMs(double bpm, int division) noexcept {
+    static constexpr double beats[]{.125,.1875,1./12,.25,.375,1./6,.5,.75,1./3,1,1.5,2./3,2,3,4};
+    if(!std::isfinite(bpm)||bpm<10||bpm>400)bpm=120;
+    return 60000./bpm*beats[std::clamp(division,0,14)];
+}
+void Engine::setTempo(double bpm) noexcept {
+    validTempo=std::isfinite(bpm)&&bpm>=10&&bpm<=400;
+    if(validTempo){hostBpm=bpm;seenTempo=true;}
+}
 float db(float x) { return 20.f * std::log10(std::max(x, 1e-9f)); }
 float gain(float x) { return std::pow(10.f, x / 20.f); }
 Kind kindForName(const std::string &n) {
@@ -22,14 +31,14 @@ std::vector<Parameter> parameters(Kind k) {
         add("predelay", "Pre-delay", "Space", "ms", 0, 200, 20);
         add("size", "Size", "Space", "%", 0, 1, .6f);
         add("decay", "Decay", "Space", "s", .1f, 12, 2);
-        add("tone", "Tone", "Colour", "Hz", 500, 18000, 6000);
+        add("tone", "Tone", "Colour", "Hz", 500, 18000, 10000);
         add("mix", "Mix", "Space", "", 0, 1, .25f);
         add("width", "Width", "Space", "", 0, 2, 1);
         add("density", "Density", "Space", "", 0, 1, .7f);
         add("diffusion", "Diffusion", "Space", "", 0, 1, .7f);
         add("modulation", "Modulation", "Space", "", 0, 1, .1f);
         add("lowcut", "Low cut", "Colour", "Hz", 20, 1000, 120);
-        add("midcut", "Mid cut", "Colour", "dB", -12, 0, -2);
+        add("midcut", "Mid cut", "Colour", "dB", -12, 0, -1);
         add("mode", "Room/Hall/Plate/Shimmer", "Space", "", 0, 3, 1, true);
     } else if (k == Kind::Delay) {
         add("time", "Time", "Echo", "ms", 1, 2000, 375);
@@ -40,6 +49,9 @@ std::vector<Parameter> parameters(Kind k) {
         add("mix", "Mix", "Echo", "", 0, 1, .25f);
         add("width", "Width", "Echo", "", 0, 2, 1);
         add("output", "Output", "Output", "dB", -24, 12, 0);
+        // Append IDs: existing eight parameter IDs and their host ordering stay unchanged.
+        add("sync", "Tempo sync", "Echo", "", 0, 1, 0, true);
+        add("division", "Note division", "Echo", "", 0, 14, 6, true);
     } else if (k == Kind::Comp) {
         add("threshold", "Threshold", "Dynamics", "dB", -60, 0, -18);
         add("ratio", "Ratio", "Dynamics", ":1", 1, 20, 4);
@@ -352,7 +364,7 @@ float Engine::Biquad::tick(float x) noexcept {
 }
 void Engine::prepare(double sampleRate) {
     sr = std::isfinite(sampleRate) ? std::clamp(sampleRate, 8000., 384000.) : 48000.;
-    delayL.assign(size_t(sr * 3) + 8, 0);
+    delayL.assign(size_t(sr * (kind==Kind::Delay ? 25 : 3)) + 8, 0);
     delayR.assign(delayL.size(), 0);
     cursor = 0;
     low = {};
@@ -382,6 +394,11 @@ void Engine::prepare(double sampleRate) {
     midHigh = {};
     prePosition = shimmerPosition = 0;
     grainPhase = 0;
+    controlCounter=0;diffuserPosition={};inputBass={};inputMidLow={};inputMidHigh={};
+    if(kind==Kind::Verb||kind==Kind::FX) {
+        constexpr double times[]{.0047,.0083,.0127,.0179};
+        for(size_t i=0;i<8;++i)inputDiffuser[i].assign(size_t(sr*times[i%4]*(i<4?1.:1.071))+1,0);
+    }
 }
 float Engine::get(const char *id) const noexcept {
     for (size_t i = 0; i < meta.size(); ++i)
@@ -427,14 +444,22 @@ void Engine::coefficients() noexcept {
         }
     }
 }
+void Engine::refreshReverb() noexcept {
+    const bool fx=kind==Kind::FX;
+    const float mode=fx?1:get("mode"),size=fx?.6f:get("size"),decay=std::max(.1f,get("decay"));
+    constexpr float times[]{.0297f,.0371f,.0411f,.0437f,.0531f,.0613f,.0719f,.0797f};
+    for(size_t j=0;j<8;++j) {
+        reverbLength[j]=times[j]*(.5f+size*1.5f)*(mode<.5f?.7f:mode<1.5f?1.5f:1.f)*float(sr);
+        reverbGain[j]=std::pow(.001f,reverbLength[j]/float(sr)/decay)*(mode>2.5f?.92f:1.f);
+    }
+    const auto pole=[&](double f){return float(1-std::exp(-2*pi*std::min(f,sr*.45)/sr));};
+    reverbLp=pole(fx?9000:get("tone"));reverbHp=pole(fx?100:get("lowcut"));
+    reverbMidLp=pole(250);reverbMidHp=pole(1500);reverbMidGain=gain(fx?-1:get("midcut"));
+}
 void Engine::ambience(float l, float r, float &outL, float &outR) noexcept {
-    const bool fx = kind == Kind::FX;
-    const float mode = fx ? 1 : get("mode"), size = fx ? .6f : get("size"), decay = get("decay");
-    const float density = fx ? .8f : get("density"), diffusion = fx ? .8f : get("diffusion");
-    const float tone = fx ? 6000 : get("tone"), lowcut = fx ? 100 : get("lowcut"),
-                midcut = fx ? -2 : get("midcut");
-    const float predelay = fx ? .015f : get("predelay") * .001f;
-    const float modulation = fx ? .1f : get("modulation");
+    const bool fx=kind==Kind::FX;
+    const float mode=fx?1:get("mode"),density=fx?.8f:get("density"),diffusion=fx?.8f:get("diffusion");
+    const float predelay=fx?.015f:get("predelay")*.001f,modulation=fx?.1f:get("modulation");
     auto tap = [](const std::vector<float> &data, size_t position, float delay) {
         double x = double(position) - std::clamp(double(delay), 1., double(data.size() - 2));
         if (x < 0)
@@ -448,25 +473,37 @@ void Engine::ambience(float l, float r, float &outL, float &outR) noexcept {
     float inputL = predelay > 0 ? tap(pre[0], prePosition, predelay * float(sr)) : l;
     float inputR = predelay > 0 ? tap(pre[1], prePosition, predelay * float(sr)) : r;
     prePosition = (prePosition + 1) % pre[0].size();
-    float times[]{.0297f, .0371f, .0411f, .0437f, .0531f, .0613f, .0719f, .0797f};
-    std::array<float, 8> feedback{}, lengths{};
-    float lp = float(1 - std::exp(-2 * pi * std::min(double(tone), sr * .45) / sr));
-    float hp = float(1 - std::exp(-2 * pi * lowcut / sr));
-    for (size_t j = 0; j < 8; ++j) {
-        float modeScale = mode < .5f ? .7f : mode < 1.5f ? 1.5f : 1.f;
-        lengths[j] = times[j] * (.5f + size * 1.5f) * modeScale * float(sr);
-        lengths[j] += std::sin(phase + float(j)) * modulation * float(sr) * .0007f;
-        float x = tap(tank[j], tankPosition[j], lengths[j]);
-        damping[j] += lp * (x - damping[j]);
-        bass[j] += hp * (damping[j] - bass[j]);
-        x = damping[j] - bass[j];
-        midLow[j] += float(1 - std::exp(-2 * pi * 250 / sr)) * (x - midLow[j]);
-        midHigh[j] += float(1 - std::exp(-2 * pi * 1500 / sr)) * (x - midHigh[j]);
-        x += (gain(midcut) - 1) * (midHigh[j] - midLow[j]);
-        feedback[j] = x;
+    // High-pass / broad-mid color once at the entrance, not on every feedback circulation.
+    float inputs[]{inputL,inputR};
+    for(size_t c=0;c<2;++c) {
+        inputBass[c]+=reverbHp*(inputs[c]-inputBass[c]);
+        float x=inputs[c]-inputBass[c];
+        inputMidLow[c]+=reverbMidLp*(x-inputMidLow[c]);
+        inputMidHigh[c]+=reverbMidHp*(x-inputMidHigh[c]);
+        x+=(reverbMidGain-1)*(inputMidHigh[c]-inputMidLow[c]);
+        // Four energy-preserving allpasses build early density without damping the late network.
+        const float g=.25f+.45f*diffusion;
+        for(size_t stage=0;stage<4;++stage) {
+            const auto k=c*4+stage;auto &line=inputDiffuser[k];auto &pos=diffuserPosition[k];
+            const float y=line[pos]-g*x;line[pos]=x+g*y;x=y;
+            pos=(pos+1)%line.size();
+        }
+        inputs[c]=x;
     }
-    outL = (feedback[0] + feedback[2] - feedback[4] + feedback[6]) * .25f;
-    outR = (feedback[1] - feedback[3] + feedback[5] + feedback[7]) * .25f;
+    inputL=inputs[0];inputR=inputs[1];
+    std::array<float,8> feedback{},raw{};
+    constexpr float sj[]{0,.84147098f,.90929743f,.14112001f,-.7568025f,-.95892427f,-.2794155f,.6569866f};
+    constexpr float cj[]{1,.5403023f,-.4161468f,-.9899925f,-.6536436f,.2836622f,.9601703f,.7539023f};
+    const float sp=std::sin(phase),cp=std::cos(phase);
+    for(size_t j=0;j<8;++j) {
+        const float length=reverbLength[j]+(sp*cj[j]+cp*sj[j])*modulation*float(sr)*.0007f;
+        raw[j]=tap(tank[j],tankPosition[j],length);
+        damping[j]+=reverbLp*(raw[j]-damping[j]);
+        feedback[j]=damping[j];
+    }
+    // Orthogonal, all-line stereo decoding. First arrivals keep their high-frequency detail.
+    outL=(raw[0]+raw[1]-raw[2]-raw[3]+raw[4]+raw[5]-raw[6]-raw[7])*.12374369f;
+    outR=(raw[0]-raw[1]+raw[2]-raw[3]-raw[4]+raw[5]-raw[6]+raw[7])*.12374369f;
     float shimmerL = 0, shimmerR = 0;
     // Two overlapping variable-delay grains read at 2x speed for an octave-up feedback voice.
     if (mode > 2.5f) {
@@ -498,12 +535,13 @@ void Engine::ambience(float l, float r, float &outL, float &outR) noexcept {
                 mixed[start + j + step] = a - b;
             }
     for (size_t j = 0; j < 8; ++j) {
-        float feedbackGain = std::pow(.001f, lengths[j] / float(sr) / decay);
-        float scattered = mixed[j] * .35355339f * diffusion + feedback[j] * (1 - diffusion);
-        float excitation = (j % 2 ? inputR : inputL) * (j < 2 ? 1.f : density);
+        const float feedbackGain=reverbGain[j];
+        const float scattered=mixed[j]*.35355339f;
+        const float excitation=(j%2?inputR:inputL)*(j<2?1.f:density)/std::sqrt(2+6*density*density);
         float pitch = j % 2 ? shimmerR : shimmerL;
-        tank[j][tankPosition[j]] =
-            std::tanh(excitation * .3f + scattered * feedbackGain * .9f + pitch * .08f);
+        const float value=excitation+scattered*feedbackGain+pitch*.025f;
+        // Transparent at normal levels; exceptional overload protection only.
+        tank[j][tankPosition[j]]=std::abs(value)>4 ? std::copysign(4+4*std::tanh((std::abs(value)-4)*.25f),value) : value;
         tankPosition[j] = (tankPosition[j] + 1) % tank[j].size();
     }
 }
@@ -520,13 +558,24 @@ void Engine::process(float *l, float *r, size_t n, const float *values) noexcept
             smoothed[p] =
                 meta[p].discrete ? target : smoothed[p] + smoothing * (target - smoothed[p]);
         }
-        if (kind == Kind::EQ && i % 32 == 0)
-            coefficients();
+        if(controlCounter==0) {
+            if(kind==Kind::EQ)coefficients();
+            if(kind==Kind::Verb||kind==Kind::FX)refreshReverb();
+        }
+        controlCounter=(controlCounter+1)%32;
         float dry[2]{std::isfinite(l[i]) ? std::clamp(l[i], -32.f, 32.f) : 0,
                      r && std::isfinite(r[i]) ? std::clamp(r[i], -32.f, 32.f) : 0};
         if (!r)
             dry[1] = dry[0];
         float wet[2]{dry[0], dry[1]};
+        if(kind==Kind::Gate) {
+            const float level=db(std::max(std::abs(dry[0]),std::abs(dry[1])));
+            if(level>get("threshold")){gateOpen=true;hold[0]=get("hold")*.001f*float(sr);}
+            if(level<get("threshold")-get("hysteresis")) {
+                if(hold[0]>0)--hold[0];else gateOpen=false;
+            }
+        }
+        reduction=0;
         for (int c = 0; c < 2; ++c) {
             float x = dry[c], absx = std::abs(x);
             fast[c] += float(1 - std::exp(-1. / (.001 * sr))) * (absx - fast[c]);
@@ -540,7 +589,7 @@ void Engine::process(float *l, float *r, size_t n, const float *values) noexcept
                     gr = slope * (over + knee * .5f) * (over + knee * .5f) / (2 * knee);
                 else if (over > 0)
                     gr = slope * over;
-                reduction = gr;
+                reduction = std::max(reduction,gr);
                 wet[c] = x * gain(get("makeup") - gr);
             } else if (kind == Kind::EQ) {
                 for (auto &b : eq[c])
@@ -568,26 +617,14 @@ void Engine::process(float *l, float *r, size_t n, const float *values) noexcept
                       ac = coefficient(e > envelope[c] ? get("attack") : get("release"));
                 envelope[c] = ac * envelope[c] + (1 - ac) * e;
                 float gr = std::clamp(db(envelope[c]) - get("threshold"), 0.f, get("range"));
-                reduction = gr;
+                reduction = std::max(reduction,gr);
                 wet[c] = x - high * (1 - gain(-gr)) * get("focus");
             } else if (kind == Kind::Gate) {
-                // Stereo-linked detection; shared opening avoids image shifts.
-                float level = db(std::max(std::abs(dry[0]), std::abs(dry[1])));
-                if (level > get("threshold")) {
-                    gateOpen = true;
-                    hold[c] = get("hold") * .001f * float(sr);
-                }
-                if (level < get("threshold") - get("hysteresis")) {
-                    if (hold[c] > 0)
-                        --hold[c];
-                    else
-                        gateOpen = false;
-                }
                 float target = gateOpen ? 1.f : gain(-get("range")),
                       a = coefficient(target > gateGain[c] ? get("attack") : get("release"));
                 gateGain[c] = a * gateGain[c] + (1 - a) * target;
                 wet[c] = x * gateGain[c];
-                reduction = -db(gateGain[c]);
+                reduction = std::max(reduction,-db(gateGain[c]));
             }
         }
         if (kind == Kind::Stereo) {
@@ -605,7 +642,9 @@ void Engine::process(float *l, float *r, size_t n, const float *values) noexcept
         if (kind == Kind::Delay || kind == Kind::Verb || kind == Kind::FX) {
             float time =
                 kind == Kind::Verb ? (30 + get("size") * 120 + get("predelay")) : get("time");
-            float mod = kind == Kind::FX ? 0 : get("modulation");
+            const bool sync=kind==Kind::Delay&&get("sync")>.5f;
+            if(sync)time=float(syncedDelayMs(hostBpm,int(get("division"))));
+            float mod = kind == Kind::FX || sync ? 0 : get("modulation");
             phase += float(2 * pi * .4 / sr);
             if (phase > 2 * pi)
                 phase -= float(2 * pi);
@@ -619,7 +658,7 @@ void Engine::process(float *l, float *r, size_t n, const float *values) noexcept
                 float frac = float(pos - double(idx));
                 return data[idx] * (1 - frac) + data[(idx + 1) % data.size()] * frac;
             };
-            float dl = read(delayL, seconds), dr = read(delayR, seconds * 1.011f);
+            float dl = read(delayL, seconds), dr = read(delayR, sync ? seconds : seconds * 1.011f);
             if (kind == Kind::Verb) {
                 ambience(dry[0], dry[1], wet[0], wet[1]);
             } else {

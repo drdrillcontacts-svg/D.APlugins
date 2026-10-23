@@ -21,6 +21,8 @@ std::vector<Parameter> parameters(Kind);
 Kind kindForName(const std::string &);
 // Product policy: audio-informed controls only. Manual/taste/routing controls never change.
 bool canLearn(Kind, const std::string &id);
+inline constexpr std::array<const char*,15> divisionNames{{"1/32","1/32 D","1/32 T","1/16","1/16 D","1/16 T","1/8","1/8 D","1/8 T","1/4","1/4 D","1/4 T","1/2","1/2 D","1/1"}};
+double syncedDelayMs(double bpm, int division) noexcept;
 float db(float);
 float gain(float);
 struct Features {
@@ -85,9 +87,22 @@ class Engine {
     void prepare(double sampleRate);
     void process(float *left, float *right, size_t count, const float *values) noexcept;
     float reductionDb() const { return reduction; }
+    void setTempo(double bpm) noexcept;
+    double tempo() const noexcept { return hostBpm; }
+    bool tempoIsValid() const noexcept { return validTempo; }
+    bool hasSeenTempo() const noexcept { return seenTempo; }
 
   private:
     Kind kind;
+    double hostBpm=120;
+    bool validTempo=false,seenTempo=false;
+    size_t controlCounter=0;
+    std::array<std::vector<float>,8> inputDiffuser;
+    std::array<size_t,8> diffuserPosition{};
+    std::array<float,2> inputBass{},inputMidLow{},inputMidHigh{};
+    std::array<float,8> reverbLength{},reverbGain{};
+    float reverbLp=0,reverbHp=0,reverbMidLp=0,reverbMidHp=0,reverbMidGain=1;
+    void refreshReverb() noexcept;
     std::vector<Parameter> meta;
     double sr = 48000;
     std::vector<float> delayL, delayR;

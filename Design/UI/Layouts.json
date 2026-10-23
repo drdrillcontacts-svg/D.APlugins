@@ -292,7 +292,7 @@
           60.0,
           410,
           260.0,
-          184
+          108
         ],
         "style": "rotary",
         "options": [],
@@ -306,7 +306,7 @@
           330.0,
           410,
           260.0,
-          184
+          108
         ],
         "style": "choice",
         "options": [
@@ -323,7 +323,7 @@
           600.0,
           410,
           260.0,
-          184
+          108
         ],
         "style": "rotary",
         "options": [],
@@ -337,11 +337,58 @@
           870.0,
           410,
           260.0,
-          184
+          108
         ],
         "style": "rotary",
         "options": [],
         "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "sync",
+        "label": "",
+        "rect": [
+          68,
+          610,
+          160,
+          25
+        ],
+        "style": "choice",
+        "options": [
+          "FREE MS",
+          "SYNC"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "division",
+        "label": "",
+        "rect": [
+          240,
+          610,
+          220,
+          25
+        ],
+        "style": "menu",
+        "options": [
+          "1/32",
+          "1/32 D",
+          "1/32 T",
+          "1/16",
+          "1/16 D",
+          "1/16 T",
+          "1/8",
+          "1/8 D",
+          "1/8 T",
+          "1/4",
+          "1/4 D",
+          "1/4 T",
+          "1/2",
+          "1/2 D",
+          "1/1"
+        ],
+        "advanced": false,
         "learnable": false
       }
     ],
@@ -351,9 +398,9 @@
         "title": "LEARN ECHO",
         "scope": "Echo",
         "rect": [
-          60.0,
+          800,
           610,
-          1068.0,
+          332,
           25
         ]
       }

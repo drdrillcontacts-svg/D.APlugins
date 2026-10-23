@@ -1,3 +1,10 @@
+# Current development 0.4 update
+
+See [PRESETS-TEMPO-REVERB.md](PRESETS-TEMPO-REVERB.md) for the current changes/evidence and release gates:
+50 factory programs per product, host tempo sync, revised DVerb, 92 controls / 33 Learn / 59 manual,
+Release and ASan/UBSan 6/6. Updated native program/tempo/state/UI tests require current CI execution.
+The older checkpoint below is historical context and its old counts/limitations do not override that report.
+
 # Implementation checkpoint — 2026-10-23
 
 ## Acceptance status

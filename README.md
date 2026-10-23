@@ -5,13 +5,20 @@
 Development checkpoint for ten JUCE audio effects. **This is not a completed or release-ready bundle.**
 The original UI assets remain in `Design/UI-Mockups/`. Runtime controls are JUCE components, not PNGs.
 
+## Development 0.4 update
+
+**50 factory presets per plugin (500 total)**, host program selection plus header browser, project-state
+recall, DDelay host-tempo sync with 15 note divisions, and a revised clearer/dense DVerb input/FDN path.
+[Implementation, compatibility, checks and remaining release gates](docs/PRESETS-TEMPO-REVERB.md).
+This is still a development build; the reverb algorithm changes old-session sound. Keep your older build.
+
 ## Rack Collection 02 — new UI and selective learning
 
 The user’s new full-bundle rack reference and original logo now guide all ten product-specific layouts.
 Open **[the ten-design gallery](Design/UI-Previews/index.html)** for high-resolution PNG/SVG studies,
 or run `python tools/serve_designs.py` for the local viewer. These are explicitly design previews, not
 native screenshots. The actual JUCE editor uses custom controls, attached parameters, live signal
-views, product-specific main controls and an Advanced page, rather than a screenshot. All 90
+views, product-specific main controls and an Advanced page, rather than a screenshot. All 92
 parameters remain; only 33 audio-informed controls have Learn. Details / Log is opt-in and never
 opens automatically after learning. Manual/mix/output/routing controls are preserved by Learn All.
 
@@ -20,7 +27,7 @@ snapshot test runner. Full plugin/host validation of this new UI revision remain
 
 ## User manuals / راهنمای کاربر
 
-Comprehensive documentation for all ten effects and all 90 controls:
+Comprehensive documentation for all ten effects and all 92 controls:
 [English PDF (51 pages)](docs/manual/pdf/DA_Plugins_User_Manual_EN.pdf) ·
 [فارسی PDF (۵۱ صفحه)](docs/manual/pdf/DA_Plugins_User_Manual_FA.pdf) ·
 [Combined bilingual PDF (102 pages)](docs/manual/pdf/DA_Plugins_User_Manual_EN_FA.pdf).
@@ -32,7 +39,7 @@ See [manual sources, checksums and rebuild instructions](docs/manual/README.md).
 ## Current implementation
 
 - Separate DSP paths for DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.
-- Shared metadata for 90 parameters; 33 eligible parameter, band/module and all-eligible scopes.
+- Shared metadata for 92 parameters; 33 eligible parameter, band/module and all-eligible scopes.
 - Deterministic audio-feature estimates, with explicit uncertainty. **No trained neural model.**
 - Reversible proposal lifecycle and stale-result protection.
 - JUCE wiring for attached controls, input capture, asynchronous estimation/reference decoding,

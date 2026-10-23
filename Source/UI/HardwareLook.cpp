@@ -234,14 +234,15 @@ void Chassis::paint(juce::Graphics &g) {
     g.drawImageWithin(logo, 67, 57, 106, 46, juce::RectanglePlacement::centred, false);
     g.setOpacity(1);
     label(g, look, layout.title("name").toUpperCase(), {208, 50, 600, 34}, 33, silver);
-    label(g, look, layout.title("subtitle"), {210, 88, 650, 20}, 14, muted);
+    label(g, look, layout.title("subtitle"), {210, 88, 350, 20}, 14, muted);
+    label(g, look, "FACTORY PRESET / 50", {610,46,275,20}, 11, muted);
     juce::Path accent;
     accent.startNewSubPath(950, 40); accent.lineTo(900, 122); accent.lineTo(924, 122); accent.lineTo(974, 40);
     g.setColour(crimson.withAlpha(.13f)); g.fillPath(accent);
     g.setColour(crimson.withAlpha(.6f)); g.drawLine(950, 40, 900, 122, 1);
     label(g, look, "AUDIO GUIDED", {976, 58, 150, 23}, 14, crimson,
           juce::Justification::centredRight);
-    label(g, look, "DEV / 0.3", {986, 88, 140, 18}, 12, muted,
+    label(g, look, "DEV / 0.4", {986, 88, 140, 18}, 12, muted,
           juce::Justification::centredRight);
     panel(g, {48, 136, 882, 236});
     panel(g, layout.area("learningRect").toFloat());
@@ -298,7 +299,13 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
     learnButton.setTitle("Learn " + juce::String(m.module + " / " + m.name));
     addChildComponent(learnButton);
     learnButton.setVisible(bool(spec["learnable"]));
-    if (auto *options = spec["options"].getArray())
+    isMenu=spec["style"].toString()=="menu";
+    if(isMenu) {
+        if(auto *options=spec["options"].getArray())for(int i=0;i<options->size();++i)choiceMenu.addItem((*options)[i].toString(),i+1);
+        choiceMenu.onChange=[this]{slider.setValue(choiceMenu.getSelectedId()-1,juce::sendNotificationSync);};
+        addAndMakeVisible(choiceMenu);
+    }
+    if (auto *options = spec["options"].getArray(); options && !isMenu)
         for (int i = 0; i < options->size(); ++i) {
             auto button = std::make_unique<juce::TextButton>((*options)[i].toString());
             button->onClick = [this, i] { slider.setValue(i, juce::sendNotificationSync); };
@@ -306,11 +313,12 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
             choices.push_back(std::move(button));
         }
     slider.onValueChange = [this] {
+        if(isMenu)choiceMenu.setSelectedId(int(slider.getValue())+1,juce::dontSendNotification);
         for (size_t i = 0; i < choices.size(); ++i)
             choices[i]->setToggleState(int(slider.getValue()) == int(i),
                                        juce::dontSendNotification);
     };
-    if (choices.empty())
+    if (choices.empty()&&!isMenu)
         addAndMakeVisible(slider);
     // JUCE's attachment installs its own text callbacks. Preserve the UI's units/parsers
     // while retaining the host's original parameter range and notifications.
@@ -330,6 +338,7 @@ void ParameterControl::paint(juce::Graphics &g) {
 }
 void ParameterControl::resized() {
     int top = caption.isEmpty() ? 0 : 22;
+    if(isMenu){choiceMenu.setBounds(0,top,getWidth(),std::min(32,getHeight()-top));return;}
     if (!choices.empty() && getHeight() > 180)
         top = 80;
     if (choices.empty()) {

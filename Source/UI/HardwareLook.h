@@ -59,6 +59,8 @@ class ParameterControl final : public juce::Component {
     juce::String caption;
     HardwareLook &look;
     juce::TextButton learnButton{"LEARN"};
+    juce::ComboBox choiceMenu;
+    bool isMenu=false;
     std::vector<std::unique_ptr<juce::TextButton>> choices;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> attachment;
 };

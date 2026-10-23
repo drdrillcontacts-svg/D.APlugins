@@ -30,7 +30,7 @@ MAIN={
 'DGate':['threshold','range','attack','release','output'],
 'DFX':['drive','filter','time','mix']}
 NAMES={'predelay':'PRE DELAY','lowcut':'LOW CUT','midcut':'MID CUT','frequency':'FREQUENCY','makeup':'MAKE UP','pingpong':'ROUTING','mode':'CHARACTER','driveOn':'SATURATION','filterOn':'FILTER','delayOn':'DELAY','reverbOn':'AMBIENCE','delayMix':'ECHO MIX','reverbMix':'SPACE MIX','mono':'MONO MONITOR','b1gain':'LOW GAIN','b2gain':'LOW MID GAIN','b3gain':'PRESENCE GAIN','b4gain':'AIR GAIN'}
-CHOICES={'DVerb':{'mode':['ROOM','HALL','PLATE','SHIMMER']},'DDelay':{'pingpong':['STEREO','PING PONG']},'DSat':{'mode':['SOFT','HARD','ASYMMETRIC']},'DStereo':{'mono':['STEREO','MONO']}}
+CHOICES={'DVerb':{'mode':['ROOM','HALL','PLATE','SHIMMER']},'DDelay':{'pingpong':['STEREO','PING PONG'],'sync':['FREE MS','SYNC'],'division':['1/32','1/32 D','1/32 T','1/16','1/16 D','1/16 T','1/8','1/8 D','1/8 T','1/4','1/4 D','1/4 T','1/2','1/2 D','1/1']},'DSat':{'mode':['SOFT','HARD','ASYMMETRIC']},'DStereo':{'mono':['STEREO','MONO']}}
 layouts=[]
 for name,metadata in META.items():
  subtitle,title,slogan=TITLES[name]
@@ -66,10 +66,15 @@ for name,metadata in META.items():
    if name=='DEQ' and id.endswith('shape'):caption=''
    spec['controls'].append({'id':id,'label':caption,'rect':rect,'style':'choice' if options else 'rotary',
                             'options':options,'advanced':advanced,'learnable':m['learnable']})
+ for c in spec['controls']:
+  if name=='DDelay' and c['id'] in ['sync','division']:
+   c['advanced']=False;c['label']='';c['rect']=[68,610,160,25] if c['id']=='sync' else [240,610,220,25]
+   if c['id']=='division':c['style']='menu'
  scopes=list(dict.fromkeys(m['module'] for m in metadata if m['learnable']))
  for i,scope in enumerate(scopes):
   w=1080/len(scopes)
   spec['modules'].append({'title':'LEARN '+scope.upper(),'scope':scope,'rect':[60+i*w,610,w-12,25]})
+ if name=='DDelay':spec['modules'][0]['rect']=[800,610,332,25]
  layouts.append(spec)
 (ROOT/'Design/UI/Layouts.json').write_text(json.dumps(layouts,indent=2)+'\n')
 print('Rack collection 02:',len(layouts),'products /',sum(len(s['controls']) for s in layouts),'controls /',sum(c['learnable'] for s in layouts for c in s['controls']),'Learn buttons')

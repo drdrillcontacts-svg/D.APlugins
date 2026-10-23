@@ -2,6 +2,7 @@
 #include "Core/ScopeFifo.h"
 #include "Core/InputCapture.h"
 #include "Core/Suite.h"
+#include "Core/FactoryPresets.h"
 #include <JuceHeader.h>
 #include <atomic>
 #ifndef DA_PLUGIN_NAME
@@ -21,12 +22,19 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     bool producesMidi() const override { return false; }
     bool isMidiEffect() const override { return false; }
     double getTailLengthSeconds() const override {
-        return kind == da::Kind::Verb || kind == da::Kind::Delay || kind == da::Kind::FX ? 30 : 0;
+        if(kind==da::Kind::Verb)return 30;
+        if(kind!=da::Kind::Delay&&kind!=da::Kind::FX)return 0;
+        const auto value=[&](const char *id){for(size_t i=0;i<metadata.size();++i)if(metadata[i].id==id)return metadata[i].constrain(raw[i]->load());return 0.f;};
+        double ms=value("time");
+        if(kind==da::Kind::Delay&&value("sync")>.5f)ms=da::syncedDelayMs(projectBpm.load(),int(value("division")));
+        const double f=std::clamp(double(value("feedback")),0.,.95);
+        const double repeats=f>1e-6?1+std::ceil(std::log(.001)/std::log(f)):1;
+        return ms*.001*1.011*repeats+(kind==da::Kind::FX?2*value("decay")+1:.1);
     }
-    int getNumPrograms() override { return 1; }
-    int getCurrentProgram() override { return 0; }
-    void setCurrentProgram(int) override {}
-    const juce::String getProgramName(int) override { return {}; }
+    int getNumPrograms() override { return 50; }
+    int getCurrentProgram() override { return currentProgram.load(); }
+    void setCurrentProgram(int) override;
+    const juce::String getProgramName(int) override;
     void changeProgramName(int, const juce::String &) override {}
     void getStateInformation(juce::MemoryBlock &) override;
     void setStateInformation(const void *, int) override;
@@ -34,6 +42,11 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     const da::Kind kind;
     const std::vector<da::Parameter> metadata;
     juce::AudioProcessorValueTreeState parameters;
+    const std::array<da::FactoryPreset,50> factoryBank;
+    uint64_t presetGeneration() const noexcept { return programRevision.load(); }
+    bool isLoadingProgram() const noexcept { return programWriting.load(); }
+    std::atomic<double> projectBpm{120};
+    std::atomic<int> tempoStatus{0}; // 0 fallback, 1 host, 2 hold last valid
     std::vector<float> currentValues() const;
     void writeValues(const std::vector<float> &);
     // Single audio producer, single message-thread consumer; ownership changes via release/acquire.
@@ -48,5 +61,9 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     da::Engine engine;
     std::array<std::atomic<float> *, 64> raw{};
     da::InputCapture capture;
+    std::array<juce::RangedAudioParameter*,64> hostParameters{};
+    std::atomic<int> currentProgram{0};
+    std::atomic<uint64_t> programRevision{0};
+    std::atomic<bool> programWriting{false};
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DAPluginAudioProcessor)
 };

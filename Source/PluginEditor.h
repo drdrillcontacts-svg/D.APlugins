@@ -25,7 +25,9 @@ class DAPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, pr
     juce::TextButton learnAll{"LEARN ALL"}, loadReference{"LOAD FILE"}, preview{"PREVIEW"},
         apply{"APPLY"}, reject{"REJECT"}, undo{"UNDO"}, showResults{"DETAILS / LOG"}, advanced{"ADVANCED"},
         closeResults{"BACK TO CONTROLS"};
-    juce::ComboBox mode;
+    juce::ComboBox mode,presetMenu;
+    juce::TextButton previousPreset{"<"},nextPreset{">"};
+    uint64_t observedPresetGeneration=0;
     juce::TextEditor description, results;
     juce::Label status;
     juce::Component drawer;
