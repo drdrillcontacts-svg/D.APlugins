@@ -12,7 +12,7 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     : AudioProcessorEditor(&p), processor(p), session(p.currentValues()),
       lastValues(session.values) {
     setResizable(true, true);
-    setResizeLimits(940, 720, 1500, 1100);
+    setResizeLimits(940, p.metadata.size() > 12 ? 940 : 800, 1500, 1100);
     for (size_t i = 0; i < p.metadata.size(); ++i) {
         const auto &meta = p.metadata[i];
         auto control = std::make_unique<Control>();

@@ -15,12 +15,15 @@ endif()
 if(NOT DA_BUILD_PLUGINS)
   return()
 endif()
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
 include(FetchContent)
 # JUCE 8.0.6, immutable source archive and verified digest.
 FetchContent_Declare(JUCE
   URL https://codeload.github.com/juce-framework/JUCE/tar.gz/51a8a6d7aeae7326956d747737ccf1575e61e209
   URL_HASH SHA256=20b740351cc030086951d87614bc08b42d072f1e4db68db1ef1d988e66dbbdbe
-  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+)
 FetchContent_MakeAvailable(JUCE)
 set(DA_PLUGIN_NAMES DVerb DDelay DComp DEQ DSat DTrans DStereo DSess DGate DFX)
 set(DA_PLUGIN_IDS Dv01 Dd01 Dc01 De01 Ds01 Dt01 Dw01 Dx01 Dg01 Df01)
