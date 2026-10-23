@@ -1,16 +1,16 @@
 # D.A Plugins — bilingual user manual
 
-Original user documentation for the complete ten-effect development bundle. Manual revision **1.1**,
-product development series **0.3**, dated **23 October 2026**. This documents a source checkpoint,
+Original user documentation for the complete ten-effect development bundle. Manual revision **1.2**,
+product development series **0.4**, dated **23 October 2026**. This documents a source checkpoint,
 not a certified commercial release. The exact source snapshot is printed in each PDF.
 
 ## Download / read
 
 - [Separate manuals ZIP — English, Persian and combined PDFs](pdf/DA_Plugins_Manuals_EN_FA.zip)
 
-- [English PDF — 51 pages](pdf/DA_Plugins_User_Manual_EN.pdf)
-- [Persian PDF — 51 pages](pdf/DA_Plugins_User_Manual_FA.pdf)
-- [English + Persian PDF — 102 pages](pdf/DA_Plugins_User_Manual_EN_FA.pdf)
+- [English PDF — 63 pages](pdf/DA_Plugins_User_Manual_EN.pdf)
+- [Persian PDF — 63 pages](pdf/DA_Plugins_User_Manual_FA.pdf)
+- [English + Persian PDF — 126 pages](pdf/DA_Plugins_User_Manual_EN_FA.pdf)
 - [SHA-256 checksums](pdf/SHA256SUMS.txt)
 - Text editions: [English](Manual_EN.md) · [فارسی](Manual_FA.md)
 
@@ -22,13 +22,13 @@ installation-path supplement, pictures and interactive navigation are added by t
 
 ## Coverage and editorial boundaries
 
-21 chapters cover installation/build/host setup, safe routing, interface and metering, capture and
-reference files, learning scopes and reversible approval, all ten effects, all **90** controls with
+22 chapters cover installation/build/host setup, safe routing, interface and metering, capture and
+reference files, learning scopes and reversible approval, all ten effects, all **92** controls with
 source-derived ranges/defaults, practical starting recipes, automation/session recall,
 troubleshooting, technical limitations, glossary, privacy, licensing and support.
 
-The Rack Collection 02 edition includes both main and Advanced illustrations for every product,
-33 Learn-eligible controls, 57 explicitly manual controls and the opt-in DETAILS / LOG workflow.
+The 0.4 edition adds 50 named complete factory presets per plugin, program/project recall, DDelay host-tempo sync with 15 divisions, and revised DVerb/DFX diffusion/decay. Each product has a full 50-name catalog. The Rack Collection 02 edition includes both main and Advanced illustrations for every product,
+33 Learn-eligible controls, 59 explicitly manual controls and the opt-in DETAILS / LOG workflow.
 
 Parameter ranges/defaults come directly from `Design/UI/Parameters.json`. Behavioral explanations
 were checked against `Source/Core/Suite.cpp`, processor/editor code and the project status notes.
@@ -66,9 +66,9 @@ network access; PDF generation itself is offline.
 - `build-manual/` is an ignored cache of font instances, optimized illustrations and page manifests.
   It can be removed and regenerated. Original PNG/SVG studies remain in `Design/UI-Previews/`.
 
-Validation checks both editions for 90 parameter rows, 21 top-level chapters, valid navigation,
+Validation checks both editions for 92 parameter rows, 22 top-level chapters, valid navigation,
 embedded fonts, replacement characters, accidental near-empty pages, sheet-boundary overflow,
-selected implementation caveats, the 33/57 learning split, merged page/outline counts and checksum integrity.
+selected implementation caveats, the 33/59 learning split, merged page/outline counts and checksum integrity.
 The builder also rejects unmapped editorial glyphs and substitutes ASCII signal-path arrows for
 Unicode arrows absent from Vazirmatn. It is a
 structural/content smoke test, not proof of absence of every editorial or visual defect. Rendered

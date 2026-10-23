@@ -1,6 +1,6 @@
 # D.A Plugins — User Manual
 
-Development version 0.3 / 2026-10-23 / Source baa25a22674c
+Development version 0.4 / 2026-10-23 / Source 1aaf67d9d271
 
 ## Welcome & bundle overview
 
@@ -86,7 +86,7 @@ The hardware interface scales uniformly and preserves its aspect ratio. Hover to
 
 ### Input-aware learn
 
-The engine measures level, crest, coarse band energies and stereo features. Only 33 audio-informed controls have Learn. The other 57, including mixes, output trims, timing/routing and EQ frequency/Q/shape, stay manual in every scope. No trained neural network or model inference is shipped. Eligible values are still estimates, not uniquely identifiable settings.
+The engine measures level, crest, coarse band energies and stereo features. Only 33 audio-informed controls have Learn. The other 59, including mixes, output trims, timing/routing and EQ frequency/Q/shape, stay manual in every scope. No trained neural network or model inference is shipped. Eligible values are still estimates, not uniquely identifiable settings.
 
 ### Reference guidance
 
@@ -128,6 +128,24 @@ REJECT/cancel invalidates pending results; a bounded worker can still finish in 
 
 Ready means idle; Analyzing means capture/analysis is underway; Ready to audition means a proposal exists; Previewing means temporary audition; Applied means retained; Cancelled means discarded/restored. Failed or Reference unavailable is not a success. No installed neural-model status should be inferred from the hardware artwork.
 
+## Factory presets & project tempo
+
+### 50 programs per plugin
+
+Each product includes Init plus 49 musical profile variants: 500 complete snapshots across the bundle. Select a program in the header browser, use its arrows, or use the host program list. Loading changes all settings including Mix and Output. Lower monitoring first. It cancels capture, pending analysis, preview and old learning undo rather than restoring an old preview over the new sound.
+
+A star marks changes from the selected factory state. Save the DAW project for modified values and the selection index. Factory names are read-only. The per-product catalog lists every name; Design/Presets/FactoryPresets.json contains every parameter value. The practical recipes elsewhere are suggestions, not extra installed programs.
+
+### DDelay Sync and note divisions
+
+Enable SYNC and choose a Division. Quarter-note milliseconds = 60,000 / host BPM; D multiplies a note by 1.5, T by 2/3. Available choices: 1/32, 1/32 D, 1/32 T, 1/16, 1/16 D, 1/16 T, 1/8, 1/8 D, 1/8 T, 1/4, 1/4 D, 1/4 T, 1/2, 1/2 D, 1/1.
+
+HOST means valid host tempo; HOLD keeps the last valid BPM if tempo disappears; FALLBACK uses 120 before any valid tempo. Supported BPM is 10–400. Standalone has no project tempo. Sync disables the free-time/modulation controls and stereo offset. There is no audio tempo detection, tap tempo or song-position retrigger.
+
+### Compatibility and listening
+
+Legacy DDelay states without new IDs start in FREE MS. DVerb/DFX now use input allpass diffusion, input-only low/mid shaping and an orthogonal late network without continuous tank saturation. Old stored values are preserved, but the changed algorithm changes the sound. Keep the previous binary for exact old-session recall. Listening examples are original synthetic signals, not proof of musical acceptance.
+
 ## DVerb — Reverb & ambience
 
 DVerb places a source in an algorithmic ambience using an eight-line feedback-delay network. Pre-delay separates the dry event from the reverb onset; damping, diffusion and modulation shape the return. It is an effect-design tool, not a convolution player or an exact reconstruction of a sampled room.
@@ -162,7 +180,7 @@ Learn: audio-informed
 
 #### Tone / `tone`
 
-Range: 500 Hz to 18000 Hz | Default: 6000 Hz
+Range: 500 Hz to 18000 Hz | Default: 10000 Hz
 
 Low-pass damping cutoff in the reverb network. Lower values produce a darker return; this is a frequency control, not a dB tone tilt.
 
@@ -196,7 +214,7 @@ Manual only; no Learn
 
 Range: 0% to 100% | Default: 70%
 
-Blends direct line feedback with a normalized scattering matrix. Higher settings disperse energy between delay paths.
+Controls four serial input-allpass feedback coefficients. Higher values disperse incoming attacks before the always-orthogonal tank; it no longer blends the tank matrix with identity.
 
 Manual only; no Learn
 
@@ -212,15 +230,15 @@ Manual only; no Learn
 
 Range: 20 Hz to 1000 Hz | Default: 120 Hz
 
-High-pass-related damping of low-frequency tank content. Raise it to reduce low-end accumulation in the reverb.
+High-pass on the excitation before the tank, not a repeated filter on every circulation. Raise it to reduce low-frequency buildup.
 
 Learn: audio-informed
 
 #### Mid cut / `midcut`
 
-Range: -12 dB to 0 dB | Default: -2 dB
+Range: -12 dB to 0 dB | Default: -1 dB
 
-Attenuates a broad, fixed midrange component in the tank. The band is not a freely tunable parametric EQ.
+Broad fixed midrange cut applied once to the excitation. It does not repeatedly hollow the tail and is not a tunable parametric band.
 
 Manual only; no Learn
 
@@ -231,6 +249,59 @@ Range: Room / Hall / Plate / Shimmer | Default: Hall
 Room, Hall and Plate use different delay scaling; Shimmer adds octave-up granular feedback. This is a discrete choice, not a wet level.
 
 Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Air / Focused
+03. Vocal Air / Soft
+04. Vocal Air / Open
+05. Vocal Air / Parallel
+06. Drum Room / Natural
+07. Drum Room / Focused
+08. Drum Room / Soft
+09. Drum Room / Open
+10. Drum Room / Parallel
+11. Snare Plate / Natural
+12. Snare Plate / Focused
+13. Snare Plate / Soft
+14. Snare Plate / Open
+15. Snare Plate / Parallel
+16. Piano Chamber / Natural
+17. Piano Chamber / Focused
+18. Piano Chamber / Soft
+19. Piano Chamber / Open
+20. Piano Chamber / Parallel
+21. Acoustic Space / Natural
+22. Acoustic Space / Focused
+23. Acoustic Space / Soft
+24. Acoustic Space / Open
+25. Acoustic Space / Parallel
+26. String Hall / Natural
+27. String Hall / Focused
+28. String Hall / Soft
+29. String Hall / Open
+30. String Hall / Parallel
+31. Synth Cloud / Natural
+32. Synth Cloud / Focused
+33. Synth Cloud / Soft
+34. Synth Cloud / Open
+35. Synth Cloud / Parallel
+36. Bright Shimmer / Natural
+37. Bright Shimmer / Focused
+38. Bright Shimmer / Soft
+39. Bright Shimmer / Open
+40. Bright Shimmer / Parallel
+41. Dark Cathedral / Natural
+42. Dark Cathedral / Focused
+43. Dark Cathedral / Soft
+44. Dark Cathedral / Open
+45. Dark Cathedral / Parallel
+46. Short Ambience / Natural
+47. Short Ambience / Focused
+48. Short Ambience / Soft
+49. Short Ambience / Open
+50. Short Ambience / Parallel
 
 ### In practice
 
@@ -248,7 +319,7 @@ Use the Space or Colour scope to keep a change focused. Width above 100% increas
 
 ## DDelay — Stereo delay
 
-DDelay combines fractional delay lines, a low-pass feedback path, stereo or cross-feedback routing, slow time modulation and a wet-width control. Time is entered in milliseconds. The two channels use a small timing difference; this is not a sample-identical dual-mono echo.
+DDelay offers FREE MS or host-tempo SYNC with 15 straight, dotted and triplet divisions. Free mode keeps the small stereo timing offset and modulation; Sync locks both taps to the same note length and disables modulation. Filter and wet Width shape the repeats.
 
 Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output
 
@@ -258,7 +329,7 @@ Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output
 
 Range: 1 ms to 2000 ms | Default: 375 ms
 
-Nominal left delay time in milliseconds; the right line has a small additional offset. No note-value sync is available.
+FREE MS delay time; the right tap has a 1.1% offset. Ignored and disabled while SYNC is enabled; the tempo label shows the resolved note time.
 
 Manual only; no Learn
 
@@ -290,7 +361,7 @@ Manual only; no Learn
 
 Range: 0% to 100% | Default: 10%
 
-Depth of slow delay-time modulation. Higher values create stronger motion and pitch variation.
+Depth of slow time/pitch movement in FREE MS only. Disabled in SYNC to preserve exact grid timing.
 
 Manual only; no Learn
 
@@ -318,17 +389,86 @@ Post-mix level in dB. Reduce it if input plus repeats increases peaks.
 
 Manual only; no Learn
 
+#### Tempo sync / `sync`
+
+Range: FREE MS / SYNC | Default: FREE MS
+
+FREE MS uses Time; SYNC follows host BPM and Division. Missing tempo holds the last valid value, or 120 BPM initially. This is manual-only.
+
+Manual only; no Learn
+
+#### Note division / `division`
+
+Range: 15 notes: 1/32 to 1/1; D / T | Default: 1/8
+
+Note length for SYNC: D means dotted (×1.5), T means triplet (×2/3). Ordinary values span 1/32 to 1/1. The 15 exact choices are listed in the preset/tempo chapter.
+
+Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Eighth / Focused
+03. Vocal Eighth / Soft
+04. Vocal Eighth / Open
+05. Vocal Eighth / Parallel
+06. Dotted Guitar / Natural
+07. Dotted Guitar / Focused
+08. Dotted Guitar / Soft
+09. Dotted Guitar / Open
+10. Dotted Guitar / Parallel
+11. Quarter Echo / Natural
+12. Quarter Echo / Focused
+13. Quarter Echo / Soft
+14. Quarter Echo / Open
+15. Quarter Echo / Parallel
+16. Triplet Motion / Natural
+17. Triplet Motion / Focused
+18. Triplet Motion / Soft
+19. Triplet Motion / Open
+20. Triplet Motion / Parallel
+21. Sixteenth Pulse / Natural
+22. Sixteenth Pulse / Focused
+23. Sixteenth Pulse / Soft
+24. Sixteenth Pulse / Open
+25. Sixteenth Pulse / Parallel
+26. Stereo Half / Natural
+27. Stereo Half / Focused
+28. Stereo Half / Soft
+29. Stereo Half / Open
+30. Stereo Half / Parallel
+31. Rock Slap / Natural
+32. Rock Slap / Focused
+33. Rock Slap / Soft
+34. Rock Slap / Open
+35. Rock Slap / Parallel
+36. Tape Shadow / Natural
+37. Tape Shadow / Focused
+38. Tape Shadow / Soft
+39. Tape Shadow / Open
+40. Tape Shadow / Parallel
+41. Wide Doubler / Natural
+42. Wide Doubler / Focused
+43. Wide Doubler / Soft
+44. Wide Doubler / Open
+45. Wide Doubler / Parallel
+46. Ambient Cascade / Natural
+47. Ambient Cascade / Focused
+48. Ambient Cascade / Soft
+49. Ambient Cascade / Open
+50. Ambient Cascade / Parallel
+
 ### In practice
 
-1. For a tempo-related quarter-note echo, calculate Time = 60,000 / BPM in milliseconds. At 120 BPM, use 500 ms.
-2. Use 250 ms for eighth notes or 375 ms for dotted eighth notes at 120 BPM. Enter the value manually.
+1. Enable SYNC and choose 1/4 for quarter notes: at host 120 BPM the displayed time is 500 ms.
+2. Choose 1/8 for 250 ms, 1/8 D for dotted 375 ms, or 1/8 T for triplet 166.7 ms at 120 BPM. Use FREE MS for manual timing.
 3. Begin around 20–35% Feedback and 10–25% Mix on an insert.
 4. Lower Filter for darker repeats and enable Ping-pong if alternating feedback supports the arrangement.
 5. Keep Modulation small for stable pitch; allow the final repeat to decay before rendering the region end.
 
-Only Filter and Width have Learn. Filter follows upper-band energy; Width can use reference side energy. Time, Feedback, Modulation, routing, Mix and Output are manual and are not reset by LEARN ALL. There is no tempo detection or echo-timing match.
+Only Filter and Width have Learn. Time, Sync, Division, Feedback, Modulation, routing, Mix and Output remain manual in every scope. Sync reads project BPM; learning does not infer tempo from audio.
 
-There is no host-tempo synchronization, tap tempo or detected-BPM control in this revision. Feedback is limited, but high feedback and bright material can still create loud, persistent repeats. Soft bounding in the loop can add coloration.
+SYNC needs host BPM (10–400). The UI shows HOST, HOLD for last valid tempo, or FALLBACK 120 BPM before any valid tempo. A whole note at 10 BPM lasts 24 s. Tempo/division changes can create pitch transitions. No tap tempo or audio BPM detection is provided.
 
 Stereo keeps feedback in its own channel; Ping-pong crosses it. Both channels receive the input, so a centered mono source does not necessarily produce a hard left/right first-repeat pattern. Mix 0% silences the wet return, not its internal buffer.
 
@@ -403,6 +543,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 Final gain after parallel blending. Use for level matching and headroom.
 
 Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Level / Focused
+03. Vocal Level / Soft
+04. Vocal Level / Open
+05. Vocal Level / Parallel
+06. Drum Punch / Natural
+07. Drum Punch / Focused
+08. Drum Punch / Soft
+09. Drum Punch / Open
+10. Drum Punch / Parallel
+11. Bass Control / Natural
+12. Bass Control / Focused
+13. Bass Control / Soft
+14. Bass Control / Open
+15. Bass Control / Parallel
+16. Acoustic Even / Natural
+17. Acoustic Even / Focused
+18. Acoustic Even / Soft
+19. Acoustic Even / Open
+20. Acoustic Even / Parallel
+21. Piano Gentle / Natural
+22. Piano Gentle / Focused
+23. Piano Gentle / Soft
+24. Piano Gentle / Open
+25. Piano Gentle / Parallel
+26. Bus Glue / Natural
+27. Bus Glue / Focused
+28. Bus Glue / Soft
+29. Bus Glue / Open
+30. Bus Glue / Parallel
+31. Parallel Weight / Natural
+32. Parallel Weight / Focused
+33. Parallel Weight / Soft
+34. Parallel Weight / Open
+35. Parallel Weight / Parallel
+36. Transient Catch / Natural
+37. Transient Catch / Focused
+38. Transient Catch / Soft
+39. Transient Catch / Open
+40. Transient Catch / Parallel
+41. Soft Speech / Natural
+42. Soft Speech / Focused
+43. Soft Speech / Soft
+44. Soft Speech / Open
+45. Soft Speech / Parallel
+46. Sustain Hold / Natural
+47. Sustain Hold / Focused
+48. Sustain Hold / Soft
+49. Sustain Hold / Open
+50. Sustain Hold / Parallel
 
 ### In practice
 
@@ -554,6 +747,59 @@ Bell, Low Shelf or High Shelf. Learning preserves this manual choice; L-SHELF/H-
 
 Manual only; no Learn
 
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Clarity / Focused
+03. Vocal Clarity / Soft
+04. Vocal Clarity / Open
+05. Vocal Clarity / Parallel
+06. Warm Voice / Natural
+07. Warm Voice / Focused
+08. Warm Voice / Soft
+09. Warm Voice / Open
+10. Warm Voice / Parallel
+11. Drum Presence / Natural
+12. Drum Presence / Focused
+13. Drum Presence / Soft
+14. Drum Presence / Open
+15. Drum Presence / Parallel
+16. Bass Definition / Natural
+17. Bass Definition / Focused
+18. Bass Definition / Soft
+19. Bass Definition / Open
+20. Bass Definition / Parallel
+21. Acoustic Detail / Natural
+22. Acoustic Detail / Focused
+23. Acoustic Detail / Soft
+24. Acoustic Detail / Open
+25. Acoustic Detail / Parallel
+26. Piano Body / Natural
+27. Piano Body / Focused
+28. Piano Body / Soft
+29. Piano Body / Open
+30. Piano Body / Parallel
+31. String Silk / Natural
+32. String Silk / Focused
+33. String Silk / Soft
+34. String Silk / Open
+35. String Silk / Parallel
+36. Synth Depth / Natural
+37. Synth Depth / Focused
+38. Synth Depth / Soft
+39. Synth Depth / Open
+40. Synth Depth / Parallel
+41. Mix Polish / Natural
+42. Mix Polish / Focused
+43. Mix Polish / Soft
+44. Mix Polish / Open
+45. Mix Polish / Parallel
+46. Dark Texture / Natural
+47. Dark Texture / Focused
+48. Dark Texture / Soft
+49. Dark Texture / Open
+50. Dark Texture / Parallel
+
 ### In practice
 
 1. Start from all gains at 0 dB. Identify a tonal issue in the full mix before boosting.
@@ -623,6 +869,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 Post-mix gain; no automatic drive compensation is applied.
 
 Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Warmth / Focused
+03. Vocal Warmth / Soft
+04. Vocal Warmth / Open
+05. Vocal Warmth / Parallel
+06. Drum Edge / Natural
+07. Drum Edge / Focused
+08. Drum Edge / Soft
+09. Drum Edge / Open
+10. Drum Edge / Parallel
+11. Bass Grit / Natural
+12. Bass Grit / Focused
+13. Bass Grit / Soft
+14. Bass Grit / Open
+15. Bass Grit / Parallel
+16. Acoustic Glow / Natural
+17. Acoustic Glow / Focused
+18. Acoustic Glow / Soft
+19. Acoustic Glow / Open
+20. Acoustic Glow / Parallel
+21. Piano Felt / Natural
+22. Piano Felt / Focused
+23. Piano Felt / Soft
+24. Piano Felt / Open
+25. Piano Felt / Parallel
+26. Bus Color / Natural
+27. Bus Color / Focused
+28. Bus Color / Soft
+29. Bus Color / Open
+30. Bus Color / Parallel
+31. Synth Asymmetry / Natural
+32. Synth Asymmetry / Focused
+33. Synth Asymmetry / Soft
+34. Synth Asymmetry / Open
+35. Synth Asymmetry / Parallel
+36. LoFi Shadow / Natural
+37. LoFi Shadow / Focused
+38. LoFi Shadow / Soft
+39. LoFi Shadow / Open
+40. LoFi Shadow / Parallel
+41. Parallel Crunch / Natural
+42. Parallel Crunch / Focused
+43. Parallel Crunch / Soft
+44. Parallel Crunch / Open
+45. Parallel Crunch / Parallel
+46. Smooth Harmonics / Natural
+47. Smooth Harmonics / Focused
+48. Smooth Harmonics / Soft
+49. Smooth Harmonics / Open
+50. Smooth Harmonics / Parallel
 
 ### In practice
 
@@ -694,6 +993,59 @@ Final gain after the envelope effect and parallel blend.
 
 Manual only; no Learn
 
+### 50 factory presets
+
+01. Init / Factory Default
+02. Kick Punch / Focused
+03. Kick Punch / Soft
+04. Kick Punch / Open
+05. Kick Punch / Parallel
+06. Snare Snap / Natural
+07. Snare Snap / Focused
+08. Snare Snap / Soft
+09. Snare Snap / Open
+10. Snare Snap / Parallel
+11. Room Tamer / Natural
+12. Room Tamer / Focused
+13. Room Tamer / Soft
+14. Room Tamer / Open
+15. Room Tamer / Parallel
+16. Bass Pick / Natural
+17. Bass Pick / Focused
+18. Bass Pick / Soft
+19. Bass Pick / Open
+20. Bass Pick / Parallel
+21. Acoustic Pluck / Natural
+22. Acoustic Pluck / Focused
+23. Acoustic Pluck / Soft
+24. Acoustic Pluck / Open
+25. Acoustic Pluck / Parallel
+26. Soft Piano / Natural
+27. Soft Piano / Focused
+28. Soft Piano / Soft
+29. Soft Piano / Open
+30. Soft Piano / Parallel
+31. Percussion Tight / Natural
+32. Percussion Tight / Focused
+33. Percussion Tight / Soft
+34. Percussion Tight / Open
+35. Percussion Tight / Parallel
+36. Pad Bloom / Natural
+37. Pad Bloom / Focused
+38. Pad Bloom / Soft
+39. Pad Bloom / Open
+40. Pad Bloom / Parallel
+41. Drum Sustain / Natural
+42. Drum Sustain / Focused
+43. Drum Sustain / Soft
+44. Drum Sustain / Open
+45. Drum Sustain / Parallel
+46. Parallel Attack / Natural
+47. Parallel Attack / Focused
+48. Parallel Attack / Soft
+49. Parallel Attack / Open
+50. Parallel Attack / Parallel
+
 ### In practice
 
 1. For tighter drums, begin with Attack at +2 to +4 dB and Sustain at −2 to −4 dB.
@@ -763,6 +1115,59 @@ Range: Stereo / Mono | Default: Stereo
 Stereo retains the wet Side; Mono sets wet Side to zero. Set Mix to 100% for a complete in-plugin mono audition.
 
 Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Focus / Focused
+03. Vocal Focus / Soft
+04. Vocal Focus / Open
+05. Vocal Focus / Parallel
+06. Drum Stage / Natural
+07. Drum Stage / Focused
+08. Drum Stage / Soft
+09. Drum Stage / Open
+10. Drum Stage / Parallel
+11. Bass Center / Natural
+12. Bass Center / Focused
+13. Bass Center / Soft
+14. Bass Center / Open
+15. Bass Center / Parallel
+16. Acoustic Pair / Natural
+17. Acoustic Pair / Focused
+18. Acoustic Pair / Soft
+19. Acoustic Pair / Open
+20. Acoustic Pair / Parallel
+21. Piano Stage / Natural
+22. Piano Stage / Focused
+23. Piano Stage / Soft
+24. Piano Stage / Open
+25. Piano Stage / Parallel
+26. String Field / Natural
+27. String Field / Focused
+28. String Field / Soft
+29. String Field / Open
+30. String Field / Parallel
+31. Synth Spread / Natural
+32. Synth Spread / Focused
+33. Synth Spread / Soft
+34. Synth Spread / Open
+35. Synth Spread / Parallel
+36. Dark Sides / Natural
+37. Dark Sides / Focused
+38. Dark Sides / Soft
+39. Dark Sides / Open
+40. Dark Sides / Parallel
+41. Narrow Room / Natural
+42. Narrow Room / Focused
+43. Narrow Room / Soft
+44. Narrow Room / Open
+45. Narrow Room / Parallel
+46. Mix Perspective / Natural
+47. Mix Perspective / Focused
+48. Mix Perspective / Soft
+49. Mix Perspective / Open
+50. Mix Perspective / Parallel
 
 ### In practice
 
@@ -850,6 +1255,59 @@ Final gain after the de-essing blend.
 
 Manual only; no Learn
 
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Sibilance / Focused
+03. Vocal Sibilance / Soft
+04. Vocal Sibilance / Open
+05. Vocal Sibilance / Parallel
+06. Bright Voice / Natural
+07. Bright Voice / Focused
+08. Bright Voice / Soft
+09. Bright Voice / Open
+10. Bright Voice / Parallel
+11. Low Voice / Natural
+12. Low Voice / Focused
+13. Low Voice / Soft
+14. Low Voice / Open
+15. Low Voice / Parallel
+16. Soft Speech / Natural
+17. Soft Speech / Focused
+18. Soft Speech / Soft
+19. Soft Speech / Open
+20. Soft Speech / Parallel
+21. Cymbal Restraint / Natural
+22. Cymbal Restraint / Focused
+23. Cymbal Restraint / Soft
+24. Cymbal Restraint / Open
+25. Cymbal Restraint / Parallel
+26. Acoustic Pick / Natural
+27. Acoustic Pick / Focused
+28. Acoustic Pick / Soft
+29. Acoustic Pick / Open
+30. Acoustic Pick / Parallel
+31. Air Retention / Natural
+32. Air Retention / Focused
+33. Air Retention / Soft
+34. Air Retention / Open
+35. Air Retention / Parallel
+36. Hard Consonants / Natural
+37. Hard Consonants / Focused
+38. Hard Consonants / Soft
+39. Hard Consonants / Open
+40. Hard Consonants / Parallel
+41. Bus High Tamer / Natural
+42. Bus High Tamer / Focused
+43. Bus High Tamer / Soft
+44. Bus High Tamer / Open
+45. Bus High Tamer / Parallel
+46. Parallel Silk / Natural
+47. Parallel Silk / Focused
+48. Parallel Silk / Soft
+49. Parallel Silk / Open
+50. Parallel Silk / Parallel
+
 ### In practice
 
 1. Loop a phrase with both vowels and problematic sibilants. Start near 5–7 kHz.
@@ -927,6 +1385,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 Gain after the gate, including when the gate is open.
 
 Manual only; no Learn
+
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Cleanup / Focused
+03. Vocal Cleanup / Soft
+04. Vocal Cleanup / Open
+05. Vocal Cleanup / Parallel
+06. Kick Isolation / Natural
+07. Kick Isolation / Focused
+08. Kick Isolation / Soft
+09. Kick Isolation / Open
+10. Kick Isolation / Parallel
+11. Snare Isolation / Natural
+12. Snare Isolation / Focused
+13. Snare Isolation / Soft
+14. Snare Isolation / Open
+15. Snare Isolation / Parallel
+16. Tom Decay / Natural
+17. Tom Decay / Focused
+18. Tom Decay / Soft
+19. Tom Decay / Open
+20. Tom Decay / Parallel
+21. Guitar Noise / Natural
+22. Guitar Noise / Focused
+23. Guitar Noise / Soft
+24. Guitar Noise / Open
+25. Guitar Noise / Parallel
+26. Bass Tail / Natural
+27. Bass Tail / Focused
+28. Bass Tail / Soft
+29. Bass Tail / Open
+30. Bass Tail / Parallel
+31. Speech Pause / Natural
+32. Speech Pause / Focused
+33. Speech Pause / Soft
+34. Speech Pause / Open
+35. Speech Pause / Parallel
+36. Percussion Tight / Natural
+37. Percussion Tight / Focused
+38. Percussion Tight / Soft
+39. Percussion Tight / Open
+40. Percussion Tight / Parallel
+41. Room Reduction / Natural
+42. Room Reduction / Focused
+43. Room Reduction / Soft
+44. Room Reduction / Open
+45. Room Reduction / Parallel
+46. Gentle Floor / Natural
+47. Gentle Floor / Focused
+48. Gentle Floor / Soft
+49. Gentle Floor / Open
+50. Gentle Floor / Parallel
 
 ### In practice
 
@@ -1054,6 +1565,59 @@ Final gain applied after the global blend, even at Mix 0%.
 
 Manual only; no Learn
 
+### 50 factory presets
+
+01. Init / Factory Default
+02. Vocal Halo / Focused
+03. Vocal Halo / Soft
+04. Vocal Halo / Open
+05. Vocal Halo / Parallel
+06. Drum Space / Natural
+07. Drum Space / Focused
+08. Drum Space / Soft
+09. Drum Space / Open
+10. Drum Space / Parallel
+11. Guitar Trail / Natural
+12. Guitar Trail / Focused
+13. Guitar Trail / Soft
+14. Guitar Trail / Open
+15. Guitar Trail / Parallel
+16. Piano Cloud / Natural
+17. Piano Cloud / Focused
+18. Piano Cloud / Soft
+19. Piano Cloud / Open
+20. Piano Cloud / Parallel
+21. Bass Texture / Natural
+22. Bass Texture / Focused
+23. Bass Texture / Soft
+24. Bass Texture / Open
+25. Bass Texture / Parallel
+26. Synth Orbit / Natural
+27. Synth Orbit / Focused
+28. Synth Orbit / Soft
+29. Synth Orbit / Open
+30. Synth Orbit / Parallel
+31. LoFi Room / Natural
+32. LoFi Room / Focused
+33. LoFi Room / Soft
+34. LoFi Room / Open
+35. LoFi Room / Parallel
+36. Dark Cinematic / Natural
+37. Dark Cinematic / Focused
+38. Dark Cinematic / Soft
+39. Dark Cinematic / Open
+40. Dark Cinematic / Parallel
+41. Percussion Spark / Natural
+42. Percussion Spark / Focused
+43. Percussion Spark / Soft
+44. Percussion Spark / Open
+45. Percussion Spark / Parallel
+46. Ambient Wash / Natural
+47. Ambient Wash / Focused
+48. Ambient Wash / Soft
+49. Ambient Wash / Open
+50. Ambient Wash / Parallel
+
 ### In practice
 
 1. Start with low master Mix and modest Drive; keep Output near unity while establishing the tone.
@@ -1072,7 +1636,7 @@ At master Mix 0%, the original input remains subject to Output gain. At 100%, th
 
 ### What is stored
 
-The processor serializes parameter state through JUCE APVTS/XML for host recall. Save your DAW project after accepting settings. Roundtrip and legacy-state migration still require host validation; keep the previous binary when archiving a project. No built-in preset browser, factory preset pack, A/B memory slots or preset-file import/export is provided.
+The processor serializes parameter state through JUCE APVTS/XML for host recall. Save your DAW project after accepting settings. Roundtrip and legacy-state migration still require host validation; keep the previous binary when archiving a project. Each plugin now has 50 factory programs and a header browser; a star marks edits and host state retains actual modified settings. A/B slots and proprietary preset-file import/export are not provided. Loading a program cancels pending learning and preview.
 
 Reference audio, descriptions, proposal lists and one-level learning undo are not embedded in the processor state. Reopen the reference after closing the editor or reloading the project. Keep an authorized copy in your project asset folder if needed; a filename shown in the UI is not proof that the file was saved with the session.
 
@@ -1124,7 +1688,7 @@ Continuous values are smoothed with approximately 20 ms coefficient smoothing in
 
 ### Practical limitations
 
-No oversampling, look-ahead, true-peak limiter, tempo detection/sync, arbitrary convolution, general language interpretation or iterative output-reference optimizer is provided. DEQ is not linear phase; DSess is not a full parametric dynamic EQ; DGate has no expansion ratio; DFX order is fixed. DSP quality and automation must still be auditioned on real material.
+No oversampling, look-ahead, true-peak limiter, audio tempo detection, arbitrary convolution, general language interpretation or iterative output-reference optimizer is provided. DEQ is not linear phase; DSess is not a full parametric dynamic EQ; DGate has no expansion ratio; DFX order is fixed. DSP quality and automation must still be auditioned on real material.
 
 CPU and memory depend on sample rate, platform, instance count and settings. No measured minimum RAM/CPU or certified buffer-size guarantee is published. Internal finite-value safeguards and output bounding are not transparent overload prevention. Use host meters and sensible input levels.
 

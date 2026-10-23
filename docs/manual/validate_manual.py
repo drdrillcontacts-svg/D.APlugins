@@ -18,7 +18,7 @@ for lang in ['EN','FA']:
  for name,params in metadata.items():
   assert name in alltext,name
   for p in params:assert 'ID: '+p['id'] in alltext,(lang,name,p['id'])
- assert len(re.findall(r'ID: ',alltext))==90,'All parameter reference rows must be present exactly once'
+ assert len(re.findall(r'ID: ',alltext))==92,'All parameter reference rows must be present exactly once'
  # No content should be physically outside the sheet, and no accidental near-empty pages.
  for number,page in enumerate(doc,1):
   text=page.get_text();assert len(text)>200,(lang,'near-empty page',number)
@@ -32,7 +32,7 @@ for lang in ['EN','FA']:
  for page in doc:
   for font in page.get_fonts():fonts.add(font[0])
  for xref in fonts:assert doc.extract_font(xref)[3],('Non-embedded font',lang,xref)
- toc=doc.get_toc();top=[x for x in toc if x[0]==1];assert len(top)==21,(lang,len(top))
+ toc=doc.get_toc();top=[x for x in toc if x[0]==1];assert len(top)==22,(lang,len(top))
  for level,title,page in toc:assert 1<=page<=len(doc)
  for link in (link for page in doc for link in page.get_links()):
   if link['kind']==pymupdf.LINK_GOTO:assert 0<=link['page']<len(doc)
@@ -40,11 +40,12 @@ for lang in ['EN','FA']:
  if lang=='EN':
   assert 'first 30 seconds' in alltext and '65,536' in alltext
   assert 'No trained neural network' in alltext
-  assert alltext.count('MANUAL ONLY:')==57 and alltext.count('LEARN: audio-informed')==33
+  assert alltext.count('MANUAL ONLY:')==59 and alltext.count('LEARN: audio-informed')==33
   assert 'DETAILS / LOG' in alltext and 'never opens automatically' in alltext
+  assert alltext.count('50 factory presets')>=10 and 'SYNC' in alltext and 'FALLBACK' in alltext
   assert 'Mix to 100%' in alltext and 'Q affects Bell only' in alltext
  else:assert 'راهنمای کاربر' in alltext and 'راهنمای' in alltext
- counts.append(len(doc));print('PASS',lang,len(doc),'pages / 90 IDs / 21 chapters / embedded fonts / links / bounds')
+ counts.append(len(doc));print('PASS',lang,len(doc),'pages / 92 IDs / 22 chapters / embedded fonts / links / bounds')
 combined=pymupdf.open(OUT/'DA_Plugins_User_Manual_EN_FA.pdf')
 assert len(combined)==sum(counts)
 assert len([e for e in combined.get_toc() if e[0]==1])==2

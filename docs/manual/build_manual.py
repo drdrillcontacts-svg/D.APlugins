@@ -18,8 +18,10 @@ from content import PRODUCTS,CONTROLS,BEFORE,AFTER,GLOSSARY,learn_class
 ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent;OUT=HERE/'pdf';WORK=ROOT/'build-manual'
 OUT.mkdir(exist_ok=True);WORK.mkdir(exist_ok=True)
 META=json.loads((ROOT/'Design/UI/Parameters.json').read_text())
+BANKS=json.loads((ROOT/'Design/Presets/FactoryPresets.json').read_text())
+PRESETS={b['plugin']:b['presets'] for b in BANKS['banks']}
 SOURCE=subprocess.check_output(['git','rev-parse','--short=12','HEAD'],cwd=ROOT,text=True).strip()
-DATE='2026-10-23';VERSION='0.3';REVISION='1.1 / Rack Collection 02 / Development'
+DATE='2026-10-23';VERSION='0.4';REVISION='1.2 / Rack Collection 02 / Development'
 RED=(197,22,53);INK=(25,32,38);GRAY=(90,104,112);PALE=(239,243,245)
 for weight,name in [(400,'Regular'),(700,'Bold')]:
  target=WORK/f'Vazirmatn-{name}.ttf'
@@ -27,7 +29,7 @@ for weight,name in [(400,'Regular'),(700,'Bold')]:
   font=TTFont(HERE/'fonts/Vazirmatn-Variable.ttf');instantiateVariableFont(font,{'wght':weight},inplace=True).save(target)
 for name in PRODUCTS:
  assert set(CONTROLS[name])=={p['id'] for p in META[name]},name
-assert sum(map(len,META.values()))==90
+assert sum(map(len,META.values()))==92
 assert sum(p['learnable'] for ps in META.values() for p in ps)==33
 def printable(text):
  # Vazirmatn has no arrow glyphs. Use an explicit readable signal-path notation, never silent tofu.
@@ -45,7 +47,7 @@ class Manual(FPDF):
   self.add_font('Body','',WORK/'Vazirmatn-Regular.ttf');self.add_font('Body','B',WORK/'Vazirmatn-Bold.ttf')
   self.add_font('Display','',ROOT/'Design/Fonts/RajdhaniMedium.ttf');self.add_font('Display','B',ROOT/'Design/Fonts/RajdhaniSemiBold.ttf')
   self.set_title('D.A Plugins — '+('راهنمای کاربر باندل' if self.fa else 'Complete Bundle User Manual'))
-  self.set_author('D.A Plugins');self.set_subject('Development version 0.3: ten effects, controls and learning workflow')
+  self.set_author('D.A Plugins');self.set_subject('Development version 0.4: ten effects, controls and learning workflow')
   self.set_creator('D.A Plugins bilingual manual builder / fpdf2 + HarfBuzz');self.set_lang('fa-IR' if self.fa else 'en-GB')
   self.set_creation_date(datetime(2026,10,23,12,tzinfo=timezone.utc));self.alias_nb_pages();self.set_display_mode('fullwidth','continuous')
  def choose(self,pair):return pair[self.idx]
@@ -59,7 +61,7 @@ class Manual(FPDF):
   self.set_fill_color(*INK);self.rect(0,0,210,14,'F');self.set_fill_color(*RED);self.rect(0,14,210,.7,'F')
   self.set_text_shaping(False);self.set_font('Display','B',10);self.set_text_color(227,231,234)
   self.set_xy(18,4);self.cell(174,5,'D.A PLUGINS  /  USER MANUAL',align='L')
-  self.set_xy(18,4);self.cell(174,5,f'{self.code}  /  DEVELOPMENT 0.3',align='R')
+  self.set_xy(18,4);self.cell(174,5,f'{self.code}  /  DEVELOPMENT 0.4',align='R')
   self.set_y(24);self.set_text_color(*INK)
  def footer(self):
   if self.page_no()==1:return
@@ -102,11 +104,11 @@ class Manual(FPDF):
   self.font(11);self.set_text_color(165,179,188);self.cell(0,9,'راهنمای کامل باندل ده‌پلاگینی' if self.fa else 'THE COMPLETE TEN-PLUGIN BUNDLE',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
   self.preview('DVerb',x=15,y=100,w=180)
   self.set_xy(18,233);self.font(9);self.set_text_color(165,179,188)
-  self.cell(174,7,'۹۰ پارامتر / ۳۳ کنترل با Learn / گزارش اختیاری' if self.fa else '90 PARAMETERS / 33 LEARN CONTROLS / OPTIONAL DETAILS',align='C')
+  self.cell(174,7,'۹۲ پارامتر / ۳۳ کنترل با Learn / گزارش اختیاری' if self.fa else '92 PARAMETERS / 33 LEARN CONTROLS / OPTIONAL DETAILS',align='C')
   self.set_y(250);self.font(8.5,rtl=False);self.set_text_color(166,181,190)
   self.multi_cell(174,5,'DVerb  /  DDelay  /  DComp  /  DEQ  /  DSat\nDTrans  /  DStereo  /  DSess  /  DGate  /  DFX',align='C')
   self.set_y(267);self.font(10,True);self.set_text_color(239,62,93)
-  self.cell(0,7,'نسخهٔ توسعه‌ای محصول ۰٫۳ — ویرایش راهنما ۱٫۱' if self.fa else 'DEVELOPMENT VERSION 0.3  /  MANUAL REVISION 1.1',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
+  self.cell(0,7,'نسخهٔ توسعه‌ای محصول ۰٫۴ — ویرایش راهنما ۱٫۲' if self.fa else 'DEVELOPMENT VERSION 0.4  /  MANUAL REVISION 1.2',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
   self.set_text_shaping(False);self.set_font('Body','',8);self.set_text_color(148,163,173);self.cell(0,6,DATE+'  /  '+('PERSIAN' if self.fa else 'ENGLISH'),align='C')
   self.set_auto_page_break(True,19)
  def preview(self,name,x,y,w):
@@ -119,7 +121,7 @@ class Manual(FPDF):
   self.add_page();self.text('پیش از استفاده بخوانید' if self.fa else 'Read this before you begin',23,True)
   self.callout(self.choose(('Development edition, not a release certification','نسخهٔ توسعه‌ای؛ نه گواهی انتشار')),
    self.choose(('This manual documents the current source implementation. The complete bundle acceptance criteria are not yet met. Do not interpret the professional artwork or the word “AI” as evidence of a trained model, a certified reference match, a signed installer or validated operation in every DAW.','این راهنما پیاده‌سازی فعلی سورس را شرح می‌دهد. معیار پذیرش کامل باندل هنوز برآورده نشده است. ظاهر حرفه‌ای یا واژهٔ AI را مدرک مدل آموزش‌دیده، تطبیق تأییدشدهٔ مرجع، نصب‌کنندهٔ امضاشده یا عملکرد معتبر در همهٔ DAWها ندانید.')))
-  facts=[(('Product version','نسخهٔ محصول'),VERSION), (('Manual revision','ویرایش راهنما'),REVISION), (('Document date','تاریخ سند'),DATE), (('Source snapshot','مبنای سورس'),SOURCE), (('Language','زبان'), 'Persian / فارسی' if self.fa else 'English'), (('Parameter coverage','پوشش پارامتر'), '90 parameters / 10 plugins')]
+  facts=[(('Product version','نسخهٔ محصول'),VERSION), (('Manual revision','ویرایش راهنما'),REVISION), (('Document date','تاریخ سند'),DATE), (('Source snapshot','مبنای سورس'),SOURCE), (('Language','زبان'), 'Persian / فارسی' if self.fa else 'English'), (('Parameter coverage','پوشش پارامتر'), '92 parameters / 10 plugins')]
   for k,v in facts:
    self.text(self.choose(k),9.5,True,space=0);self.text(v,10,rtl=False,space=2)
   self.heading(self.choose(('Illustrations and example settings','تصاویر و تنظیمات نمونه')))
@@ -169,7 +171,7 @@ class Manual(FPDF):
   self.continuation(self.choose((name+' / Parameter reference',name+' / مرجع پارامترها')))
   self.parameter_pages[name]=self.page_no()
   self.text(self.choose(('Ranges are manual limits; learning may propose a narrower interval. Defaults are source factory values, not the example image values. The learning badge identifies a strategy type, not guaranteed estimation accuracy.','دامنه‌ها حد دستی‌اند و پیشنهاد یادگیری ممکن است محدودتر باشد. پیش‌فرض از سورس است، نه عدد تصویر نمونه. برچسب یادگیری نوع راهبرد را نشان می‌دهد، نه دقت تضمینی.')),9.4,colour=GRAY,space=4)
-  chunk={'DVerb':6,'DEQ':8,'DFX':7}.get(name,8)
+  chunk={'DDelay':5,'DVerb':6,'DEQ':8,'DFX':7}.get(name,8)
   for i,p in enumerate(META[name]):
    if i and i%chunk==0:self.continuation(self.choose((name+' / Controls continued',name+' / ادامهٔ کنترل‌ها')))
    self.parameter(name,p)
@@ -196,12 +198,23 @@ class Manual(FPDF):
   self.text(self.choose(p['learning']))
   self.callout(self.choose(('Important implementation limit','محدودیت مهم پیاده‌سازی')),self.choose(p['caution']))
   self.heading(self.choose(('Listening and workflow tip','نکتهٔ شنیداری و روند کار')),3);self.text(self.choose(p['tips']),10)
+ def preset_catalog(self,name):
+  self.continuation(self.choose((name+' / 50 factory presets',name+' / ۵۰ پریست کارخانه')))
+  self.text(self.choose(('Init plus 49 profile variants: choose from the header browser or host program list. These are complete snapshots, including Mix and Output. Use lower monitoring while comparing. The JSON manifest contains all exact parameter values.','Init و ۴۹ گونهٔ پروفایل از مرورگر بالای رابط یا فهرست برنامهٔ میزبان انتخاب می‌شوند. هرکدام وضعیت کامل از جمله Mix و Output هستند. هنگام مقایسه مانیتور را کم کنید. مقدار دقیق همهٔ پارامترها در مانیفست JSON آمده است.')),9.5,space=7)
+  y=self.get_y()
+  for row in range(25):
+   for col in range(2):
+    index=row+25*col;entry=PRESETS[name][index];self.set_xy(18+col*88,y+row*6.6)
+    self.font(8.2,False,False);self.set_text_color(*INK)
+    self.cell(86,6,f"{index+1:02d}  /  {entry['name']}")
+  self.set_xy(18,y+170)
+  self.text(self.choose(('Loading a preset cancels pending learning/preview. A star marks subsequent edits; save the project to retain them. The factory catalog itself is read-only.','بارگذاری پریست، یادگیری و پیش‌شنوی معلق را لغو می‌کند. ستاره، ویرایش بعدی را مشخص می‌کند؛ برای حفظ آن پروژه را ذخیره کنید. فهرست کارخانه فقط خواندنی است.')),9.5)
  def glossary(self):
   self.chapter(('Glossary & parameter locator','واژه‌نامه و راهنمای یافتن پارامتر'))
   for en,fa,de,df in GLOSSARY:
    self.ensure(20);self.heading((fa+' / '+en) if self.fa else en,3);self.text(df if self.fa else de,9.8,space=2)
   self.continuation(self.choose(('Find a parameter quickly','یافتن سریع پارامتر')))
-  self.text(self.choose(('All 90 parameter IDs are documented in the control pages. The links below open each product’s reference. Searchable IDs also identify host automation parameters; the displayed host name can include its module prefix.','هر ۹۰ شناسه در صفحات کنترل توضیح داده شده‌اند. پیوندهای زیر مرجع هر محصول را باز می‌کنند. شناسهٔ قابل‌جست‌وجو پارامتر اتومیشن را هم معرفی می‌کند؛ نام میزبان ممکن است پیشوند ماژول داشته باشد.')))
+  self.text(self.choose(('All 92 parameter IDs are documented in the control pages. The links below open each product’s reference. Searchable IDs also identify host automation parameters; the displayed host name can include its module prefix.','هر ۹۲ شناسه در صفحات کنترل توضیح داده شده‌اند. پیوندهای زیر مرجع هر محصول را باز می‌کنند. شناسهٔ قابل‌جست‌وجو پارامتر اتومیشن را هم معرفی می‌کند؛ نام میزبان ممکن است پیشوند ماژول داشته باشد.')))
   for name in PRODUCTS:
    self.ensure(23);page=self.parameter_pages[name];link=self.add_link(page=page)
    self.font(10,True,False);self.set_text_color(*RED);self.set_x(18)
@@ -218,7 +231,7 @@ def format_value(name,p,v):
  id=p['id'];opts=[]
  if p['discrete']:
   if name=='DVerb':opts=['Room','Hall','Plate','Shimmer']
-  elif name=='DDelay':opts=['Stereo','Ping-pong']
+  elif name=='DDelay':opts=BANKS['divisions'] if id=='division' else ['FREE MS','SYNC'] if id=='sync' else ['Stereo','Ping-pong']
   elif name=='DSat':opts=['Soft','Hard','Asymmetric']
   elif name=='DStereo':opts=['Stereo','Mono']
   elif name=='DEQ':opts=['Bell','Low Shelf','High Shelf']
@@ -232,7 +245,7 @@ def format_value(name,p,v):
 def format_range(name,p):
  if p['discrete']:
   if name=='DVerb':return 'Room / Hall / Plate / Shimmer'
-  if name=='DDelay':return 'Stereo / Ping-pong'
+  if name=='DDelay':return '15 notes: 1/32 to 1/1; D / T' if p['id']=='division' else 'FREE MS / SYNC' if p['id']=='sync' else 'Stereo / Ping-pong'
   if name=='DSat':return 'Soft / Hard / Asymmetric'
   if name=='DStereo':return 'Stereo / Mono'
   if name=='DEQ':return 'Bell / Low Shelf / High Shelf'
@@ -247,7 +260,7 @@ def build(lang):
   if title==BEFORE[0][0]:
    pdf.heading(pdf.choose(('Choose your tool','انتخاب ابزار')))
    for name,p in PRODUCTS.items():pdf.text(name+' — '+pdf.choose(p['title']),9.5,space=1)
- for name in PRODUCTS:pdf.product_open(name);pdf.parameter_reference(name);pdf.product_practice(name)
+ for name in PRODUCTS:pdf.product_open(name);pdf.parameter_reference(name);pdf.product_practice(name);pdf.preset_catalog(name)
  for title,sections in AFTER[:-1]:
   pdf.chapter(title)
   if title==AFTER[1][0]:
@@ -255,12 +268,12 @@ def build(lang):
   else:pdf.sections(sections)
  pdf.glossary();pdf.chapter(AFTER[-1][0]);pdf.sections(AFTER[-1][1]);pdf.project_links()
  pdf.fill_toc();path=OUT/f'DA_Plugins_User_Manual_{lang}.pdf';pdf.output(path)
- manifest={'language':lang,'pages':len(pdf.pages),'source':SOURCE,'chapters':[{'number':n,'title':t,'page':p} for n,t,p,l in pdf.entries],'parameter_reference_pages':pdf.parameter_pages,'parameters':90}
+ manifest={'language':lang,'pages':len(pdf.pages),'source':SOURCE,'chapters':[{'number':n,'title':t,'page':p} for n,t,p,l in pdf.entries],'parameter_reference_pages':pdf.parameter_pages,'parameters':92}
  (WORK/f'manifest-{lang}.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
  print(lang,len(pdf.pages),'pages',path.stat().st_size,'bytes');return path
 
 def export_text(lang):
- index=1 if lang=='FA' else 0;lines=['# D.A Plugins — '+('راهنمای کاربر' if lang=='FA' else 'User Manual'),'','Development version 0.3 / 2026-10-23 / Source '+SOURCE,'']
+ index=1 if lang=='FA' else 0;lines=['# D.A Plugins — '+('راهنمای کاربر' if lang=='FA' else 'User Manual'),'','Development version 0.4 / 2026-10-23 / Source '+SOURCE,'']
  for title,sections in BEFORE:
   lines+=['## '+title[index],'']
   for heading,paragraphs in sections:lines+=['### '+heading[index],'']+[p[index]+'\n' for p in paragraphs]
@@ -268,6 +281,7 @@ def export_text(lang):
   lines+=['## '+name+' — '+p['title'][index],'',p['intro'][index],'',p['signal'],'','### '+('مرجع کنترل‌ها' if index else 'Control reference'),'']
   for m in META[name]:
    control=CONTROLS[name][m['id']];lines+=['#### '+m['name']+' / `'+m['id']+'`','',f"Range: {format_range(name,m)} | Default: {format_value(name,m,m['initial'])}",'',control[2 if index else 1],'',('Learn: موجود' if m['learnable'] else 'فقط دستی؛ بدون Learn') if index else ('Learn: audio-informed' if m['learnable'] else 'Manual only; no Learn'),'']
+  lines+=['### '+('۵۰ پریست کارخانه' if index else '50 factory presets'),'']+[f"{q['index']:02d}. {q['name']}" for q in PRESETS[name]]+['']
   lines+=['### '+('استفادهٔ عملی' if index else 'In practice'),'']+[f'{i+1}. '+t[index] for i,t in enumerate(p['recipe'])]+['',p['learning'][index],'',p['caution'][index],'',p['tips'][index],'']
  for title,sections in AFTER[:-1]:
   lines+=['## '+title[index],'']
@@ -284,7 +298,7 @@ if __name__=='__main__':
  writer=PdfWriter()
  for lang,file in zip(['ENGLISH / EN','فارسی / FA'],files):writer.append(str(file),outline_item=lang,import_outline=True)
  writer.page_mode='/UseOutlines'
- writer.add_metadata({'/Title':'D.A Plugins — English & Persian User Manual','/Author':'D.A Plugins','/Subject':'Development version 0.3 / bilingual manual / 90 controls'})
+ writer.add_metadata({'/Title':'D.A Plugins — English & Persian User Manual','/Author':'D.A Plugins','/Subject':'Development version 0.4 / bilingual manual / 92 controls'})
  writer.compress_identical_objects(remove_duplicates=True,remove_unreferenced=True)
  combined=OUT/'DA_Plugins_User_Manual_EN_FA.pdf'
  with combined.open('wb') as f:writer.write(f)

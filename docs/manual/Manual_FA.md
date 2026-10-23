@@ -1,6 +1,6 @@
 # D.A Plugins — راهنمای کاربر
 
-Development version 0.3 / 2026-10-23 / Source baa25a22674c
+Development version 0.4 / 2026-10-23 / Source 1aaf67d9d271
 
 ## خوش‌آمد و معرفی باندل
 
@@ -86,7 +86,7 @@ DEQ پاسخ حاصل از پارامترهای فیلتر را رسم می‌ک
 
 ### یادگیری آگاه از ورودی
 
-موتور، سطح، ضریب قله، انرژی باندهای کلی و ویژگی استریو را اندازه و مقدار محدودشده پیشنهاد می‌کند. فقط ۳۳ کنترل صوت‌محور Learn دارند؛ ۵۷ کنترل دیگر شامل Mix، تریم خروجی، انتخاب زمان و مسیر و فرکانس/Q/شکل EQ دستی می‌مانند. LEARN ALL و یادگیری باند یا ماژول نیز این ۵۷ کنترل را حفظ می‌کنند. شبکهٔ عصبی آموزش‌دیده یا استنتاج مدل ارائه نشده است. داشتن Learn به معنی استخراج یکتای پارامتر از هر صوت نیست.
+موتور، سطح، ضریب قله، انرژی باندهای کلی و ویژگی استریو را اندازه و مقدار محدودشده پیشنهاد می‌کند. فقط ۳۳ کنترل صوت‌محور Learn دارند؛ ۵۹ کنترل دیگر شامل Mix، تریم خروجی، انتخاب زمان و مسیر و فرکانس/Q/شکل EQ دستی می‌مانند. LEARN ALL و یادگیری باند یا ماژول نیز این ۵۹ کنترل را حفظ می‌کنند. شبکهٔ عصبی آموزش‌دیده یا استنتاج مدل ارائه نشده است. داشتن Learn به معنی استخراج یکتای پارامتر از هر صوت نیست.
 
 ### هدایت با مرجع
 
@@ -128,6 +128,24 @@ REJECT یا لغو نتیجهٔ معلق را نامعتبر می‌کند؛ Wor
 
 Ready یعنی آماده، Analyzing یعنی دریافت یا تحلیل، Ready to audition یعنی وجود پیشنهاد، Previewing یعنی شنیدن موقت، Applied یعنی نگه‌داشتن و Cancelled یعنی کنارگذاری یا بازگردانی. Failed یا Reference unavailable موفقیت نیست. از تصویر سخت‌افزاری، نصب مدل عصبی را نتیجه نگیرید.
 
+## پریست کارخانه و تمپوی پروژه
+
+### ۵۰ برنامه برای هر پلاگین
+
+هر محصول Init و ۴۹ گونهٔ پروفایل موسیقایی دارد؛ مجموعاً ۵۰۰ وضعیت کامل. از مرورگر بالای رابط، پیکان‌ها یا فهرست برنامهٔ میزبان انتخاب کنید. بارگذاری همهٔ تنظیم‌ها از جمله Mix و Output را تغییر می‌دهد؛ ابتدا مانیتور را کم کنید. ضبط، تحلیل معلق، پیش‌شنوی و بازگردانی یادگیری قبلی لغو می‌شوند؛ تنظیم قدیمی روی صدای تازه بازنمی‌گردد.
+
+ستاره، تغییر نسبت به وضعیت کارخانه را نشان می‌دهد. برای حفظ مقدار ویرایش‌شده و شمارهٔ انتخاب، پروژهٔ DAW را ذخیره کنید. نام کارخانه فقط خواندنی است. فهرست هر محصول همهٔ نام‌ها و فایل Design/Presets/FactoryPresets.json مقدار همهٔ پارامترها را دارد. دستورهای عملیِ سایر صفحات صرفاً پیشنهادند، نه برنامهٔ نصب‌شدهٔ اضافه.
+
+### Sync دیلی و تقسیم نت
+
+SYNC را فعال و Division را انتخاب کنید. زمان میلی‌ثانیهٔ نت سیاه برابر ۶۰٬۰۰۰ تقسیم بر BPM میزبان است. D نت را ۱٫۵ برابر و T دوسوم می‌کند. انتخاب‌ها: 1/32، 1/32 D، 1/32 T، 1/16، 1/16 D، 1/16 T، 1/8، 1/8 D، 1/8 T، 1/4، 1/4 D، 1/4 T، 1/2، 1/2 D و 1/1.
+
+HOST یعنی تمپوی معتبر میزبان؛ HOLD در نبود آن آخرین BPM معتبر را نگه می‌دارد و FALLBACK پیش از دریافت تمپوی معتبر از ۱۲۰ استفاده می‌کند. بازهٔ پشتیبانی ۱۰ تا ۴۰۰ است. Standalone تمپوی پروژه ندارد. Sync زمان آزاد، مدولاسیون و اختلاف استریو را غیرفعال می‌کند. تشخیص تمپو از صوت، Tap Tempo یا شروع مجدد بر اساس موقعیت آهنگ وجود ندارد.
+
+### سازگاری و شنیدن
+
+وضعیت قدیمی DDelay بدون شناسه‌های جدید از FREE MS شروع می‌کند. DVerb و DFX اکنون پخش آل‌پسِ ورودی، شکل‌دهی بم و میانی فقط در ورودی و شبکهٔ متعامد بدون اشباع دائمی دارند. مقدارهای ذخیره‌شده حفظ می‌شوند، ولی الگوریتم جدید صدا را تغییر می‌دهد؛ برای بازخوانی دقیق پروژهٔ قدیمی باینری قبلی را نگه دارید. نمونهٔ شنیداری، سیگنال مصنوعیِ اصلی است و تأیید کیفیت موسیقایی محسوب نمی‌شود.
+
 ## DVerb — ریورب و طراحی فضا
 
 DVerb با یک شبکهٔ الگوریتمی هشت‌خطی، به صدا فضا می‌دهد. پیش‌تأخیر، شروع ریورب را از صدای مستقیم جدا می‌کند و میرایی، پخش‌شدگی و مدولاسیون، برگشت افکت را شکل می‌دهند. این پلاگین ابزار طراحی فضاست؛ پخش‌کنندهٔ پاسخ ضربه یا بازسازی دقیق یک اتاق نمونه‌برداری‌شده نیست.
@@ -162,7 +180,7 @@ Learn: موجود
 
 #### Tone / `tone`
 
-Range: 500 Hz to 18000 Hz | Default: 6000 Hz
+Range: 500 Hz to 18000 Hz | Default: 10000 Hz
 
 فرکانس قطع میرایی پایین‌گذر شبکه است. مقدار کمتر، برگشت را تیره‌تر می‌کند؛ این کنترل فرکانسی است، نه شیب دسی‌بلی رنگ.
 
@@ -196,7 +214,7 @@ Range: 0% to 100% | Default: 70%
 
 Range: 0% to 100% | Default: 70%
 
-بازخورد مستقیم خطوط را با ماتریس پراکندگی نرمال‌شده ترکیب می‌کند. مقدار بیشتر انرژی را میان مسیرها پخش می‌کند.
+ضریب بازخورد چهار آل‌پسِ سری ورودی را کنترل می‌کند. مقدار بیشتر، حمله را پیش از شبکهٔ همواره متعامد پخش می‌کند؛ دیگر ماتریس شبکه را با مسیر مستقیم ترکیب نمی‌کند.
 
 فقط دستی؛ بدون Learn
 
@@ -212,15 +230,15 @@ Range: 0% to 100% | Default: 10%
 
 Range: 20 Hz to 1000 Hz | Default: 120 Hz
 
-میرایی مؤلفهٔ پایین شبکه با رفتار بالاگذر است. برای کاهش انباشت بم ریورب افزایش دهید.
+بالاگذرِ تحریک پیش از شبکه است، نه فیلتری تکرارشونده در هر گردش. برای کاهش انباشت بم افزایش دهید.
 
 Learn: موجود
 
 #### Mid cut / `midcut`
 
-Range: -12 dB to 0 dB | Default: -2 dB
+Range: -12 dB to 0 dB | Default: -1 dB
 
-بخش میانی پهن و ثابتی از شبکه را تضعیف می‌کند؛ باند EQ پارامتریک با فرکانس آزاد نیست.
+کاهش پهن و ثابت میانی، یک‌بار بر تحریک اعمال می‌شود؛ دنباله را در هر گردش توخالی نمی‌کند و باند پارامتریک با فرکانس آزاد نیست.
 
 فقط دستی؛ بدون Learn
 
@@ -231,6 +249,59 @@ Range: Room / Hall / Plate / Shimmer | Default: Hall
 Room، Hall و Plate مقیاس تأخیر متفاوت دارند؛ Shimmer بازخورد گرِینی یک اکتاو بالاتر می‌افزاید. این یک انتخاب حالت است، نه شدت افکت.
 
 فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Air / Focused
+03. Vocal Air / Soft
+04. Vocal Air / Open
+05. Vocal Air / Parallel
+06. Drum Room / Natural
+07. Drum Room / Focused
+08. Drum Room / Soft
+09. Drum Room / Open
+10. Drum Room / Parallel
+11. Snare Plate / Natural
+12. Snare Plate / Focused
+13. Snare Plate / Soft
+14. Snare Plate / Open
+15. Snare Plate / Parallel
+16. Piano Chamber / Natural
+17. Piano Chamber / Focused
+18. Piano Chamber / Soft
+19. Piano Chamber / Open
+20. Piano Chamber / Parallel
+21. Acoustic Space / Natural
+22. Acoustic Space / Focused
+23. Acoustic Space / Soft
+24. Acoustic Space / Open
+25. Acoustic Space / Parallel
+26. String Hall / Natural
+27. String Hall / Focused
+28. String Hall / Soft
+29. String Hall / Open
+30. String Hall / Parallel
+31. Synth Cloud / Natural
+32. Synth Cloud / Focused
+33. Synth Cloud / Soft
+34. Synth Cloud / Open
+35. Synth Cloud / Parallel
+36. Bright Shimmer / Natural
+37. Bright Shimmer / Focused
+38. Bright Shimmer / Soft
+39. Bright Shimmer / Open
+40. Bright Shimmer / Parallel
+41. Dark Cathedral / Natural
+42. Dark Cathedral / Focused
+43. Dark Cathedral / Soft
+44. Dark Cathedral / Open
+45. Dark Cathedral / Parallel
+46. Short Ambience / Natural
+47. Short Ambience / Focused
+48. Short Ambience / Soft
+49. Short Ambience / Open
+50. Short Ambience / Parallel
 
 ### استفادهٔ عملی
 
@@ -248,7 +319,7 @@ Decay یک کنترل طراحی است، نه اندازه‌گیری کالی�
 
 ## DDelay — دیلی استریو
 
-DDelay خطوط تأخیر کسری، فیلتر پایین‌گذر در مسیر تکرار، بازخورد استریو یا متقاطع، مدولاسیون آهستهٔ زمان و کنترل پهنای افکت را ترکیب می‌کند. زمان بر حسب میلی‌ثانیه است. دو کانال اندکی اختلاف زمان دارند؛ بنابراین خروجی، دو اکوی مونو و کاملاً یکسان نیست.
+DDelay حالت FREE MS و حالت SYNC با ۱۵ تقسیم نت معمولی، نقطه‌دار و تریوله دارد. حالت آزاد، اختلاف کوچک زمان استریو و مدولاسیون را حفظ می‌کند؛ در Sync هر دو خط، طول نت یکسان دارند و مدولاسیون غیرفعال است. Filter و Width رنگ و پهنای تکرار را شکل می‌دهند.
 
 Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output
 
@@ -258,7 +329,7 @@ Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output
 
 Range: 1 ms to 2000 ms | Default: 375 ms
 
-زمان اسمی تأخیر چپ بر حسب میلی‌ثانیه است؛ خط راست کمی اختلاف دارد. همگام‌سازی ارزش نت وجود ندارد.
+زمان تأخیر در FREE MS است و خط راست ۱٫۱٪ اختلاف دارد. در SYNC نادیده و غیرفعال می‌شود؛ برچسب تمپو زمان واقعی نت را نشان می‌دهد.
 
 فقط دستی؛ بدون Learn
 
@@ -290,7 +361,7 @@ Stereo بازخورد را در همان کانال نگه می‌دارد؛ Pin
 
 Range: 0% to 100% | Default: 10%
 
-عمق مدولاسیون آهستهٔ زمان است؛ مقدار بالاتر حرکت و نوسان زیر و بمی بیشتری می‌دهد.
+عمق حرکت آهستهٔ زمان و زیر و بمی فقط در FREE MS است. برای حفظ زمان دقیق شبکه، در SYNC غیرفعال است.
 
 فقط دستی؛ بدون Learn
 
@@ -318,17 +389,86 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 فقط دستی؛ بدون Learn
 
+#### Tempo sync / `sync`
+
+Range: FREE MS / SYNC | Default: FREE MS
+
+FREE MS از Time و SYNC از BPM میزبان و Division استفاده می‌کند. با نبود تمپو، مقدار معتبر قبلی یا در ابتدا ۱۲۰ نگه داشته می‌شود. این انتخاب فقط دستی است.
+
+فقط دستی؛ بدون Learn
+
+#### Note division / `division`
+
+Range: 15 notes: 1/32 to 1/1; D / T | Default: 1/8
+
+طول نت در SYNC است: D نقطه‌دار با ضریب ۱٫۵ و T تریوله با ضریب دوسوم است. نت‌های معمولی از 1/32 تا 1/1 هستند؛ ۱۵ انتخاب در فصل پریست و تمپو آمده‌اند.
+
+فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Eighth / Focused
+03. Vocal Eighth / Soft
+04. Vocal Eighth / Open
+05. Vocal Eighth / Parallel
+06. Dotted Guitar / Natural
+07. Dotted Guitar / Focused
+08. Dotted Guitar / Soft
+09. Dotted Guitar / Open
+10. Dotted Guitar / Parallel
+11. Quarter Echo / Natural
+12. Quarter Echo / Focused
+13. Quarter Echo / Soft
+14. Quarter Echo / Open
+15. Quarter Echo / Parallel
+16. Triplet Motion / Natural
+17. Triplet Motion / Focused
+18. Triplet Motion / Soft
+19. Triplet Motion / Open
+20. Triplet Motion / Parallel
+21. Sixteenth Pulse / Natural
+22. Sixteenth Pulse / Focused
+23. Sixteenth Pulse / Soft
+24. Sixteenth Pulse / Open
+25. Sixteenth Pulse / Parallel
+26. Stereo Half / Natural
+27. Stereo Half / Focused
+28. Stereo Half / Soft
+29. Stereo Half / Open
+30. Stereo Half / Parallel
+31. Rock Slap / Natural
+32. Rock Slap / Focused
+33. Rock Slap / Soft
+34. Rock Slap / Open
+35. Rock Slap / Parallel
+36. Tape Shadow / Natural
+37. Tape Shadow / Focused
+38. Tape Shadow / Soft
+39. Tape Shadow / Open
+40. Tape Shadow / Parallel
+41. Wide Doubler / Natural
+42. Wide Doubler / Focused
+43. Wide Doubler / Soft
+44. Wide Doubler / Open
+45. Wide Doubler / Parallel
+46. Ambient Cascade / Natural
+47. Ambient Cascade / Focused
+48. Ambient Cascade / Soft
+49. Ambient Cascade / Open
+50. Ambient Cascade / Parallel
+
 ### استفادهٔ عملی
 
-1. برای اکوی نت سیاه، زمان میلی‌ثانیه را از تقسیم ۶۰٬۰۰۰ بر BPM به دست آورید؛ در تمپوی ۱۲۰، مقدار ۵۰۰ میلی‌ثانیه است.
-2. در همان تمپو، چنگ برابر ۲۵۰ و چنگ نقطه‌دار برابر ۳۷۵ میلی‌ثانیه است. مقدار را دستی وارد کنید.
+1. SYNC را فعال و برای نت سیاه 1/4 را انتخاب کنید؛ در تمپوی ۱۲۰ میزبان، زمان نمایش‌داده‌شده ۵۰۰ میلی‌ثانیه است.
+2. در تمپوی ۱۲۰، گزینهٔ 1/8 برابر ۲۵۰، 1/8 D نقطه‌دار برابر ۳۷۵ و 1/8 T تریوله حدود ۱۶۶٫۷ میلی‌ثانیه است. برای زمان دستی از FREE MS استفاده کنید.
 3. در مسیر Insert، از Feedback حدود ۲۰ تا ۳۵٪ و Mix حدود ۱۰ تا ۲۵٪ شروع کنید. در رابط فعلی، Feedback ممکن است به شکل ضریب اعشاری نمایش داده شود.
 4. برای تکرار تیره‌تر، Filter را پایین بیاورید؛ اگر با تنظیم سازگار است، Ping-pong را برای بازخورد متناوب فعال کنید.
 5. برای زیر و بمی پایدار، Modulation را کم نگه دارید و پیش از پایان محدودهٔ رندر، برای محوشدن تکرار آخر زمان بگذارید.
 
-فقط Filter و Width دارای Learn هستند. Filter از انرژی باند بالا و Width از انرژی جانبی، از جمله مرجع، کمک می‌گیرند. Time، Feedback، Modulation، مسیر، Mix و Output دستی‌اند و LEARN ALL آن‌ها را بازنشانی نمی‌کند. تشخیص تمپو یا تطبیق زمان اکو وجود ندارد.
+فقط Filter و Width دارای Learn هستند. Time، Sync، Division، Feedback، Modulation، مسیر، Mix و Output در همهٔ دامنه‌ها دستی می‌مانند. Sync تمپوی پروژه را می‌خواند؛ یادگیری از صوت تمپو استخراج نمی‌کند.
 
-در این نسخه همگام‌سازی با تمپوی میزبان، Tap Tempo یا تشخیص BPM وجود ندارد. محدودبودن Feedback به معنی بی‌خطر بودن بلندی صدا نیست؛ بازخورد زیاد می‌تواند تکرارهای بلند و ماندگار بسازد. محدودسازی نرم حلقه نیز ممکن است رنگ صوتی ایجاد کند.
+SYNC از BPM میزبان در بازهٔ ۱۰ تا ۴۰۰ استفاده می‌کند. رابط HOST، نگه‌داری آخرین تمپو با HOLD یا پیش‌فرض ۱۲۰ با FALLBACK را نشان می‌دهد. نت گرد در تمپوی ۱۰، برابر ۲۴ ثانیه است. تغییر تمپو یا تقسیم نت می‌تواند گذار زیر و بمی بسازد. Tap Tempo یا تشخیص BPM صوت وجود ندارد.
 
 Stereo بازخورد را در همان کانال نگه می‌دارد و Ping-pong آن را متقاطع می‌کند. ورودی وارد هر دو کانال می‌شود؛ پس منبع مونو الزاماً نخستین تکرار کاملاً چپ یا راست ندارد. Mix صفر فقط برگشت افکت را حذف می‌کند، نه محتوای بافر را.
 
@@ -403,6 +543,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 گین نهایی پس از ترکیب موازی است؛ برای هم‌سطح‌سازی و هد‌روم استفاده کنید.
 
 فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Level / Focused
+03. Vocal Level / Soft
+04. Vocal Level / Open
+05. Vocal Level / Parallel
+06. Drum Punch / Natural
+07. Drum Punch / Focused
+08. Drum Punch / Soft
+09. Drum Punch / Open
+10. Drum Punch / Parallel
+11. Bass Control / Natural
+12. Bass Control / Focused
+13. Bass Control / Soft
+14. Bass Control / Open
+15. Bass Control / Parallel
+16. Acoustic Even / Natural
+17. Acoustic Even / Focused
+18. Acoustic Even / Soft
+19. Acoustic Even / Open
+20. Acoustic Even / Parallel
+21. Piano Gentle / Natural
+22. Piano Gentle / Focused
+23. Piano Gentle / Soft
+24. Piano Gentle / Open
+25. Piano Gentle / Parallel
+26. Bus Glue / Natural
+27. Bus Glue / Focused
+28. Bus Glue / Soft
+29. Bus Glue / Open
+30. Bus Glue / Parallel
+31. Parallel Weight / Natural
+32. Parallel Weight / Focused
+33. Parallel Weight / Soft
+34. Parallel Weight / Open
+35. Parallel Weight / Parallel
+36. Transient Catch / Natural
+37. Transient Catch / Focused
+38. Transient Catch / Soft
+39. Transient Catch / Open
+40. Transient Catch / Parallel
+41. Soft Speech / Natural
+42. Soft Speech / Focused
+43. Soft Speech / Soft
+44. Soft Speech / Open
+45. Soft Speech / Parallel
+46. Sustain Hold / Natural
+47. Sustain Hold / Focused
+48. Sustain Hold / Soft
+49. Sustain Hold / Open
+50. Sustain Hold / Parallel
 
 ### استفادهٔ عملی
 
@@ -554,6 +747,59 @@ Bell، Low Shelf یا High Shelf است. یادگیری این انتخاب دس
 
 فقط دستی؛ بدون Learn
 
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Clarity / Focused
+03. Vocal Clarity / Soft
+04. Vocal Clarity / Open
+05. Vocal Clarity / Parallel
+06. Warm Voice / Natural
+07. Warm Voice / Focused
+08. Warm Voice / Soft
+09. Warm Voice / Open
+10. Warm Voice / Parallel
+11. Drum Presence / Natural
+12. Drum Presence / Focused
+13. Drum Presence / Soft
+14. Drum Presence / Open
+15. Drum Presence / Parallel
+16. Bass Definition / Natural
+17. Bass Definition / Focused
+18. Bass Definition / Soft
+19. Bass Definition / Open
+20. Bass Definition / Parallel
+21. Acoustic Detail / Natural
+22. Acoustic Detail / Focused
+23. Acoustic Detail / Soft
+24. Acoustic Detail / Open
+25. Acoustic Detail / Parallel
+26. Piano Body / Natural
+27. Piano Body / Focused
+28. Piano Body / Soft
+29. Piano Body / Open
+30. Piano Body / Parallel
+31. String Silk / Natural
+32. String Silk / Focused
+33. String Silk / Soft
+34. String Silk / Open
+35. String Silk / Parallel
+36. Synth Depth / Natural
+37. Synth Depth / Focused
+38. Synth Depth / Soft
+39. Synth Depth / Open
+40. Synth Depth / Parallel
+41. Mix Polish / Natural
+42. Mix Polish / Focused
+43. Mix Polish / Soft
+44. Mix Polish / Open
+45. Mix Polish / Parallel
+46. Dark Texture / Natural
+47. Dark Texture / Focused
+48. Dark Texture / Soft
+49. Dark Texture / Open
+50. Dark Texture / Parallel
+
 ### استفادهٔ عملی
 
 1. از گین صفر همهٔ باندها شروع کنید و پیش از تقویت، مسئلهٔ طیفی را در میکس کامل پیدا کنید.
@@ -623,6 +869,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 گین پس از Mix است؛ جبران خودکار افزایش Drive اعمال نمی‌شود.
 
 فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Warmth / Focused
+03. Vocal Warmth / Soft
+04. Vocal Warmth / Open
+05. Vocal Warmth / Parallel
+06. Drum Edge / Natural
+07. Drum Edge / Focused
+08. Drum Edge / Soft
+09. Drum Edge / Open
+10. Drum Edge / Parallel
+11. Bass Grit / Natural
+12. Bass Grit / Focused
+13. Bass Grit / Soft
+14. Bass Grit / Open
+15. Bass Grit / Parallel
+16. Acoustic Glow / Natural
+17. Acoustic Glow / Focused
+18. Acoustic Glow / Soft
+19. Acoustic Glow / Open
+20. Acoustic Glow / Parallel
+21. Piano Felt / Natural
+22. Piano Felt / Focused
+23. Piano Felt / Soft
+24. Piano Felt / Open
+25. Piano Felt / Parallel
+26. Bus Color / Natural
+27. Bus Color / Focused
+28. Bus Color / Soft
+29. Bus Color / Open
+30. Bus Color / Parallel
+31. Synth Asymmetry / Natural
+32. Synth Asymmetry / Focused
+33. Synth Asymmetry / Soft
+34. Synth Asymmetry / Open
+35. Synth Asymmetry / Parallel
+36. LoFi Shadow / Natural
+37. LoFi Shadow / Focused
+38. LoFi Shadow / Soft
+39. LoFi Shadow / Open
+40. LoFi Shadow / Parallel
+41. Parallel Crunch / Natural
+42. Parallel Crunch / Focused
+43. Parallel Crunch / Soft
+44. Parallel Crunch / Open
+45. Parallel Crunch / Parallel
+46. Smooth Harmonics / Natural
+47. Smooth Harmonics / Focused
+48. Smooth Harmonics / Soft
+49. Smooth Harmonics / Open
+50. Smooth Harmonics / Parallel
 
 ### استفادهٔ عملی
 
@@ -694,6 +993,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 فقط دستی؛ بدون Learn
 
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Kick Punch / Focused
+03. Kick Punch / Soft
+04. Kick Punch / Open
+05. Kick Punch / Parallel
+06. Snare Snap / Natural
+07. Snare Snap / Focused
+08. Snare Snap / Soft
+09. Snare Snap / Open
+10. Snare Snap / Parallel
+11. Room Tamer / Natural
+12. Room Tamer / Focused
+13. Room Tamer / Soft
+14. Room Tamer / Open
+15. Room Tamer / Parallel
+16. Bass Pick / Natural
+17. Bass Pick / Focused
+18. Bass Pick / Soft
+19. Bass Pick / Open
+20. Bass Pick / Parallel
+21. Acoustic Pluck / Natural
+22. Acoustic Pluck / Focused
+23. Acoustic Pluck / Soft
+24. Acoustic Pluck / Open
+25. Acoustic Pluck / Parallel
+26. Soft Piano / Natural
+27. Soft Piano / Focused
+28. Soft Piano / Soft
+29. Soft Piano / Open
+30. Soft Piano / Parallel
+31. Percussion Tight / Natural
+32. Percussion Tight / Focused
+33. Percussion Tight / Soft
+34. Percussion Tight / Open
+35. Percussion Tight / Parallel
+36. Pad Bloom / Natural
+37. Pad Bloom / Focused
+38. Pad Bloom / Soft
+39. Pad Bloom / Open
+40. Pad Bloom / Parallel
+41. Drum Sustain / Natural
+42. Drum Sustain / Focused
+43. Drum Sustain / Soft
+44. Drum Sustain / Open
+45. Drum Sustain / Parallel
+46. Parallel Attack / Natural
+47. Parallel Attack / Focused
+48. Parallel Attack / Soft
+49. Parallel Attack / Open
+50. Parallel Attack / Parallel
+
 ### استفادهٔ عملی
 
 1. برای درام جمع‌وجورتر، Attack مثبت ۲ تا ۴ و Sustain منفی ۲ تا ۴ دسی‌بل را امتحان کنید.
@@ -763,6 +1115,59 @@ Range: Stereo / Mono | Default: Stereo
 Stereo بخش Side مسیر Wet را نگه می‌دارد و Mono آن را صفر می‌کند. برای شنیدن کاملاً مونو، Mix را صددرصد کنید.
 
 فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Focus / Focused
+03. Vocal Focus / Soft
+04. Vocal Focus / Open
+05. Vocal Focus / Parallel
+06. Drum Stage / Natural
+07. Drum Stage / Focused
+08. Drum Stage / Soft
+09. Drum Stage / Open
+10. Drum Stage / Parallel
+11. Bass Center / Natural
+12. Bass Center / Focused
+13. Bass Center / Soft
+14. Bass Center / Open
+15. Bass Center / Parallel
+16. Acoustic Pair / Natural
+17. Acoustic Pair / Focused
+18. Acoustic Pair / Soft
+19. Acoustic Pair / Open
+20. Acoustic Pair / Parallel
+21. Piano Stage / Natural
+22. Piano Stage / Focused
+23. Piano Stage / Soft
+24. Piano Stage / Open
+25. Piano Stage / Parallel
+26. String Field / Natural
+27. String Field / Focused
+28. String Field / Soft
+29. String Field / Open
+30. String Field / Parallel
+31. Synth Spread / Natural
+32. Synth Spread / Focused
+33. Synth Spread / Soft
+34. Synth Spread / Open
+35. Synth Spread / Parallel
+36. Dark Sides / Natural
+37. Dark Sides / Focused
+38. Dark Sides / Soft
+39. Dark Sides / Open
+40. Dark Sides / Parallel
+41. Narrow Room / Natural
+42. Narrow Room / Focused
+43. Narrow Room / Soft
+44. Narrow Room / Open
+45. Narrow Room / Parallel
+46. Mix Perspective / Natural
+47. Mix Perspective / Focused
+48. Mix Perspective / Soft
+49. Mix Perspective / Open
+50. Mix Perspective / Parallel
 
 ### استفادهٔ عملی
 
@@ -850,6 +1255,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 فقط دستی؛ بدون Learn
 
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Sibilance / Focused
+03. Vocal Sibilance / Soft
+04. Vocal Sibilance / Open
+05. Vocal Sibilance / Parallel
+06. Bright Voice / Natural
+07. Bright Voice / Focused
+08. Bright Voice / Soft
+09. Bright Voice / Open
+10. Bright Voice / Parallel
+11. Low Voice / Natural
+12. Low Voice / Focused
+13. Low Voice / Soft
+14. Low Voice / Open
+15. Low Voice / Parallel
+16. Soft Speech / Natural
+17. Soft Speech / Focused
+18. Soft Speech / Soft
+19. Soft Speech / Open
+20. Soft Speech / Parallel
+21. Cymbal Restraint / Natural
+22. Cymbal Restraint / Focused
+23. Cymbal Restraint / Soft
+24. Cymbal Restraint / Open
+25. Cymbal Restraint / Parallel
+26. Acoustic Pick / Natural
+27. Acoustic Pick / Focused
+28. Acoustic Pick / Soft
+29. Acoustic Pick / Open
+30. Acoustic Pick / Parallel
+31. Air Retention / Natural
+32. Air Retention / Focused
+33. Air Retention / Soft
+34. Air Retention / Open
+35. Air Retention / Parallel
+36. Hard Consonants / Natural
+37. Hard Consonants / Focused
+38. Hard Consonants / Soft
+39. Hard Consonants / Open
+40. Hard Consonants / Parallel
+41. Bus High Tamer / Natural
+42. Bus High Tamer / Focused
+43. Bus High Tamer / Soft
+44. Bus High Tamer / Open
+45. Bus High Tamer / Parallel
+46. Parallel Silk / Natural
+47. Parallel Silk / Focused
+48. Parallel Silk / Soft
+49. Parallel Silk / Open
+50. Parallel Silk / Parallel
+
 ### استفادهٔ عملی
 
 1. جمله‌ای شامل مصوت و صامت سیبیلانس‌دار را لوپ کنید و از حدود ۵ تا ۷ کیلوهرتز شروع کنید.
@@ -927,6 +1385,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 گین پس از گیت است و در وضعیت باز هم اعمال می‌شود.
 
 فقط دستی؛ بدون Learn
+
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Cleanup / Focused
+03. Vocal Cleanup / Soft
+04. Vocal Cleanup / Open
+05. Vocal Cleanup / Parallel
+06. Kick Isolation / Natural
+07. Kick Isolation / Focused
+08. Kick Isolation / Soft
+09. Kick Isolation / Open
+10. Kick Isolation / Parallel
+11. Snare Isolation / Natural
+12. Snare Isolation / Focused
+13. Snare Isolation / Soft
+14. Snare Isolation / Open
+15. Snare Isolation / Parallel
+16. Tom Decay / Natural
+17. Tom Decay / Focused
+18. Tom Decay / Soft
+19. Tom Decay / Open
+20. Tom Decay / Parallel
+21. Guitar Noise / Natural
+22. Guitar Noise / Focused
+23. Guitar Noise / Soft
+24. Guitar Noise / Open
+25. Guitar Noise / Parallel
+26. Bass Tail / Natural
+27. Bass Tail / Focused
+28. Bass Tail / Soft
+29. Bass Tail / Open
+30. Bass Tail / Parallel
+31. Speech Pause / Natural
+32. Speech Pause / Focused
+33. Speech Pause / Soft
+34. Speech Pause / Open
+35. Speech Pause / Parallel
+36. Percussion Tight / Natural
+37. Percussion Tight / Focused
+38. Percussion Tight / Soft
+39. Percussion Tight / Open
+40. Percussion Tight / Parallel
+41. Room Reduction / Natural
+42. Room Reduction / Focused
+43. Room Reduction / Soft
+44. Room Reduction / Open
+45. Room Reduction / Parallel
+46. Gentle Floor / Natural
+47. Gentle Floor / Focused
+48. Gentle Floor / Soft
+49. Gentle Floor / Open
+50. Gentle Floor / Parallel
 
 ### استفادهٔ عملی
 
@@ -1054,6 +1565,59 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 فقط دستی؛ بدون Learn
 
+### ۵۰ پریست کارخانه
+
+01. Init / Factory Default
+02. Vocal Halo / Focused
+03. Vocal Halo / Soft
+04. Vocal Halo / Open
+05. Vocal Halo / Parallel
+06. Drum Space / Natural
+07. Drum Space / Focused
+08. Drum Space / Soft
+09. Drum Space / Open
+10. Drum Space / Parallel
+11. Guitar Trail / Natural
+12. Guitar Trail / Focused
+13. Guitar Trail / Soft
+14. Guitar Trail / Open
+15. Guitar Trail / Parallel
+16. Piano Cloud / Natural
+17. Piano Cloud / Focused
+18. Piano Cloud / Soft
+19. Piano Cloud / Open
+20. Piano Cloud / Parallel
+21. Bass Texture / Natural
+22. Bass Texture / Focused
+23. Bass Texture / Soft
+24. Bass Texture / Open
+25. Bass Texture / Parallel
+26. Synth Orbit / Natural
+27. Synth Orbit / Focused
+28. Synth Orbit / Soft
+29. Synth Orbit / Open
+30. Synth Orbit / Parallel
+31. LoFi Room / Natural
+32. LoFi Room / Focused
+33. LoFi Room / Soft
+34. LoFi Room / Open
+35. LoFi Room / Parallel
+36. Dark Cinematic / Natural
+37. Dark Cinematic / Focused
+38. Dark Cinematic / Soft
+39. Dark Cinematic / Open
+40. Dark Cinematic / Parallel
+41. Percussion Spark / Natural
+42. Percussion Spark / Focused
+43. Percussion Spark / Soft
+44. Percussion Spark / Open
+45. Percussion Spark / Parallel
+46. Ambient Wash / Natural
+47. Ambient Wash / Focused
+48. Ambient Wash / Soft
+49. Ambient Wash / Open
+50. Ambient Wash / Parallel
+
 ### استفادهٔ عملی
 
 1. از Mix اصلی کم و Drive ملایم شروع کنید و هنگام شکل‌دادن به رنگ، Output را نزدیک بهرهٔ واحد نگه دارید.
@@ -1072,7 +1636,7 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 ### چه چیزی ذخیره می‌شود
 
-پردازنده برای بازخوانی میزبان، وضعیت پارامتر را با APVTS/XML ذخیره می‌کند. پس از پذیرش تنظیم، پروژه را ذخیره کنید. بازخوانی و مهاجرت وضعیت قدیمی هنوز نیازمند اعتبارسنجی میزبان است؛ باینری قبلی را با آرشیو نگه دارید. مرورگر پریست، بستهٔ پریست کارخانه، حافظهٔ A/B یا ورود و خروج فایل پریست داخلی وجود ندارد.
+پردازنده برای بازخوانی میزبان، وضعیت پارامتر را با APVTS/XML ذخیره می‌کند. پس از پذیرش تنظیم، پروژه را ذخیره کنید. بازخوانی و مهاجرت وضعیت قدیمی هنوز نیازمند اعتبارسنجی میزبان است؛ باینری قبلی را با آرشیو نگه دارید. هر پلاگین ۵۰ برنامهٔ کارخانه و مرورگر بالای رابط دارد؛ ستاره ویرایش را نشان می‌دهد و وضعیت میزبان مقدار واقعی را نگه می‌دارد. حافظهٔ A/B و ورود و خروج فایل پریست اختصاصی وجود ندارد. بارگذاری برنامه، یادگیری و پیش‌شنوی معلق را لغو می‌کند.
 
 صوت مرجع، توصیف، فهرست پیشنهاد و Undo یک‌سطحی در وضعیت پردازنده جاسازی نمی‌شوند. پس از بستن رابط یا بازکردن پروژه، مرجع را دوباره بارگذاری کنید. در صورت مجازبودن نسخه‌ای در دارایی پروژه نگه دارید؛ نمایش نام فایل به معنی ذخیره‌شدن آن در جلسه نیست.
 
@@ -1124,7 +1688,7 @@ Range: -24 dB to 12 dB | Default: 0 dB
 
 ### محدودیت عملی
 
-اورسمپلینگ، Look-ahead، لیمیتر True Peak، تشخیص یا همگام‌سازی تمپو، کانولوشن دلخواه، فهم عمومی زبان یا بهینه‌ساز تکراری خروجی و مرجع وجود ندارد. DEQ فاز خطی، DSess اکولایزر داینامیک پارامتریک کامل و DGate دارای نسبت اکسپنشن نیست. ترتیب DFX ثابت است. کیفیت و اتومیشن باید با منابع واقعی شنیده شوند.
+اورسمپلینگ، Look-ahead، لیمیتر True Peak، تشخیص تمپو از صوت، کانولوشن دلخواه، فهم عمومی زبان یا بهینه‌ساز تکراری خروجی و مرجع وجود ندارد. DEQ فاز خطی، DSess اکولایزر داینامیک پارامتریک کامل و DGate دارای نسبت اکسپنشن نیست. ترتیب DFX ثابت است. کیفیت و اتومیشن باید با منابع واقعی شنیده شوند.
 
 مصرف پردازنده و حافظه به نرخ، پلتفرم، تعداد نمونه و تنظیمات وابسته است. حداقل اندازه‌گیری‌شدهٔ RAM/CPU یا تضمین بافر منتشر نشده است. محافظت مقدار متناهی و محدودسازی داخلی خروجی، جلوگیری شفاف از اورلود نیست. از متر میزبان و سطح ورودی معقول استفاده کنید.
 

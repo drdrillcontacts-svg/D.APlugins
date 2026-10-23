@@ -61,8 +61,11 @@ retention with brighter Tone. The latter measures the late tail (1–2 s), not u
 
 Updated native tests also exercise all 50 host programs per product, XML roundtrip, legacy missing sync
 IDs, mock host-tempo loss/hold, initial/optional logs, attachments, preview/manual changes and resize.
-Their sources strict-syntax-check against JUCE 8.0.6. Local linked native setup is blocked by missing
-pkg-config/system development dependencies. New native execution must be checked on CI.
+**The actual Linux JUCE native runner passed on CI run 39982254703**, including all these checks
+and all ten main/Advanced editor captures. Native previews were successfully uploaded. The portable
+sanitizer job also passed on that run. Full cross-platform format builds are still running at this
+checkpoint. Their sources also strict-syntax-check against JUCE 8.0.6. Local linked native setup is blocked by missing
+pkg-config/system development dependencies. Native execution was therefore performed on CI, not locally.
 
 Previous revision 63e91b9 built on Windows/macOS but failed the Ubuntu native UI runner (exit 10).
 That is historical evidence, not validation of this revision; the report initialization/identification

@@ -11,15 +11,50 @@ PRODUCTS = {
  'recipe':[('For a vocal send, start with Hall, 20–40 ms Pre-delay and 1.5–2.5 s Decay.','برای ارسال وکال، از Hall، پیش‌تأخیر ۲۰ تا ۴۰ میلی‌ثانیه و Decay حدود ۱٫۵ تا ۲٫۵ ثانیه شروع کنید.'),('Set Mix to 100% on the auxiliary return; adjust the send level in the host.','در مسیر برگشت کمکی، Mix را روی ۱۰۰٪ بگذارید و شدت افکت را با سطح Send میزبان تنظیم کنید.'),('Try Low Cut around 120–200 Hz, then lower Tone if the return obscures consonants or cymbals.','Low Cut حدود ۱۲۰ تا ۲۰۰ هرتز را امتحان کنید؛ اگر افکت وضوح حروف یا سنج را می‌پوشاند، Tone را کاهش دهید.'),('Adjust Density and Diffusion for the desired build-up. Use modest Modulation before trying Shimmer.','برای شکل‌دادن به انباشت فضا، Density و Diffusion را تنظیم کنید. پیش از شیمِر، مقدار کمی Modulation را امتحان کنید.'),('Listen to the tail after the source stops; shorten Decay or reduce the send if successive phrases blur.','پس از قطع منبع، دنباله را بشنوید؛ اگر جمله‌ها روی هم محو می‌شوند، Decay یا سطح ارسال را کم کنید.')],
  'learning':('Learn is available for Pre-delay, Decay, Tone, Width and Low Cut only. Crest and coarse spectral features inform starting points; Width can use the reference. Size, Mix, mode, Density, Diffusion, Modulation and Mid Cut stay manual. No reference RT60 or room impulse response is inferred.', 'Learn فقط برای Pre-delay، Decay، Tone، Width و Low Cut موجود است. ضریب قله و طیف کلی نقطهٔ شروع می\u200cدهند و Width می\u200cتواند از مرجع کمک بگیرد. Size، Mix، حالت، Density، Diffusion، Modulation و Mid Cut دستی می\u200cمانند. RT60 مرجع یا پاسخ ضربهٔ اتاق استخراج نمی\u200cشود.'),
  'tips':('Use the Space or Colour scope to keep a change focused. Width above 100% increases the side component of the wet return; check mono. Do not judge a large reverb only in solo.','برای تغییر محدودتر، از دامنهٔ Space یا Colour استفاده کنید. Width بیش از ۱۰۰٪ مؤلفهٔ جانبی برگشت افکت را افزایش می‌دهد؛ مونو را کنترل کنید و ریورب بزرگ را فقط در حالت سولو قضاوت نکنید.')},
-'DDelay': {
- 'title':('Stereo delay','دیلی استریو'),
- 'intro':('DDelay combines fractional delay lines, a low-pass feedback path, stereo or cross-feedback routing, slow time modulation and a wet-width control. Time is entered in milliseconds. The two channels use a small timing difference; this is not a sample-identical dual-mono echo.','DDelay خطوط تأخیر کسری، فیلتر پایین‌گذر در مسیر تکرار، بازخورد استریو یا متقاطع، مدولاسیون آهستهٔ زمان و کنترل پهنای افکت را ترکیب می‌کند. زمان بر حسب میلی‌ثانیه است. دو کانال اندکی اختلاف زمان دارند؛ بنابراین خروجی، دو اکوی مونو و کاملاً یکسان نیست.'),
- 'signal':'Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output',
- 'uses':[('Vocal and instrument repeats','تکرار برای وکال و ساز'),('Alternating stereo echoes','اکوهای متناوب استریو'),('Subtle moving doubling textures','بافت‌های دابلینگ با حرکت ملایم')],
- 'caution':('There is no host-tempo synchronization, tap tempo or detected-BPM control in this revision. Feedback is limited, but high feedback and bright material can still create loud, persistent repeats. Soft bounding in the loop can add coloration.','در این نسخه همگام‌سازی با تمپوی میزبان، Tap Tempo یا تشخیص BPM وجود ندارد. محدودبودن Feedback به معنی بی‌خطر بودن بلندی صدا نیست؛ بازخورد زیاد می‌تواند تکرارهای بلند و ماندگار بسازد. محدودسازی نرم حلقه نیز ممکن است رنگ صوتی ایجاد کند.'),
- 'recipe':[('For a tempo-related quarter-note echo, calculate Time = 60,000 / BPM in milliseconds. At 120 BPM, use 500 ms.','برای اکوی نت سیاه، زمان میلی‌ثانیه را از تقسیم ۶۰٬۰۰۰ بر BPM به دست آورید؛ در تمپوی ۱۲۰، مقدار ۵۰۰ میلی‌ثانیه است.'),('Use 250 ms for eighth notes or 375 ms for dotted eighth notes at 120 BPM. Enter the value manually.','در همان تمپو، چنگ برابر ۲۵۰ و چنگ نقطه‌دار برابر ۳۷۵ میلی‌ثانیه است. مقدار را دستی وارد کنید.'),('Begin around 20–35% Feedback and 10–25% Mix on an insert.','در مسیر Insert، از Feedback حدود ۲۰ تا ۳۵٪ و Mix حدود ۱۰ تا ۲۵٪ شروع کنید. در رابط فعلی، Feedback ممکن است به شکل ضریب اعشاری نمایش داده شود.'),('Lower Filter for darker repeats and enable Ping-pong if alternating feedback supports the arrangement.','برای تکرار تیره‌تر، Filter را پایین بیاورید؛ اگر با تنظیم سازگار است، Ping-pong را برای بازخورد متناوب فعال کنید.'),('Keep Modulation small for stable pitch; allow the final repeat to decay before rendering the region end.','برای زیر و بمی پایدار، Modulation را کم نگه دارید و پیش از پایان محدودهٔ رندر، برای محوشدن تکرار آخر زمان بگذارید.')],
- 'learning':('Only Filter and Width have Learn. Filter follows upper-band energy; Width can use reference side energy. Time, Feedback, Modulation, routing, Mix and Output are manual and are not reset by LEARN ALL. There is no tempo detection or echo-timing match.', 'فقط Filter و Width دارای Learn هستند. Filter از انرژی باند بالا و Width از انرژی جانبی، از جمله مرجع، کمک می\u200cگیرند. Time، Feedback، Modulation، مسیر، Mix و Output دستی\u200cاند و LEARN ALL آن\u200cها را بازنشانی نمی\u200cکند. تشخیص تمپو یا تطبیق زمان اکو وجود ندارد.'),
- 'tips':('Stereo keeps feedback in its own channel; Ping-pong crosses it. Both channels receive the input, so a centered mono source does not necessarily produce a hard left/right first-repeat pattern. Mix 0% silences the wet return, not its internal buffer.','Stereo بازخورد را در همان کانال نگه می‌دارد و Ping-pong آن را متقاطع می‌کند. ورودی وارد هر دو کانال می‌شود؛ پس منبع مونو الزاماً نخستین تکرار کاملاً چپ یا راست ندارد. Mix صفر فقط برگشت افکت را حذف می‌کند، نه محتوای بافر را.')},
+'DDelay': {'title': ('Stereo delay', 'دیلی استریو'),
+ 'intro': ('DDelay offers FREE MS or host-tempo SYNC with 15 straight, dotted and triplet divisions. Free mode keeps the '
+           'small stereo timing offset and modulation; Sync locks both taps to the same note length and disables '
+           'modulation. Filter and wet Width shape the repeats.',
+           'DDelay حالت FREE MS و حالت SYNC با ۱۵ تقسیم نت معمولی، نقطه\u200cدار و تریوله دارد. حالت آزاد، اختلاف کوچک زمان '
+           'استریو و مدولاسیون را حفظ می\u200cکند؛ در Sync هر دو خط، طول نت یکسان دارند و مدولاسیون غیرفعال است. Filter و '
+           'Width رنگ و پهنای تکرار را شکل می\u200cدهند.'),
+ 'signal': 'Input → Stereo delay ↔ Filtered feedback → Wet width → Mix → Output',
+ 'uses': [('Vocal and instrument repeats', 'تکرار برای وکال و ساز'),
+          ('Alternating stereo echoes', 'اکوهای متناوب استریو'),
+          ('Subtle moving doubling textures', 'بافت\u200cهای دابلینگ با حرکت ملایم')],
+ 'caution': ('SYNC needs host BPM (10–400). The UI shows HOST, HOLD for last valid tempo, or FALLBACK 120 BPM before any '
+             'valid tempo. A whole note at 10 BPM lasts 24 s. Tempo/division changes can create pitch transitions. No tap '
+             'tempo or audio BPM detection is provided.',
+             'SYNC از BPM میزبان در بازهٔ ۱۰ تا ۴۰۰ استفاده می\u200cکند. رابط HOST، نگه\u200cداری آخرین تمپو با HOLD یا '
+             'پیش\u200cفرض ۱۲۰ با FALLBACK را نشان می\u200cدهد. نت گرد در تمپوی ۱۰، برابر ۲۴ ثانیه است. تغییر تمپو یا تقسیم '
+             'نت می\u200cتواند گذار زیر و بمی بسازد. Tap Tempo یا تشخیص BPM صوت وجود ندارد.'),
+ 'recipe': [('Enable SYNC and choose 1/4 for quarter notes: at host 120 BPM the displayed time is 500 ms.',
+             'SYNC را فعال و برای نت سیاه 1/4 را انتخاب کنید؛ در تمپوی ۱۲۰ میزبان، زمان نمایش\u200cداده\u200cشده ۵۰۰ '
+             'میلی\u200cثانیه است.'),
+            ('Choose 1/8 for 250 ms, 1/8 D for dotted 375 ms, or 1/8 T for triplet 166.7 ms at 120 BPM. Use FREE MS for '
+             'manual timing.',
+             'در تمپوی ۱۲۰، گزینهٔ 1/8 برابر ۲۵۰، 1/8 D نقطه\u200cدار برابر ۳۷۵ و 1/8 T تریوله حدود ۱۶۶٫۷ میلی\u200cثانیه '
+             'است. برای زمان دستی از FREE MS استفاده کنید.'),
+            ('Begin around 20–35% Feedback and 10–25% Mix on an insert.',
+             'در مسیر Insert، از Feedback حدود ۲۰ تا ۳۵٪ و Mix حدود ۱۰ تا ۲۵٪ شروع کنید. در رابط فعلی، Feedback ممکن است به '
+             'شکل ضریب اعشاری نمایش داده شود.'),
+            ('Lower Filter for darker repeats and enable Ping-pong if alternating feedback supports the arrangement.',
+             'برای تکرار تیره\u200cتر، Filter را پایین بیاورید؛ اگر با تنظیم سازگار است، Ping-pong را برای بازخورد متناوب '
+             'فعال کنید.'),
+            ('Keep Modulation small for stable pitch; allow the final repeat to decay before rendering the region end.',
+             'برای زیر و بمی پایدار، Modulation را کم نگه دارید و پیش از پایان محدودهٔ رندر، برای محوشدن تکرار آخر زمان '
+             'بگذارید.')],
+ 'learning': ('Only Filter and Width have Learn. Time, Sync, Division, Feedback, Modulation, routing, Mix and Output remain '
+              'manual in every scope. Sync reads project BPM; learning does not infer tempo from audio.',
+              'فقط Filter و Width دارای Learn هستند. Time، Sync، Division، Feedback، Modulation، مسیر، Mix و Output در همهٔ '
+              'دامنه\u200cها دستی می\u200cمانند. Sync تمپوی پروژه را می\u200cخواند؛ یادگیری از صوت تمپو استخراج '
+              'نمی\u200cکند.'),
+ 'tips': ('Stereo keeps feedback in its own channel; Ping-pong crosses it. Both channels receive the input, so a centered '
+          'mono source does not necessarily produce a hard left/right first-repeat pattern. Mix 0% silences the wet return, '
+          'not its internal buffer.',
+          'Stereo بازخورد را در همان کانال نگه می\u200cدارد و Ping-pong آن را متقاطع می\u200cکند. ورودی وارد هر دو کانال '
+          'می\u200cشود؛ پس منبع مونو الزاماً نخستین تکرار کاملاً چپ یا راست ندارد. Mix صفر فقط برگشت افکت را حذف '
+          'می\u200cکند، نه محتوای بافر را.')},
 'DComp': {
  'title':('Dynamics compressor','کمپرسور داینامیک'),
  'intro':('DComp reduces level above a threshold using peak-envelope detection, adjustable ratio, attack/release and a soft knee. Makeup acts inside the processed path; Output acts after parallel mixing. The detector is not a loudness meter and the processor is not a brick-wall limiter.','DComp با آشکارسازی پوش قله، نسبت، حمله، رهایی و زانوی نرم، سطح بالاتر از آستانه را کاهش می‌دهد. Makeup داخل مسیر پردازش‌شده و Output پس از ترکیب موازی عمل می‌کند. آشکارساز، متر لادنس نیست و این پردازنده لیمیتر دیوارآجری محسوب نمی‌شود.'),
@@ -96,28 +131,100 @@ PRODUCTS = {
 
 # Control reference: Persian label, English explanation, Persian explanation.
 CONTROLS = {
-'DVerb': {
- 'predelay':('پیش‌تأخیر','Time before the reverb excitation. Increase it to separate the dry attack from the ambience; it does not delay the dry path.','زمان پیش از تحریک ریورب است. برای جداکردن حملهٔ خشک از فضا افزایش دهید؛ مسیر خشک تأخیر نمی‌گیرد.'),
- 'size':('اندازهٔ فضا','Scales network delay lengths. Larger values change spacing and perceived scale; they are not room dimensions in metres.','طول تأخیرهای شبکه را تغییر می‌دهد. مقدار بیشتر، فاصلهٔ بازتاب‌ها و مقیاس ادراکی را عوض می‌کند؛ واحد آن متر نیست.'),
- 'decay':('میرایی','Controls feedback decay design. Longer values sustain the ambience, but actual decay also depends on damping, diffusion, size and mode.','طرح میرایی بازخورد را کنترل می‌کند. مقدار بیشتر فضا را می‌کشد، ولی میرایی واقعی به میرایی طیفی، پخش‌شدگی، اندازه و حالت هم وابسته است.'),
- 'tone':('رنگ طیفی','Low-pass damping cutoff in the reverb network. Lower values produce a darker return; this is a frequency control, not a dB tone tilt.','فرکانس قطع میرایی پایین‌گذر شبکه است. مقدار کمتر، برگشت را تیره‌تر می‌کند؛ این کنترل فرکانسی است، نه شیب دسی‌بلی رنگ.'),
- 'mix':('ترکیب خشک و افکت','Linear blend of original and reverberant signal. Use 100% for a conventional fully wet auxiliary return.','ترکیب خطی صدای اصلی و ریورب است. برای برگشت کمکی کاملاً افکتی، صددرصد انتخاب کنید.'),
- 'width':('پهنای افکت','Scales the side component of the wet reverb: 0% mono wet, 100% nominal, 200% double side. It does not widen the dry component.','مؤلفهٔ جانبی ریورب Wet را تغییر می‌دهد: صفر مونو، صددرصد عادی و دویست‌درصد دو برابر Side؛ بخش خشک را باز نمی‌کند.'),
- 'density':('تراکم','Changes excitation of additional network lines. Lower values emphasize fewer initial paths; higher values feed a denser initial network.','تحریک خطوط اضافهٔ شبکه را تغییر می‌دهد. مقدار کمتر مسیرهای اولیهٔ کمتری و مقدار بیشتر شبکهٔ اولیهٔ متراکم‌تری را تغذیه می‌کند.'),
- 'diffusion':('پخش‌شدگی','Blends direct line feedback with a normalized scattering matrix. Higher settings disperse energy between delay paths.','بازخورد مستقیم خطوط را با ماتریس پراکندگی نرمال‌شده ترکیب می‌کند. مقدار بیشتر انرژی را میان مسیرها پخش می‌کند.'),
- 'modulation':('مدولاسیون','Depth of slow delay-length motion. It adds movement and can introduce pitch texture; no separate rate parameter is exposed.','عمق حرکت آهستهٔ طول تأخیرهاست. حرکت و بافت زیر و بمی می‌دهد؛ کنترل مستقل نرخ وجود ندارد.'),
- 'lowcut':('برش پایین','High-pass-related damping of low-frequency tank content. Raise it to reduce low-end accumulation in the reverb.','میرایی مؤلفهٔ پایین شبکه با رفتار بالاگذر است. برای کاهش انباشت بم ریورب افزایش دهید.'),
- 'midcut':('کاهش میانی','Attenuates a broad, fixed midrange component in the tank. The band is not a freely tunable parametric EQ.','بخش میانی پهن و ثابتی از شبکه را تضعیف می‌کند؛ باند EQ پارامتریک با فرکانس آزاد نیست.'),
- 'mode':('حالت ریورب','Room, Hall and Plate use different delay scaling; Shimmer adds octave-up granular feedback. This is a discrete choice, not a wet level.','Room، Hall و Plate مقیاس تأخیر متفاوت دارند؛ Shimmer بازخورد گرِینی یک اکتاو بالاتر می‌افزاید. این یک انتخاب حالت است، نه شدت افکت.')},
-'DDelay': {
- 'time':('زمان','Nominal left delay time in milliseconds; the right line has a small additional offset. No note-value sync is available.','زمان اسمی تأخیر چپ بر حسب میلی‌ثانیه است؛ خط راست کمی اختلاف دارد. همگام‌سازی ارزش نت وجود ندارد.'),
- 'feedback':('بازخورد','Amount returned to the delay loop. 0 means no recursive repeats; 0.95 is 95%, not a guarantee of a particular repeat count.','سهم برگشتی به حلقه است. صفر تکرار بازگشتی ندارد و ۰٫۹۵ یعنی ۹۵٪؛ تعداد معین تکرار را تضمین نمی‌کند.'),
- 'filter':('فیلتر تکرار','Low-pass cutoff applied to delayed/feedback content. Lower values darken the repeats.','فرکانس قطع پایین‌گذرِ محتوای تأخیری و بازخورد است؛ مقدار کمتر تکرارها را تیره‌تر می‌کند.'),
- 'pingpong':('مسیر استریو','Stereo keeps feedback within each channel; Ping-pong cross-feeds the opposite channel. Both lines still receive input.','Stereo بازخورد را در همان کانال نگه می‌دارد؛ Ping-pong آن را به کانال مقابل می‌فرستد. ورودی همچنان به هر دو خط می‌رسد.'),
- 'modulation':('عمق مدولاسیون','Depth of slow delay-time modulation. Higher values create stronger motion and pitch variation.','عمق مدولاسیون آهستهٔ زمان است؛ مقدار بالاتر حرکت و نوسان زیر و بمی بیشتری می‌دهد.'),
- 'mix':('ترکیب','Linear dry/wet blend before Output gain. At 0%, the wet return is inaudible but the delay memory is not reset.','ترکیب خطی خشک و Wet پیش از گین Output است. در صفر افکت شنیده نمی‌شود، ولی حافظهٔ دیلی پاک نمی‌شود.'),
- 'width':('پهنا','Side scaling of the wet echo only. Check the mono sum after widening.','مقیاس مؤلفهٔ جانبی اکوی Wet است. پس از بازکردن، جمع مونو را بررسی کنید.'),
- 'output':('سطح خروجی','Post-mix level in dB. Reduce it if input plus repeats increases peaks.','سطح دسی‌بلی پس از Mix است. اگر مجموع ورودی و تکرارها قله را بالا برد، کاهش دهید.')},
+'DVerb': {'predelay': ('پیش\u200cتأخیر',
+              'Time before the reverb excitation. Increase it to separate the dry attack from the ambience; it does not '
+              'delay the dry path.',
+              'زمان پیش از تحریک ریورب است. برای جداکردن حملهٔ خشک از فضا افزایش دهید؛ مسیر خشک تأخیر نمی\u200cگیرد.'),
+ 'size': ('اندازهٔ فضا',
+          'Scales network delay lengths. Larger values change spacing and perceived scale; they are not room dimensions in '
+          'metres.',
+          'طول تأخیرهای شبکه را تغییر می\u200cدهد. مقدار بیشتر، فاصلهٔ بازتاب\u200cها و مقیاس ادراکی را عوض می\u200cکند؛ '
+          'واحد آن متر نیست.'),
+ 'decay': ('میرایی',
+           'Controls feedback decay design. Longer values sustain the ambience, but actual decay also depends on damping, '
+           'diffusion, size and mode.',
+           'طرح میرایی بازخورد را کنترل می\u200cکند. مقدار بیشتر فضا را می\u200cکشد، ولی میرایی واقعی به میرایی طیفی، '
+           'پخش\u200cشدگی، اندازه و حالت هم وابسته است.'),
+ 'tone': ('رنگ طیفی',
+          'Low-pass damping cutoff in the reverb network. Lower values produce a darker return; this is a frequency '
+          'control, not a dB tone tilt.',
+          'فرکانس قطع میرایی پایین\u200cگذر شبکه است. مقدار کمتر، برگشت را تیره\u200cتر می\u200cکند؛ این کنترل فرکانسی است، '
+          'نه شیب دسی\u200cبلی رنگ.'),
+ 'mix': ('ترکیب خشک و افکت',
+         'Linear blend of original and reverberant signal. Use 100% for a conventional fully wet auxiliary return.',
+         'ترکیب خطی صدای اصلی و ریورب است. برای برگشت کمکی کاملاً افکتی، صددرصد انتخاب کنید.'),
+ 'width': ('پهنای افکت',
+           'Scales the side component of the wet reverb: 0% mono wet, 100% nominal, 200% double side. It does not widen the '
+           'dry component.',
+           'مؤلفهٔ جانبی ریورب Wet را تغییر می\u200cدهد: صفر مونو، صددرصد عادی و دویست\u200cدرصد دو برابر Side؛ بخش خشک را '
+           'باز نمی\u200cکند.'),
+ 'density': ('تراکم',
+             'Changes excitation of additional network lines. Lower values emphasize fewer initial paths; higher values '
+             'feed a denser initial network.',
+             'تحریک خطوط اضافهٔ شبکه را تغییر می\u200cدهد. مقدار کمتر مسیرهای اولیهٔ کمتری و مقدار بیشتر شبکهٔ اولیهٔ '
+             'متراکم\u200cتری را تغذیه می\u200cکند.'),
+ 'diffusion': ('پخش\u200cشدگی',
+               'Controls four serial input-allpass feedback coefficients. Higher values disperse incoming attacks before '
+               'the always-orthogonal tank; it no longer blends the tank matrix with identity.',
+               'ضریب بازخورد چهار آل\u200cپسِ سری ورودی را کنترل می\u200cکند. مقدار بیشتر، حمله را پیش از شبکهٔ همواره '
+               'متعامد پخش می\u200cکند؛ دیگر ماتریس شبکه را با مسیر مستقیم ترکیب نمی\u200cکند.'),
+ 'modulation': ('مدولاسیون',
+                'Depth of slow delay-length motion. It adds movement and can introduce pitch texture; no separate rate '
+                'parameter is exposed.',
+                'عمق حرکت آهستهٔ طول تأخیرهاست. حرکت و بافت زیر و بمی می\u200cدهد؛ کنترل مستقل نرخ وجود ندارد.'),
+ 'lowcut': ('برش پایین',
+            'High-pass on the excitation before the tank, not a repeated filter on every circulation. Raise it to reduce '
+            'low-frequency buildup.',
+            'بالاگذرِ تحریک پیش از شبکه است، نه فیلتری تکرارشونده در هر گردش. برای کاهش انباشت بم افزایش دهید.'),
+ 'midcut': ('کاهش میانی',
+            'Broad fixed midrange cut applied once to the excitation. It does not repeatedly hollow the tail and is not a '
+            'tunable parametric band.',
+            'کاهش پهن و ثابت میانی، یک\u200cبار بر تحریک اعمال می\u200cشود؛ دنباله را در هر گردش توخالی نمی\u200cکند و باند '
+            'پارامتریک با فرکانس آزاد نیست.'),
+ 'mode': ('حالت ریورب',
+          'Room, Hall and Plate use different delay scaling; Shimmer adds octave-up granular feedback. This is a discrete '
+          'choice, not a wet level.',
+          'Room، Hall و Plate مقیاس تأخیر متفاوت دارند؛ Shimmer بازخورد گرِینی یک اکتاو بالاتر می\u200cافزاید. این یک '
+          'انتخاب حالت است، نه شدت افکت.')},
+'DDelay': {'time': ('زمان آزاد',
+          'FREE MS delay time; the right tap has a 1.1% offset. Ignored and disabled while SYNC is enabled; the tempo label '
+          'shows the resolved note time.',
+          'زمان تأخیر در FREE MS است و خط راست ۱٫۱٪ اختلاف دارد. در SYNC نادیده و غیرفعال می\u200cشود؛ برچسب تمپو زمان '
+          'واقعی نت را نشان می\u200cدهد.'),
+ 'feedback': ('بازخورد',
+              'Amount returned to the delay loop. 0 means no recursive repeats; 0.95 is 95%, not a guarantee of a '
+              'particular repeat count.',
+              'سهم برگشتی به حلقه است. صفر تکرار بازگشتی ندارد و ۰٫۹۵ یعنی ۹۵٪؛ تعداد معین تکرار را تضمین نمی\u200cکند.'),
+ 'filter': ('فیلتر تکرار',
+            'Low-pass cutoff applied to delayed/feedback content. Lower values darken the repeats.',
+            'فرکانس قطع پایین\u200cگذرِ محتوای تأخیری و بازخورد است؛ مقدار کمتر تکرارها را تیره\u200cتر می\u200cکند.'),
+ 'pingpong': ('مسیر استریو',
+              'Stereo keeps feedback within each channel; Ping-pong cross-feeds the opposite channel. Both lines still '
+              'receive input.',
+              'Stereo بازخورد را در همان کانال نگه می\u200cدارد؛ Ping-pong آن را به کانال مقابل می\u200cفرستد. ورودی همچنان '
+              'به هر دو خط می\u200cرسد.'),
+ 'modulation': ('عمق مدولاسیون',
+                'Depth of slow time/pitch movement in FREE MS only. Disabled in SYNC to preserve exact grid timing.',
+                'عمق حرکت آهستهٔ زمان و زیر و بمی فقط در FREE MS است. برای حفظ زمان دقیق شبکه، در SYNC غیرفعال است.'),
+ 'mix': ('ترکیب',
+         'Linear dry/wet blend before Output gain. At 0%, the wet return is inaudible but the delay memory is not reset.',
+         'ترکیب خطی خشک و Wet پیش از گین Output است. در صفر افکت شنیده نمی\u200cشود، ولی حافظهٔ دیلی پاک نمی\u200cشود.'),
+ 'width': ('پهنا',
+           'Side scaling of the wet echo only. Check the mono sum after widening.',
+           'مقیاس مؤلفهٔ جانبی اکوی Wet است. پس از بازکردن، جمع مونو را بررسی کنید.'),
+ 'output': ('سطح خروجی',
+            'Post-mix level in dB. Reduce it if input plus repeats increases peaks.',
+            'سطح دسی\u200cبلی پس از Mix است. اگر مجموع ورودی و تکرارها قله را بالا برد، کاهش دهید.'),
+ 'sync': ('همگام\u200cسازی',
+          'FREE MS uses Time; SYNC follows host BPM and Division. Missing tempo holds the last valid value, or 120 BPM '
+          'initially. This is manual-only.',
+          'FREE MS از Time و SYNC از BPM میزبان و Division استفاده می\u200cکند. با نبود تمپو، مقدار معتبر قبلی یا در ابتدا '
+          '۱۲۰ نگه داشته می\u200cشود. این انتخاب فقط دستی است.'),
+ 'division': ('تقسیم نت',
+              'Note length for SYNC: D means dotted (×1.5), T means triplet (×2/3). Ordinary values span 1/32 to 1/1. The '
+              '15 exact choices are listed in the preset/tempo chapter.',
+              'طول نت در SYNC است: D نقطه\u200cدار با ضریب ۱٫۵ و T تریوله با ضریب دوسوم است. نت\u200cهای معمولی از 1/32 تا '
+              '1/1 هستند؛ ۱۵ انتخاب در فصل پریست و تمپو آمده\u200cاند.')},
 'DComp': {
  'threshold':('آستانه','Detector level where compression begins, modified by Knee. Lower settings generally produce more reduction.','سطح آشکارساز برای آغاز کمپرس است که Knee آن را تعدیل می‌کند. مقدار پایین‌تر معمولاً کاهش بیشتری می‌دهد.'),
  'ratio':('نسبت','Compression ratio above the knee. 4:1 means an additional 4 dB at the detector maps to approximately 1 dB after the static curve.','نسبت کمپرس بالای زانوست. در منحنی ثابتِ ۴ به ۱، افزایش ۴ دسی‌بلی آشکارساز تقریباً به ۱ دسی‌بل تبدیل می‌شود.'),
@@ -235,7 +342,7 @@ BEFORE = [
  ('The hardware interface scales uniformly and preserves its aspect ratio. Hover tooltips identify many controls. The illustrations in this manual are design studies, not native screenshots; example traces/meters in those images are not analysis results or performance claims.','رابط سخت‌افزاری با حفظ نسبت ابعاد بزرگ و کوچک می‌شود. راهنمای شناور، بسیاری از کنترل‌ها را معرفی می‌کند. تصاویر این دفترچه طرح گرافیکی‌اند، نه اسکرین‌شات بومی؛ نمودار و متر نمونهٔ آن‌ها نتیجهٔ تحلیل یا ادعای عملکرد نیست.')])]),
 (('Learning modes, scopes & approval','حالت‌ها، دامنه‌ها و تأیید یادگیری'), [
  (('Input-aware learn','یادگیری آگاه از ورودی'), [
- ('The engine measures level, crest, coarse band energies and stereo features. Only 33 audio-informed controls have Learn. The other 57, including mixes, output trims, timing/routing and EQ frequency/Q/shape, stay manual in every scope. No trained neural network or model inference is shipped. Eligible values are still estimates, not uniquely identifiable settings.','موتور، سطح، ضریب قله، انرژی باندهای کلی و ویژگی استریو را اندازه و مقدار محدودشده پیشنهاد می‌کند. فقط ۳۳ کنترل صوت‌محور Learn دارند؛ ۵۷ کنترل دیگر شامل Mix، تریم خروجی، انتخاب زمان و مسیر و فرکانس/Q/شکل EQ دستی می‌مانند. LEARN ALL و یادگیری باند یا ماژول نیز این ۵۷ کنترل را حفظ می‌کنند. شبکهٔ عصبی آموزش‌دیده یا استنتاج مدل ارائه نشده است. داشتن Learn به معنی استخراج یکتای پارامتر از هر صوت نیست.')]),
+ ('The engine measures level, crest, coarse band energies and stereo features. Only 33 audio-informed controls have Learn. The other 59, including mixes, output trims, timing/routing and EQ frequency/Q/shape, stay manual in every scope. No trained neural network or model inference is shipped. Eligible values are still estimates, not uniquely identifiable settings.','موتور، سطح، ضریب قله، انرژی باندهای کلی و ویژگی استریو را اندازه و مقدار محدودشده پیشنهاد می‌کند. فقط ۳۳ کنترل صوت‌محور Learn دارند؛ ۵۹ کنترل دیگر شامل Mix، تریم خروجی، انتخاب زمان و مسیر و فرکانس/Q/شکل EQ دستی می‌مانند. LEARN ALL و یادگیری باند یا ماژول نیز این ۵۹ کنترل را حفظ می‌کنند. شبکهٔ عصبی آموزش‌دیده یا استنتاج مدل ارائه نشده است. داشتن Learn به معنی استخراج یکتای پارامتر از هر صوت نیست.')]),
  (('Reference guidance','هدایت با مرجع'), [
  ('A valid reference is required before reference mode can succeed. In this revision it informs normalized DEQ band gains, Width parameters in DVerb/DDelay/DStereo, and DComp Makeup level. Other suggestions remain source/objective policies. There is no rendered-output comparison loop or optimization that recreates an arbitrary reference.','موفقیت حالت مرجع به مرجع معتبر نیاز دارد. در این نسخه، مرجع بر گین نرمال‌شدهٔ باندهای DEQ، پارامتر Width در DVerb و DDelay و DStereo و سطح Makeup در DComp اثر دارد. سایر پیشنهادها همچنان سیاست منبع یا هدف هستند. حلقهٔ مقایسهٔ خروجی رندرشده یا بازسازی مرجع دلخواه وجود ندارد.')]),
  (('Description guidance','هدایت با توصیف'), [
@@ -260,7 +367,7 @@ BEFORE = [
 AFTER = [
 (('Sessions, automation & recall','جلسه، اتومیشن و بازخوانی'),[
  (('What is stored','چه چیزی ذخیره می‌شود'),[
- ('The processor serializes parameter state through JUCE APVTS/XML for host recall. Save your DAW project after accepting settings. Roundtrip and legacy-state migration still require host validation; keep the previous binary when archiving a project. No built-in preset browser, factory preset pack, A/B memory slots or preset-file import/export is provided.','پردازنده برای بازخوانی میزبان، وضعیت پارامتر را با APVTS/XML ذخیره می‌کند. پس از پذیرش تنظیم، پروژه را ذخیره کنید. بازخوانی و مهاجرت وضعیت قدیمی هنوز نیازمند اعتبارسنجی میزبان است؛ باینری قبلی را با آرشیو نگه دارید. مرورگر پریست، بستهٔ پریست کارخانه، حافظهٔ A/B یا ورود و خروج فایل پریست داخلی وجود ندارد.'),
+ ('The processor serializes parameter state through JUCE APVTS/XML for host recall. Save your DAW project after accepting settings. Roundtrip and legacy-state migration still require host validation; keep the previous binary when archiving a project. Each plugin now has 50 factory programs and a header browser; a star marks edits and host state retains actual modified settings. A/B slots and proprietary preset-file import/export are not provided. Loading a program cancels pending learning and preview.','پردازنده برای بازخوانی میزبان، وضعیت پارامتر را با APVTS/XML ذخیره می‌کند. پس از پذیرش تنظیم، پروژه را ذخیره کنید. بازخوانی و مهاجرت وضعیت قدیمی هنوز نیازمند اعتبارسنجی میزبان است؛ باینری قبلی را با آرشیو نگه دارید. هر پلاگین ۵۰ برنامهٔ کارخانه و مرورگر بالای رابط دارد؛ ستاره ویرایش را نشان می‌دهد و وضعیت میزبان مقدار واقعی را نگه می‌دارد. حافظهٔ A/B و ورود و خروج فایل پریست اختصاصی وجود ندارد. بارگذاری برنامه، یادگیری و پیش‌شنوی معلق را لغو می‌کند.'),
  ('Reference audio, descriptions, proposal lists and one-level learning undo are not embedded in the processor state. Reopen the reference after closing the editor or reloading the project. Keep an authorized copy in your project asset folder if needed; a filename shown in the UI is not proof that the file was saved with the session.','صوت مرجع، توصیف، فهرست پیشنهاد و Undo یک‌سطحی در وضعیت پردازنده جاسازی نمی‌شوند. پس از بستن رابط یا بازکردن پروژه، مرجع را دوباره بارگذاری کنید. در صورت مجازبودن نسخه‌ای در دارایی پروژه نگه دارید؛ نمایش نام فایل به معنی ذخیره‌شدن آن در جلسه نیست.')]),
  (('Automation discipline','روش امن اتومیشن'),[
  ('Parameters are exposed to the host with stable IDs listed in the control reference. Host automation is separate from proposal undo. Learned changes notify the host, so host write/read modes can affect the outcome. Stop automation writing before learning and test the result on a duplicate session. Discrete modes should be changed with care, not swept as continuous values.','پارامترها با شناسه‌های ثابت مرجع کنترل به میزبان معرفی می‌شوند. اتومیشن میزبان با Undo پیشنهاد جداست. تغییر Learn به میزبان خبر داده می‌شود، پس حالت خواندن یا نوشتن میزبان می‌تواند اثر بگذارد. پیش از Learn نوشتن اتومیشن را متوقف و نتیجه را روی کپی آزمایش کنید. حالت‌های گسسته را مانند مقدار پیوسته جاروب نکنید.')]),
@@ -286,7 +393,7 @@ AFTER = [
  ('The JUCE AudioBuffer path processes float samples, with double-state EQ biquads. Layouts are matching mono or stereo; MIDI input/output and external sidechain buses are not implemented. The core clamps its preparation sample rate to 8–384 kHz; this implementation bound is not a complete tested host-rate certification. Some filter cutoffs are limited below Nyquist internally, so a high displayed setting is not always the effective cutoff at a low rate. Choose the rate appropriate to your project.','مسیر AudioBuffer در JUCE نمونه‌های float را با وضعیت داخلی دوبرابر برای بای‌کواد EQ پردازش می‌کند. چیدمان مونو یا استریوی همسان است؛ MIDI و باس سایدچین خارجی پیاده‌سازی نشده‌اند. هسته نرخ آماده‌سازی را به ۸ تا ۳۸۴ کیلوهرتز محدود می‌کند؛ این حد پیاده‌سازی است، نه تأیید کامل نرخ‌های میزبان. برخی فرکانس‌های قطع در داخل زیر نایکوئیست محدود می‌شوند؛ پس عدد بالای نمایشگر در نرخ پایین الزاماً فرکانس مؤثر نیست.'),
  ('Continuous values are smoothed with approximately 20 ms coefficient smoothing in the core; discrete choices are immediate. Delay/FDN buffers are allocated during preparation. Analysis and reference decoding are worker tasks, not work intentionally placed in the audio callback. Visualization uses a bounded single-producer/single-consumer queue and may drop display frames without dropping audio by design.','مقادیر پیوسته در هسته با ضریب حدود ۲۰ میلی‌ثانیه هموار و انتخاب گسسته فوری عوض می‌شود. بافر دیلی و FDN در آماده‌سازی تخصیص می‌یابد. تحلیل و رمزگشایی وظیفهٔ Worker است و عمداً در Callback صوتی قرار ندارد. نمایش از صف محدود تک‌تولیدکننده و تک‌مصرف‌کننده استفاده می‌کند و می‌تواند فریم نمایشی را کنار بگذارد.')]),
  (('Practical limitations','محدودیت عملی'),[
- ('No oversampling, look-ahead, true-peak limiter, tempo detection/sync, arbitrary convolution, general language interpretation or iterative output-reference optimizer is provided. DEQ is not linear phase; DSess is not a full parametric dynamic EQ; DGate has no expansion ratio; DFX order is fixed. DSP quality and automation must still be auditioned on real material.','اورسمپلینگ، Look-ahead، لیمیتر True Peak، تشخیص یا همگام‌سازی تمپو، کانولوشن دلخواه، فهم عمومی زبان یا بهینه‌ساز تکراری خروجی و مرجع وجود ندارد. DEQ فاز خطی، DSess اکولایزر داینامیک پارامتریک کامل و DGate دارای نسبت اکسپنشن نیست. ترتیب DFX ثابت است. کیفیت و اتومیشن باید با منابع واقعی شنیده شوند.'),
+ ('No oversampling, look-ahead, true-peak limiter, audio tempo detection, arbitrary convolution, general language interpretation or iterative output-reference optimizer is provided. DEQ is not linear phase; DSess is not a full parametric dynamic EQ; DGate has no expansion ratio; DFX order is fixed. DSP quality and automation must still be auditioned on real material.','اورسمپلینگ، Look-ahead، لیمیتر True Peak، تشخیص تمپو از صوت، کانولوشن دلخواه، فهم عمومی زبان یا بهینه‌ساز تکراری خروجی و مرجع وجود ندارد. DEQ فاز خطی، DSess اکولایزر داینامیک پارامتریک کامل و DGate دارای نسبت اکسپنشن نیست. ترتیب DFX ثابت است. کیفیت و اتومیشن باید با منابع واقعی شنیده شوند.'),
  ('CPU and memory depend on sample rate, platform, instance count and settings. No measured minimum RAM/CPU or certified buffer-size guarantee is published. Internal finite-value safeguards and output bounding are not transparent overload prevention. Use host meters and sensible input levels.','مصرف پردازنده و حافظه به نرخ، پلتفرم، تعداد نمونه و تنظیمات وابسته است. حداقل اندازه‌گیری‌شدهٔ RAM/CPU یا تضمین بافر منتشر نشده است. محافظت مقدار متناهی و محدودسازی داخلی خروجی، جلوگیری شفاف از اورلود نیست. از متر میزبان و سطح ورودی معقول استفاده کنید.')]),
  (('Verification status','وضعیت اعتبارسنجی'),[
  ('Portable DSP/learning tests and layout/FIFO checks exist; they are not listening tests or blanket DAW certification. A previous checkpoint passed Linux/Windows/macOS CI builds; the current UI has its own pending native snapshot/host validation. Consult the repository checks and STATUS.md for evidence tied to the exact commit. This manual does not turn development code into a release certification.','تست‌های قابل‌حمل DSP و یادگیری و کنترل چیدمان و صف وجود دارند؛ این‌ها تست شنیداری یا تأیید همهٔ DAWها نیستند. چک‌پوینت قبلی بیلد CI سه پلتفرم را پاس کرده؛ رابط جدید اعتبارسنجی بومی و میزبان جدا دارد. شواهد همان کامیت را در Checks و STATUS.md ببینید. دفترچه گواهی انتشار نیست.')])]),
@@ -323,3 +430,14 @@ GLOSSARY=[
 ('Sibilance','سیبیلانس','Strong high-frequency speech energy such as s/sh sounds.','انرژی بالای قوی گفتار مانند صداهای س و ش.'),
 ('Stereo correlation','همبستگی استریو','Relationship between channel waveforms; negative values merit mono checks.','رابطهٔ موج کانال‌ها؛ مقدار منفی نیازمند بررسی مونو است.'),
 ('True peak','قلهٔ بین‌نمونه‌ای','Estimate of reconstructed peaks between samples; not measured by these meters.','برآورد قلهٔ بازسازی‌شده میان نمونه‌ها؛ مترهای فعلی آن را نمی‌سنجند.')]
+
+BEFORE.append((('Factory presets & project tempo','پریست کارخانه و تمپوی پروژه'),[
+ (('50 programs per plugin','۵۰ برنامه برای هر پلاگین'),[
+  ('Each product includes Init plus 49 musical profile variants: 500 complete snapshots across the bundle. Select a program in the header browser, use its arrows, or use the host program list. Loading changes all settings including Mix and Output. Lower monitoring first. It cancels capture, pending analysis, preview and old learning undo rather than restoring an old preview over the new sound.','هر محصول Init و ۴۹ گونهٔ پروفایل موسیقایی دارد؛ مجموعاً ۵۰۰ وضعیت کامل. از مرورگر بالای رابط، پیکان‌ها یا فهرست برنامهٔ میزبان انتخاب کنید. بارگذاری همهٔ تنظیم‌ها از جمله Mix و Output را تغییر می‌دهد؛ ابتدا مانیتور را کم کنید. ضبط، تحلیل معلق، پیش‌شنوی و بازگردانی یادگیری قبلی لغو می‌شوند؛ تنظیم قدیمی روی صدای تازه بازنمی‌گردد.'),
+  ('A star marks changes from the selected factory state. Save the DAW project for modified values and the selection index. Factory names are read-only. The per-product catalog lists every name; Design/Presets/FactoryPresets.json contains every parameter value. The practical recipes elsewhere are suggestions, not extra installed programs.','ستاره، تغییر نسبت به وضعیت کارخانه را نشان می‌دهد. برای حفظ مقدار ویرایش‌شده و شمارهٔ انتخاب، پروژهٔ DAW را ذخیره کنید. نام کارخانه فقط خواندنی است. فهرست هر محصول همهٔ نام‌ها و فایل Design/Presets/FactoryPresets.json مقدار همهٔ پارامترها را دارد. دستورهای عملیِ سایر صفحات صرفاً پیشنهادند، نه برنامهٔ نصب‌شدهٔ اضافه.')]),
+ (('DDelay Sync and note divisions','Sync دیلی و تقسیم نت'),[
+  ('Enable SYNC and choose a Division. Quarter-note milliseconds = 60,000 / host BPM; D multiplies a note by 1.5, T by 2/3. Available choices: 1/32, 1/32 D, 1/32 T, 1/16, 1/16 D, 1/16 T, 1/8, 1/8 D, 1/8 T, 1/4, 1/4 D, 1/4 T, 1/2, 1/2 D, 1/1.','SYNC را فعال و Division را انتخاب کنید. زمان میلی‌ثانیهٔ نت سیاه برابر ۶۰٬۰۰۰ تقسیم بر BPM میزبان است. D نت را ۱٫۵ برابر و T دوسوم می‌کند. انتخاب‌ها: 1/32، 1/32 D، 1/32 T، 1/16، 1/16 D، 1/16 T، 1/8، 1/8 D، 1/8 T، 1/4، 1/4 D، 1/4 T، 1/2، 1/2 D و 1/1.'),
+  ('HOST means valid host tempo; HOLD keeps the last valid BPM if tempo disappears; FALLBACK uses 120 before any valid tempo. Supported BPM is 10–400. Standalone has no project tempo. Sync disables the free-time/modulation controls and stereo offset. There is no audio tempo detection, tap tempo or song-position retrigger.','HOST یعنی تمپوی معتبر میزبان؛ HOLD در نبود آن آخرین BPM معتبر را نگه می‌دارد و FALLBACK پیش از دریافت تمپوی معتبر از ۱۲۰ استفاده می‌کند. بازهٔ پشتیبانی ۱۰ تا ۴۰۰ است. Standalone تمپوی پروژه ندارد. Sync زمان آزاد، مدولاسیون و اختلاف استریو را غیرفعال می‌کند. تشخیص تمپو از صوت، Tap Tempo یا شروع مجدد بر اساس موقعیت آهنگ وجود ندارد.')]),
+ (('Compatibility and listening','سازگاری و شنیدن'),[
+  ('Legacy DDelay states without new IDs start in FREE MS. DVerb/DFX now use input allpass diffusion, input-only low/mid shaping and an orthogonal late network without continuous tank saturation. Old stored values are preserved, but the changed algorithm changes the sound. Keep the previous binary for exact old-session recall. Listening examples are original synthetic signals, not proof of musical acceptance.','وضعیت قدیمی DDelay بدون شناسه‌های جدید از FREE MS شروع می‌کند. DVerb و DFX اکنون پخش آل‌پسِ ورودی، شکل‌دهی بم و میانی فقط در ورودی و شبکهٔ متعامد بدون اشباع دائمی دارند. مقدارهای ذخیره‌شده حفظ می‌شوند، ولی الگوریتم جدید صدا را تغییر می‌دهد؛ برای بازخوانی دقیق پروژهٔ قدیمی باینری قبلی را نگه دارید. نمونهٔ شنیداری، سیگنال مصنوعیِ اصلی است و تأیید کیفیت موسیقایی محسوب نمی‌شود.')])
+]))

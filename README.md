@@ -10,6 +10,11 @@ The original UI assets remain in `Design/UI-Mockups/`. Runtime controls are JUCE
 **50 factory presets per plugin (500 total)**, host program selection plus header browser, project-state
 recall, DDelay host-tempo sync with 15 note divisions, and a revised clearer/dense DVerb input/FDN path.
 [Implementation, compatibility, checks and remaining release gates](docs/PRESETS-TEMPO-REVERB.md).
+Downloads: [source + level-matched DVerb before/after WAVs](docs/downloads/DAPlugins_0.4_Development.zip)
+(separate from the [EN/FA manuals ZIP](docs/manual/pdf/DA_Plugins_Manuals_EN_FA.zip)).
+The source ZIP is **not a plugin installer**. For compiled artifacts see the source checkpoint's
+[CI run](https://github.com/drdrillcontacts-svg/D.APlugins/actions/runs/39982254703).
+
 This is still a development build; the reverb algorithm changes old-session sound. Keep your older build.
 
 ## Rack Collection 02 — new UI and selective learning
