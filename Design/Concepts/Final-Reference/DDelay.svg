@@ -480,9 +480,6 @@
 <path d="M938.3333333333334 1290 H1002.3333333333334 L1007.3333333333334 1295 V1324 L1002.3333333333334 1329 H938.3333333333334 L933.3333333333334 1324 V1295 Z" fill="#24212b" stroke="#a28bd0" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="970.33" y="1314.00" fill="#ddd5eb" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0">SYNC</text>
 </g>
-<text x="74.00" y="1460.00" fill="#a7a7b2" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" text-anchor="start" letter-spacing="0.6">DESCRIBE / OPTIONAL ENGLISH KEYWORDS</text>
-<rect x="73" y="1474" width="1056" height="36" rx="4" fill="#0d0d10" stroke="#37373d"/>
-<text x="89.00" y="1498.00" fill="#9999a5" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" text-anchor="start" letter-spacing="0.1">dark, warm, wide, smooth, cinematic...</text>
 <text x="74.00" y="1530.00" fill="#9999a6" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" text-anchor="start" letter-spacing="0.7">PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES</text>
 <g id="action-preview" opacity=".5">
 <path d="M81 1541 H217 L224 1548 V1563 L217 1570 H81 L74 1563 V1548 Z" fill="#19191d" stroke="#414146" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>

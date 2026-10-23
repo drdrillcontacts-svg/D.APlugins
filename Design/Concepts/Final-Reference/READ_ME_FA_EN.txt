@@ -16,7 +16,7 @@ Design fixes for review:
 - DEQ shows selected Band 02 in the main controls; Bands 01/03/04 each occur once below.
 - Details/Log is an explicit action; no report drawer is open automatically.
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
-- Keywords represent the existing limited English hint workflow, NOT a language model.
+- Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 

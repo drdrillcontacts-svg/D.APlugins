@@ -120,9 +120,6 @@ class D(Base):
   self.text(title,73,y-13,10,'#a4a4ae',track=1.4)
   self.cut(55,y,1090,h,'#17171b','#3a3a40',11)
  def bottom(self):
-  self.text('DESCRIBE / OPTIONAL ENGLISH KEYWORDS',74,1460,9,'#a7a7b2',track=.6)
-  self.rect(73,1474,1056,36,'#0d0d10','#37373d',4)
-  self.text('dark, warm, wide, smooth, cinematic...',89,1498,12,'#9999a5',track=.1)
   self.text('PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES',74,1530,8,'#9999a6',track=.7)
   for i,(id,t) in enumerate([('preview','PREVIEW'),('apply','APPLY'),('reject','REJECT'),('undo','UNDO')]):self.button(id,t,74+i*164,1541,150,29,i==1,False)
   self.text('DESIGN REVIEW / NO LIVE AUDIO',1130,1560,8,'#9393a0','end',1)
@@ -176,7 +173,7 @@ Design fixes for review:
 - DEQ shows selected Band 02 in the main controls; Bands 01/03/04 each occur once below.
 - Details/Log is an explicit action; no report drawer is open automatically.
 - DDelay uses example sync at 120 BPM/dotted eighth; free-time/modulation are dimmed.
-- Keywords represent the existing limited English hint workflow, NOT a language model.
+- Review fix 01: removed the optional English-keywords label, field and placeholder from all ten SVGs.
 - Preview/Apply/Reject/Undo are visible but dimmed in this neutral design-review state.
 - All graph/reference/meter visuals are STATIC EXAMPLES, not real audio or measured data.
 
