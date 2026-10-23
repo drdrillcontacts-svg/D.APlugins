@@ -51,3 +51,12 @@ assert len([e for e in combined.get_toc() if e[0]==1])==2
 for line in (OUT/'SHA256SUMS.txt').read_text().splitlines():
  checksum,name=line.split('  ');assert hashlib.sha256((OUT/name).read_bytes()).hexdigest()==checksum
 print('PASS bilingual:',len(combined),'pages / both language outlines / SHA-256 checksums')
+
+from zipfile import ZipFile
+bundle=OUT/'DA_Plugins_Manuals_EN_FA.zip'
+with ZipFile(bundle) as z:
+ assert z.testzip() is None
+ assert {n for n in z.namelist() if n.endswith('.pdf')}=={p.name for p in OUT.glob('*.pdf')}
+ for p in OUT.glob('*.pdf'):assert z.read(p.name)==p.read_bytes()
+ assert z.read('SHA256SUMS.txt')==(OUT/'SHA256SUMS.txt').read_bytes()
+print('PASS standalone manuals ZIP / all three PDFs byte-identical / checksums')

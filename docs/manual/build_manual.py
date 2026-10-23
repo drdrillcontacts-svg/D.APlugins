@@ -6,6 +6,7 @@ from pathlib import Path
 import sys,json,math,subprocess,hashlib,unicodedata
 from datetime import datetime,timezone
 from io import BytesIO
+from zipfile import ZipFile,ZIP_DEFLATED
 from fontTools.ttLib import TTFont
 from fontTools.varLib.instancer import instantiateVariableFont
 from PIL import Image
@@ -290,3 +291,12 @@ if __name__=='__main__':
  print('Bilingual',len(writer.pages),'pages',combined.stat().st_size,'bytes')
  checksums={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.glob('*.pdf')}
  (OUT/'SHA256SUMS.txt').write_text('\n'.join(f'{v}  {k}' for k,v in sorted(checksums.items()))+'\n')
+
+ # Documentation ZIP only: never mix mockups or software installers into this deliverable.
+ bundle=OUT/'DA_Plugins_Manuals_EN_FA.zip'
+ with ZipFile(bundle,'w',ZIP_DEFLATED) as z:
+  for file in sorted(OUT.glob('*.pdf')):z.write(file,file.name)
+  z.write(OUT/'SHA256SUMS.txt','SHA256SUMS.txt')
+  z.writestr('READ_ME.txt',f'D.A Plugins / Manual {REVISION}\nSource: {SOURCE} / {DATE}\nEnglish, Persian and combined PDFs. Documentation only, not a plugin installer.\nراهنماهای فارسی، انگلیسی و ترکیبی؛ این بسته فقط مستندات است، نه نصب‌کننده.\n')
+ with ZipFile(bundle) as z:assert z.testzip() is None
+ print('Manuals ZIP',bundle.stat().st_size,'bytes')

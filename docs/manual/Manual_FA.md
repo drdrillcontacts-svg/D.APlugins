@@ -1,6 +1,6 @@
 # D.A Plugins — راهنمای کاربر
 
-Development version 0.3 / 2026-10-23 / Source 625ea124c355
+Development version 0.3 / 2026-10-23 / Source baa25a22674c
 
 ## خوش‌آمد و معرفی باندل
 

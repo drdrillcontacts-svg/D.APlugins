@@ -61,7 +61,7 @@ network access; PDF generation itself is offline.
 - Update the authoritative parameter metadata only when changing the actual product, not to make
   a documentation-only correction.
 - The build reads the current Git HEAD for its source snapshot and writes the three PDFs,
-  checksums, and both Markdown exports. The document date/revision are explicit editorial values
+  checksums, both Markdown exports and the separate manuals-only ZIP. The document date/revision are explicit editorial values
   in the builder; update them when issuing a new manual revision.
 - `build-manual/` is an ignored cache of font instances, optimized illustrations and page manifests.
   It can be removed and regenerated. Original PNG/SVG studies remain in `Design/UI-Previews/`.

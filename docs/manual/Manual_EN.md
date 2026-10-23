@@ -1,6 +1,6 @@
 # D.A Plugins — User Manual
 
-Development version 0.3 / 2026-10-23 / Source 625ea124c355
+Development version 0.3 / 2026-10-23 / Source baa25a22674c
 
 ## Welcome & bundle overview
 
