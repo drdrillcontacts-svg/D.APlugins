@@ -16,6 +16,17 @@ views and per-product sections rather than a screenshot or the previous four-col
 See **[UI design / implementation / reproduction notes](docs/UI-DESIGN.md)** for details and the native
 snapshot test runner. Full plugin/host validation of this new UI revision remains pending.
 
+## User manuals / راهنمای کاربر
+
+Comprehensive documentation for all ten effects and all 90 controls:
+[English PDF (51 pages)](docs/manual/pdf/DA_Plugins_User_Manual_EN.pdf) ·
+[فارسی PDF (۵۱ صفحه)](docs/manual/pdf/DA_Plugins_User_Manual_FA.pdf) ·
+[Combined bilingual PDF (102 pages)](docs/manual/pdf/DA_Plugins_User_Manual_EN_FA.pdf).
+
+Includes setup, practical recipes, Learn/Reference workflows, automation, troubleshooting and
+implementation limitations. These document the development build, not a certified release.
+See [manual sources, checksums and rebuild instructions](docs/manual/README.md).
+
 ## Current implementation
 
 - Separate DSP paths for DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.
