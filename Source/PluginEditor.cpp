@@ -194,10 +194,12 @@ void DAPluginAudioProcessorEditor::load() {
                 safe->setStatus("Cancelled — no reference selected");
                 return;
             }
+            safe->syncManual();
             safe->session.reject();
             ++safe->session.revision;
             safe->write();
             safe->reference = {};
+            safe->referenceRevision = safe->session.revision;
             safe->setStatus("Analyzing reference — decoding up to 30 seconds on worker");
             safe->referenceWork = std::async(std::launch::async, [file] {
                 juce::AudioFormatManager formats;
