@@ -1,10 +1,12 @@
 # D.A Plugins — bilingual user manual
 
-Original user documentation for the complete ten-effect development bundle. Manual revision **1.0**,
+Original user documentation for the complete ten-effect development bundle. Manual revision **1.1**,
 product development series **0.3**, dated **23 October 2026**. This documents a source checkpoint,
 not a certified commercial release. The exact source snapshot is printed in each PDF.
 
 ## Download / read
+
+- [Separate manuals ZIP — English, Persian and combined PDFs](pdf/DA_Plugins_Manuals_EN_FA.zip)
 
 - [English PDF — 51 pages](pdf/DA_Plugins_User_Manual_EN.pdf)
 - [Persian PDF — 51 pages](pdf/DA_Plugins_User_Manual_FA.pdf)
@@ -25,10 +27,13 @@ reference files, learning scopes and reversible approval, all ten effects, all *
 source-derived ranges/defaults, practical starting recipes, automation/session recall,
 troubleshooting, technical limitations, glossary, privacy, licensing and support.
 
+The Rack Collection 02 edition includes both main and Advanced illustrations for every product,
+33 Learn-eligible controls, 57 explicitly manual controls and the opt-in DETAILS / LOG workflow.
+
 Parameter ranges/defaults come directly from `Design/UI/Parameters.json`. Behavioral explanations
 were checked against `Source/Core/Suite.cpp`, processor/editor code and the project status notes.
-The manual distinguishes audio-derived estimates, policy starting points and retained enable
-states. It does not invent neural models, certified hosts, commercial installers, activation,
+The manual distinguishes eligible audio-informed starting points from deliberately manual controls.
+Those manual values, including enable states, are preserved by every learning scope. It does not invent neural models, certified hosts, commercial installers, activation,
 undocumented features, licensing grants or support guarantees. Commercial vendors' manuals were
 not copied. The named controls and their actual implementation take precedence over conventions
 from other vendors' products.
@@ -63,7 +68,9 @@ network access; PDF generation itself is offline.
 
 Validation checks both editions for 90 parameter rows, 21 top-level chapters, valid navigation,
 embedded fonts, replacement characters, accidental near-empty pages, sheet-boundary overflow,
-selected implementation caveats, merged page/outline counts and checksum integrity. It is a
+selected implementation caveats, the 33/57 learning split, merged page/outline counts and checksum integrity.
+The builder also rejects unmapped editorial glyphs and substitutes ASCII signal-path arrows for
+Unicode arrows absent from Vazirmatn. It is a
 structural/content smoke test, not proof of absence of every editorial or visual defect. Rendered
 samples of covers, contents and English/Persian control pages were also reviewed visually. Any
 future font/layout edits should receive a fresh visual RTL and pagination review.
@@ -75,3 +82,7 @@ their OFL are in `Design/Fonts/`. PDF font subsets are embedded. Original illust
 DA mark are repository assets; font licenses do not license those assets or the plugin software.
 The repository's `LICENSE-NOTICE.txt` and separate JUCE obligations still apply. PDF generation
 is not authorization to publish a software release.
+
+The separate manuals ZIP is a documentation deliverable, not a plugin installer. It contains all
+three PDFs and their checksums. The gallery server exposes it and the PDFs under an exact
+`/downloads/` allowlist; it does not serve the repository root or `.git`.

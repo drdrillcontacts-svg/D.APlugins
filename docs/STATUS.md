@@ -18,7 +18,7 @@ plugin is **Partially implemented**.
 | DVerb | Eight-line damped FDN, normalized Hadamard diffusion, pre-delay, density-dependent excitation, cuts, modulation, room/hall/plate delay scales, two-grain octave-up feedback shimmer | 12 parameters, Space/Colour modules, Learn all | Calibrate decay/mode character; shimmer pitch/audio quality and aliasing tests; actual target-decay estimator |
 | DDelay | Fractional stereo delay, filtered soft-bounded feedback, cross feedback, modulation, M/S width, wet/dry/output | 8 parameters, Echo learning scope; Output manual, Learn all | Host tempo sync, onset/autocorrelation rhythm estimation, feedback coloration/automation review |
 | DComp | Attack/release peak envelope, ratio curve, continuous soft knee, parallel mix/makeup/output | 8 parameters, Dynamics learning scope; Output manual, Learn all | Stereo-linked compression, level-distribution objective, calibrated GR and automation tests |
-| DEQ | Four double-state RBJ biquad bands; bell/low-shelf/high-shelf; frequency/gain/Q/shape | 16 parameters; dedicated button per Band 1–4 plus parameter/all scopes | Spectral peak/masking analysis; independently inferred frequency/Q/shape (now intentionally manual-only); sweep/filter-stability tests |
+| DEQ | Four double-state RBJ biquad bands; bell/low-shelf/high-shelf; frequency/gain/Q/shape | 16 parameters; dedicated button per Band 1–4 plus parameter/all scopes | Response/stability sweep tests; gain-estimate quality; frequency/Q/shape intentionally manual |
 | DSat | Tanh, hard clip, asymmetric DC-compensated transfer, tone/density blend, mix/output | 6 parameters, Colour learning scope; Output manual, Learn all | Oversampling, residual DC rejection, aliasing/harmonic analysis |
 | DTrans | Dual envelope detection, normalized onset strength, attack/sustain gain shaping | 6 parameters, Envelope learning scope; Output manual, Learn all | Objective response curves, sustain/noise pumping, transient estimator validation |
 | DStereo | M/S width and gains, mono-safe side low-pass depth, mono wet monitoring | 6 parameters, Image module, Learn all | Full post-mix mono monitor; detailed balance/phase/mono analysis; cannot create stereo from dual mono |
@@ -101,8 +101,9 @@ No release, installer, signing or notarization was authorized or performed.
    independent measurable behavior. Add impulse/FFT tests for every DSP parameter in all ten effects.
 5. Implement DDelay host BPM/sync and rhythm detector; DSat oversampling/DC blocker; DComp stereo linking;
    DStereo full post-mix mono; DSess tunable detection band; DGate noise/quiet-tail-aware expander.
-6. Replace constant/low-evidence proposals with parameter-specific temporal/spectral/distribution strategies:
-   EQ freq/Q/shape and masking, decay/sibilance/noise/harmonics/tempo estimation, confidence validation.
+6. Refine and validate the 33 eligible estimators (gain balance, decay/sibilance/noise/harmonic
+   objectives, confidence calibration). Keep the 57 deliberately manual controls manual; do not
+   reintroduce their old constant-policy Learn buttons.
 7. Add rendered-output feature extraction and constrained objective search for reference matching, with
    baseline/error/retest reporting per effect and joint DFX/module optimization; preserve incapable-target explanations.
 8. Test actual WAV/AIFF/FLAC loading (mono/multichannel/truncated/oversized/silent/unsupported), worker

@@ -3,7 +3,7 @@
 Requires the pinned packages in requirements.txt. No network use during document generation.
 """
 from pathlib import Path
-import sys,json,math,subprocess,hashlib
+import sys,json,math,subprocess,hashlib,unicodedata
 from datetime import datetime,timezone
 from io import BytesIO
 from fontTools.ttLib import TTFont
@@ -27,6 +27,14 @@ for weight,name in [(400,'Regular'),(700,'Bold')]:
 for name in PRODUCTS:
  assert set(CONTROLS[name])=={p['id'] for p in META[name]},name
 assert sum(map(len,META.values()))==90
+assert sum(p['learnable'] for ps in META.values() for p in ps)==33
+def printable(text):
+ # Vazirmatn has no arrow glyphs. Use an explicit readable signal-path notation, never silent tofu.
+ return text.replace('→',' > ').replace('↔',' <-> ')
+corpus=printable(json.dumps([PRODUCTS,CONTROLS,BEFORE,AFTER,GLOSSARY,META],ensure_ascii=False))
+cmap=TTFont(HERE/'fonts/Vazirmatn-Variable.ttf').getBestCmap()
+missing={c for c in corpus if ord(c) not in cmap and not c.isspace() and unicodedata.category(c)!='Cf'}
+assert not missing,('Unmapped document glyphs',missing)
 
 class Manual(FPDF):
  def __init__(self,lang):
@@ -61,6 +69,7 @@ class Manual(FPDF):
  def ensure(self,h):
   if self.get_y()+h>277:self.add_page()
  def text(self,t,size=10.2,bold=False,colour=INK,rtl=None,space=3):
+  t=printable(t)
   self.font(size,bold,rtl);self.set_text_color(*colour);self.set_x(18)
   self.multi_cell(174,5.6 if size<=11 else size*.52,t,align='R' if (self.fa if rtl is None else rtl) else 'L',new_x=XPos.LMARGIN,new_y=YPos.NEXT)
   self.ln(space)
