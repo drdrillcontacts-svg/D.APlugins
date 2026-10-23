@@ -105,29 +105,25 @@ void AnalysisDisplay::consume(da::ScopeFifo &fifo, double sr, float ip, float op
     repaint();
 }
 void AnalysisDisplay::paint(juce::Graphics &g) {
-    // Logical bounds 1090 x 208, positioned inside the enclosure's display.
-    label(g, look, "INPUT", {9, 4, 180, 22}, 13, silver);
-    label(g, look, "REFERENCE", {858, 4, 170, 22}, 13, silver);
-    meter(g, look, {11, 42, 6, 135}, inDb);
-    meter(g, look, {22, 42, 6, 135}, inDb);
-    waveform(g, look, {45, 43, 190, 127}, input.data(), input.size(), lastAudio != 0 && inDb > -88);
-    waveform(g, look, {859, 43, 182, 127}, reference.waveform.data(), reference.waveform.size(),
+    label(g, look, "IN", {6, 4, 42, 20}, 12, silver);
+    meter(g, look, {10, 38, 7, 151}, inDb);
+    meter(g, look, {21, 38, 7, 151}, inDb);
+    label(g, look, state.toUpperCase(), {60, 4, 550, 22}, 12, crimson);
+    graph(g, {60, 35, 570, 155});
+    g.setColour(juce::Colour(0xff303638)); g.drawLine(647, 8, 647, 209);
+    label(g, look, "REFERENCE", {661, 5, 140, 21}, 13, silver);
+    waveform(g, look, {661, 40, 140, 146}, reference.waveform.data(), reference.waveform.size(),
              reference.features.valid());
-    meter(g, look, {1056, 42, 6, 135}, outDb);
-    meter(g, look, {1067, 42, 6, 135}, outDb);
-    label(g, look, "OUT", {1044, 3, 40, 22}, 13, silver, juce::Justification::centred);
-    g.setColour(juce::Colour(0xff2e3436));
-    g.drawLine(249, 7, 249, 188);
-    g.drawLine(844, 7, 844, 188);
-    label(g, look, state.toUpperCase(), {269, 4, 560, 21}, 12, crimson);
-    graph(g, {270, 34, 555, 140});
-    label(g, look, reference.features.valid() ? reference.name : "NO REFERENCE LOADED",
-          {859, 178, 182, 19}, 12, muted);
+    label(g, look, reference.features.valid() ? reference.name : "NOT LOADED",
+          {661, 198, 140, 19}, 11, muted);
+    meter(g, look, {827, 38, 7, 151}, outDb);
+    meter(g, look, {839, 38, 7, 151}, outDb);
+    label(g, look, "OUT", {817, 4, 42, 20}, 12, silver);
     const char *captions[]{
-        "SPECTRAL HISTORY",  "ECHO / FREQUENCY FIELD", "DYNAMICS TRANSFER",  "FOUR-BAND RESPONSE",
-        "HARMONIC TRANSFER", "TRANSIENT / SUSTAIN",    "STEREO VECTORSCOPE", "SIBILANCE DETECTION",
-        "GATE TRANSFER",     "CHAIN / FREQUENCY FIELD"};
-    label(g, look, captions[int(kind)], {270, 178, 555, 19}, 11, muted,
+        "SPECTRAL HISTORY", "ECHO / FREQUENCY FIELD", "DYNAMICS TRANSFER", "FOUR-BAND RESPONSE",
+        "HARMONIC TRANSFER", "TRANSIENT / SUSTAIN", "STEREO VECTORSCOPE", "SIBILANCE DETECTION",
+        "GATE TRANSFER", "CHAIN / FREQUENCY FIELD"};
+    label(g, look, captions[int(kind)], {60, 198, 570, 19}, 11, muted,
           juce::Justification::centredRight);
 }
 void AnalysisDisplay::graph(juce::Graphics &g, juce::Rectangle<float> r) {

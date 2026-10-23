@@ -40,6 +40,8 @@ for lang in ['EN','FA']:
  if lang=='EN':
   assert 'first 30 seconds' in alltext and '65,536' in alltext
   assert 'No trained neural network' in alltext
+  assert alltext.count('MANUAL ONLY:')==57 and alltext.count('LEARN: audio-informed')==33
+  assert 'DETAILS / LOG' in alltext and 'never opens automatically' in alltext
   assert 'Mix to 100%' in alltext and 'Q affects Bell only' in alltext
  else:assert 'راهنمای کاربر' in alltext and 'راهنمای' in alltext
  counts.append(len(doc));print('PASS',lang,len(doc),'pages / 90 IDs / 21 chapters / embedded fonts / links / bounds')

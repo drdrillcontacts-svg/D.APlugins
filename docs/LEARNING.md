@@ -1,80 +1,80 @@
-# Learning architecture and actual strategies
+# Learning architecture — Rack Collection 02
 
-## Boundaries
+## Eligibility is enforced, not merely hidden
 
-`Source/Core/Suite.h/.cpp` is independent of JUCE. `Parameter` metadata declares stable ID, module,
-unit, range, default and discreteness. Every result is constrained and carries an explanation and a
-**heuristic confidence score, not a calibrated probability**. Dispatch currently uses plugin kind and
-parameter ID; richer declarative analysis requirements/strategy registration remain future work.
+All 90 parameters remain manual/automatable. `canLearn(Kind,id)` selects **33** controls whose current
+strategies actually use source features. The other **57** never appear in a proposal, including
+Learn All and module/band scopes. Unsupported/manual-only scopes fail explicitly. The metadata
+export, layout generator and manuals share this core-derived eligibility flag.
 
-`Engine` owns prepared DSP state. `analyze` operates offline on copied audio. `learn` produces proposals
-without changing state. `LearningSession` implements revision-gated offer/preview/apply/reject/undo.
-The JUCE layer captures 65,536 samples in fixed memory, transfers only when ready, runs estimates with
-`std::async`, polls futures on the message thread, and applies APVTS changes only on user approval.
-Reference decode uses a separate worker and reads at most 30 seconds. Futures never capture UI/processor
-pointers; chooser callback uses a JUCE SafePointer. A running worker is not forcibly stopped, but stale
-results cannot apply. A timeout/cancelled recording may finish and be discarded later.
+This is an evidence-based product policy, not an asserted universal plugin-making standard. Input
+metrics do not uniquely determine an artistic setting. Even eligible results are bounded starting
+points, not guaranteed sound improvements or original hardware settings.
 
-## Feature extraction
-
-- Channel-combined RMS and peak, crest factor, channel correlation and side/RMS ratio.
-- Four coarse **overlapping one-pole-derived bands**, not an FFT or perceptual loudness model.
-- Normalized absolute sample differences, not an independently validated transient/onset classifier.
-- At least 1024 samples, RMS > 1e-7 and finite analysis are required. NaN/Inf samples are sanitized.
-- No LUFS, true peak, noise-floor distribution, tempo, harmonic classifier or decay-time estimator yet.
-- Spectrum uses the mono sum: anti-phase source material needs a more robust per-channel power spectrum.
-
-## Policies implemented (all proposals bounded to the parameter metadata)
-
-| Parameters | Features and objective / actual estimate | Constraints, ambiguity and test approach |
+| Plugin | Eligible controls | Current method and limits |
 |---|---|---|
-| EQ band gain | Ratio of target/source band energy after RMS normalization; input-only broad balance target 0.42; dark/warm alter target | ±6 dB proposal limit. Synthesized darker target must reduce high band. This is tonal guidance, not inverse filtering |
-| EQ frequency/Q/shape | Fixed 100/400/2500/10000 Hz, Q 0.707, bell | Low confidence 0.2. These are a broad tonal objective, NOT measured optimum frequencies or masking-aware learning |
-| Compressor threshold | RMS dBFS + 0.25 × crest dB | Louder input test requires higher threshold. No level percentiles yet |
-| Ratio | crest/3 clamped 1.5–6 | Intended crest reduction; needs output-target optimization |
-| Dynamics attack/release | Compressor attack 20 ms for crest>12 dB, else 5 ms; de-esser attack 1 ms; release 100 + 5×crest ms | Transient-preservation policy, not inferred original hardware envelope. Bounds tested |
-| Knee/makeup | smooth goal → 12 dB knee, otherwise 6; makeup uses target/input RMS difference | Reference target level used only for compressor makeup. Not loudness normalization or measured GR compensation |
-| Gate threshold | RMS −18 dB | Conservative starting point only; no noise-floor detector. A constant source/noise can be misclassified |
-| Gate range/hold/hysteresis | 40 dB / 50 ms / 6 dB policy | No audio-identifiable unique answer; must audition. Add distribution/noise objectives |
-| De-esser frequency/threshold/range/focus | Upper-band energy comparison chooses 4.5/7 kHz; high-band RMS−4 dB threshold; relative high energy controls range/focus | Current signal driven, but cannot distinguish sibilance from cymbals. Need voiced/noise test corpus |
-| Stereo width | Target side ratio / source side ratio, limited 0.5–1.5; negative correlation forces 0.5 | Reference side ratio or wide goal. Cannot make stereo from dual mono; add output correlation verification |
-| Stereo side/center/mono/depth | Negative correlation → −6 dB side; center/monitor neutral; cinematic → 0.15 depth | Neutral monitor/center are user decisions. No measured depth inference |
-| Saturation drive | 12 − input peak dB −0.4×crest, limited 0–18 dB | Input-headroom heuristic, not harmonic reference matching |
-| Tone/filter | Source high-band energy reduces cutoff; dark/warm request 3.5/6 kHz | Spectral objective, bounded 2–14 kHz before parameter constraint. Reference tone fitting not implemented |
-| Transient attack/sustain/sensitivity/shape | Attack 6 −0.4×crest; sensitivity 1−crest/30; smooth gives +2 dB sustain and 0.7 shape; otherwise −2 dB /1.2 | Actual envelope DSP; learner still needs temporal feature objectives beyond crest |
-| Reverb pre-delay/decay/size/lowcut | Pre-delay 2×crest ms; decay 1+0.05×crest s or cinematic 4 s; size 0.5/0.85; low band heavy →200 Hz lowcut, otherwise 80 | Decay is a source/goal ambience policy, NOT measured reference RT60. Long reference spaces cannot be promised |
-| Reverb midcut/mode/density/diffusion/modulation | warm midcut −1 vs −3 dB; cinematic Hall vs Room; smooth density/diffusion .85 vs .6; cinematic modulation .2 vs .05 | Objective/discrete policy only. No unique mode reconstruction, trained room recognition or impulse-response inference |
-| Delay time/feedback/ping-pong | Crest>12 →250 ms else375 ms; cinematic feedback .5 vs .25; wide enables ping-pong | Explicit low-confidence timing policy (0.15), NOT tempo detection/reference echo matching |
-| Mix and DFX module mixes | Dynamics/image full wet; cinematic .35 otherwise .2 | Objective starting points, not independently learned optimal wetness |
-| Output | Input peak headroom to −3 dBFS, limited −12..0 dB change | Does not account for processed peaks; output verify loop remains required |
-| DFX enable controls | Retained current value with confidence .1 | User routing decision, not fabricated classification |
+| DVerb | Pre-delay, Decay, Tone, Width, Low Cut | Crest-based ambience/separation; coarse low/high energy; side/correlation target. Decay is not measured reference RT60 |
+| DDelay | Filter, Width | High-band energy and side/correlation guidance. No inferred rhythm, echo timing or feedback optimum |
+| DComp | Threshold, Ratio, Attack, Release, Makeup | RMS/crest; smooth extends recovery; target/input RMS makeup, not measured post-compression compensation |
+| DEQ | Four band gains | RMS-normalized source/target broad energy; ±6 dB limit. Frequency/Q/shape are preserved, never reset to policy values |
+| DSat | Drive, Tone | Input peak/crest headroom and high-band energy/dark/warm target. No harmonic classifier or automatic output loudness match |
+| DTrans | Attack, Sensitivity | Crest-factor onset/sensitivity starting points; Sustain/Shape remain manual |
+| DStereo | Width, Side | Relative side energy and correlation; negative correlation narrows Width and reduces Side. Cannot widen identical dual mono |
+| DSess | Frequency, Threshold, Range, Release, Focus | Coarse high-band energies/crest; does not reliably classify vocal sibilance versus cymbals |
+| DGate | Threshold, Attack, Release | RMS−18 dB threshold; crest-based timing, smooth extends release. No measured noise floor or SNR separation |
+| DFX | Drive, Filter, Decay | Saturation/Filter/Ambience scopes only. Delay and module enables/mixes/output are manual; no coupled chain optimization |
 
-Common default score is 0.45; parameter-specific score/explanation overrides exist. These numbers are
-not validated confidence intervals. Coordinated Learn all currently assembles policies without a coupled
-optimizer. Module isolation is tested, but inter-module optimality is not.
+## Features, modes and limits
 
-## Truthful mode separation
+`analyze` is offline on copied audio. It measures RMS/peak/crest, correlation, side energy, four coarse
+overlapping one-pole bands and normalized sample differences. **Band powers and differences are now
+computed per channel and averaged**, so anti-phase stereo no longer cancels the learning spectrum.
+These are not a calibrated FFT, loudness/noise/tempo model or a trained classifier. At least 1024
+samples and RMS > 1e-7 are required; nonfinite samples are sanitized.
 
-- **Input:** depends on source features plus declared conservative policies; no target is implied.
-- **Description:** five adjectives set tonal/width/smoothing/ambience goals, while still requiring input.
-  Unknown-only descriptions fail. Mixed text currently ignores unrecognized words and does not handle
-  negation; general natural-language interpretation is not implemented.
-- **Reference:** requires a valid decoded target; only EQ gains, width and compressor makeup currently
-  depend on the reference. The proposal explicitly explains this restriction. It does not claim to recreate
-  a room, infer delay tempo or optimize arbitrary effects to a reference. These are outstanding tasks.
+- Input mode uses measured features plus conservative goals.
+- Reference requires a valid local file. It informs DEQ gains, Width in DVerb/DDelay/DStereo and DComp
+  Makeup only. Other eligible controls use source/objective features, not reference matching.
+- Description accepts whole English keywords `dark`, `warm`, `wide`, `smooth`, `cinematic`.
+  Dark/warm affect supported tonal targets; wide affects Width; smooth extends eligible Release;
+  cinematic affects eligible Decay. A keyword need not affect every chosen control. Other words
+  may be ignored. Unknown-only text and common negation words fail explicitly; `not dark` no longer
+  means dark, and `darkness`/`smoothie` do not match. No Persian/general-language interpretation.
+- Scores are heuristic confidence, not calibrated probabilities. No trained neural model, model
+  weights, inference service, exact-reference reconstruction or output-error optimization is shipped.
 
-## Future trained-model adapter
+## Capture, workers and lifecycle
 
-`ModelInference` declares availability, model version and a proposal-producing interface. **It is not
-instantiated, configurable or wired to runtime selection yet.** To enable a real trained model:
+`InputCapture` owns fixed 65,536-sample stereo storage, with a lock-free state handshake. The audio
+producer alone owns its write position. Message-thread cancellation never resets that memory.
+Cancelled captures can be restarted even while transport is stopped; old completions cannot publish
+as a new request. Prepare cancels an old capture and stores the sample rate separately from the
+completed buffer. Mono is duplicated. The editor times out after 15 seconds and cancels on close.
 
-1. Specify feature version, sample-rate normalization, windowing, plugin parameter schema and goal encoding.
-2. Provide legally distributable weights, model card, input/output schema, validated per-effect dataset and
-   objective metrics (including unsuitable-source and impossible-target behavior).
-3. Implement an inference-runtime adapter (e.g. ONNX Runtime), CMake/runtime dependencies, checksum/version
-   checks and availability/error reporting. Run it only on analysis workers, never the audio callback.
-4. Validate/constrain model outputs through parameter metadata and revision gating; expose provenance,
-   explanations and confidence calibration. Use the explicitly labeled deterministic path on unavailable models.
-5. Add backend selection, failure/cancellation tests, reproducible model fixtures and offline/no-network tests.
+Reference decode is local and bounded to 30 seconds; analysis and I/O run on workers, not the audio
+thread. Future tasks capture values/buffers, not editor/processor pointers; the file chooser callback
+uses a SafePointer. Cancellation invalidates in-flight results rather than interrupting a running
+worker. `std::async` future destruction can still wait for bounded work when closing the editor;
+shutdown responsiveness under slow storage remains a release qualification item.
 
-No network inference, model download, hidden preset selection or automatic parameter application occurs now.
+Completion updates status/report text **without opening the log**. Only DETAILS / LOG opens it.
+PREVIEW temporarily writes the proposal; APPLY keeps it; REJECT restores it. There is no automatic
+parameter application. A manual/host edit cancels stale learning, restores untouched previewed
+controls and retains the genuine edit. That edit expires old full-state learning Undo so Undo
+cannot overwrite subsequent manual settings. Closing an editor restores an unaccepted preview.
+Session parameters persist through APVTS/XML; decoded references, descriptions, pending results
+and undo history do not. Writes notify hosts only for parameters that actually changed.
+
+## Evidence and outstanding qualification
+
+Portable tests cover every eligible scope, explicit rejection of manual-only IDs, module/all
+isolation, preserved manual controls, reference direction, amplitude responsiveness, reversible
+lifecycle, stale results and Undo expiration. Regression tests compare in-phase versus anti-phase
+band/transient features and reject negated/subword goals. Capture tests exercise cancellation,
+restart without transport, partial/ready cancellation, sample-rate changes, mono and 100 concurrent
+stereo captures with every sample checked. ASan/UBSan supplement those tests, not thread-race proof.
+
+Native tests request actual audio-driven learning and assert the report remains hidden until clicked;
+these require linked JUCE/display execution. Cross-platform/host automation, slow/corrupt reference
+files, spectral/temporal estimate quality, simultaneous changes and listening tests remain required.
+The suite must not be labelled commercial-release-ready based on portable tests or design artwork.

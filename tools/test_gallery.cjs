@@ -11,7 +11,9 @@ const script=file.match(/<script>([\s\S]*?)<\/script>/)[1];
 vm.runInNewContext(script,{document,location:{hash:''},matchMedia:()=>({matches:true})});
 assert.equal(element('nav').children.length,10);assert.equal(element('grid').children.length,10);
 for(const button of element('nav').children){button.onclick();const name=button.dataset.name;assert.equal(element('hero').src,name+'.png');assert.equal(element('png').href,name+'.png');assert.equal(element('svg').href,name+'.svg');assert.equal(button.attributes['aria-pressed'],'true');}
-element('compare').onclick();assert(element('hero').src.endsWith('DVerb-user-reference.png'));
+element('compare').onclick();assert(element('hero').src.endsWith('Bundle-rack-reference.png'));
 element('compare').onclick();assert.equal(element('hero').src,'DFX.png');
 element('hero').onclick();assert(element('lightbox').classList.contains('open'));handlers.keydown({key:'Escape'});assert(!element('lightbox').classList.contains('open'));
 console.log('PASS gallery: all ten selections, download links, reference comparison and zoom/Escape');
+
+element('advanced').onclick();assert.equal(element('hero').src,'DFX-Advanced.png');assert.equal(element('png').href,'DFX-Advanced.png');element('advanced').onclick();assert.equal(element('hero').src,'DFX.png');

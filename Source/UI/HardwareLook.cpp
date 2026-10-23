@@ -212,72 +212,49 @@ Chassis::Chassis(const Layout &l, const HardwareLook &f) : layout(l), look(f) {
     logo = juce::ImageFileFormat::loadFrom(DAAssets::DAmark_png, DAAssets::DAmark_pngSize);
 }
 void Chassis::paint(juce::Graphics &g) {
-    g.fillAll(juce::Colour(0xff040506));
-    auto outer = bevel({20, 20, 1160, 1080}, 28);
-    g.setTiledImageFill(weave, 0, 0, 1);
-    g.fillPath(outer);
-    g.setColour(juce::Colour(0xff50575a));
-    g.strokePath(outer, juce::PathStrokeType(1));
-    g.setColour(juce::Colour(0xff020303));
-    g.strokePath(bevel({26, 26, 1148, 1068}, 24), juce::PathStrokeType(4));
-    g.setColour(crimson.withAlpha(.65f));
-    g.strokePath(bevel({24, 24, 1152, 1072}, 26), juce::PathStrokeType(.8f));
-    // The angular top rail and footer follow the reference's machined enclosure.
-    juce::Path rail;
-    rail.startNewSubPath(190, 26);
-    rail.lineTo(280, 126);
-    rail.lineTo(920, 126);
-    rail.lineTo(1010, 26);
-    g.setColour(juce::Colour(0xff010203));
-    g.strokePath(rail, juce::PathStrokeType(9));
-    g.setColour(juce::Colour(0xff4b5254));
-    g.strokePath(rail, juce::PathStrokeType(1));
-    g.setColour(crimson.withAlpha(.55f));
-    g.drawLine(207, 28, 291, 120, .8f);
-    g.drawLine(993, 28, 909, 120, .8f);
-    g.setColour(juce::Colour(0xff484f51));
-    g.drawLine(51, 134, 1149, 134);
+    g.fillAll(juce::Colour(0xff030405));
+    auto outer = juce::Rectangle<float>(20, 20, 1160, 784);
+    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff7b8082), 20, 20,
+                                           juce::Colour(0xff171b1d), 1180, 804, false));
+    g.fillRoundedRectangle(outer, 15);
     g.setColour(juce::Colours::black);
-    g.drawLine(51, 137, 1149, 137, 3);
-    g.setOpacity(.76f);
-    g.drawImageWithin(logo, 74, 55, 89, 40, juce::RectanglePlacement::centred, false);
+    g.fillRoundedRectangle(outer.reduced(3), 12);
+    g.setTiledImageFill(weave, 0, 0, 1);
+    g.fillRoundedRectangle(outer.reduced(7), 9);
+    g.setColour(juce::Colour(0xff444a4c));
+    g.drawRoundedRectangle(outer.reduced(8), 9, .8f);
+    for (int layer = 4; layer > 0; --layer) {
+        g.setColour(crimson.withAlpha(.035f));
+        g.drawLine(42, 801, 1158, 801, float(layer * 3));
+    }
+    g.setColour(crimson.withAlpha(.7f));
+    g.drawLine(42, 799, 1158, 799, 1);
+    panel(g, {40, 38, 1120, 87});
+    g.setOpacity(.88f);
+    g.drawImageWithin(logo, 67, 57, 106, 46, juce::RectanglePlacement::centred, false);
     g.setOpacity(1);
-    label(g, look, "P L U G I N S", {71, 96, 100, 15}, 11, silver, juce::Justification::centred);
-    auto name = layout.title("name").toUpperCase();
-    float nameX = 600 - float(name.length()) * 15;
-    for (int i = 0; i < name.length(); ++i)
-        label(g, look, juce::String::charToString(name[i]), {nameX + i * 30, 43, 30, 43}, 36,
-              i == 0 ? crimson : silver, juce::Justification::centred);
-    label(g, look, layout.title("subtitle"), {340, 89, 520, 20}, 13, muted,
-          juce::Justification::centred);
-    label(g, look, "D E V  /  0.3", {1020, 67, 113, 24}, 12, muted,
+    label(g, look, layout.title("name").toUpperCase(), {208, 50, 600, 34}, 33, silver);
+    label(g, look, layout.title("subtitle"), {210, 88, 650, 20}, 14, muted);
+    juce::Path accent;
+    accent.startNewSubPath(950, 40); accent.lineTo(900, 122); accent.lineTo(924, 122); accent.lineTo(974, 40);
+    g.setColour(crimson.withAlpha(.13f)); g.fillPath(accent);
+    g.setColour(crimson.withAlpha(.6f)); g.drawLine(950, 40, 900, 122, 1);
+    label(g, look, "AUDIO GUIDED", {976, 58, 150, 23}, 14, crimson,
           juce::Justification::centredRight);
-    panel(g, {45, 152, 1110, 236});
-    if (auto *sections = layout.data["sections"].getArray())
-        for (auto &section : *sections) {
-            auto r = rectangle(section["rect"]).toFloat();
-            panel(g, r, true);
-            label(g, look, section["title"], r.reduced(15).withHeight(24), 14, silver);
-        }
-    auto learning = layout.area("learningRect").toFloat();
-    panel(g, learning, true);
-    label(g, look, "L E A R N   M Y   S O U N D",
-          {learning.getX() + 20, learning.getY() + 12, 430, 22}, 16, silver);
-    auto advanced = layout.area("advancedRect").toFloat();
-    panel(g, advanced);
-    label(g, look, layout.title("advancedTitle"),
-          {advanced.getX() + 20, advanced.getY() + 12, 450, 22}, 16, silver);
-    panel(g, {1038, learning.getY(), 116, learning.getHeight()});
+    label(g, look, "DEV / 0.3", {986, 88, 140, 18}, 12, muted,
+          juce::Justification::centredRight);
+    panel(g, {48, 136, 882, 236});
+    panel(g, layout.area("learningRect").toFloat());
+    panel(g, {48, 404, 1104, 236});
     g.setColour(juce::Colour(0xff343b3d));
-    g.drawLine(48, 1041, 1152, 1041);
-    g.setOpacity(.42f);
-    g.drawImageWithin(logo, 71, 1062, 48, 21, juce::RectanglePlacement::centred, false);
-    g.setOpacity(1);
-    label(g, look, layout.title("name").toUpperCase(), {146, 1060, 145, 23}, 15, muted);
-    label(g, look, "LEARN THE SOUND. RECREATE THE FEEL.", {650, 1060, 475, 23}, 12, muted,
-          juce::Justification::centredRight);
-    if (overlay)
-        overlay(g);
+    g.drawLine(68, 727, 1132, 727);
+    // Four recessed chassis screws: housing, highlight and horizontal slot.
+    for (auto c : {juce::Point<float>{34, 34}, {1166, 34}, {34, 790}, {1166, 790}}) {
+        g.setColour(juce::Colour(0xff050607)); g.fillEllipse(c.x-5, c.y-5, 10, 10);
+        g.setColour(juce::Colour(0xff4d5355)); g.drawEllipse(c.x-5, c.y-5, 10, 10, .8f);
+        g.drawLine(c.x-2.5f,c.y,c.x+2.5f,c.y,1);
+    }
+    if (overlay) overlay(g);
 }
 ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
                                    const da::Parameter &m, const juce::var &spec, HardwareLook &f,
@@ -285,7 +262,7 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
     : metadata(m), caption(spec["label"].toString()), look(f) {
     setComponentID(m.id);
     setTitle(m.module + " / " + m.name);
-    setDescription("Parameter with independent audio learning");
+    setDescription(bool(spec["learnable"]) ? "Audio-informed learning available" : "Manual control");
     slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     slider.setRotaryParameters(juce::MathConstants<float>::pi * 1.22f,
                                juce::MathConstants<float>::pi * 2.78f, true);
@@ -319,7 +296,8 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
     slider.setDoubleClickReturnValue(true, m.initial);
     learnButton.onClick = std::move(action);
     learnButton.setTitle("Learn " + juce::String(m.module + " / " + m.name));
-    addAndMakeVisible(learnButton);
+    addChildComponent(learnButton);
+    learnButton.setVisible(bool(spec["learnable"]));
     if (auto *options = spec["options"].getArray())
         for (int i = 0; i < options->size(); ++i) {
             auto button = std::make_unique<juce::TextButton>((*options)[i].toString());

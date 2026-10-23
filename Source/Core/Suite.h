@@ -19,6 +19,8 @@ struct Parameter {
 };
 std::vector<Parameter> parameters(Kind);
 Kind kindForName(const std::string &);
+// Product policy: audio-informed controls only. Manual/taste/routing controls never change.
+bool canLearn(Kind, const std::string &id);
 float db(float);
 float gain(float);
 struct Features {

@@ -10,15 +10,15 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
       analysis(p.kind, hardware), session(p.currentValues()), lastValues(session.values) {
     setLookAndFeel(&hardware);
     setResizable(true, true);
-    setResizeLimits(900, 840, 1800, 1680);
-    getConstrainer()->setFixedAspectRatio(1200.0 / 1120.0);
+    setResizeLimits(900, 615, 1800, 1230);
+    getConstrainer()->setFixedAspectRatio(1200.0 / 820.0);
     addAndMakeVisible(stage);
-    stage.setSize(1200, 1120);
+    stage.setSize(1200, 820);
     stage.addAndMakeVisible(chassis);
-    chassis.setBounds(0, 0, 1200, 1120);
+    chassis.setBounds(0, 0, 1200, 820);
     chassis.overlay = [this](juce::Graphics &g) { paintDetails(g); };
     stage.addAndMakeVisible(analysis);
-    analysis.setBounds(55, 166, 1090, 208);
+    analysis.setBounds(54, 142, 870, 224);
     if (auto *specs = layout.data["controls"].getArray())
         for (auto &spec : *specs) {
             auto id = spec["id"].toString().toStdString();
@@ -42,13 +42,10 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
             b->setBounds(da::ui::rectangle(spec["rect"]));
             modules.push_back(std::move(b));
         }
-    for (auto *b : {&learnAll, &loadReference, &preview, &apply, &reject, &undo, &showResults})
+    for (auto *b : {&learnAll, &loadReference, &preview, &apply, &reject, &undo, &showResults, &advanced})
         stage.addAndMakeVisible(*b);
     learnAll.getProperties().set("accent", true);
     apply.getProperties().set("accent", true);
-    bool special = processor.kind == da::Kind::EQ || processor.kind == da::Kind::FX;
-    if (!special)
-        learnAll.getProperties().set("round", true);
     mode.addItem("INPUT-AWARE LEARN", 1);
     mode.addItem("REFERENCE GUIDANCE", 2);
     mode.addItem("DESCRIPTION GUIDANCE", 3);
@@ -64,13 +61,13 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     results.setBorder(juce::BorderSize<int>(46, 16, 16, 16));
     results.setText(
         "D.A PLUGINS / LEARNING WORKBENCH\n\nChoose a mode and press LEARN for a parameter, "
-        "band/module, or all controls. Play audio during capture. Suggestions do not change your "
+        "band/module, or all eligible controls. Play audio during capture. Results stay in this optional log and do not change your "
         "settings until Preview or Apply.\n\nInput-aware learning uses measured features and "
         "deterministic estimates, not a trained neural network. Reference guidance is currently "
         "limited to EQ gains, stereo width and compressor makeup. Other proposals are "
         "input/objective starting points, not exact reference matches.\n\nRecognized description "
-        "words: dark, warm, wide, smooth, cinematic. Unsupported text and negation are not fully "
-        "interpreted.\n\nPreview auditions; Reject restores; Apply keeps; Undo restores one "
+        "words: dark, warm, wide, smooth, cinematic. Negated goals are rejected; other unsupported words "
+        "are ignored.\n\nPreview auditions; Reject restores; Apply keeps; Undo restores one "
         "learning operation. Manual changes invalidate older proposals.");
     drawer.addAndMakeVisible(results);
     drawer.addAndMakeVisible(closeResults);
@@ -84,6 +81,16 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     status.setFont(hardware.font(12));
     status.setColour(juce::Label::textColourId, da::ui::muted);
     stage.addAndMakeVisible(status);
+    advanced.onClick = [this] {
+        advancedView = !advancedView;
+        updateControlPage();
+    };
+    mode.onChange = [this] {
+        description.setEnabled(mode.getSelectedId() == 3);
+        loadReference.setEnabled(mode.getSelectedId() == 2);
+    };
+    mode.onChange();
+    updateControlPage();
     learnAll.onClick = [this] { startLearn("all"); };
     loadReference.onClick = [this] { load(); };
     preview.onClick = [this] {
@@ -105,6 +112,7 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
         session.reject();
         ++session.revision;
         capturing = false;
+        processor.cancelCapture();
         write();
     };
     undo.onClick = [this] {
@@ -115,11 +123,12 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
             setStatus("No learning operation to undo");
     };
     setStatus("Ready / Play audio to analyze / Manual control always");
-    setSize(1080, 1008);
+    setSize(1200, 820);
     startTimerHz(24);
 }
 DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
     stopTimer();
+    processor.cancelCapture();
     syncManual();
     if (session.status == "Previewing") {
         session.reject();
@@ -135,14 +144,19 @@ void DAPluginAudioProcessorEditor::syncManual() {
     auto values = processor.currentValues();
     bool changed = false;
     for (size_t i = 0; i < values.size(); ++i)
-        if (std::abs(values[i] - lastValues[i]) > 1e-5f)
-            changed = true;
+        changed |= std::abs(values[i] - lastValues[i]) > 1e-5f;
     if (changed) {
+        // Restore unaccepted preview values, but preserve each real host/manual edit.
         session.reject();
-        session.values = values;
+        for (size_t i = 0; i < values.size(); ++i)
+            if (std::abs(values[i] - lastValues[i]) > 1e-5f)
+                session.manual(i, values[i]);
         ++session.revision;
-        lastValues = values;
-        setStatus("Manual/host change — older suggestions invalidated");
+        processor.writeValues(session.values);
+        lastValues = processor.currentValues();
+        processor.cancelCapture();
+        capturing = false;
+        setStatus("Manual/host change — unaccepted learning cancelled");
     }
 }
 void DAPluginAudioProcessorEditor::write() {
@@ -254,6 +268,7 @@ void DAPluginAudioProcessorEditor::timerCallback() {
     }
     if (capturing && juce::Time::currentTimeMillis() - captureStarted > 15000) {
         capturing = false;
+        processor.cancelCapture();
         ++session.revision;
         setStatus("Failed — capture timed out; transport must be running");
     }
@@ -284,8 +299,6 @@ void DAPluginAudioProcessorEditor::timerCallback() {
             }
             if (session.offer(std::move(proposal))) {
                 results.setText(message);
-                drawer.setVisible(true);
-                drawer.toFront(false);
                 setStatus(session.status);
             } else
                 setStatus("Cancelled — stale analysis discarded");
@@ -300,75 +313,39 @@ void DAPluginAudioProcessorEditor::timerCallback() {
 }
 void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff030405)); }
 void DAPluginAudioProcessorEditor::paintDetails(juce::Graphics &g) {
-    auto r = layout.area("learningRect");
-    da::ui::label(g, hardware, "NO SETTINGS CHANGE UNTIL YOU APPLY",
-                  {float(r.getX() + 18), float(r.getY() + 251), 432, 19}, 11,
-                  juce::Colour(0xff5e686c));
-    da::ui::label(g, hardware, "DESCRIBE THE SOUND",
-                  {float(r.getX() + 18), float(r.getY() + 157), 420, 19}, 12, da::ui::muted);
-    if (processor.kind != da::Kind::EQ && processor.kind != da::Kind::FX)
-        da::ui::label(g, hardware, layout.title("slogan"), {64, 650, 1072, 20}, 12, da::ui::muted,
-                      juce::Justification::centred);
-    // Parameter-dense EQ/DFX have their own module strip instead of a six-knob row.
-    if (processor.kind == da::Kind::EQ || processor.kind == da::Kind::FX) {
-        // Section controls own this area; do not draw through their labels.
-    }
-    auto a = layout.area("advancedRect");
-    switch (processor.kind) {
-    case da::Kind::Verb:
-        break;
-    case da::Kind::Delay:
-        da::ui::label(g, hardware, "L > FILTER > FEEDBACK > R", {550, 968, 450, 18}, 12,
-                      da::ui::muted, juce::Justification::centred);
-        break;
-    case da::Kind::Comp:
-    case da::Kind::Sess:
-        analysis.paintDetail(g, {550, 891, 450, 90});
-        break;
-    case da::Kind::Gate:
-        analysis.paintDetail(g, {717, 749, 280, 195});
-        break;
-    case da::Kind::Stereo:
-    case da::Kind::Trans:
-    case da::Kind::Sat:
-        analysis.paintDetail(g, {550, 810, 450, 170});
-        break;
-    case da::Kind::EQ:
-        da::ui::label(g, hardware, "BROAD TONAL GUIDANCE / FOUR INDEPENDENT BANDS",
-                      {550, 781, 450, 40}, 15, da::ui::silver, juce::Justification::centred);
-        analysis.paintDetail(g, {550, 858, 450, 120});
-        break;
-    case da::Kind::FX:
-        break;
-    }
-    float top = float(a.getY() + 33), height = float(a.getHeight() - 85);
-    da::ui::meter(g, hardware, {1058, top, 11, height}, analysis.currentInputDb());
-    da::ui::meter(g, hardware, {1078, top, 11, height}, analysis.currentOutputDb(), true);
-    da::ui::label(g, hardware, "IN / OUT", {1045, float(a.getBottom() - 32), 99, 20}, 12,
-                  da::ui::muted, juce::Justification::centred);
+    da::ui::label(g, hardware, "LEARNING", {956, 151, 180, 24}, 15, da::ui::silver);
+    da::ui::label(g, hardware, "DESCRIBE / OPTIONAL ENGLISH KEYWORDS", {68, 643, 600, 20}, 12);
+    da::ui::label(g, hardware, "PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES",
+                  {68, 712, 800, 18}, 11);
+    da::ui::label(g, hardware, advancedView ? layout.title("advancedTitle") : layout.title("slogan"),
+                  {64, 377, 920, 24}, 13, da::ui::muted);
+}
+void DAPluginAudioProcessorEditor::updateControlPage() {
+    auto *specs = layout.data["controls"].getArray();
+    if (specs)
+        for (size_t i = 0; i < controls.size(); ++i)
+            controls[i]->setVisible(bool((*specs)[int(i)]["advanced"]) == advancedView);
+    for (auto &b : modules) b->setVisible(!advancedView);
+    advanced.setButtonText(advancedView ? "MAIN CONTROLS" : "ADVANCED");
+    advanced.setToggleState(advancedView, juce::dontSendNotification);
+    chassis.repaint();
 }
 void DAPluginAudioProcessorEditor::resized() {
-    const float scale = std::min(float(getWidth()) / 1200, float(getHeight()) / 1120);
+    const float scale = std::min(float(getWidth()) / 1200, float(getHeight()) / 820);
     stage.setTransform(juce::AffineTransform::scale(scale).translated(
-        (getWidth() - 1200 * scale) * .5f, (getHeight() - 1120 * scale) * .5f));
-    auto r = layout.area("learningRect");
-    int left = r.getX() + 16, top = r.getY();
-    mode.setBounds(left, top + 113, 268, 30);
-    loadReference.setBounds(left + 280, top + 113, 152, 30);
-    description.setBounds(left, top + 179, 432, 64);
-    showResults.setBounds(r.getRight() - 149, top + 12, 132, 24);
-    int y = r.getBottom() - 42;
+        (getWidth() - 1200 * scale) * .5f, (getHeight() - 820 * scale) * .5f));
+    mode.setBounds(956, 185, 180, 30);
+    loadReference.setBounds(956, 224, 180, 30);
+    learnAll.setBounds(956, 263, 180, 34);
+    showResults.setBounds(956, 308, 180, 30);
+    advanced.setBounds(978, 376, 160, 28);
+    description.setBounds(68, 666, 1064, 40);
+    int x = 68;
     for (auto *b : {&preview, &apply, &reject, &undo}) {
-        b->setBounds(left, y, 102, 27);
-        left += 110;
+        b->setBounds(x, 738, 150, 28); x += 162;
     }
-    if (processor.kind == da::Kind::EQ || processor.kind == da::Kind::FX) {
-        learnAll.setBounds(r.getX() + 16, top + 50, 432, 39);
-    } else {
-        learnAll.setBounds(548, 464, 104, 104);
-    }
-    status.setBounds(310, 1039, 716, 21);
-    drawer.setBounds(63, 408, 1074, 545);
-    results.setBounds(0, 0, 1074, 545);
-    closeResults.setBounds(845, 9, 212, 28);
+    status.setBounds(68, 775, 1064, 22);
+    drawer.setBounds(54, 370, 1092, 398);
+    results.setBounds(drawer.getLocalBounds());
+    closeResults.setBounds(862, 9, 212, 28);
 }

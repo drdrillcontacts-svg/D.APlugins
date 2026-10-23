@@ -24,8 +24,9 @@ DAPluginAudioProcessor::DAPluginAudioProcessor(const juce::String &product)
         raw[i] = parameters.getRawParameterValue(metadata[i].id);
 }
 void DAPluginAudioProcessor::prepareToPlay(double sr, int) {
+    cancelCapture();
     engine.prepare(sr);
-    captureRate = sr;
+    capture.prepare(sr);
     displaySampleRate.store(std::isfinite(sr) ? std::clamp(sr, 8000., 384000.) : 48000.,
                             std::memory_order_relaxed);
 }
@@ -39,18 +40,7 @@ void DAPluginAudioProcessor::processBlock(juce::AudioBuffer<float> &b, juce::Mid
     if (b.getNumChannels() < 1)
         return;
     const auto count = size_t(b.getNumSamples());
-    if (captureState.load(std::memory_order_acquire) == 1) {
-        capturePosition = 0;
-        captureState.store(2, std::memory_order_release);
-    }
-    if (captureState.load(std::memory_order_acquire) == 2) {
-        for (size_t i = 0; i < count && capturePosition < captureSize; ++i, ++capturePosition) {
-            captureL[capturePosition] = b.getSample(0, int(i));
-            captureR[capturePosition] = b.getSample(b.getNumChannels() > 1 ? 1 : 0, int(i));
-        }
-        if (capturePosition == captureSize)
-            captureState.store(3, std::memory_order_release);
-    }
+    capture.process(b.getReadPointer(0), b.getNumChannels()>1 ? b.getReadPointer(1) : nullptr, count);
     float in = 0;
     for (int c = 0; c < b.getNumChannels(); ++c)
         in = std::max(in, b.getMagnitude(c, 0, b.getNumSamples()));
@@ -85,18 +75,10 @@ void DAPluginAudioProcessor::processBlock(juce::AudioBuffer<float> &b, juce::Mid
     outputPeak.store(out, std::memory_order_relaxed);
     reduction.store(engine.reductionDb(), std::memory_order_relaxed);
 }
-bool DAPluginAudioProcessor::requestCapture() {
-    int expected = 0;
-    return captureState.compare_exchange_strong(expected, 1, std::memory_order_acq_rel);
-}
+bool DAPluginAudioProcessor::requestCapture() { return capture.request(); }
+void DAPluginAudioProcessor::cancelCapture() { capture.cancel(); }
 bool DAPluginAudioProcessor::takeCapture(std::vector<float> &l, std::vector<float> &r, double &sr) {
-    if (captureState.load(std::memory_order_acquire) != 3)
-        return false;
-    l.assign(captureL.begin(), captureL.end());
-    r.assign(captureR.begin(), captureR.end());
-    sr = captureRate.load();
-    captureState.store(0, std::memory_order_release);
-    return true;
+    return capture.take(l,r,sr);
 }
 std::vector<float> DAPluginAudioProcessor::currentValues() const {
     std::vector<float> v;
@@ -107,8 +89,11 @@ std::vector<float> DAPluginAudioProcessor::currentValues() const {
 void DAPluginAudioProcessor::writeValues(const std::vector<float> &v) {
     for (size_t i = 0; i < std::min(v.size(), metadata.size()); ++i) {
         auto *p = parameters.getParameter(metadata[i].id);
+        const float normalized = p->convertTo0to1(metadata[i].constrain(v[i]));
+        if (std::abs(p->getValue() - normalized) <= 1e-7f)
+            continue;
         p->beginChangeGesture();
-        p->setValueNotifyingHost(p->convertTo0to1(metadata[i].constrain(v[i])));
+        p->setValueNotifyingHost(normalized);
         p->endChangeGesture();
     }
 }

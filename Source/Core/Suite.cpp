@@ -118,25 +118,29 @@ Features analyze(const float *l, const float *r, size_t n, double sr) {
     Features f;
     if (!l || n == 0 || !std::isfinite(sr) || sr < 8000)
         return f;
-    double sum = 0, ll = 0, rr = 0, lr = 0, side = 0, delta = 0, previous = 0;
-    std::array<double, 3> low{};
+    double sum = 0, ll = 0, rr = 0, lr = 0, side = 0, delta = 0;
+    std::array<double, 2> previous{};
+    std::array<std::array<double, 3>, 2> low{};
     double cuts[]{200, 1000, 5000};
+    std::array<double, 3> alpha{};
+    for (size_t j=0;j<3;++j) alpha[j]=1-std::exp(-2*pi*cuts[j]/sr);
     for (size_t i = 0; i < n; ++i) {
-        double a = std::isfinite(l[i]) ? l[i] : 0, b = r && std::isfinite(r[i]) ? r[i] : a;
-        double x = (a + b) * .5;
+        double a = std::isfinite(l[i]) ? l[i] : 0;
+        double b = r ? (std::isfinite(r[i]) ? r[i] : 0) : a;
         sum += (a * a + b * b) * .5;
         ll += a * a;
         rr += b * b;
         lr += a * b;
         side += (a - b) * (a - b) * .25;
         f.peak = std::max(f.peak, std::max(std::abs(a), std::abs(b)));
-        for (size_t j = 0; j < 3; ++j)
-            low[j] += (1 - std::exp(-2 * pi * cuts[j] / sr)) * (x - low[j]);
-        double bands[]{low[0], low[1] - low[0], low[2] - low[1], x - low[2]};
-        for (size_t j = 0; j < 4; ++j)
-            f.bands[j] += bands[j] * bands[j];
-        delta += std::abs(x - previous);
-        previous = x;
+        const double channels[]{a,b};
+        for(size_t c=0;c<2;++c) {
+            double x=channels[c];
+            for(size_t j=0;j<3;++j)low[c][j]+=alpha[j]*(x-low[c][j]);
+            const double bands[]{low[c][0],low[c][1]-low[c][0],low[c][2]-low[c][1],x-low[c][2]};
+            for(size_t j=0;j<4;++j)f.bands[j]+=.5*bands[j]*bands[j];
+            delta+=.5*std::abs(x-previous[c]);previous[c]=x;
+        }
     }
     f.samples = n;
     f.duration = double(n) / sr;
@@ -155,15 +159,38 @@ Objective describe(const std::string &text) {
         c = char(std::tolower(static_cast<unsigned char>(c)));
     Objective o;
     o.mode = Mode::Description;
-    o.dark = s.find("dark") != std::string::npos;
-    o.warm = s.find("warm") != std::string::npos;
-    o.wide = s.find("wide") != std::string::npos;
-    o.smooth = s.find("smooth") != std::string::npos;
-    o.cinematic = s.find("cinematic") != std::string::npos;
+    std::vector<std::string> tokens;
+    std::string token;
+    for (unsigned char c : s) {
+        if(std::isalnum(c)||c=='\'')token+=char(c);
+        else if(!token.empty()){tokens.push_back(token);token.clear();}
+    }
+    if(!token.empty())tokens.push_back(token);
+    const auto has=[&](const char *word){return std::find(tokens.begin(),tokens.end(),word)!=tokens.end();};
+    for(auto word:{"not","no","never","without","isn't","isnt","don't","dont","less"})
+        if(has(word))throw std::invalid_argument("Negated goals are unsupported; use positive keywords only");
+    o.dark=has("dark");o.warm=has("warm");o.wide=has("wide");
+    o.smooth=has("smooth");o.cinematic=has("cinematic");
     if (!(o.dark || o.warm || o.wide || o.smooth || o.cinematic))
         throw std::invalid_argument(
             "Supported goals: dark, warm, wide, smooth, cinematic; no goal recognized");
     return o;
+}
+bool canLearn(Kind k, const std::string &id) {
+    const char *allowed = "";
+    switch (k) {
+    case Kind::Verb: allowed = " predelay decay tone width lowcut "; break;
+    case Kind::Delay: allowed = " filter width "; break;
+    case Kind::Comp: allowed = " threshold ratio attack release makeup "; break;
+    case Kind::EQ: allowed = " b1gain b2gain b3gain b4gain "; break;
+    case Kind::Sat: allowed = " drive tone "; break;
+    case Kind::Trans: allowed = " attack sensitivity "; break;
+    case Kind::Stereo: allowed = " width side "; break;
+    case Kind::Sess: allowed = " frequency threshold range focus release "; break;
+    case Kind::Gate: allowed = " threshold attack release "; break;
+    case Kind::FX: allowed = " drive filter decay "; break;
+    }
+    return !id.empty() && std::string(allowed).find(" " + id + " ") != std::string::npos;
 }
 Proposal learn(Kind k, const Features &f, const Features *ref, Objective o,
                const std::vector<float> &current, const std::string &scope, uint64_t revision) {
@@ -184,10 +211,9 @@ Proposal learn(Kind k, const Features &f, const Features *ref, Objective o,
             "suggestions remain input/objective-based, not reference matches.";
     double level = db(float(f.rms)), crest = f.crest;
     double targetLevel = o.mode == Mode::Reference ? db(float(ref->rms)) : -18;
-    float bandCentres[]{100, 400, 2500, 10000};
     for (size_t i = 0; i < meta.size(); ++i) {
         const auto &p = meta[i];
-        if (scope != "all" && scope != p.id && scope != p.module)
+        if (!canLearn(k, p.id) || (scope != "all" && scope != p.id && scope != p.module))
             continue;
         float v = current[i], confidence = .45f;
         std::string reason =
@@ -203,124 +229,56 @@ Proposal learn(Kind k, const Features &f, const Features *ref, Objective o,
                 desired *= 1.2;
             double difference =
                 20 * std::log10(std::max(desired, 1e-6) / std::max(f.bands[band] / f.rms, 1e-6));
-            if (i % 4 == 0)
-                v = bandCentres[band];
-            if (i % 4 == 1)
-                v = float(std::clamp(difference, -6., 6.));
-            if (i % 4 == 2)
-                v = .707f;
-            if (i % 4 == 3)
-                v = 0;
-            reason = i % 4 == 1 ? "Broad-band normalized tonal correction, limited to 6 dB"
-                                : "Broad tonal objective uses fixed band centres and broad bell; "
-                                  "frequency/Q not uniquely identifiable";
-            confidence = i % 4 == 1 ? .65f : .2f;
-        } else if (id == "threshold") {
-            v = float(k == Kind::Gate   ? level - 18
-                      : k == Kind::Sess ? db(float(f.bands[3])) - 4
-                                        : level + crest * .25);
-            reason =
-                k == Kind::Gate
-                    ? "Conservative threshold below average level; no noise-floor estimator yet"
-                : k == Kind::Sess ? "Threshold follows measured high-band RMS"
-                                  : "Threshold follows RMS and crest factor";
+            v = float(std::clamp(difference, -6., 6.));
+            reason = "Broad-band normalized tonal gain correction; frequency, Q and shape retained";
             confidence = .65f;
-        } else if (id == "ratio") {
-            v = float(std::clamp(crest / 3, 1.5, 6.));
-            reason = "Crest-factor controlled compression objective";
-        } else if (id == "attack") {
-            v = k == Kind::Trans  ? float(std::clamp(6. - crest * .4, -6., 6.))
-                : k == Kind::Sess ? 1.f
-                                  : float(crest > 12 ? 20 : 5);
-            reason = "Transient preservation from measured crest factor";
-        } else if (id == "release") {
-            v = float(std::clamp(100. + crest * 5, 50., 400.));
-            reason = "Crest-dependent recovery; tempo not estimated";
-        } else if (id == "knee")
-            v = o.smooth ? 12 : 6;
-        else if (id == "makeup")
-            v = float(std::clamp(targetLevel - level, 0., 12.));
-        else if (id == "output") {
-            v = float(std::clamp(-3. - db(float(f.peak)), -12., 0.));
-            reason = "Reserve 3 dB input peak headroom; verify processed output";
-        } else if (id == "frequency") {
-            v = f.bands[2] > f.bands[3] ? 4500 : 7000;
-            reason = "Detection crossover chosen from upper-band energy";
-        } else if (id == "range")
-            v = k == Kind::Gate
-                    ? 40
-                    : float(std::clamp(6. + 20 * std::log10(std::max(f.bands[3] / f.rms, 1e-6)), 2.,
-                                       10.));
-        else if (id == "focus")
-            v = float(std::clamp(f.bands[3] / f.rms, .2, 1.));
-        else if (id == "width") {
-            double target = o.mode == Mode::Reference ? ref->sideRatio : o.wide ? .65 : .4;
-            v = float(std::clamp(target / std::max(f.sideRatio, .1), .5, 1.5));
-            if (f.correlation < 0)
-                v = .5f;
-            reason =
-                "Side energy target, narrowed when correlation is negative; cannot widen dual mono";
-            confidence = .7f;
-        } else if (id == "side")
-            v = f.correlation < 0 ? -6 : 0;
-        else if (id == "center" || id == "mono")
-            v = 0;
-        else if (id == "depth")
-            v = o.cinematic ? .15f : 0;
-        else if (id == "drive") {
-            v = float(std::clamp(12. - db(float(f.peak)) - crest * .4, 0., 18.));
-            reason = "Drive limited by measured peak and crest factor";
-        } else if (id == "tone" || id == "filter") {
-            v = o.dark   ? 3500
-                : o.warm ? 6000
-                         : float(std::clamp(12000. - f.bands[3] / f.rms * 12000, 2000., 14000.));
-            reason = "Upper-band energy and brightness objective";
-        } else if (id == "sensitivity")
-            v = float(std::clamp(1. - crest / 30, .2, .8));
-        else if (id == "sustain")
-            v = o.smooth ? 2 : -2;
-        else if (id == "shape")
-            v = o.smooth ? .7f : 1.2f;
-        else if (id == "decay")
-            v = o.cinematic ? 4 : float(std::clamp(1. + crest * .05, .5, 3.));
-        else if (id == "predelay")
-            v = float(std::clamp(crest * 2, 5., 60.));
-        else if (id == "size")
-            v = o.cinematic ? .85f : .5f;
-        else if (id == "lowcut")
-            v = f.bands[0] / f.rms > .5 ? 200 : 80;
-        else if (id == "midcut")
-            v = o.warm ? -1 : -3;
-        else if (id == "mode")
-            v = k == Kind::Verb ? (o.cinematic ? 1 : 0) : (o.warm ? 2 : 0);
-        else if (id == "density" || id == "diffusion")
-            v = o.smooth ? .85f : .6f;
-        else if (id == "modulation")
-            v = o.cinematic ? .2f : .05f;
-        else if (id == "time") {
-            v = crest > 12 ? 250 : 375;
-            reason = "Conservative echo objective; not detected tempo or reference echo timing";
-            confidence = .15f;
-        } else if (id == "feedback")
-            v = o.cinematic ? .5f : .25f;
-        else if (id == "pingpong")
-            v = o.wide ? 1 : 0;
-        else if (id == "hold")
-            v = 50;
-        else if (id == "hysteresis")
-            v = 6;
-        else if (id == "mix" || id == "delayMix" || id == "reverbMix")
-            v = (k == Kind::Comp || k == Kind::Trans || k == Kind::Sess || k == Kind::Stereo) ? 1
-                : o.cinematic                                                                 ? .35f
-                                                                                              : .2f;
-        else {
-            reason = "Enable/routing is a user decision; retained";
-            confidence = .1f;
-        }
+        } else if (id == "threshold") {
+            v = float(k == Kind::Gate ? level-18 : k == Kind::Sess ? db(float(f.bands[3]))-4 : level+crest*.25);
+            reason = k==Kind::Gate ? "Input RMS minus 18 dB starting point; not a measured noise floor" :
+                     k==Kind::Sess ? "Measured upper-band RMS threshold" : "Measured RMS and crest-factor threshold";
+            confidence=.65f;
+        } else if(id=="ratio") {
+            v=float(std::clamp(crest/3,1.5,6.));reason="Crest-factor compression objective";
+        } else if(id=="attack") {
+            v=k==Kind::Trans ? float(std::clamp(6.-crest*.4,-6.,6.)) : float(crest>12?20:5);
+            reason="Source-crest transient preservation starting point";
+        } else if(id=="release") {
+            v=float(std::clamp((100.+crest*5)*(o.smooth?1.5:1.),50.,600.));
+            reason="Source-crest recovery estimate; smooth extends recovery; not detected tempo";
+        } else if(id=="makeup") {
+            v=float(std::clamp(targetLevel-level,0.,12.));reason="Target/input RMS difference; not measured processed GR";
+        } else if(id=="frequency") {
+            v=f.bands[2]>f.bands[3]?4500:7000;reason="Upper-band energy crossover choice; not precise sibilance classification";
+        } else if(id=="range") {
+            v=float(std::clamp(6.+20*std::log10(std::max(f.bands[3]/f.rms,1e-6)),2.,10.));
+            reason="Relative upper-band energy reduction range";
+        } else if(id=="focus") {
+            v=float(std::clamp(f.bands[3]/f.rms,.2,1.));reason="Relative upper-band energy reduction strength";
+        } else if(id=="width") {
+            double target=o.mode==Mode::Reference?ref->sideRatio:o.wide?.65:.4;
+            v=float(std::clamp(target/std::max(f.sideRatio,.1),.5,1.5));
+            if(f.correlation<0)v=.5f;
+            reason="Measured side energy and correlation; cannot widen identical dual mono";confidence=.7f;
+        } else if(id=="side") {
+            v=f.correlation<0?-6:0;reason="Negative input correlation narrows Side; verify output mono compatibility";
+        } else if(id=="drive") {
+            v=float(std::clamp(12.-db(float(f.peak))-crest*.4,0.,18.));reason="Measured input peak/crest headroom heuristic";
+        } else if(id=="tone"||id=="filter") {
+            v=o.dark?3500:o.warm?6000:float(std::clamp(12000.-f.bands[3]/f.rms*12000,2000.,14000.));
+            reason="Upper-band energy and dark/warm objective";
+        } else if(id=="sensitivity") {
+            v=float(std::clamp(1.-crest/30,.2,.8));reason="Measured source crest-factor sensitivity starting point";
+        } else if(id=="decay") {
+            v=o.cinematic?4:float(std::clamp(1.+crest*.05,.5,3.));reason="Source crest/ambience objective; not reference RT60";
+        } else if(id=="predelay") {
+            v=float(std::clamp(crest*2,5.,60.));reason="Measured source crest-factor separation estimate";
+        } else if(id=="lowcut") {
+            v=f.bands[0]/f.rms>.5?200:80;reason="Relative low-band energy; audition source fundamentals";
+        } else throw std::logic_error("Missing strategy for an eligible parameter");
         result.values.push_back({i, p.constrain(v), confidence, reason});
     }
     if (result.values.empty())
-        throw std::invalid_argument("Unknown learning scope");
+        throw std::invalid_argument("Scope has no audio-learnable controls");
     return result;
 }
 bool LearningSession::offer(Proposal p) {
@@ -329,7 +287,7 @@ bool LearningSession::offer(Proposal p) {
     reject();
     pending = std::move(p);
     available = true;
-    status = "Suggestion available";
+    status = "Ready to audition / Preview or Apply";
     return true;
 }
 bool LearningSession::preview() {
@@ -375,6 +333,7 @@ bool LearningSession::undo() {
 }
 void LearningSession::manual(size_t i, float value) {
     reject();
+    history.clear(); // Never let an old full-state Undo overwrite newer manual/automation edits.
     if (i < values.size()) {
         values[i] = value;
         ++revision;

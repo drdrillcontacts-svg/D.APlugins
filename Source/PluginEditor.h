@@ -23,7 +23,7 @@ class DAPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, pr
     std::vector<std::unique_ptr<da::ui::ParameterControl>> controls;
     std::vector<std::unique_ptr<juce::TextButton>> modules;
     juce::TextButton learnAll{"LEARN ALL"}, loadReference{"LOAD FILE"}, preview{"PREVIEW"},
-        apply{"APPLY"}, reject{"REJECT"}, undo{"UNDO"}, showResults{"SUGGESTIONS"},
+        apply{"APPLY"}, reject{"REJECT"}, undo{"UNDO"}, showResults{"DETAILS / LOG"}, advanced{"ADVANCED"},
         closeResults{"BACK TO CONTROLS"};
     juce::ComboBox mode;
     juce::TextEditor description, results;
@@ -33,7 +33,8 @@ class DAPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, pr
     std::future<da::ui::ReferenceDisplay> referenceWork;
     std::future<da::Proposal> learnWork;
     da::Features reference;
-    bool capturing = false;
+    bool capturing = false, advancedView = false;
+    void updateControlPage();
     uint64_t captureRevision = 0, referenceRevision = 0;
     juce::int64 captureStarted = 0;
     std::string scope;

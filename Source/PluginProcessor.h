@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/ScopeFifo.h"
+#include "Core/InputCapture.h"
 #include "Core/Suite.h"
 #include <JuceHeader.h>
 #include <atomic>
@@ -37,6 +38,7 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
     void writeValues(const std::vector<float> &);
     // Single audio producer, single message-thread consumer; ownership changes via release/acquire.
     bool requestCapture();
+    void cancelCapture();
     bool takeCapture(std::vector<float> &, std::vector<float> &, double &);
     da::ScopeFifo scopeFifo;
     std::atomic<double> displaySampleRate{48000};
@@ -45,10 +47,6 @@ class DAPluginAudioProcessor final : public juce::AudioProcessor {
   private:
     da::Engine engine;
     std::array<std::atomic<float> *, 64> raw{};
-    static constexpr size_t captureSize = 65536;
-    std::array<float, captureSize> captureL{}, captureR{};
-    std::atomic<int> captureState{0}; // 0 idle, 1 requested, 2 writing, 3 ready
-    size_t capturePosition = 0;
-    std::atomic<double> captureRate{48000};
+    da::InputCapture capture;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DAPluginAudioProcessor)
 };

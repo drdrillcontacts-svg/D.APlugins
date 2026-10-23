@@ -5,13 +5,15 @@
 Development checkpoint for ten JUCE audio effects. **This is not a completed or release-ready bundle.**
 The original UI assets remain in `Design/UI-Mockups/`. Runtime controls are JUCE components, not PNGs.
 
-## New hardware UI collection
+## Rack Collection 02 — new UI and selective learning
 
-The user’s DVerb hardware reference and original logo now guide all ten product-specific layouts.
+The user’s new full-bundle rack reference and original logo now guide all ten product-specific layouts.
 Open **[the ten-design gallery](Design/UI-Previews/index.html)** for high-resolution PNG/SVG studies,
 or run `python tools/serve_designs.py` for the local viewer. These are explicitly design previews, not
 native screenshots. The actual JUCE editor uses custom controls, attached parameters, live signal
-views and per-product sections rather than a screenshot or the previous four-column grid.
+views, product-specific main controls and an Advanced page, rather than a screenshot. All 90
+parameters remain; only 33 audio-informed controls have Learn. Details / Log is opt-in and never
+opens automatically after learning. Manual/mix/output/routing controls are preserved by Learn All.
 
 See **[UI design / implementation / reproduction notes](docs/UI-DESIGN.md)** for details and the native
 snapshot test runner. Full plugin/host validation of this new UI revision remains pending.
@@ -30,7 +32,7 @@ See [manual sources, checksums and rebuild instructions](docs/manual/README.md).
 ## Current implementation
 
 - Separate DSP paths for DVerb, DDelay, DComp, DEQ, DSat, DTrans, DStereo, DSess, DGate and DFX.
-- Shared metadata for 90 parameters; parameter, band/module and all-parameter proposal scopes.
+- Shared metadata for 90 parameters; 33 eligible parameter, band/module and all-eligible scopes.
 - Deterministic audio-feature estimates, with explicit uncertainty. **No trained neural model.**
 - Reversible proposal lifecycle and stale-result protection.
 - JUCE wiring for attached controls, input capture, asynchronous estimation/reference decoding,

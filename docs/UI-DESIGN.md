@@ -1,100 +1,67 @@
-# Carbon / Crimson — ten-interface redesign
+# Rack Collection 02 — all ten interfaces
 
-## Authoritative visual reference
+## Reference and scope
 
-The user-supplied original logo and DVerb hardware design are preserved without modification:
+`Design/Reference/Bundle-rack-reference.png` is the user's new full-bundle reference. Earlier
+DVerb references, original logo and mockups are preserved. This revision adopts the compact,
+wide rack face, silver chassis, screws, carbon/brushed finish, recessed dark display, machined
+knobs and restrained red illumination. It does not copy unsupported AI/tempo/tape/module claims
+from artwork into working controls. DAmark and licensed Rajdhani fonts remain embedded assets.
 
-- `Design/Brand/DA-original.png`
-- `Design/Reference/DVerb-user-reference.png`
+## Actual editor
 
-`Design/Brand/DAmark.png` is a cropped, transparent derivative for use on the dark enclosure. No invented
-replacement logo was generated. Rajdhani Medium/SemiBold are embedded with their SIL OFL license in
-`Design/Fonts/OFL.txt`. Old mockups in `Design/UI-Mockups/` remain untouched.
+- **1200 × 820** logical canvas; default 1200 × 820, minimum 900 × 615, maximum 1800 × 1230.
+- Four or five product-specific main controls, an analysis display and a right-hand learning strip.
+- **ADVANCED / MAIN CONTROLS** switches the parameter page, preserving every attachment/value.
+  All 90 original IDs/ranges/defaults remain available and host-compatible.
+- **DETAILS / LOG** is opt-in. Completing learning updates its text and the status line, never opens
+  or raises the report. Preview/Apply/Reject/Undo remain explicit user actions.
+- **33** audio-informed controls have Learn. **57** manual controls do not. Core `canLearn` enforces
+  this for single, band/module and all scopes; this is not a cosmetic removal of buttons.
+- Scope policy is a product decision, not a claimed universal industry standard. Tables and rationale:
+  [LEARNING.md](LEARNING.md).
 
-## Deliverables and an important distinction
+| Product | Main controls | Learn-capable IDs |
+|---|---|---|
+| DVerb | Pre-delay / Decay / Tone / Mix | predelay, decay, tone, width, lowcut |
+| DDelay | Time / Feedback / Mix / Width | filter, width |
+| DComp | Threshold / Ratio / Attack / Release / Makeup | threshold, ratio, attack, release, makeup |
+| DEQ | Four band gains; frequency/Q/shape in Advanced | b1gain, b2gain, b3gain, b4gain |
+| DSat | Drive / Tone / Density / Mix | drive, tone |
+| DTrans | Attack / Sustain / Sensitivity / Mix | attack, sensitivity |
+| DStereo | Width / Center / Side / Mono | width, side |
+| DSess | Frequency / Threshold / Range / Mix | frequency, threshold, range, release, focus |
+| DGate | Threshold / Range / Attack / Release / Output | threshold, attack, release |
+| DFX | Drive / Filter / Time / Mix | drive, filter, decay |
 
-- `Design/UI-Previews/index.html`: Persian-language collection viewer, with all ten designs, zoom,
-  downloadable PNG/SVG and comparison against the original reference.
-- Ten **2400 × 2240** PNG design studies, plus scalable SVG originals in the same directory.
-- Native JUCE hardware components and ten declarative product layouts, **not a screenshot used as a UI**.
-- CI snapshot runner `da_ui_snapshots` to produce actual JUCE component captures and exercise attachment wiring.
+EQ Band Learn now preserves frequency/Q/shape. DFX has no misleading Learn Delay action; echo
+timing/feedback/mixes and all enable switches remain manual. Controls present in the reference but
+not implemented by the actual DSP (e.g. synced divisions, extra DFX modules) are not invented.
 
-**The checked-in PNG/SVG studies are design previews, not native plugin screenshots.** Their sample
-waveforms, traces, reference and meter readings are explicitly illustrative. Their footer and the gallery
-identify this. The native editor does not use these images as controls or fabricate match scores. It draws
-its own enclosure and controls and uses actual telemetry/parameters for the displays. Native screenshot
-quality, detailed visual parity, automation and platform font rendering remain to be validated by CI/hosts.
+## Design exports versus native UI
 
-## Visual system
-
-1200 × 1120 logical canvas, uniformly scaled from 900 × 840 to 1800 × 1680; initial size 1080 × 1008.
-Angular machined enclosure, subtle diagonal carbon weave, recessed dark screens, fine steel highlights,
-restrained crimson rings and strokes, metal knobs with shadows/brushed highlights, embedded brand mark.
-
-The hardware reference's fake window controls and unsupported “neural engine”/percentage labels are
-not copied. Buttons in the native editor have actual actions. Learn All is the illuminated central action
-on the six-control products; parameter-dense EQ/DFX put it in the learning panel. Every parameter, including
-choices/enable switches, retains its own Learn action. A Suggestions drawer shows explanations and the
-current/proposed values; approval controls stay accessible below the drawer.
-
-| Product | Purpose-specific arrangement and view |
-|---|---|
-| DVerb | Six space/colour controls around Learn All; Room/Hall/Plate/Shimmer selector; 3+2 advanced controls; actual spectral history |
-| DDelay | Time/feedback/filter/mix/width/output; dedicated stereo/ping-pong selection and modulation; frequency view |
-| DComp | Six dynamics controls; knee/parallel mix; parameter-derived transfer curve and actual GR readout |
-| DEQ | Four independent band strips, each with frequency/gain/Q/shape and its own Learn Band; parameter-derived RBJ response |
-| DSat | Drive/tone/density/mix/output; Soft/Hard/Asymmetric selector; parameter-derived nonlinear transfer curve |
-| DTrans | Attack/sustain/sensitivity/shape/mix/output; actual waveform envelope display |
-| DStereo | Width/depth/center/side/mix and mono choice; actual L/R vectorscope and channel-correlation reading |
-| DSess | Detection/threshold/range/focus/mix/output; attack/release section; actual spectrum with crossover highlight and GR |
-| DGate | Threshold/attack/hold/release/range/output; hysteresis and gate transfer/GR section |
-| DFX | Four separately enabled module strips (Saturation, Filter, Delay, Ambience), per-module learning; master mix/output |
-
-## Runtime architecture
-
-`Source/UI/HardwareLook.*` paints reusable knobs, bevelled buttons, enclosure, branding and parameter
-controls. Host parameter IDs/ranges are preserved. Choice buttons share the attached slider's value,
-so host automation updates their selected state too. Unit/value formatting is installed **after** JUCE's
-SliderAttachment, because the attachment overwrites slider text/parser callbacks during construction.
-
-`Design/UI/Layouts.json` is consumed by the native editor and by the design exporter. It covers every
-one of the 90 current parameter IDs exactly once. Geometry tests verify unique coverage, choice counts,
-band/module scopes and non-overlapping parameter rectangles. `Parameters.json` is generated from the
-actual C++ metadata registry by `tools/export_metadata.cpp`, not an independently maintained parameter list.
-
-`Source/Core/ScopeFifo.h` is a fixed-capacity, lock-free SPSC queue owned by the processor. The audio
-thread copies dry/wet frames in bounded stack chunks; full queues drop visualization frames without
-blocking. The GUI drains the queue and computes windowed spectra off the audio thread. No fake
-waveform is painted when no signal/reference exists. Spectral history is temporal FFT history, **not**
-a measured RT60 or a reference-match score. Drawn transfer curves are visualizations, not claims of
-oversampling or independently verified model accuracy.
-
-Full/empty/wrap and 200,000 concurrent ordered frames are tested. Allocation/performance profiling,
-thread sanitization, signal/GUI lifetime stress, exact meter calibration and full accessibility still need work.
-Only one editor consumer may drain the queue. Reference loading continues to be asynchronous and
-bounded to 30 seconds. Existing learning-engine limitations in `LEARNING.md` remain; a new appearance
-does not turn heuristic policies into trained inference.
-
-## Reproduce the design studies
+Twenty **2400 × 1640** PNG/SVG studies show main and Advanced for each effect. The gallery includes
+page selection, zoom and comparison with the new bundle reference. Its traces/meters are illustrative;
+these are **not native screenshots or executed audio results**. JUCE paints real controls and uses
+live processor telemetry, reference data and parameter-derived explanatory curves instead.
 
 ```sh
-python -m venv .venv
-. .venv/bin/activate
-pip install -r tools/requirements.txt
-g++ -std=c++17 -O2 -ISource tools/export_metadata.cpp Source/Core/Suite.cpp -o /tmp/da-metadata
-/tmp/da-metadata > Design/UI/Parameters.json
+# Export authoritative metadata/eligibility from the real core:
+g++ -std=c++17 -O2 -ISource tools/export_metadata.cpp Source/Core/Suite.cpp -o build-metadata
+./build-metadata > Design/UI/Parameters.json
 python tools/generate_layouts.py
-python tools/render_designs.py
+python tools/render_designs.py        # requires Pillow
 npm ci --prefix tools
-npm run render --prefix tools
+node tools/render_designs.cjs
 python tools/test_ui_layouts.py
-python tools/serve_designs.py  # 0.0.0.0:8080; only Design/ is exposed
+node tools/test_gallery.cjs
+python tools/serve_designs.py         # 0.0.0.0:8080, serves Design plus allowlisted manual downloads
 ```
 
-No generative-image service is required. SVG/text/layout geometry remains editable. PNGs use a pinned
-resvg renderer and bundled fonts. Raster output is not expected to be pixel-identical to JUCE's renderer.
-
-## Render actual native screenshots (Linux with dependencies)
+`Layouts.json` is shared by native controls and design exports; eligibility must match exported
+metadata. Tests check parameter coverage, control-page non-overlap, choice cardinality, the 33/57
+split and no automatic report opening. Native UI tests additionally exercise attachments, numeric
+formatting, actual learning/report behavior, resizing and main/Advanced snapshot generation.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DDA_BUILD_UI_SNAPSHOTS=ON
@@ -102,18 +69,7 @@ cmake --build build --target da_ui_snapshots --parallel 2
 xvfb-run -a ./build/da_ui_snapshots_artefacts/Release/da_ui_snapshots "$PWD/build/native-ui-previews"
 ```
 
-The runner creates each real editor, checks control count and parameter attachment isolation/value units,
-processes an actual synthesized fixture, renders 2× PNG captures, and exercises the minimum window size.
-CI uploads those separately as **native-juce-ui-previews**. Until that run passes, these native snapshots
-are a configured verification path, not a claimed successful result.
-
-## Verified in this session
-
-- All ten PNG/SVG studies exported; DVerb and DFX reviewed at full resolution, collection reviewed as a sheet.
-- All 90 native layout controls: IDs, option ranges, uniqueness and non-overlap tests passed.
-- Core, FIFO concurrency and layout CTests: **3/3 passed** in Release and ASan/UBSan Debug.
-- Gallery navigation, all ten download links, reference comparison and zoom/Escape wiring tests passed.
-- Processor/editor/hardware/display/snapshot-runner sources: GCC C++17 warnings-as-errors syntax check passed
-  against the pinned JUCE 8.0.6 headers. This does **not** claim a linked or visually audited native UI.
-- Local full JUCE configuration remains blocked by missing pkg-config/system development packages.
-- Native snapshot and new cross-platform plugin CI runs are pending; no new native captures claimed here.
+The latest local native build cannot configure because system pkg-config/JUCE development packages
+are missing. The five modified JUCE translation units, including the snapshot tests, are separately
+strict syntax-checked against pinned JUCE 8.0.6. Syntax checks do not replace linking, native execution,
+DAW usability or visual review. Current native/platform CI must pass before claiming binary readiness.

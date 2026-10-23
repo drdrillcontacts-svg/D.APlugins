@@ -18,7 +18,7 @@ ROOT=Path(__file__).resolve().parents[2];HERE=Path(__file__).resolve().parent;OU
 OUT.mkdir(exist_ok=True);WORK.mkdir(exist_ok=True)
 META=json.loads((ROOT/'Design/UI/Parameters.json').read_text())
 SOURCE=subprocess.check_output(['git','rev-parse','--short=12','HEAD'],cwd=ROOT,text=True).strip()
-DATE='2026-10-23';VERSION='0.3';REVISION='1.0 / Development Edition'
+DATE='2026-10-23';VERSION='0.3';REVISION='1.1 / Rack Collection 02 / Development'
 RED=(197,22,53);INK=(25,32,38);GRAY=(90,104,112);PALE=(239,243,245)
 for weight,name in [(400,'Regular'),(700,'Bold')]:
  target=WORK/f'Vazirmatn-{name}.ttf'
@@ -90,11 +90,13 @@ class Manual(FPDF):
   self.set_y(43);self.set_font('Display','B',40);self.set_text_color(235,239,242);self.cell(0,18,'D.A PLUGINS',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
   self.font(28,True);self.set_text_color(235,239,242);self.cell(0,16,'راهنمای کاربر' if self.fa else 'USER MANUAL',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
   self.font(11);self.set_text_color(165,179,188);self.cell(0,9,'راهنمای کامل باندل ده‌پلاگینی' if self.fa else 'THE COMPLETE TEN-PLUGIN BUNDLE',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
-  self.preview('DVerb',x=26,y=99,w=158)
+  self.preview('DVerb',x=15,y=100,w=180)
+  self.set_xy(18,233);self.font(9);self.set_text_color(165,179,188)
+  self.cell(174,7,'۹۰ پارامتر / ۳۳ کنترل با Learn / گزارش اختیاری' if self.fa else '90 PARAMETERS / 33 LEARN CONTROLS / OPTIONAL DETAILS',align='C')
   self.set_y(250);self.font(8.5,rtl=False);self.set_text_color(166,181,190)
   self.multi_cell(174,5,'DVerb  /  DDelay  /  DComp  /  DEQ  /  DSat\nDTrans  /  DStereo  /  DSess  /  DGate  /  DFX',align='C')
   self.set_y(267);self.font(10,True);self.set_text_color(239,62,93)
-  self.cell(0,7,'نسخهٔ توسعه‌ای محصول ۰٫۳ — ویرایش راهنما ۱٫۰' if self.fa else 'DEVELOPMENT VERSION 0.3  /  MANUAL REVISION 1.0',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
+  self.cell(0,7,'نسخهٔ توسعه‌ای محصول ۰٫۳ — ویرایش راهنما ۱٫۱' if self.fa else 'DEVELOPMENT VERSION 0.3  /  MANUAL REVISION 1.1',new_x=XPos.LMARGIN,new_y=YPos.NEXT,align='C')
   self.set_text_shaping(False);self.set_font('Body','',8);self.set_text_color(148,163,173);self.cell(0,6,DATE+'  /  '+('PERSIAN' if self.fa else 'ENGLISH'),align='C')
   self.set_auto_page_break(True,19)
  def preview(self,name,x,y,w):
@@ -147,9 +149,10 @@ class Manual(FPDF):
   product=PRODUCTS[name];self.chapter((name+' — '+product['title'][0],name+' — '+product['title'][1]))
   self.text(self.choose(product['intro']),10.2,space=4)
   self.text(product['signal'],8.5,rtl=False,colour=GRAY,space=4)
-  self.ensure(134);y=self.get_y();w=128;x=(210-w)/2;self.preview(name,x,y,w)
-  self.set_xy(18,y+w*1120/1200+2)
-  self.text(self.choose(('Design study — illustrative signal, not a native runtime screenshot.','طرح گرافیکی — سیگنال نمایشی؛ نه اسکرین‌شات اجرای بومی.')),8,colour=GRAY,space=2)
+  self.ensure(154);y=self.get_y();w=100;x=(210-w)/2
+  for file,titles in [(name,('Main controls — design study, not a native screenshot.','کنترل‌های اصلی — طرح گرافیکی، نه اسکرین‌شات اجرای بومی.')),(name+'-Advanced',('Advanced controls — design study, not a native screenshot.','کنترل‌های تکمیلی — طرح گرافیکی، نه اسکرین‌شات اجرای بومی.'))]:
+   self.preview(file,x,y,w);self.set_xy(18,y+w*820/1200+1)
+   self.text(self.choose(titles),8,colour=GRAY,space=2);y=self.get_y()
   self.heading(self.choose(('Typical uses','کاربردهای معمول')),3)
   self.text(' / '.join(self.choose(t) for t in product['uses']),9.5,space=2)
  def parameter_reference(self,name):
@@ -172,8 +175,8 @@ class Manual(FPDF):
   self.multi_cell(170,4.4,info,new_x=XPos.LMARGIN,new_y=YPos.NEXT)
   self.set_xy(21,y+11.5);self.font(9.2);self.set_text_color(*INK)
   self.multi_cell(166,4.9,body,align='R' if self.fa else 'L',new_x=XPos.LMARGIN,new_y=YPos.NEXT)
-  klass=learn_class(name,p);badge={'audio':('LEARN: audio-informed estimate','یادگیری: برآورد با کمک ویژگی صوتی'),'policy':('LEARN: objective/policy starting point','یادگیری: نقطهٔ شروع سیاستی یا وابسته به هدف'),'retained':('LEARN: current enable decision retained','یادگیری: حفظ تصمیم فعلی فعال‌سازی')}[klass]
-  self.font(7.3);self.set_text_color(*RED);self.set_xy(21,self.get_y()+.5);self.cell(166,3.5,self.choose(badge),align='R' if self.fa else 'L')
+  klass=learn_class(name,p);badge={'audio':('LEARN: audio-informed estimate','یادگیری: برآورد با کمک ویژگی صوتی'),'manual':('MANUAL ONLY: preserved by every Learn scope','فقط دستی: در تمام دامنه‌های Learn حفظ می‌شود')}[klass]
+  self.font(7.3);self.set_text_color(*(RED if klass=='audio' else GRAY));self.set_xy(21,self.get_y()+.5);self.cell(166,3.5,self.choose(badge),align='R' if self.fa else 'L')
   self.set_xy(18,y+total+2)
  def product_practice(self,name):
   p=PRODUCTS[name];self.continuation(self.choose((name+' / In practice',name+' / استفادهٔ عملی')))
@@ -254,7 +257,7 @@ def export_text(lang):
  for name,p in PRODUCTS.items():
   lines+=['## '+name+' — '+p['title'][index],'',p['intro'][index],'',p['signal'],'','### '+('مرجع کنترل‌ها' if index else 'Control reference'),'']
   for m in META[name]:
-   control=CONTROLS[name][m['id']];lines+=['#### '+m['name']+' / `'+m['id']+'`','',f"Range: {format_range(name,m)} | Default: {format_value(name,m,m['initial'])}",'',control[2 if index else 1],'']
+   control=CONTROLS[name][m['id']];lines+=['#### '+m['name']+' / `'+m['id']+'`','',f"Range: {format_range(name,m)} | Default: {format_value(name,m,m['initial'])}",'',control[2 if index else 1],'',('Learn: موجود' if m['learnable'] else 'فقط دستی؛ بدون Learn') if index else ('Learn: audio-informed' if m['learnable'] else 'Manual only; no Learn'),'']
   lines+=['### '+('استفادهٔ عملی' if index else 'In practice'),'']+[f'{i+1}. '+t[index] for i,t in enumerate(p['recipe'])]+['',p['learning'][index],'',p['caution'][index],'',p['tips'][index],'']
  for title,sections in AFTER[:-1]:
   lines+=['## '+title[index],'']

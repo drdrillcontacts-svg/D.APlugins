@@ -1,5 +1,5 @@
 """High-resolution DESIGN PREVIEWS, not native screenshots or analysis results.
-Uses the same 1200x1120 Layouts.json and real parameter registry as the JUCE editor.
+Uses the same 1200x820 Layouts.json and real parameter registry as the JUCE editor.
 Example traces/meters illustrate the visual language; the native UI uses live audio instead.
 """
 import base64,html,json,math,random,io
@@ -67,7 +67,8 @@ def knob(d,m,x,y,w,h):
  for j in range(11):
   a=start+(end-start)*j/10;p=polar(cx,cy,r-1,a);q=polar(cx,cy,r-3,a);d.line(*p,*q,GREY if j%5==0 else '#454b4d',.7)
  p=polar(cx,cy,r-17,angle);q=polar(cx,cy,r-26,angle);d.line(*p,*q,WHITE,1.4)
- d.text(valtext(m),cx,y+h-27,17,WHITE,'middle');button(d,'LEARN',cx-min(70,w-8)/2,y+h-18,min(70,w-8),17)
+ d.text(valtext(m),cx,y+h-27,17,WHITE,'middle')
+ if m.get('learnable'):button(d,'LEARN',cx-min(70,w-8)/2,y+h-18,min(70,w-8),17)
 def waveform(d,x,y,w,h,seed):
  rng=random.Random(seed)
  for i in range(int(w)):
@@ -105,9 +106,9 @@ def graph(d,name,x,y,w,h,meta):
  d.path(path,RED,4,extra='opacity=".2" filter="url(#glow)"');d.path(path,RED,1.2)
  labels=['20','50','100','200','500','1k','5k','20k'] if name not in ['DComp','DGate','DSat','DTrans'] else ['INPUT','','','','','','','OUTPUT']
  for i,t in enumerate(labels):d.text(t,x+w*i/7,y+h+13,10,GREY,'middle')
-def render(spec):
+def render(spec,advanced=False):
  name=spec['name'];meta=META[name];byid={m['id']:m for m in meta};d=SVG()
- d.put('''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 1120" width="2400" height="2240"><defs>''')
+ d.put('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="2400" height="1640"><defs>')
  d.put(f'<style>@font-face{{font-family:Rajdhani;src:url(data:font/ttf;base64,{FONT})}}text{{font-family:Rajdhani}}</style>')
  d.put(f'<pattern id="weave" width="64" height="64" patternUnits="userSpaceOnUse"><image width="64" height="64" href="data:image/png;base64,{TEXTURE}"/></pattern>')
  d.put('''<linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#181c1e"/><stop offset="1" stop-color="#060809"/></linearGradient>
@@ -118,26 +119,32 @@ def render(spec):
  <linearGradient id="spectralFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ed173b" stop-opacity=".18"/><stop offset="1" stop-color="#ed173b" stop-opacity="0"/></linearGradient>
  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
- <clipPath id="graphClip"><rect x="325" y="200" width="555" height="140"/></clipPath></defs>''')
- d.rect(0,0,1200,1120,'#030405');d.path(bevel(20,20,1160,1080,28),'#50575a',1,'url(#weave)');d.path(bevel(24,24,1152,1072,26),'#9b1328',.8);d.path(bevel(26,26,1148,1068,24),'#020303',4)
- d.path('M190 26L280 126H920L1010 26','#010203',9);d.path('M190 26L280 126H920L1010 26','#4b5254',1);d.line(207,28,291,120,'#a4142a',.8);d.line(993,28,909,120,'#a4142a',.8)
- d.line(51,134,1149,134,'#484f51');d.line(51,137,1149,137,'#000',3)
- d.put(f'<image x="74" y="55" width="89" height="40" href="data:image/png;base64,{LOGO}" opacity=".76"/>');d.text('P L U G I N S',120,108,11,WHITE,'middle')
- for i,c in enumerate(name.upper()):d.text(c,600-len(name)*15+i*30+15,78,36,RED if i==0 else WHITE,'middle')
- d.text(spec['subtitle'],600,105,13,GREY,'middle',1.8);d.text('DESIGN / 0.3',1133,84,12,GREY,'end')
- panel(d,[45,152,1110,236]);d.line(304,173,304,354);d.line(899,173,899,354)
- d.text('INPUT',64,186,13,WHITE);d.text('REFERENCE',913,186,13,WHITE);d.text('OUT',1119,185,13,WHITE,'middle')
- meter(d,66,208,6,135,-12);meter(d,77,208,6,135,-13);waveform(d,100,209,190,127,1)
- waveform(d,914,209,182,127,2);meter(d,1111,208,6,135,-9);meter(d,1122,208,6,135,-10)
- d.text('REFERENCE / EXAMPLE',914,358,12);d.text('AUDIO-GUIDED LEARNING  /  READY',325,186,12,RED)
- d.put('<g clip-path="url(#graphClip)">');graph(d,name,325,200,555,140,meta);d.put('</g>')
+ <clipPath id="graphClip"><rect x="114" y="177" width="570" height="155"/></clipPath></defs>''')
+
+ d.rect(0,0,1200,820,'#030405')
+ d.rect(20,20,1160,784,'url(#steel)','#7b8082',15)
+ d.rect(23,23,1154,778,'#000',rx=12);d.rect(27,27,1146,770,'url(#weave)','#444a4c',9)
+ d.line(42,799,1158,799,RED,5);d.line(42,799,1158,799,'#f34a63',.7)
+ panel(d,[40,38,1120,87])
+ d.put(f'<image x="67" y="57" width="106" height="46" href="data:image/png;base64,{LOGO}" opacity=".88"/>')
+ d.text(name.upper(),208,79,33,WHITE,spacing=4);d.text(spec['subtitle'],210,103,14,GREY,spacing=2)
+ d.path('M950 40L900 122H924L974 40Z','none',0,'#ed173b','opacity=".13"');d.line(950,40,900,122,RED,.7)
+ d.text('AUDIO GUIDED',1126,75,14,RED,'end');d.text('DESIGN / 0.3',1126,101,12,GREY,'end')
+ panel(d,[48,136,882,236]);panel(d,spec['learningRect']);panel(d,[48,404,1104,236])
+ meter(d,64,180,7,151,-12);meter(d,75,180,7,151,-13);d.text('IN',60,161,12,WHITE)
+ d.text('READY / MANUAL CONTROL ALWAYS',114,161,12,RED)
+ d.put('<g clip-path="url(#graphClip)">');graph(d,name,114,177,570,155,meta);d.put('</g>')
+ d.line(701,150,701,351);d.text('REFERENCE',715,163,13,WHITE);waveform(d,715,182,140,146,2)
+ d.text('EXAMPLE TRACE',715,355,11,GREY);meter(d,881,180,7,151,-9);meter(d,893,180,7,151,-10);d.text('OUT',886,161,12,WHITE)
  captions={'DVerb':'SPECTRAL HISTORY','DDelay':'ECHO / FREQUENCY FIELD','DComp':'DYNAMICS TRANSFER','DEQ':'FOUR-BAND RESPONSE','DSat':'HARMONIC TRANSFER','DTrans':'TRANSIENT / SUSTAIN','DStereo':'STEREO VECTORSCOPE','DSess':'SIBILANCE DETECTION','DGate':'GATE TRANSFER','DFX':'CHAIN / FREQUENCY FIELD'}
- d.text(captions[name],880,361,11,GREY,'end')
- for section in spec['sections']:panel(d,section['rect'],True);d.text(section['title'],section['rect'][0]+15,section['rect'][1]+31,14,WHITE)
- lr=spec['learningRect'];ar=spec['advancedRect'];panel(d,lr,True);panel(d,ar);panel(d,[1038,lr[1],116,lr[3]])
- d.text('L E A R N   M Y   S O U N D',lr[0]+20,lr[1]+30,16,WHITE);d.text(spec['advancedTitle'],ar[0]+20,ar[1]+30,16,WHITE)
- if name not in ['DEQ','DFX']:d.text(spec['slogan'],600,666,12,GREY,'middle',.6)
+ d.text(captions[name],684,355,11,GREY,'end')
+ d.text('LEARNING',956,170,15,WHITE)
+ button(d,'INPUT-AWARE LEARN',956,185,180,30);button(d,'LOAD FILE',956,224,180,30)
+ button(d,'LEARN ALL',956,263,180,34,True);button(d,'DETAILS / LOG',956,308,180,30)
+ d.text(spec['advancedTitle'] if advanced else spec['slogan'],64,394,13,GREY,spacing=.7)
+ button(d,'MAIN CONTROLS' if advanced else 'ADVANCED',978,376,160,28,advanced)
  for c in spec['controls']:
+  if c['advanced']!=advanced:continue
   m=byid[c['id']];x,y,w,h=c['rect'];caption=c['label']
   if caption:d.text(caption,x+w/2,y+15,12 if w<100 else 14,WHITE,'middle')
   if c['options']:
@@ -145,32 +152,20 @@ def render(spec):
    if h>180:top=80
    count=len(c['options']);bh=min(32,max(18,h-top-19))
    for i,opt in enumerate(c['options']):button(d,opt,x+i*w/count,y+top,w/count-4,bh,int(m['initial'])==i)
-   button(d,'LEARN',x+w/2-32,y+top+bh+2,64,16)
+   if c['learnable']:button(d,'LEARN',x+w/2-32,y+top+bh+2,64,16)
   else:knob(d,m,x,y,w,h)
- for m in spec['modules']:button(d,m['title'],*m['rect'])
- x,y,w,h=lr;button(d,'SUGGESTIONS',x+w-149,y+12,132,24)
- if name in ['DEQ','DFX']:button(d,'LEARN ALL',x+16,y+50,432,39,True)
- else:
-  d.circle(600,516,49,'url(#steel)');d.circle(600,516,40,'none',RED,2);d.circle(600,516,45,'none',RED,6,extra='opacity=".1" filter="url(#glow)"');d.circle(600,516,34,'#080a0b');d.text('LEARN ALL',600,520,13,RED,'middle')
- button(d,'INPUT-AWARE LEARN',x+16,y+113,268,30);button(d,'LOAD FILE',x+296,y+113,152,30)
- d.text('NO SETTINGS CHANGE UNTIL YOU APPLY',x+18,y+266,11,'#5e686c');d.text('DESCRIBE THE SOUND',x+18,y+171,12);d.rect(x+16,y+179,432,64,'#0a0c0e','#303638',3)
- d.text('Dark, warm, wide, smooth, cinematic…',x+29,y+204,15,GREY)
- for j,t in enumerate(['PREVIEW','APPLY','REJECT','UNDO']):button(d,t,x+16+j*110,y+h-42,102,27,t=='APPLY')
- if name=='DDelay':d.text('L  >  FILTER  >  FEEDBACK  >  R',775,981,12,GREY,'middle')
- if name in ['DComp','DSess']:
-  d.text('GAIN REDUCTION',775,907,13,GREY,'middle');d.text('3.1 dB',775,949,38,RED,'middle');d.text('-12.0 dBFS   /   -9.0 dBFS',775,975,18,WHITE,'middle')
- if name=='DGate':
-  d.text('GAIN REDUCTION',855,774,13,GREY,'middle');d.text('0.0 dB',855,823,38,RED,'middle');d.text('-12.0 / -12.0 dBFS',855,865,18,WHITE,'middle')
- if name=='DStereo':
-  d.text('CHANNEL CORRELATION',775,837,13,GREY,'middle');d.text('+0.82',775,884,36,WHITE,'middle');d.text('-1                     0                     +1',775,922,12,GREY,'middle')
- if name in ['DTrans','DSat']:
-  d.text('INPUT / OUTPUT',775,837,13,GREY,'middle');d.text('-12.0 dBFS   /   -9.0 dBFS',775,877,18,WHITE,'middle')
-  if name=='DTrans':d.text('LIVE ENVELOPE ABOVE / MANUAL CONTROL ALWAYS',775,919,12,GREY,'middle')
- if name=='DEQ':d.text('BROAD TONAL GUIDANCE / FOUR INDEPENDENT BANDS',775,805,15,WHITE,'middle');d.text('INPUT / OUTPUT',775,883,13,GREY,'middle');d.text('-12.0 dBFS   /   -9.0 dBFS',775,925,18,WHITE,'middle')
- meter(d,1058,ar[1]+33,11,ar[3]-85,-12);meter(d,1078,ar[1]+33,11,ar[3]-85,-9,True);d.text('IN / OUT',1095,ar[1]+ar[3]-17,12,GREY,'middle')
- d.line(48,1041,1152,1041);d.text('READY / INPUT-AWARE / MANUAL CONTROL ALWAYS',310,1055,12,GREY)
- d.put(f'<image x="71" y="1062" width="48" height="21" href="data:image/png;base64,{LOGO}" opacity=".42"/>');d.text(name.upper(),146,1077,15,GREY,spacing=2)
- d.text('DESIGN PREVIEW · ILLUSTRATIVE SIGNAL, NOT A NATIVE SCREENSHOT',1125,1077,10,GREY,'end')
- d.put('</svg>');(OUT/f'{name}.svg').write_text(''.join(d.a))
-for s in LAYOUTS:render(s)
-print('Exported 10 vector design studies (example audio is explicitly illustrative)')
+ if not advanced:
+  for m in spec['modules']:button(d,m['title'],*m['rect'])
+ d.text('DESCRIBE / OPTIONAL ENGLISH KEYWORDS',68,657,12,GREY)
+ d.rect(68,666,1064,40,'#0a0c0e','#303638',3);d.text('Dark, warm, wide, smooth, cinematic…',82,691,15,GREY)
+ d.text('PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES',68,725,11,GREY)
+ d.line(68,727,1132,727)
+ for i,t in enumerate(['PREVIEW','APPLY','REJECT','UNDO']):button(d,t,68+i*162,738,150,28,t=='APPLY')
+ d.text('DESIGN STUDY / ILLUSTRATIVE AUDIO, NOT A NATIVE SCREENSHOT',1132,756,10,GREY,'end')
+ d.text('READY / INPUT-AWARE / MANUAL CONTROL ALWAYS',68,790,12,GREY)
+ for x,y in [(34,34),(1166,34),(34,790),(1166,790)]:
+  d.circle(x,y,5,'#050607','#4d5355',.8);d.line(x-2.5,y,x+2.5,y,'#4d5355',1)
+ d.put('</svg>');(OUT/f"{name}{'-Advanced' if advanced else ''}.svg").write_text(''.join(d.a))
+for s in LAYOUTS:
+ render(s);render(s,True)
+print('Exported 20 vector design studies: ten main + ten Advanced panels (illustrative, not native screenshots)')

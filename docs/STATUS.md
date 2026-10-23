@@ -16,49 +16,33 @@ plugin is **Partially implemented**.
 | Plugin | DSP in checkpoint | Controls / learning scope | Important missing validation/features |
 |---|---|---|---|
 | DVerb | Eight-line damped FDN, normalized Hadamard diffusion, pre-delay, density-dependent excitation, cuts, modulation, room/hall/plate delay scales, two-grain octave-up feedback shimmer | 12 parameters, Space/Colour modules, Learn all | Calibrate decay/mode character; shimmer pitch/audio quality and aliasing tests; actual target-decay estimator |
-| DDelay | Fractional stereo delay, filtered soft-bounded feedback, cross feedback, modulation, M/S width, wet/dry/output | 8 parameters, Echo/Output modules, Learn all | Host tempo sync, onset/autocorrelation rhythm estimation, feedback coloration/automation review |
-| DComp | Attack/release peak envelope, ratio curve, continuous soft knee, parallel mix/makeup/output | 8 parameters, Dynamics/Output modules, Learn all | Stereo-linked compression, level-distribution objective, calibrated GR and automation tests |
-| DEQ | Four double-state RBJ biquad bands; bell/low-shelf/high-shelf; frequency/gain/Q/shape | 16 parameters; dedicated button per Band 1–4 plus parameter/all scopes | Spectral peak/masking analysis; independently inferred frequency/Q/shape (currently fixed broad-band policy); sweep/filter-stability tests |
-| DSat | Tanh, hard clip, asymmetric DC-compensated transfer, tone/density blend, mix/output | 6 parameters, Colour/Output modules, Learn all | Oversampling, residual DC rejection, aliasing/harmonic analysis |
-| DTrans | Dual envelope detection, normalized onset strength, attack/sustain gain shaping | 6 parameters, Envelope/Output modules, Learn all | Objective response curves, sustain/noise pumping, transient estimator validation |
+| DDelay | Fractional stereo delay, filtered soft-bounded feedback, cross feedback, modulation, M/S width, wet/dry/output | 8 parameters, Echo learning scope; Output manual, Learn all | Host tempo sync, onset/autocorrelation rhythm estimation, feedback coloration/automation review |
+| DComp | Attack/release peak envelope, ratio curve, continuous soft knee, parallel mix/makeup/output | 8 parameters, Dynamics learning scope; Output manual, Learn all | Stereo-linked compression, level-distribution objective, calibrated GR and automation tests |
+| DEQ | Four double-state RBJ biquad bands; bell/low-shelf/high-shelf; frequency/gain/Q/shape | 16 parameters; dedicated button per Band 1–4 plus parameter/all scopes | Spectral peak/masking analysis; independently inferred frequency/Q/shape (now intentionally manual-only); sweep/filter-stability tests |
+| DSat | Tanh, hard clip, asymmetric DC-compensated transfer, tone/density blend, mix/output | 6 parameters, Colour learning scope; Output manual, Learn all | Oversampling, residual DC rejection, aliasing/harmonic analysis |
+| DTrans | Dual envelope detection, normalized onset strength, attack/sustain gain shaping | 6 parameters, Envelope learning scope; Output manual, Learn all | Objective response curves, sustain/noise pumping, transient estimator validation |
 | DStereo | M/S width and gains, mono-safe side low-pass depth, mono wet monitoring | 6 parameters, Image module, Learn all | Full post-mix mono monitor; detailed balance/phase/mono analysis; cannot create stereo from dual mono |
-| DSess | Crossover-derived high-band detector and high-band attenuation with envelope/max range | 8 parameters, Sibilance/Output modules, Learn all | True tunable band-pass detector; sibilance discrimination, vocal/noise tests and crossover calibration |
-| DGate | Stereo-linked threshold gate, hysteresis, hold, smooth gain, range/output | 7 parameters, Gate/Output modules, Learn all | Noise-floor distribution/SNR learning (current conservative RMS offset); quiet-tail preservation, expander ratio |
-| DFX | Enabled saturation → low-pass → stereo delay → independent FDN ambience, global mix/output | 13 parameters; Saturation/Filter/Delay/Ambience/Output module scopes, Learn all | Reordering, modulation module, coupled chain optimization and gain staging |
+| DSess | Crossover-derived high-band detector and high-band attenuation with envelope/max range | 8 parameters, Sibilance learning scope; Output manual, Learn all | True tunable band-pass detector; sibilance discrimination, vocal/noise tests and crossover calibration |
+| DGate | Stereo-linked threshold gate, hysteresis, hold, smooth gain, range/output | 7 parameters, Gate learning scope; Output manual, Learn all | Noise-floor distribution/SNR learning (current conservative RMS offset); quiet-tail preservation, expander ratio |
+| DFX | Enabled saturation → low-pass → stereo delay → independent FDN ambience, global mix/output | 13 parameters; Saturation/Filter/Ambience learning scopes; other controls manual, Learn all | Reordering, modulation module, coupled chain optimization and gain staging |
 
-### Runtime UI (all ten): Implemented but not fully tested
+### Rack Collection 02 — current UI and learning
 
-The new Carbon / Crimson revision follows the user's supplied DVerb enclosure and logo. It replaces
-that checkpoint's generic grid with product-specific control arrangements: four EQ band strips, four
-DFX modules, reverb mode/advanced sections and dedicated dynamics/field displays. Hardware-style
-JUCE controls, embedded fonts/logo, per-parameter learning and proposal approval are wired. Actual
-sample telemetry feeds waveform/spectrum/history/vectorscope views; modeled transfer/response
-curves use current parameters. Window scaling preserves the 1200×1120 design aspect ratio.
+The latest user-supplied full-bundle reference supersedes the prior DVerb-only collection. All ten
+editors now use a 1200 × 820 wide rack, four/five main controls, Advanced page and right learning strip.
+All 90 parameters remain, but **only 33 have Learn**; 57 manual/taste/routing controls are preserved by
+every scope. Details/Log is opt-in and never opens on completion. See UI-DESIGN.md and LEARNING.md.
 
-Ten high-resolution PNG/SVG **design studies** and a collection viewer are included, explicitly labeled
-as illustrative—not native screenshots. `docs/UI-DESIGN.md` documents the distinction and provides a
-native snapshot/attachment test runner added to Linux CI. In this sandbox the new UI code is syntax-
-checked, not linked/run. Detailed native visual parity, accessibility, automation and performance
-checks remain outstanding. This revision does not complete the overall bundle's learning/DSP acceptance.
+Confirmed code fixes: cancelled/timeout capture restart, cancellation on close/reprepare, manual
+edits during Preview restoring untouched values, old Undo expiring on manual edits, host notifications
+only for changed values, per-channel spectral/transient power avoiding anti-phase cancellation, and
+whole-keyword/negation validation avoiding false description success.
 
-### Universal learning: Partially implemented
-
-All **90 declared parameters** have isolated proposal routes and bounds. Band/module scopes are isolated;
-Learn all assembles these policies. Many suggestions depend on measured audio, but some remain objective
-starting values or unchanged user choices. In particular EQ frequency/Q/shape, mode selection, echo timing,
-gate hold/hysteresis, mix and enable controls are NOT uniquely audio-estimated. There is no interacting
-multi-parameter optimizer. These gaps mean full universal parameter-learning acceptance is not achieved.
-
-- Input mode: measured RMS/peak/crest, coarse four-band energy, correlation, side energy and sample-difference metric.
-- Reference: normalized EQ band ratios, stereo width target and compressor makeup target level only.
-  Other proposals explicitly remain input/objective policy estimates. **No iterative output-vs-reference loop.**
-- Description: five keyword objectives; no general language model. Unrecognized descriptions fail if no
-  supported adjective occurs. Mixed supported/unsupported text currently uses recognized words only.
-- Lifecycle: portable preview/apply/reject/one-level undo/stale revision logic tested. UI glue only syntax-checked.
-- Reference file decoding/validation and worker cancellation: implemented but NOT integration-tested.
-  Cancellation invalidates proposals rather than interrupting a running bounded worker.
-- ModelInference is an abstract future backend boundary only. No model, backend selection, inference
-  runtime, service, model weights, neural claim or training/validation dataset is included.
+Current local evidence: Release CTest 4/4; ASan/UBSan 4/4 (18.41 s);
+strict pinned-JUCE syntax check of processor/editor/look/analysis/native-test translation units;
+layout/metadata/gallery checks. Linked native configuration is blocked by missing pkg-config and
+system development packages. Native screenshot/learning tests and all-platform builds are requested
+in CI but are not yet current-revision executed evidence. No commercial release certification.
 
 ### Real-time and persistence
 
@@ -102,7 +86,7 @@ verified to increase with a louder real analyzed signal. It does not prove every
 CI requests all ten VST3/Standalone targets on Ubuntu/Windows/macOS, plus AU on macOS, with tests and
 format-only artifact uploads. The prior `03e6088` checkpoint subsequently passed all three plugin CI jobs and core tests in
 [run 39878691566](https://github.com/drdrillcontacts-svg/D.APlugins/actions/runs/39878691566).
-That evidence applies to the prior UI, **not** this Carbon / Crimson revision; its new native build/snapshot
+That evidence applies to the prior UI, **not** this Rack Collection 02 revision; its new native build/snapshot
 jobs must pass independently before claiming current artifacts.
 No release, installer, signing or notarization was authorized or performed.
 

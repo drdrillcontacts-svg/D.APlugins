@@ -121,6 +121,13 @@ int main() {
             for (auto &p : meta)
                 values.push_back(p.initial);
             for (size_t i = 0; i < meta.size(); ++i) {
+                if (!da::canLearn(kind, meta[i].id)) {
+                    bool rejected = false;
+                    try { da::learn(kind, features, nullptr, {}, values, meta[i].id, 0); }
+                    catch (const std::invalid_argument &) { rejected = true; }
+                    check(rejected, "Manual-only scope must not learn");
+                    continue;
+                }
                 auto proposal = da::learn(kind, features, nullptr, {}, values, meta[i].id, 0);
                 check(proposal.values.size() == 1 && proposal.values[0].index == i,
                       "Per-parameter isolation");
@@ -130,20 +137,34 @@ int main() {
                 check(!proposal.values[0].reason.empty(), "Explanation missing");
             }
             for (auto &p : meta) {
+                bool eligible = std::any_of(meta.begin(),meta.end(),[&](const da::Parameter &m) {
+                    return m.module == p.module && da::canLearn(kind,m.id);
+                });
+                if (!eligible) continue;
                 auto proposal = da::learn(kind, features, nullptr, {}, values, p.module, 0);
                 for (auto &s : proposal.values)
                     check(meta[s.index].module == p.module, "Module isolation");
             }
             auto all = da::learn(kind, features, nullptr, {}, values, "all", 0);
-            check(all.values.size() == meta.size(), "Learn All coverage");
+            check(all.values.size() == size_t(std::count_if(meta.begin(),meta.end(),[&](const da::Parameter &m) {
+                return da::canLearn(kind,m.id);
+            })), "Learn All covers only eligible controls");
+            for (const auto &s : all.values)
+                check(da::canLearn(kind,meta[s.index].id),"Manual/routing controls must never change");
             da::LearningSession session(values);
             check(session.offer(all), "Offer");
             check(session.preview(), "Preview");
+            for (size_t i=0;i<meta.size();++i)
+                if (!da::canLearn(kind,meta[i].id)) check(session.values[i]==values[i],"Manual control retained");
             session.reject();
             check(session.values == values, "Reject restores");
             check(session.offer(all) && session.apply(), "Apply");
             check(session.undo() && session.values == values, "Undo restores");
             check(!session.offer(all), "Reject stale result");
+            auto fresh=da::learn(kind,features,nullptr,{},session.values,"all",session.revision);
+            check(session.offer(fresh)&&session.apply(),"Apply fresh proposal");
+            session.manual(0,meta[0].max);
+            check(!session.undo()&&session.values[0]==meta[0].max,"Manual edit expires old learning Undo");
             auto objective = da::describe("dark warm wide smooth cinematic");
             check(!da::learn(kind, features, nullptr, objective, values, "all", 0).values.empty(),
                   "Description");
@@ -206,6 +227,18 @@ int main() {
         auto a = da::learn(da::Kind::Comp, features, nullptr, {}, values, "threshold", 0),
              b = da::learn(da::Kind::Comp, loud, nullptr, {}, values, "threshold", 0);
         check(b.values[0].value > a.values[0].value + 4, "Audio-driven compressor threshold");
+        auto inverted=left;
+        for(auto &x:inverted)x=-x;
+        auto monoPower=da::analyze(left.data(),left.data(),n,48000);
+        auto antiPower=da::analyze(left.data(),inverted.data(),n,48000);
+        for(size_t band=0;band<4;++band)
+            check(std::abs(monoPower.bands[band]-antiPower.bands[band])<1e-9,"Anti-phase must not erase learning spectrum");
+        check(std::abs(monoPower.transient-antiPower.transient)<1e-9&&antiPower.correlation<-.99,"Per-channel transient/correlation");
+        for(const char *text:{"not dark","darkness","smoothie","without warm","never wide"}) {
+            bool rejected=false;try{da::describe(text);}catch(const std::invalid_argument &){rejected=true;}
+            check(rejected,"Reject negated/subword false goals");
+        }
+        check(da::describe("DARK, Warm!").dark,"Keyword punctuation/case");
         characteristicTests();
         std::cout << "All core checks passed\n";
     } catch (const std::exception &e) {
