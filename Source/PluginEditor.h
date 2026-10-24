@@ -11,9 +11,16 @@ class DAPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, pr
     void resized() override;
 
   private:
+    struct ReferencePanel final : public juce::Component {
+        std::function<void(juce::Graphics &)> onPaint;
+        void paint(juce::Graphics &g) override {
+            if (onPaint)
+                onPaint(g);
+        }
+    };
     DAPluginAudioProcessor &processor;
-    da::ui::HardwareLook hardware;
     da::ui::Layout layout;
+    da::ui::HardwareLook hardware;
     juce::Component stage;
     da::ui::Chassis chassis;
     da::ui::AnalysisDisplay analysis;
@@ -22,21 +29,22 @@ class DAPluginAudioProcessorEditor final : public juce::AudioProcessorEditor, pr
     std::vector<float> lastValues;
     std::vector<std::unique_ptr<da::ui::ParameterControl>> controls;
     std::vector<std::unique_ptr<juce::TextButton>> modules;
-    juce::TextButton learnAll{"LEARN ALL"}, loadReference{"LOAD FILE"}, preview{"PREVIEW"},
-        apply{"APPLY"}, reject{"REJECT"}, undo{"UNDO"}, showResults{"DETAILS / LOG"}, advanced{"ADVANCED"},
-        closeResults{"BACK TO CONTROLS"};
-    juce::ComboBox mode,presetMenu;
-    juce::TextButton previousPreset{"<"},nextPreset{">"};
-    uint64_t observedPresetGeneration=0;
-    juce::TextEditor description, results;
+    juce::TextButton captureInput{"CAPTURE INPUT"}, openReference{"REFERENCE..."},
+        learnAll{"LEARN ALL"}, showResults{"DETAILS / LOG"}, loadReference{"LOAD REFERENCE"},
+        useReferenceMode{"USE REFERENCE IN LEARN"}, closeReference{"CLOSE"}, preview{"PREVIEW"},
+        apply{"APPLY"}, reject{"REJECT"}, undo{"UNDO"}, closeResults{"BACK TO CONTROLS"};
+    juce::ComboBox presetMenu;
+    juce::TextButton previousPreset{"<"}, nextPreset{">"};
+    uint64_t observedPresetGeneration = 0;
+    juce::TextEditor results;
     juce::Label status;
     juce::Component drawer;
+    ReferencePanel referenceDrawer;
     std::unique_ptr<juce::FileChooser> chooser;
     std::future<da::ui::ReferenceDisplay> referenceWork;
     std::future<da::Proposal> learnWork;
     da::Features reference;
-    bool capturing = false, advancedView = false;
-    void updateControlPage();
+    bool capturing = false, referenceGuidanceEnabled = false;
     uint64_t captureRevision = 0, referenceRevision = 0;
     juce::int64 captureStarted = 0;
     std::string scope;

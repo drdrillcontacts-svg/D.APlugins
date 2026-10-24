@@ -2,9 +2,10 @@
 #include <DAAssets.h>
 namespace da::ui {
 namespace {
-juce::Path bevel(juce::Rectangle<float> r, float cut = 12.f) {
+juce::Path bevel(juce::Rectangle<float> r, float cut = 8.f) {
     juce::Path p;
     auto x = r.getX(), y = r.getY(), w = r.getWidth(), h = r.getHeight();
+    cut = std::min(cut, std::min(w, h) * .45f);
     p.startNewSubPath(x + cut, y);
     p.lineTo(x + w - cut, y);
     p.lineTo(x + w, y + cut);
@@ -17,22 +18,27 @@ juce::Path bevel(juce::Rectangle<float> r, float cut = 12.f) {
     return p;
 }
 } // namespace
-HardwareLook::HardwareLook() {
+HardwareLook::HardwareLook(juce::Colour accent) : accentColour(accent) {
     regular = juce::Typeface::createSystemTypefaceFor(DAAssets::RajdhaniMedium_ttf,
                                                       DAAssets::RajdhaniMedium_ttfSize);
     semibold = juce::Typeface::createSystemTypefaceFor(DAAssets::RajdhaniSemiBold_ttf,
                                                        DAAssets::RajdhaniSemiBold_ttfSize);
-    setColour(juce::TextEditor::backgroundColourId, juce::Colour(0xff0a0c0e));
+    setAccent(accent);
+}
+void HardwareLook::setAccent(juce::Colour c) {
+    accentColour = c;
+    setColour(juce::TextEditor::backgroundColourId, juce::Colour(0xff111114));
     setColour(juce::TextEditor::textColourId, silver);
-    setColour(juce::TextEditor::outlineColourId, juce::Colour(0xff303638));
-    setColour(juce::TextEditor::focusedOutlineColourId, crimson.withAlpha(.7f));
-    setColour(juce::TextEditor::highlightColourId, crimson.withAlpha(.35f));
+    setColour(juce::TextEditor::outlineColourId, juce::Colour(0xff393940));
+    setColour(juce::TextEditor::focusedOutlineColourId, accentColour.withAlpha(.8f));
+    setColour(juce::TextEditor::highlightColourId, accentColour.withAlpha(.3f));
     setColour(juce::ComboBox::textColourId, silver);
-    setColour(juce::ComboBox::backgroundColourId, ink);
-    setColour(juce::ComboBox::outlineColourId, juce::Colour(0xff303638));
-    setColour(juce::PopupMenu::backgroundColourId, juce::Colour(0xff101315));
-    setColour(juce::PopupMenu::highlightedBackgroundColourId, juce::Colour(0xff6e1021));
-    setColour(juce::Slider::textBoxTextColourId, silver);
+    setColour(juce::ComboBox::backgroundColourId, juce::Colour(0xff19191d));
+    setColour(juce::ComboBox::outlineColourId, juce::Colour(0xff414146));
+    setColour(juce::PopupMenu::backgroundColourId, juce::Colour(0xff141418));
+    setColour(juce::PopupMenu::highlightedBackgroundColourId,
+              juce::Colour(0xff141418).interpolatedWith(accentColour, .28f));
+    setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffd2d2db));
     setColour(juce::Slider::textBoxBackgroundColourId, juce::Colours::transparentBlack);
     setColour(juce::Slider::textBoxOutlineColourId, juce::Colours::transparentBlack);
 }
@@ -42,122 +48,94 @@ juce::Font HardwareLook::font(float size, bool bold) const {
 juce::Typeface::Ptr HardwareLook::getTypefaceForFont(const juce::Font &f) {
     return f.isBold() ? semibold : regular;
 }
-juce::Font HardwareLook::getComboBoxFont(juce::ComboBox &) { return font(14); }
-juce::Font HardwareLook::getTextButtonFont(juce::TextButton &, int) { return font(13, true); }
-juce::Font HardwareLook::getLabelFont(juce::Label &) { return font(17); }
+juce::Font HardwareLook::getComboBoxFont(juce::ComboBox &) { return font(16, true); }
+juce::Font HardwareLook::getTextButtonFont(juce::TextButton &, int) { return font(16, true); }
+juce::Font HardwareLook::getLabelFont(juce::Label &) { return font(18, true); }
 void label(juce::Graphics &g, const HardwareLook &look, juce::String text,
-           juce::Rectangle<float> box, float size, juce::Colour colour, juce::Justification align) {
-    g.setFont(look.font(size));
+           juce::Rectangle<float> box, float size, juce::Colour colour, juce::Justification align,
+           bool bold) {
+    g.setFont(look.font(size, bold));
     g.setColour(colour);
-    g.drawText(text, box, align, true);
+    g.drawText(text, box, align, false);
+}
+void cutPanel(juce::Graphics &g, juce::Rectangle<float> r, juce::Colour fill, juce::Colour stroke,
+              float cut) {
+    auto path = bevel(r, cut);
+    g.setColour(fill);
+    g.fillPath(path);
+    g.setColour(stroke);
+    g.strokePath(path, juce::PathStrokeType(1.f));
 }
 void HardwareLook::drawRotarySlider(juce::Graphics &g, int x, int y, int w, int h, float position,
-                                    float start, float end, juce::Slider &slider) {
-    float diameter = std::max(16.f, float(std::min(w, h)) - (std::min(w, h) < 90 ? 4.f : 16.f)),
-          radius = diameter * .5f;
+                                    float, float, juce::Slider &slider) {
+    int customRadius = int(slider.getProperties()["knobRadius"]);
+    float r = customRadius > 0 ? float(customRadius) : (h >= 85 ? 28.f : 24.f);
     juce::Point<float> c{float(x) + w * .5f, float(y) + h * .5f};
-    auto circle = juce::Rectangle<float>(diameter, diameter).withCentre(c);
-    juce::DropShadow(juce::Colours::black.withAlpha(.95f), 9, {1, 5})
-        .drawForPath(g, [](juce::Rectangle<float> r) {
-            juce::Path p;
-            p.addEllipse(r);
-            return p;
-        }(circle));
-    // Machined concentric housing, luminous recessed ring and a conical face.
-    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff555b5d), c.x, c.y - radius,
-                                           juce::Colour(0xff040506), c.x, c.y + radius, false));
-    g.fillEllipse(circle);
-    g.setColour(juce::Colour(0xff020304));
-    g.fillEllipse(circle.reduced(1.5f));
-    g.setColour(juce::Colour(0xff242a2c));
-    g.drawEllipse(circle.reduced(4.f), 1.f);
-    float ring = radius - 7, angle = start + position * (end - start);
-    juce::Path base;
-    base.addCentredArc(c.x, c.y, ring, ring, 0, start, end, true);
-    g.setColour(juce::Colour(0xff414749));
-    g.strokePath(base, juce::PathStrokeType(1.f));
-    juce::Path active;
-    active.addCentredArc(c.x, c.y, ring, ring, 0, start, angle, true);
-    for (int layer = 3; layer > 0; --layer) {
-        g.setColour(crimson.withAlpha(.045f * float(4 - layer)));
-        g.strokePath(active, juce::PathStrokeType(float(2 + layer * 3)));
-    }
-    g.setColour(slider.isEnabled() ? crimson : muted);
-    g.strokePath(active, juce::PathStrokeType(2.6f, juce::PathStrokeType::curved,
-                                              juce::PathStrokeType::rounded));
-    auto face = circle.reduced(12.f);
-    float faceRadius = face.getWidth() * .5f;
-    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff3b4143), c.x - faceRadius * .6f,
-                                           c.y - faceRadius, juce::Colour(0xff050708),
-                                           c.x + faceRadius * .6f, c.y + faceRadius, false));
-    g.fillEllipse(face);
-    // Fine fan-shaped brushed highlights, clipped by triangular faces within the dial.
-    for (int j = 0; j < 56; ++j) {
-        float a = float(j) * juce::MathConstants<float>::twoPi / 56.f;
-        float light = .5f + .5f * std::sin(a * 3.f + .7f);
-        g.setColour(juce::Colours::white.withAlpha(.008f + light * .018f));
-        g.drawLine(c.x, c.y, c.x + std::sin(a) * (faceRadius - 1),
-                   c.y - std::cos(a) * (faceRadius - 1), .6f);
-    }
-    g.setColour(juce::Colour(0xff3a4042));
-    g.drawEllipse(face, .7f);
-    g.setColour(juce::Colours::black.withAlpha(.75f));
-    g.drawEllipse(face.reduced(1.5f), 1.f);
-    for (int tick = 0; tick <= 10; ++tick) {
-        float a = start + (end - start) * float(tick) / 10.f;
-        auto p = c.getPointOnCircumference(radius - 1, a);
-        auto q = c.getPointOnCircumference(radius - 3, a);
-        g.setColour(tick % 5 == 0 ? muted : juce::Colour(0xff454b4d));
-        g.drawLine({p, q}, .7f);
-    }
-    auto p = c.getPointOnCircumference(faceRadius - 5, angle),
-         q = c.getPointOnCircumference(faceRadius - 14, angle);
-    g.setColour(silver);
-    g.drawLine({p, q}, 1.4f);
+    g.setOpacity(slider.isEnabled() ? 1.f : .48f);
+    // 1. Recessed shadow ring: circle(cx, cy+4, r+4, '#08080a', '#19191e')
+    auto shadowRing = juce::Rectangle<float>((r + 4.f) * 2.f, (r + 4.f) * 2.f).withCentre({c.x, c.y + 4.f});
+    g.setColour(juce::Colour(0xff08080a));
+    g.fillEllipse(shadowRing);
+    g.setColour(juce::Colour(0xff19191e));
+    g.drawEllipse(shadowRing, 1.f);
+    // 2. Bevel collar: circle(cx, cy, r+2, 'url(#bevel)', '#35353c')
+    auto bevelRing = juce::Rectangle<float>((r + 2.f) * 2.f, (r + 2.f) * 2.f).withCentre(c);
+    juce::ColourGradient bevelGrad(juce::Colour(0xff37373a), c.x, bevelRing.getY(),
+                                   juce::Colour(0xff0c0c0e), c.x, bevelRing.getBottom(), false);
+    bevelGrad.addColour(.15, juce::Colour(0xff242427));
+    g.setGradientFill(bevelGrad);
+    g.fillEllipse(bevelRing);
+    g.setColour(juce::Colour(0xff35353c));
+    g.drawEllipse(bevelRing, 1.f);
+    // 3. Dial face: circle(cx, cy, r, 'url(#dial)', '#111116')
+    auto dialFace = juce::Rectangle<float>(r * 2.f, r * 2.f).withCentre(c);
+    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff18181b), c.x, dialFace.getY(),
+                                           juce::Colour(0xff27272a), c.x, dialFace.getBottom(), false));
+    g.fillEllipse(dialFace);
+    g.setColour(juce::Colour(0xff111116));
+    g.drawEllipse(dialFace, 1.f);
+    // 4. Minimalist pointer line from 0.62*r to 0.90*r at angle -225 deg + 270 deg * position
+    float rad = juce:: degreesToRadians(-225.f + 270.f * position);
+    juce::Point<float> p0{c.x + std::cos(rad) * r * .62f, c.y + std::sin(rad) * r * .62f};
+    juce::Point<float> p1{c.x + std::cos(rad) * r * .90f, c.y + std::sin(rad) * r * .90f};
+    g.setColour(juce::Colour(0xffceced4));
+    g.drawLine({p0, p1}, 2.f);
+    g.setOpacity(1.f);
 }
 void HardwareLook::drawButtonBackground(juce::Graphics &g, juce::Button &b, const juce::Colour &,
                                         bool hover, bool down) {
-    if (bool(b.getProperties()["round"])) {
-        auto r = b.getLocalBounds().toFloat().reduced(4).withSizeKeepingCentre(98, 98);
-        g.setGradientFill(juce::ColourGradient(juce::Colour(0xff383e40), r.getX(), r.getY(), ink,
-                                               r.getRight(), r.getBottom(), false));
-        g.fillEllipse(r);
-        g.setColour(crimson.withAlpha(.10f));
-        g.drawEllipse(r.reduced(5), 12);
-        g.setColour(crimson);
-        g.drawEllipse(r.reduced(9), 2);
-        g.setColour(ink);
-        g.fillEllipse(r.reduced(15));
-        return;
-    }
-    auto r = b.getLocalBounds().toFloat().reduced(1);
+    auto r = b.getLocalBounds().toFloat().reduced(.5f);
+    bool isChoice = bool(b.getProperties()["choice"]);
     bool accent = b.getToggleState() || bool(b.getProperties()["accent"]);
-    auto path = bevel(r, 5);
-    g.setGradientFill(
-        juce::ColourGradient(accent ? juce::Colour(0xff361018) : juce::Colour(0xff1c2123), 0, 0,
-                             juce::Colour(0xff080a0b), 0, r.getBottom(), false));
-    g.fillPath(path);
-    g.setColour(accent ? crimson.withAlpha(hover || down ? 1.f : .8f)
-                       : juce::Colour(hover ? 0xff757c7e : 0xff3c4345));
-    g.strokePath(path, juce::PathStrokeType(accent ? 1.2f : .8f));
-    g.setColour(juce::Colours::white.withAlpha(.07f));
-    g.drawLine(r.getX() + 7, r.getY() + 1, r.getRight() - 7, r.getY() + 1, .7f);
+    float cut = isChoice ? 5.f : 7.f;
+    juce::Colour fill = isChoice
+                            ? (accent ? juce::Colour(0xff141418).interpolatedWith(accentColour, .18f)
+                                      : juce::Colour(0xff141418))
+                            : juce::Colour(0xff19191d);
+    juce::Colour stroke = accent ? accentColour.withAlpha(hover || down ? 1.f : .92f)
+                                 : juce::Colour(isChoice ? 0xff393940 : 0xff414146);
+    cutPanel(g, r, fill, stroke, cut);
 }
 void HardwareLook::drawButtonText(juce::Graphics &g, juce::TextButton &b, bool, bool) {
-    float size = b.getHeight() < 23 ? 11.f : 13.f;
-    label(g, *this, b.getButtonText(), b.getLocalBounds().toFloat().reduced(3, 0), size,
-          b.isEnabled()
-              ? (b.getToggleState() || bool(b.getProperties()["accent"]) ? crimson.brighter(.25f)
-                                                                         : silver)
-              : muted.withAlpha(.4f),
-          juce::Justification::centred);
+    bool isChoice = bool(b.getProperties()["choice"]);
+    bool accent = b.getToggleState() || bool(b.getProperties()["accent"]);
+    juce::Colour textCol = b.isEnabled()
+                               ? (accent ? (isChoice ? accentColour.interpolatedWith(juce::Colours::white, .62f)
+                                                     : accentColour)
+                                         : juce::Colour(isChoice ? 0xffb9b9c5 : 0xffdcdce2))
+                               : muted.withAlpha(.55f);
+    label(g, *this, b.getButtonText(), b.getLocalBounds().toFloat().reduced(2, 0), 16.f, textCol,
+          juce::Justification::centred, true);
 }
 void HardwareLook::drawComboBox(juce::Graphics &g, int w, int h, bool, int, int, int, int,
-                                juce::ComboBox &) {
-    panel(g, {0, 0, float(w), float(h)});
+                                juce::ComboBox &box) {
+    cutPanel(g, {0.5f, 0.5f, float(w - 1), float(h - 1)}, juce::Colour(0xff19191d),
+             juce::Colour(0xff414146), 7.f);
+    label(g, *this, box.getText(), {12.f, 0.f, float(w - 36), float(h)}, 16.f,
+          juce::Colour(0xffdcdce2), juce::Justification::centred, true);
     g.setColour(muted);
     juce::Path p;
-    p.addTriangle(float(w - 18), h * .43f, float(w - 10), h * .43f, float(w - 14), h * .62f);
+    p.addTriangle(float(w - 22), h * .44f, float(w - 12), h * .44f, float(w - 17), h * .60f);
     g.fillPath(p);
 }
 juce::Rectangle<int> rectangle(const juce::var &v) {
@@ -178,113 +156,158 @@ Layout::Layout(const juce::String &name) {
     jassert(!data.isVoid());
 }
 juce::Rectangle<int> Layout::area(const char *key) const { return rectangle(data[key]); }
-void panel(juce::Graphics &g, juce::Rectangle<float> r, bool accent) {
-    auto path = bevel(r, 10);
-    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff181c1e), r.getX(), r.getY(),
-                                           juce::Colour(0xff060809), r.getRight(), r.getBottom(),
-                                           false));
-    g.fillPath(path);
-    g.setColour(juce::Colour(0xff353c3e));
-    g.strokePath(path, juce::PathStrokeType(1));
-    g.setColour(juce::Colours::black);
-    g.strokePath(bevel(r.reduced(3), 8), juce::PathStrokeType(2));
-    g.setColour(juce::Colours::white.withAlpha(.055f));
-    g.drawLine(r.getX() + 12, r.getY() + 2, r.getRight() - 12, r.getY() + 2);
-    if (accent) {
-        g.setColour(crimson.withAlpha(.65f));
-        g.drawLine(r.getX() + 1, r.getY() + 18, r.getX() + 1, r.getBottom() - 18, 1.5f);
-    }
+juce::Colour Layout::accent() const {
+    auto s = data["accent"].toString().trimCharactersAtStart("#");
+    if (s.length() == 6)
+        return juce::Colour(juce::uint32(0xff000000) | juce::uint32(s.getHexValue32()));
+    return juce::Colour(0xffa28bd0);
+}
+void panel(juce::Graphics &g, juce::Rectangle<float> r, bool) {
+    cutPanel(g, r, juce::Colour(0xff17171b), juce::Colour(0xff3a3a40), 11.f);
 }
 Chassis::Chassis(const Layout &l, const HardwareLook &f) : layout(l), look(f) {
     setInterceptsMouseClicks(false, false);
-    weave = juce::Image(juce::Image::RGB, 64, 64, true);
-    juce::Graphics g(weave);
-    g.fillAll(juce::Colour(0xff0b0d0e));
-    juce::Random random(90127);
-    for (int y = 0; y < 64; ++y)
-        for (int x = 0; x < 64; ++x) {
-            int diagonal = (x + y) % 8;
-            float shade = diagonal < 4 ? .022f : .008f;
-            shade += random.nextFloat() * .006f;
-            g.setColour(juce::Colours::white.withAlpha(shade));
-            g.fillRect(x, y, 1, 1);
-        }
     logo = juce::ImageFileFormat::loadFrom(DAAssets::DAmark_png, DAAssets::DAmark_pngSize);
 }
 void Chassis::paint(juce::Graphics &g) {
-    g.fillAll(juce::Colour(0xff030405));
-    auto outer = juce::Rectangle<float>(20, 20, 1160, 784);
-    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff7b8082), 20, 20,
-                                           juce::Colour(0xff171b1d), 1180, 804, false));
-    g.fillRoundedRectangle(outer, 15);
-    g.setColour(juce::Colours::black);
-    g.fillRoundedRectangle(outer.reduced(3), 12);
-    g.setTiledImageFill(weave, 0, 0, 1);
-    g.fillRoundedRectangle(outer.reduced(7), 9);
-    g.setColour(juce::Colour(0xff444a4c));
-    g.drawRoundedRectangle(outer.reduced(8), 9, .8f);
-    for (int layer = 4; layer > 0; --layer) {
-        g.setColour(crimson.withAlpha(.035f));
-        g.drawLine(42, 801, 1158, 801, float(layer * 3));
+    g.fillAll(juce::Colour(0xff101416));
+    // 1. Matte Noir Black outer body (30, 26, 1140, 1188, rx=30)
+    auto body = juce::Rectangle<float>(30.f, 26.f, 1140.f, 1188.f);
+    juce::DropShadow(juce::Colours::black.withAlpha(.45f), 14, {0, 8})
+        .drawForPath(g, [](juce::Rectangle<float> r) {
+            juce::Path p;
+            p.addRoundedRectangle(r, 30.f);
+            return p;
+        }(body));
+    g.setGradientFill(juce::ColourGradient(juce::Colour(0xff222224), 30.f, 26.f,
+                                           juce::Colour(0xff131315), 30.f, 1214.f, false));
+    g.fillRoundedRectangle(body, 30.f);
+    g.setColour(juce::Colour(0xff323235));
+    g.drawRoundedRectangle(body, 30.f, 1.f);
+    g.setColour(juce::Colours::white.withAlpha(.03f));
+    g.drawRoundedRectangle({35.f, 31.f, 1130.f, 1178.f}, 26.f, 1.f);
+
+    // 2. Brand logo (alpha silhouette filled with #d1d1d3 at 77, 85, 155x68) & untouched product name
+    g.setColour(juce::Colour(0xffd1d1d3));
+    g.drawImageWithin(logo, 77, 85, 155, 68, juce::RectanglePlacement::stretchToFit, true);
+    label(g, look, layout.title("name").toUpperCase(), {278.f, 84.f, 310.f, 44.f}, 37.f,
+          juce::Colour(0xffd8d8db), juce::Justification::centredLeft, false);
+    label(g, look, layout.title("subtitle"), {280.f, 138.f, 320.f, 24.f}, 16.f,
+          juce::Colour(0xffbebec4), juce::Justification::centredLeft, true);
+    label(g, look, "FACTORY PRESET / 50", {660.f, 70.f, 300.f, 22.f}, 16.f,
+          juce::Colour(0xffc2c2ca), juce::Justification::centredLeft, true);
+
+    // 3. Inset display housing (52, 190, 1096, 378, rx=29) & inner screen (70, 207, 1060, 342, rx=20)
+    auto dispOuter = juce::Rectangle<float>(52.f, 190.f, 1096.f, 378.f);
+    juce::ColourGradient dispGrad(juce::Colour(0xff37373a), 52.f, 190.f,
+                                  juce::Colour(0xff0c0c0e), 52.f, 568.f, false);
+    dispGrad.addColour(.15, juce::Colour(0xff242427));
+    g.setGradientFill(dispGrad);
+    g.fillRoundedRectangle(dispOuter, 29.f);
+    g.setColour(juce::Colour(0xff29292c));
+    g.drawRoundedRectangle(dispOuter, 29.f, 1.f);
+    auto dispInner = juce::Rectangle<float>(70.f, 207.f, 1060.f, 342.f);
+    g.setColour(juce::Colour(0xff0e0e11));
+    g.fillRoundedRectangle(dispInner, 20.f);
+    g.setColour(juce::Colour(0xff222226));
+    g.drawRoundedRectangle(dispInner, 20.f, 1.f);
+
+    // 4. Horizontal Learning toolbar (55, 590, 1090, 72)
+    cutPanel(g, {55.f, 590.f, 1090.f, 72.f}, juce::Colour(0xff111114), juce::Colour(0xff36363b),
+             10.f);
+    label(g, look, "LEARNING", {76.f, 613.f, 145.f, 26.f}, 16.f, juce::Colour(0xffdcdce2),
+          juce::Justification::centredLeft, true);
+
+    // 5. Main & Advanced two-tier control panels
+    label(g, look, layout.title("slogan"), {73.f, 664.f, 440.f, 22.f}, 16.f,
+          juce::Colour(0xffc0c0ca), juce::Justification::centredLeft, true);
+    cutPanel(g, {55.f, 693.f, 1090.f, 177.f}, juce::Colour(0xff17171b), juce::Colour(0xff3a3a40),
+             11.f);
+    label(g, look, layout.title("advancedTitle"), {73.f, 877.f, 440.f, 22.f}, 16.f,
+          juce::Colour(0xffc0c0ca), juce::Justification::centredLeft, true);
+    label(g, look, "ADVANCED / EXPANDED", {760.f, 877.f, 370.f, 22.f}, 16.f,
+          look.accentColour.interpolatedWith(juce::Colour(0xffb8b8c2), .45f),
+          juce::Justification::centredRight, true);
+    cutPanel(g, {55.f, 906.f, 1090.f, 229.f}, juce::Colour(0xff17171b), juce::Colour(0xff3a3a40),
+             11.f);
+
+    if (layout.title("name") == "DEQ") {
+        const int bands[3]{1, 3, 4};
+        for (int j = 0; j < 3; ++j) {
+            float bx = 83.f + float(j * 357);
+            label(g, look, "BAND 0" + juce::String(bands[j]), {bx + 12.f, 916.f, 180.f, 22.f}, 16.f,
+                  look.accentColour, juce::Justification::centredLeft, true);
+            if (j < 2) {
+                g.setColour(juce::Colour(0xff35353e));
+                g.drawLine(bx + 331.f, 929.f, bx + 331.f, 1114.f, 1.f);
+            }
+        }
+    } else if (layout.title("name") == "DTrans" || layout.title("name") == "DStereo") {
+        label(g, look, "ALL PARAMETERS VISIBLE / NO DUPLICATED CONTROLS",
+              {200.f, 1092.f, 800.f, 22.f}, 16.f, juce::Colour(0xffabaab8),
+              juce::Justification::centred, true);
     }
-    g.setColour(crimson.withAlpha(.7f));
-    g.drawLine(42, 799, 1158, 799, 1);
-    panel(g, {40, 38, 1120, 87});
-    g.setOpacity(.88f);
-    g.drawImageWithin(logo, 67, 57, 106, 46, juce::RectanglePlacement::centred, false);
-    g.setOpacity(1);
-    label(g, look, layout.title("name").toUpperCase(), {208, 50, 600, 34}, 33, silver);
-    label(g, look, layout.title("subtitle"), {210, 88, 350, 20}, 14, muted);
-    label(g, look, "FACTORY PRESET / 50", {610,46,275,20}, 11, muted);
-    juce::Path accent;
-    accent.startNewSubPath(950, 40); accent.lineTo(900, 122); accent.lineTo(924, 122); accent.lineTo(974, 40);
-    g.setColour(crimson.withAlpha(.13f)); g.fillPath(accent);
-    g.setColour(crimson.withAlpha(.6f)); g.drawLine(950, 40, 900, 122, 1);
-    label(g, look, "AUDIO GUIDED", {976, 58, 150, 23}, 14, crimson,
-          juce::Justification::centredRight);
-    label(g, look, "DEV / 0.4", {986, 88, 140, 18}, 12, muted,
-          juce::Justification::centredRight);
-    panel(g, {48, 136, 882, 236});
-    panel(g, layout.area("learningRect").toFloat());
-    panel(g, {48, 404, 1104, 236});
-    g.setColour(juce::Colour(0xff343b3d));
-    g.drawLine(68, 727, 1132, 727);
-    // Four recessed chassis screws: housing, highlight and horizontal slot.
-    for (auto c : {juce::Point<float>{34, 34}, {1166, 34}, {34, 790}, {1166, 790}}) {
-        g.setColour(juce::Colour(0xff050607)); g.fillEllipse(c.x-5, c.y-5, 10, 10);
-        g.setColour(juce::Colour(0xff4d5355)); g.drawEllipse(c.x-5, c.y-5, 10, 10, .8f);
-        g.drawLine(c.x-2.5f,c.y,c.x+2.5f,c.y,1);
-    }
-    if (overlay) overlay(g);
+
+    // 6. Footer guide
+    label(g, look, "PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES",
+          {74.f, 1150.f, 620.f, 22.f}, 16.f, juce::Colour(0xffb5b5c2),
+          juce::Justification::centredLeft, true);
+
+    if (overlay)
+        overlay(g);
 }
 ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
                                    const da::Parameter &m, const juce::var &spec, HardwareLook &f,
                                    std::function<void()> action)
-    : metadata(m), caption(spec["label"].toString()), look(f) {
+    : metadata(m), caption(spec["label"].toString()), styleName(spec["style"].toString()),
+      knobRadius(int(spec["radius"]) > 0 ? int(spec["radius"]) : 28),
+      learnable(bool(spec["learnable"])), look(f) {
     setComponentID(m.id);
     setTitle(m.module + " / " + m.name);
-    setDescription(bool(spec["learnable"]) ? "Audio-informed learning available" : "Manual control");
+    setDescription(learnable ? "Audio-informed learning available" : "Manual control");
+    slider.getProperties().set("knobRadius", knobRadius);
     slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-    slider.setRotaryParameters(juce::MathConstants<float>::pi * 1.22f,
-                               juce::MathConstants<float>::pi * 2.78f, true);
-    slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 105, 22);
+    slider.setRotaryParameters(juce::MathConstants<float>::pi * 1.25f,
+                               juce::MathConstants<float>::pi * 2.75f, true);
+    slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 110, 22);
+    isBandRow = (styleName == "band_row");
+    bool isDiscreteRotary = (styleName == "rotary_discrete");
+    auto *options = spec["options"].getArray();
+    juce::StringArray optionStrings;
+    if (options)
+        for (auto &o : *options)
+            optionStrings.add(o.toString());
+
     bool percent =
         (m.unit == "%" || m.id == "mix" || m.id == "width" || m.id == "density" ||
          m.id == "diffusion" || m.id == "modulation" || m.id == "sensitivity" || m.id == "depth" ||
-         m.id == "focus" || m.id == "delayMix" || m.id == "reverbMix");
-    slider.textFromValueFunction = [m, percent](double v) {
+         m.id == "focus" || m.id == "feedback" || m.id == "delayMix" || m.id == "reverbMix");
+    slider.textFromValueFunction = [m, percent, optionStrings](double v) {
+        if (optionStrings.size() > 0) {
+            int idx = std::clamp(int(std::round(v)), 0, optionStrings.size() - 1);
+            return optionStrings[idx];
+        }
         if (percent)
             return juce::String(int(std::round(v * 100))) + "%";
         if (m.unit == "Hz")
-            return v >= 1000 ? juce::String(v / 1000, 1) + " kHz" : juce::String(int(v)) + " Hz";
+            return v >= 1000 ? juce::String(v / 1000, v >= 10000 ? 0 : 1) + " kHz"
+                             : juce::String(int(std::round(v))) + " Hz";
         if (m.unit == "ms")
             return juce::String(v, v < 10 ? 1 : 0) + " ms";
         if (m.unit == ":1")
-            return juce::String(v, 1) + ":1";
-        return juce::String(v, m.unit == "s" || m.unit == "dB" ? 1 : 2) + " " +
-               juce::String(m.unit);
+            return juce::String(v, 0) + ":1";
+        if (m.unit == "s")
+            return juce::String(v, 2) + " s";
+        if (m.unit == "dB")
+            return (v > 0.05 ? "+" : "") + juce::String(v, std::abs(v - std::round(v)) > .05 ? 1 : 0) + " dB";
+        return juce::String(v, std::abs(v - std::round(v)) > .05 ? 3 : 0);
     };
-    slider.valueFromTextFunction = [m, percent](const juce::String &s) {
+    slider.valueFromTextFunction = [m, percent, optionStrings](const juce::String &s) {
+        if (optionStrings.size() > 0) {
+            int idx = optionStrings.indexOf(s.trim(), true);
+            if (idx >= 0)
+                return double(idx);
+        }
         double v = s.getDoubleValue();
         if (percent)
             return v / 100.;
@@ -298,30 +321,38 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
     learnButton.onClick = std::move(action);
     learnButton.setTitle("Learn " + juce::String(m.module + " / " + m.name));
     addChildComponent(learnButton);
-    learnButton.setVisible(bool(spec["learnable"]));
-    isMenu=spec["style"].toString()=="menu";
-    if(isMenu) {
-        if(auto *options=spec["options"].getArray())for(int i=0;i<options->size();++i)choiceMenu.addItem((*options)[i].toString(),i+1);
-        choiceMenu.onChange=[this]{slider.setValue(choiceMenu.getSelectedId()-1,juce::sendNotificationSync);};
+    learnButton.setVisible(learnable);
+    isMenu = (styleName == "menu");
+    if (isMenu) {
+        for (int i = 0; i < optionStrings.size(); ++i)
+            choiceMenu.addItem(optionStrings[i], i + 1);
+        choiceMenu.onChange = [this] {
+            slider.setValue(choiceMenu.getSelectedId() - 1, juce::sendNotificationSync);
+        };
         addAndMakeVisible(choiceMenu);
     }
-    if (auto *options = spec["options"].getArray(); options && !isMenu)
+    if (options && !isMenu && !isDiscreteRotary && !isBandRow)
         for (int i = 0; i < options->size(); ++i) {
             auto button = std::make_unique<juce::TextButton>((*options)[i].toString());
+            button->getProperties().set("choice", true);
             button->onClick = [this, i] { slider.setValue(i, juce::sendNotificationSync); };
             addAndMakeVisible(*button);
             choices.push_back(std::move(button));
         }
     slider.onValueChange = [this] {
-        if(isMenu)choiceMenu.setSelectedId(int(slider.getValue())+1,juce::dontSendNotification);
+        if (isMenu)
+            choiceMenu.setSelectedId(int(slider.getValue()) + 1, juce::dontSendNotification);
         for (size_t i = 0; i < choices.size(); ++i)
-            choices[i]->setToggleState(int(slider.getValue()) == int(i),
+            choices[i]->setToggleState(int(std::round(slider.getValue())) == int(i),
                                        juce::dontSendNotification);
+        repaint();
     };
-    if (choices.empty()&&!isMenu)
+    if (choices.empty() && !isMenu)
         addAndMakeVisible(slider);
-    // JUCE's attachment installs its own text callbacks. Preserve the UI's units/parsers
-    // while retaining the host's original parameter range and notifications.
+    if (isBandRow) {
+        slider.setSliderStyle(juce::Slider::LinearBar);
+        slider.setColour(juce::Slider::trackColourId, juce::Colours::transparentBlack);
+    }
     auto format = slider.textFromValueFunction;
     auto parse = slider.valueFromTextFunction;
     attachment =
@@ -332,27 +363,54 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &state,
     slider.onValueChange();
 }
 void ParameterControl::paint(juce::Graphics &g) {
-    if (caption.isNotEmpty())
-        label(g, look, caption, {0, 0, float(getWidth()), 20}, getWidth() < 100 ? 12.f : 14.f,
-              silver, juce::Justification::centred);
+    if (isBandRow) {
+        label(g, look, caption, {4.f, 4.f, 92.f, float(getHeight() - 8)}, 16.f,
+              juce::Colour(0xffc6c6d0), juce::Justification::centredLeft, true);
+        if (learnable) {
+            g.setColour(look.accentColour);
+            g.fillEllipse(88.f, float(getHeight()) * .5f - 3.f, 5.f, 5.f);
+        }
+        return;
+    }
+    if (caption.isNotEmpty()) {
+        label(g, look, caption, {0.f, 0.f, float(getWidth()), 22.f}, 16.f,
+              juce::Colour(0xffcbcdd6), juce::Justification::centred, true);
+        if (learnable) {
+            float dotX = float(getWidth()) * .5f + float(caption.length()) * 5.2f + 10.f;
+            dotX = std::min(dotX, float(getWidth()) - 5.f);
+            g.setColour(look.accentColour);
+            g.fillEllipse(dotX - 2.4f, 6.f, 4.8f, 4.8f);
+        }
+    }
 }
 void ParameterControl::resized() {
+    if (isBandRow) {
+        if (learnable)
+            learnButton.setBounds(118, (getHeight() - 25) / 2, 88, 25);
+        slider.setBounds(getWidth() - 96, 2, 94, getHeight() - 4);
+        return;
+    }
     int top = caption.isEmpty() ? 0 : 22;
-    if(isMenu){choiceMenu.setBounds(0,top,getWidth(),std::min(32,getHeight()-top));return;}
-    if (!choices.empty() && getHeight() > 180)
-        top = 80;
+    if (isMenu) {
+        choiceMenu.setBounds(0, top, getWidth(), std::min(36, getHeight() - top));
+        return;
+    }
     if (choices.empty()) {
-        slider.setBounds(0, top, getWidth(), std::max(10, getHeight() - top - 20));
-        slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, std::min(105, getWidth()),
-                               getHeight() < 150 ? 18 : 24);
-        learnButton.setBounds(getWidth() / 2 - std::min(70, getWidth() - 8) / 2, getHeight() - 18,
-                              std::min(70, getWidth() - 8), 17);
+        int learnH = learnable ? 25 : 0;
+        slider.setBounds(0, top, getWidth(), std::max(10, getHeight() - top - learnH - 2));
+        slider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, std::min(114, getWidth()), 22);
+        if (learnable)
+            learnButton.setBounds(getWidth() / 2 - 36, getHeight() - 25, 72, 25);
     } else {
-        int count = int(choices.size()), buttonWidth = getWidth() / count;
-        int height = std::min(32, std::max(18, getHeight() - top - 19));
+        int count = int(choices.size());
+        int gap = count == 2 ? (getWidth() > 180 ? 12 : 10) : (count == 3 ? 10 : 8);
+        int buttonWidth = (getWidth() - gap * (count - 1)) / count;
+        int height = 39;
+        int cy = top + 16;
         for (int i = 0; i < count; ++i)
-            choices[size_t(i)]->setBounds(i * buttonWidth, top, buttonWidth - 4, height);
-        learnButton.setBounds(getWidth() / 2 - 32, top + height + 2, 64, 16);
+            choices[size_t(i)]->setBounds(i * (buttonWidth + gap), cy, buttonWidth, height);
+        if (learnable)
+            learnButton.setBounds(getWidth() / 2 - 36, cy + height + 6, 72, 25);
     }
 }
 } // namespace da::ui

@@ -4,16 +4,20 @@ namespace da::ui {
 namespace {
 void waveform(juce::Graphics &g, const HardwareLook &look, juce::Rectangle<float> r, const float *v,
               size_t n, bool ready) {
-    g.setColour(juce::Colour(0xff171c1e));
-    g.drawLine(r.getX(), r.getCentreY(), r.getRight(), r.getCentreY());
     if (!ready) {
-        label(g, look, "AWAITING AUDIO", r, 12, muted.withAlpha(.6f), juce::Justification::centred);
+        label(g, look, "No reference file selected", {r.getX(), r.getY() + 36.f, r.getWidth(), 28.f},
+              18.f, juce::Colour(0xffd0d0d6), juce::Justification::centred, true);
+        label(g, look, "Load a file when you need reference-based analysis.",
+              {r.getX(), r.getY() + 72.f, r.getWidth(), 28.f}, 16.f, juce::Colour(0xffa9a9b5),
+              juce::Justification::centred, false);
         return;
     }
+    g.setColour(juce::Colour(0xff25252c));
+    g.drawLine(r.getX(), r.getCentreY(), r.getRight(), r.getCentreY());
     float maximum = .02f;
     for (size_t i = 0; i < n; ++i)
         maximum = std::max(maximum, std::abs(v[i]));
-    g.setColour(silver.withAlpha(.55f));
+    g.setColour(look.accentColour.withAlpha(.85f));
     for (int x = 0; x < int(r.getWidth()); ++x) {
         size_t start = size_t(x) * n / size_t(r.getWidth()),
                end = std::max(start + 1, size_t(x + 1) * n / size_t(r.getWidth()));
@@ -21,28 +25,30 @@ void waveform(juce::Graphics &g, const HardwareLook &look, juce::Rectangle<float
         for (size_t j = start; j < std::min(end, n); ++j)
             peak = std::max(peak, std::abs(v[j]));
         float h = peak / maximum * r.getHeight() * .43f;
-        g.drawLine(r.getX() + x, r.getCentreY() - h, r.getX() + x, r.getCentreY() + h, .8f);
+        g.drawLine(r.getX() + float(x), r.getCentreY() - h, r.getX() + float(x),
+                   r.getCentreY() + h, 1.2f);
     }
 }
 } // namespace
 void meter(juce::Graphics &g, const HardwareLook &look, juce::Rectangle<float> r, float db,
            bool scale) {
-    int segments = 40;
-    float step = r.getHeight() / segments;
-    for (int i = 0; i < segments; ++i) {
-        float threshold = -72.f + float(i) * 72.f / segments;
+    int segments = 48;
+    float step = r.getHeight() / float(segments);
+    auto hiCol = look.accentColour.interpolatedWith(juce::Colours::white, .25f);
+    for (int j = 0; j < segments; ++j) {
+        float threshold = -6.f - float(j) * 66.f / float(segments);
         bool on = db >= threshold;
-        g.setColour(on ? (threshold > -6    ? crimson
-                          : threshold > -30 ? juce::Colour(0xffc21a34)
-                                            : silver.withAlpha(.65f))
-                       : juce::Colour(0xff202628));
-        g.fillRect(r.getX(), r.getBottom() - (i + 1) * step, r.getWidth(), step * .58f);
+        g.setColour(on ? (j < 8    ? look.accentColour
+                          : j < 18 ? hiCol
+                                   : juce::Colour(0xffd5d5d7))
+                       : juce::Colour(0xff29292e));
+        g.fillRect(r.getX(), r.getY() + float(j) * step, r.getWidth(), step * .54f);
     }
     if (scale)
         for (int i = 0; i <= 6; ++i) {
             float d = float(i) * -12;
             label(g, look, juce::String(int(d)),
-                  {r.getRight() + 6, r.getY() + r.getHeight() * float(i) / 6 - 7, 30, 14}, 11,
+                  {r.getRight() + 6, r.getY() + r.getHeight() * float(i) / 6 - 7, 30, 14}, 14,
                   muted);
         }
 }
@@ -105,100 +111,198 @@ void AnalysisDisplay::consume(da::ScopeFifo &fifo, double sr, float ip, float op
     repaint();
 }
 void AnalysisDisplay::paint(juce::Graphics &g) {
-    label(g, look, "IN", {6, 4, 42, 20}, 12, silver);
-    meter(g, look, {10, 38, 7, 151}, inDb);
-    meter(g, look, {21, 38, 7, 151}, inDb);
-    label(g, look, state.toUpperCase(), {60, 4, 550, 22}, 12, crimson);
-    graph(g, {60, 35, 570, 155});
-    g.setColour(juce::Colour(0xff303638)); g.drawLine(647, 8, 647, 209);
-    label(g, look, "REFERENCE", {661, 5, 140, 21}, 13, silver);
-    waveform(g, look, {661, 40, 140, 146}, reference.waveform.data(), reference.waveform.size(),
-             reference.features.valid());
-    label(g, look, reference.features.valid() ? reference.name : "NOT LOADED",
-          {661, 198, 140, 19}, 11, muted);
-    meter(g, look, {827, 38, 7, 151}, outDb);
-    meter(g, look, {839, 38, 7, 151}, outDb);
-    label(g, look, "OUT", {817, 4, 42, 20}, 12, silver);
-    const char *captions[]{
-        "SPECTRAL HISTORY", "ECHO / FREQUENCY FIELD", "DYNAMICS TRANSFER", "FOUR-BAND RESPONSE",
-        "HARMONIC TRANSFER", "TRANSIENT / SUSTAIN", "STEREO VECTORSCOPE", "SIBILANCE DETECTION",
-        "GATE TRANSFER", "CHAIN / FREQUENCY FIELD"};
-    juce::String metrics;
-    if (kind == da::Kind::Comp || kind == da::Kind::Sess || kind == da::Kind::Gate)
-        metrics = "GR " + juce::String(gr, 1) + " dB";
-    else if (kind == da::Kind::Stereo) {
-        double l=0,r=0,lr=0;
-        for (const auto &f : phase) { l+=f.left*f.left;r+=f.right*f.right;lr+=f.left*f.right; }
-        metrics = l*r>1e-12 && juce::Time::currentTimeMillis()-lastAudio<350
-            ? "CORR " + juce::String(std::clamp(lr/std::sqrt(l*r),-1.,1.),2) : "CORR --";
-    } else metrics = "IN " + juce::String(inDb,1) + " / OUT " + juce::String(outDb,1) + " dBFS";
-    label(g, look, metrics, {60,198,300,19}, 11, silver);
-    label(g, look, captions[int(kind)], {370, 198, 260, 19}, 11, muted,
-          juce::Justification::centredRight);
+    const char *roles[]{"REVERBERATION", "STEREO DELAY",      "DYNAMICS",          "FOUR-BAND EQ",
+                        "SATURATION",    "TRANSIENT SHAPING", "STEREO IMAGE",      "SIBILANCE CONTROL",
+                        "NOISE GATE",    "MULTI EFFECT"};
+    label(g, look, "IN", {4.f, 38.f, 42.f, 22.f}, 16.f, look.accentColour,
+          juce::Justification::centred, true);
+    meter(g, look, {14.f, 70.f, 9.f, 206.f}, inDb);
+    meter(g, look, {27.f, 70.f, 9.f, 206.f}, inDb);
+
+    label(g, look, "INPUT / " + juce::String(roles[int(kind)]) + " / " + state.toUpperCase(),
+          {81.f, 22.f, 880.f, 24.f}, 16.f, look.accentColour, juce::Justification::centredLeft,
+          true);
+
+    graph(g, {93.f, 77.f, 900.f, 209.f});
+
+    label(g, look, "OUT", {1017.f, 38.f, 42.f, 22.f}, 16.f, look.accentColour,
+          juce::Justification::centred, true);
+    meter(g, look, {1027.f, 70.f, 9.f, 206.f}, outDb);
+    meter(g, look, {1040.f, 70.f, 9.f, 206.f}, outDb);
+}
+void AnalysisDisplay::paintReferencePanel(juce::Graphics &g, juce::Rectangle<float> box) const {
+    g.setColour(juce::Colour(0xff111114));
+    g.fillRoundedRectangle(box, 18.f);
+    g.setColour(juce::Colour(0xff393942));
+    g.drawRoundedRectangle(box.reduced(.5f), 18.f, 1.2f);
+    label(g, look, "REFERENCE", {box.getX() + 32.f, box.getY() + 22.f, 300.f, 32.f}, 24.f,
+          look.accentColour, juce::Justification::centredLeft, true);
+    label(g, look, "Optional workspace — opened only when requested",
+          {box.getX() + 32.f, box.getY() + 74.f, 680.f, 26.f}, 18.f, juce::Colour(0xffd0d0d6),
+          juce::Justification::centredLeft, false);
+    auto waveBox = juce::Rectangle<float>(box.getX() + 32.f, box.getY() + 128.f, 736.f, 160.f);
+    g.setColour(juce::Colour(0xff0e0e11));
+    g.fillRoundedRectangle(waveBox, 10.f);
+    g.setColour(juce::Colour(0xff414146));
+    g.drawRoundedRectangle(waveBox, 10.f, 1.f);
+    waveform(g, look, waveBox.reduced(16.f, 12.f), reference.waveform.data(),
+             reference.waveform.size(), reference.features.valid());
+    juce::String foot = reference.features.valid()
+                            ? ("Loaded: " + reference.name + "  /  RMS " +
+                               juce::String(da::db(float(reference.features.rms)), 1) + " dBFS")
+                            : "Reference guidance is optional — no file loaded by default.";
+    label(g, look, foot, {box.getX() + 32.f, box.getY() + 382.f, 736.f, 26.f}, 16.f,
+          juce::Colour(0xffb8b8c4), juce::Justification::centredLeft, false);
 }
 void AnalysisDisplay::graph(juce::Graphics &g, juce::Rectangle<float> r) {
     g.saveState();
     g.reduceClipRegion(r.toNearestInt());
-    g.setColour(juce::Colour(0xff22292b));
-    for (int i = 0; i < 8; ++i)
-        g.drawVerticalLine(int(r.getX() + r.getWidth() * i / 7), r.getY(), r.getBottom());
-    for (int i = 0; i < 5; ++i)
-        g.drawHorizontalLine(int(r.getY() + r.getHeight() * i / 4), r.getX(), r.getRight());
-    juce::Path path;
-    if (kind == da::Kind::Stereo) {
-        auto c = r.getCentre();
-        g.setColour(muted.withAlpha(.4f));
-        g.drawEllipse(r.withSizeKeepingCentre(130, 130), .6f);
-        g.drawLine(c.x - 70, c.y, c.x + 70, c.y);
-        g.drawLine(c.x, c.y - 65, c.x, c.y + 65);
-        g.setColour(crimson.withAlpha(.6f));
-        for (auto &f : phase) {
-            float mid = (f.left + f.right) * .5f, side = (f.left - f.right) * .5f;
-            g.fillEllipse(c.x + side * 140 - 1, c.y - mid * 140 - 1, 2, 2);
+    auto gridCol = juce::Colour(0xff24242a).interpolatedWith(look.accentColour, .22f);
+    auto midCol = juce::Colour(0xff222228).interpolatedWith(look.accentColour, .42f);
+    auto darkFill = juce::Colour(0xff121216).interpolatedWith(look.accentColour, .15f);
+
+    if (kind == da::Kind::Delay) {
+        g.setColour(gridCol);
+        float baseY = r.getY() + r.getHeight() * .78f;
+        g.drawLine(r.getX(), baseY, r.getRight(), baseY, 1.f);
+        float fb = std::clamp(value("feedback", .35f), .05f, .95f);
+        for (int j = 0; j < 8; ++j) {
+            float xx = r.getX() + r.getWidth() * (.06f + float(j) * .128f);
+            float amp = r.getHeight() * .66f * std::pow(fb + .35f, float(j) * .55f);
+            amp = std::min(amp, r.getHeight() * .72f);
+            g.setColour(look.accentColour);
+            g.drawLine(xx, baseY, xx, baseY - amp, 3.f);
+            g.fillEllipse(xx - 3.f, baseY - amp - 3.f, 6.f, 6.f);
+            label(g, look, juce::String(j + 1), {xx - 16.f, r.getY() + r.getHeight() * .82f, 32.f, 22.f},
+                  16.f, midCol, juce::Justification::centred, true);
         }
         g.restoreState();
         return;
     }
-    if (kind == da::Kind::Trans) {
-        float max = .001f;
-        for (float x : input)
-            max = std::max(max, std::abs(x));
-        for (size_t i = 0; i < 256; ++i) {
-            float x = r.getX() + r.getWidth() * float(i) / 255,
-                  y = r.getBottom() -
-                      std::abs(input[(position + i * 8) % 2048]) / max * r.getHeight() * .9f;
-            if (i == 0)
-                path.startNewSubPath(x, y);
-            else
-                path.lineTo(x, y);
-        }
-    } else if (kind == da::Kind::Comp || kind == da::Kind::Gate || kind == da::Kind::Sat) {
-        for (int i = 0; i < 256; ++i) {
-            float x = float(i) / 255, normalized = x;
-            if (kind == da::Kind::Comp) {
-                float inputDb = -60 + x * 60, over = inputDb - value("threshold"),
-                      ratio = value("ratio", 4);
-                normalized =
-                    (inputDb - std::max(0.f, over) * (1 - 1 / ratio) + value("makeup") + 60) / 60;
-            } else if (kind == da::Kind::Gate) {
-                float inputDb = -80 + x * 80;
-                normalized = x + (inputDb < value("threshold") ? -value("range") / 80 : 0);
-            } else {
-                float driven = (x * 2 - 1) * da::gain(value("drive"));
-                int mode = int(value("mode"));
-                float y = mode == 0   ? std::tanh(driven)
-                          : mode == 1 ? std::clamp(driven, -1.f, 1.f)
-                                      : std::tanh(driven + .3f) - std::tanh(.3f);
-                normalized = y * .45f + .5f;
+    if (kind == da::Kind::FX) {
+        const char *mods[4]{"DRIVE", "FILTER", "DELAY", "SPACE"};
+        const char *enables[4]{"driveOn", "filterOn", "delayOn", "reverbOn"};
+        for (int j = 0; j < 4; ++j) {
+            float ww = r.getWidth() * .21f;
+            float xx = r.getX() + float(j) * r.getWidth() * .25f;
+            bool on = value(enables[j], 1.f) > .5f;
+            auto box = juce::Rectangle<float>(xx, r.getY(), ww, r.getHeight());
+            g.setColour(darkFill.withAlpha(on ? 1.f : .45f));
+            g.fillRoundedRectangle(box, 5.f);
+            g.setColour(gridCol);
+            g.drawRoundedRectangle(box, 5.f, 1.f);
+            label(g, look, mods[j], box, 17.f, on ? look.accentColour : muted,
+                  juce::Justification::centred, true);
+            if (j < 3) {
+                g.setColour(midCol);
+                g.drawLine(box.getRight(), box.getCentreY(),
+                           r.getX() + float(j + 1) * r.getWidth() * .25f, box.getCentreY(), 1.f);
             }
-            float px = r.getX() + x * r.getWidth(), py = r.getBottom() - normalized * r.getHeight();
+        }
+        g.restoreState();
+        return;
+    }
+    if (kind == da::Kind::Stereo) {
+        auto c = r.getCentre();
+        float rad = std::min(r.getWidth(), r.getHeight()) * .46f;
+        g.setColour(gridCol);
+        g.drawEllipse(c.x - rad * .5f, c.y - rad * .5f, rad, rad, 1.f);
+        g.drawEllipse(c.x - rad, c.y - rad, rad * 2.f, rad * 2.f, 1.f);
+        g.drawLine(c.x - rad, c.y, c.x + rad, c.y, 1.f);
+        g.drawLine(c.x, c.y - rad, c.x, c.y + rad, 1.f);
+        float wScale = std::clamp(value("width", 1.f), .1f, 2.f);
+        for (int j = 0; j < 9; ++j) {
+            juce::Path liss;
+            for (int i = 0; i <= 100; ++i) {
+                float t = float(i) / 100.f * juce::MathConstants<float>::twoPi;
+                float px = c.x + rad * .65f * wScale * .65f * std::sin(t);
+                float py = c.y + rad * .6f * std::sin(t * 2.f + float(j) * .14f);
+                if (i == 0)
+                    liss.startNewSubPath(px, py);
+                else
+                    liss.lineTo(px, py);
+            }
+            g.setColour(look.accentColour.withAlpha(.24f));
+            g.strokePath(liss, juce::PathStrokeType(1.f));
+        }
+        g.restoreState();
+        return;
+    }
+    if (kind == da::Kind::Sess) {
+        float freqNorm = float(std::log(std::max(2000.f, value("frequency", 6000.f)) / 2000.f) /
+                               std::log(12000.f / 2000.f));
+        float bandX = r.getX() + r.getWidth() * (.45f + .38f * std::clamp(freqNorm, 0.f, 1.f));
+        g.setColour(darkFill);
+        g.fillRoundedRectangle(bandX - r.getWidth() * .08f, r.getY(), r.getWidth() * .16f,
+                               r.getHeight(), 3.f);
+        for (int i = 0; i < 100; ++i) {
+            float hh = r.getHeight() *
+                       (.12f + .16f * std::abs(std::sin(float(i) * .12f)) +
+                        .56f * std::exp(-std::pow((float(i) - 76.f) / 8.f, 2.f)));
+            float xx = r.getX() + r.getWidth() * float(i) / 100.f;
+            g.setColour(i > 68 ? look.accentColour : midCol);
+            g.drawLine(xx, r.getBottom(), xx, r.getBottom() - hh, 3.2f);
+        }
+        g.restoreState();
+        return;
+    }
+    if (kind == da::Kind::Verb || kind == da::Kind::Trans || kind == da::Kind::Gate) {
+        int count = kind == da::Kind::Verb ? 135 : 131;
+        for (int i = 0; i < count; ++i) {
+            float t = float(i) / float(count - 1);
+            float a = kind == da::Kind::Verb
+                          ? r.getHeight() * .4f * (1.f - std::exp(-t * 35.f)) *
+                                std::exp(-t * 3.5f) * (.3f + .7f * std::abs(std::sin(float(i) * 1.82f)))
+                          : r.getHeight() * .39f * (std::exp(-t * 7.f) + .22f * std::exp(-t)) *
+                                std::abs(std::sin(float(i) * 1.6f));
+            float xx = r.getX() + t * r.getWidth();
+            g.setColour(look.accentColour);
+            g.drawLine(xx, r.getCentreY() - a, xx, r.getCentreY() + a, 1.5f);
+        }
+        if (kind == da::Kind::Gate || kind == da::Kind::Trans) {
+            juce::Path env;
+            if (kind == da::Kind::Gate) {
+                env.startNewSubPath(r.getX(), r.getY() + r.getHeight() * .87f);
+                env.lineTo(r.getX() + r.getWidth() * .12f, r.getY() + r.getHeight() * .87f);
+                env.lineTo(r.getX() + r.getWidth() * .12f, r.getY() + r.getHeight() * .12f);
+                env.lineTo(r.getX() + r.getWidth() * .49f, r.getY() + r.getHeight() * .12f);
+                env.lineTo(r.getX() + r.getWidth() * .68f, r.getY() + r.getHeight() * .87f);
+                env.lineTo(r.getRight(), r.getY() + r.getHeight() * .87f);
+            } else {
+                env.startNewSubPath(r.getX(), r.getY() + r.getHeight() * .8f);
+                env.quadraticTo(r.getX() + r.getWidth() * .06f, r.getY() - r.getHeight() * .2f,
+                                r.getX() + r.getWidth() * .16f, r.getY() + r.getHeight() * .2f);
+                env.quadraticTo(r.getX() + r.getWidth() * .4f, r.getY() + r.getHeight() * .7f,
+                                r.getRight(), r.getY() + r.getHeight() * .8f);
+            }
+            g.setColour(look.accentColour.withAlpha(.65f));
+            g.strokePath(env, juce::PathStrokeType(1.5f));
+        }
+        g.restoreState();
+        return;
+    }
+
+    juce::Path path;
+    if (kind == da::Kind::Comp || kind == da::Kind::Sat) {
+        g.setColour(gridCol);
+        g.drawLine(r.getX(), r.getBottom(), r.getRight(), r.getY(), 1.f);
+        g.drawLine(r.getX(), r.getCentreY(), r.getRight(), r.getCentreY(), 1.f);
+        for (int i = 0; i <= 100; ++i) {
+            float t = float(i) / 100.f;
+            float z = t < .52f ? t : .52f + (t - .52f) * .25f;
+            if (kind == da::Kind::Sat)
+                z = .5f + .43f * std::tanh((t - .5f) * 5.f);
+            float px = r.getX() + t * r.getWidth(), py = r.getY() + r.getHeight() * (1.f - z);
             if (i == 0)
                 path.startNewSubPath(px, py);
             else
                 path.lineTo(px, py);
         }
+        g.setColour(look.accentColour);
+        g.strokePath(path, juce::PathStrokeType(2.5f));
     } else if (kind == da::Kind::EQ) {
-        // Actual RBJ frequency response for current parameters, including shelf shapes.
+        g.setColour(gridCol);
+        g.drawLine(r.getX(), r.getCentreY(), r.getRight(), r.getCentreY(), 1.f);
         for (int i = 0; i < 256; ++i) {
             double f = 20 * std::pow(1000., double(i) / 255),
                    w = 2 * da::pi * std::min(f, rate * .49) / rate;
@@ -234,98 +338,22 @@ void AnalysisDisplay::graph(juce::Graphics &g, juce::Rectangle<float> r) {
             }
             float px = r.getX() + r.getWidth() * float(i) / 255,
                   py = r.getCentreY() -
-                       float(20 * std::log10(std::max(response, 1e-12))) * r.getHeight() / 48;
+                       float(20 * std::log10(std::max(response, 1e-12))) * r.getHeight() / 36;
             if (i == 0)
                 path.startNewSubPath(px, py);
             else
                 path.lineTo(px, py);
         }
-    } else {
-        if (kind == da::Kind::Sess) {
-            float x = r.getX() +
-                      float(std::log(std::max(20.f, value("frequency")) / 20) / std::log(1000.)) *
-                          r.getWidth();
-            g.setColour(crimson.withAlpha(.09f));
-            g.fillRect(x - 22, r.getY(), 44.f, r.getHeight());
-        }
-        if (kind == da::Kind::Verb)
-            for (size_t h = 0; h < history.size(); ++h) {
-                const auto &values = history[(historyPosition + h) % history.size()];
-                juce::Path trace;
-                for (size_t j = 0; j < 128; ++j) {
-                    float x = r.getX() + r.getWidth() * float(j) / 127,
-                          y = r.getBottom() - (values[j] + 90) / 96 * r.getHeight() +
-                              float(history.size() - h) * 1.8f;
-                    if (j == 0)
-                        trace.startNewSubPath(x, y);
-                    else
-                        trace.lineTo(x, y);
-                }
-                g.setColour(crimson.withAlpha(.035f + float(h) * .017f));
-                g.strokePath(trace, juce::PathStrokeType(.7f));
-            }
-        for (size_t i = 0; i < spectrum.size(); ++i) {
-            float x = r.getX() + r.getWidth() * float(i) / 127,
-                  y = r.getBottom() - (spectrum[i] + 90) / 96 * r.getHeight();
-            if (i == 0)
-                path.startNewSubPath(x, y);
-            else
-                path.lineTo(x, y);
-        }
-        juce::Path wet;
-        for (size_t i = 0; i < outSpectrum.size(); ++i) {
-            float x = r.getX() + r.getWidth() * float(i) / 127,
-                  y = r.getBottom() - (outSpectrum[i] + 90) / 96 * r.getHeight();
-            if (i == 0)
-                wet.startNewSubPath(x, y);
-            else
-                wet.lineTo(x, y);
-        }
-        g.setColour(silver.withAlpha(.3f));
-        g.strokePath(wet, juce::PathStrokeType(.7f));
+        g.setColour(look.accentColour);
+        g.strokePath(path, juce::PathStrokeType(2.2f));
+        for (float t : {.12f, .33f, .57f, .82f})
+            g.fillEllipse(r.getX() + t * r.getWidth() - 3.f, r.getCentreY() - 3.f, 6.f, 6.f);
     }
-    auto fill = path;
-    fill.lineTo(r.getRight(), r.getBottom());
-    fill.lineTo(r.getX(), r.getBottom());
-    fill.closeSubPath();
-    g.setGradientFill(juce::ColourGradient(crimson.withAlpha(.17f), r.getCentreX(), r.getY(),
-                                           crimson.withAlpha(.005f), r.getCentreX(), r.getBottom(),
-                                           false));
-    g.fillPath(fill);
-    g.setColour(crimson.withAlpha(.12f));
-    g.strokePath(path, juce::PathStrokeType(6));
-    g.setColour(crimson);
-    g.strokePath(path, juce::PathStrokeType(1.3f));
     g.restoreState();
 }
 void AnalysisDisplay::paintDetail(juce::Graphics &g, juce::Rectangle<float> r) {
-    if (kind == da::Kind::Comp || kind == da::Kind::Sess || kind == da::Kind::Gate) {
-        label(g, look, "GAIN REDUCTION", r.removeFromTop(24), 13, muted,
-              juce::Justification::centred);
-        label(g, look, juce::String(gr, 1) + " dB", r.removeFromTop(53), 38, crimson,
-              juce::Justification::centred);
-    } else if (kind == da::Kind::Stereo) {
-        double l = 0, rr = 0, lr = 0;
-        for (auto &f : phase) {
-            l += f.left * f.left;
-            rr += f.right * f.right;
-            lr += f.left * f.right;
-        }
-        double correlation = l * rr > 1e-12 ? lr / std::sqrt(l * rr) : 1;
-        label(g, look, "CHANNEL CORRELATION", r.removeFromTop(28), 13, muted,
-              juce::Justification::centred);
-        label(g, look, juce::String(correlation, 2), r.removeFromTop(55), 36,
-              correlation < 0 ? crimson : silver, juce::Justification::centred);
-        label(g, look, "-1                  0                  +1", r.removeFromTop(28), 12, muted,
-              juce::Justification::centred);
-    } else
-        label(g, look, "INPUT / OUTPUT", r.removeFromTop(26), 13, muted,
-              juce::Justification::centred);
-    label(g, look, juce::String(inDb, 1) + " dBFS   /   " + juce::String(outDb, 1) + " dBFS",
-          r.removeFromTop(30), 18, silver, juce::Justification::centred);
-    if (kind == da::Kind::Trans)
-        label(g, look, "LIVE ENVELOPE ABOVE  /  MANUAL CONTROL ALWAYS", r.removeFromTop(26), 12,
-              muted, juce::Justification::centred);
+    label(g, look, juce::String(inDb, 1) + " dBFS  /  " + juce::String(outDb, 1) + " dBFS", r,
+          16.f, silver, juce::Justification::centredRight);
 }
 ReferenceDisplay summarizeReference(const juce::AudioBuffer<float> &b, double sr,
                                     const juce::String &name) {

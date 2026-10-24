@@ -6,19 +6,20 @@ template <class T> bool ready(std::future<T> &f) {
 }
 } // namespace
 DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcessor &p)
-    : AudioProcessorEditor(&p), processor(p), layout(p.getName()), chassis(layout, hardware),
-      analysis(p.kind, hardware), session(p.currentValues()), lastValues(session.values) {
+    : AudioProcessorEditor(&p), processor(p), layout(p.getName()), hardware(layout.accent()),
+      chassis(layout, hardware), analysis(p.kind, hardware), session(p.currentValues()),
+      lastValues(session.values) {
     setLookAndFeel(&hardware);
     setResizable(true, true);
-    setResizeLimits(900, 615, 1800, 1230);
-    getConstrainer()->setFixedAspectRatio(1200.0 / 820.0);
+    setResizeLimits(750, 775, 1800, 1860);
+    getConstrainer()->setFixedAspectRatio(1200.0 / 1240.0);
     addAndMakeVisible(stage);
-    stage.setSize(1200, 820);
+    stage.setSize(1200, 1240);
     stage.addAndMakeVisible(chassis);
-    chassis.setBounds(0, 0, 1200, 820);
+    chassis.setBounds(0, 0, 1200, 1240);
     chassis.overlay = [this](juce::Graphics &g) { paintDetails(g); };
     stage.addAndMakeVisible(analysis);
-    analysis.setBounds(54, 142, 870, 224);
+    analysis.setBounds(70, 207, 1060, 342);
     if (auto *specs = layout.data["controls"].getArray())
         for (auto &spec : *specs) {
             auto id = spec["id"].toString().toStdString();
@@ -35,48 +36,85 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     if (auto *specs = layout.data["modules"].getArray())
         for (auto &spec : *specs) {
             auto b = std::make_unique<juce::TextButton>(spec["title"].toString());
-            b->onClick = [this, scope = spec["scope"].toString().toStdString()] {
-                startLearn(scope);
+            b->onClick = [this, scopeName = spec["scope"].toString().toStdString()] {
+                startLearn(scopeName);
             };
             stage.addAndMakeVisible(*b);
             b->setBounds(da::ui::rectangle(spec["rect"]));
             modules.push_back(std::move(b));
         }
-    for (auto *b : {&learnAll, &loadReference, &preview, &apply, &reject, &undo, &showResults, &advanced})
+    for (auto *b : {&captureInput, &openReference, &learnAll, &showResults, &preview, &apply,
+                    &reject, &undo})
         stage.addAndMakeVisible(*b);
     learnAll.getProperties().set("accent", true);
     apply.getProperties().set("accent", true);
-    observedPresetGeneration=processor.presetGeneration();
-    for(int i=0;i<50;++i)presetMenu.addItem(juce::String(i+1).paddedLeft('0',2)+" / "+processor.getProgramName(i),i+1);
-    presetMenu.setSelectedId(processor.getCurrentProgram()+1,juce::dontSendNotification);
-    previousPreset.setTooltip("Previous factory preset");nextPreset.setTooltip("Next factory preset");
-    presetMenu.setTooltip("50 factory presets. Loading replaces the full state; save your project first.");
-    stage.addAndMakeVisible(presetMenu);stage.addAndMakeVisible(previousPreset);stage.addAndMakeVisible(nextPreset);
-    presetMenu.onChange=[this]{if(presetMenu.getSelectedId()>0){processor.setCurrentProgram(presetMenu.getSelectedId()-1);syncManual();}};
-    previousPreset.onClick=[this]{processor.setCurrentProgram((processor.getCurrentProgram()+49)%50);syncManual();};
-    nextPreset.onClick=[this]{processor.setCurrentProgram((processor.getCurrentProgram()+1)%50);syncManual();};
-    mode.addItem("INPUT-AWARE LEARN", 1);
-    mode.addItem("REFERENCE GUIDANCE", 2);
-    mode.addItem("DESCRIPTION GUIDANCE", 3);
-    mode.setSelectedId(1);
-    stage.addAndMakeVisible(mode);
-    description.setMultiLine(true);
-    description.setFont(hardware.font(15));
-    description.setTextToShowWhenEmpty("Dark, warm, wide, smooth, cinematic…", da::ui::muted);
-    stage.addAndMakeVisible(description);
+    loadReference.getProperties().set("accent", true);
+
+    observedPresetGeneration = processor.presetGeneration();
+    for (int i = 0; i < 50; ++i)
+        presetMenu.addItem(
+            juce::String(i + 1).paddedLeft('0', 2) + " / " + processor.getProgramName(i), i + 1);
+    presetMenu.setSelectedId(processor.getCurrentProgram() + 1, juce::dontSendNotification);
+    previousPreset.setTooltip("Previous factory preset");
+    nextPreset.setTooltip("Next factory preset");
+    presetMenu.setTooltip(
+        "50 factory presets. Loading replaces the full state; save your project first.");
+    stage.addAndMakeVisible(presetMenu);
+    stage.addAndMakeVisible(previousPreset);
+    stage.addAndMakeVisible(nextPreset);
+    presetMenu.onChange = [this] {
+        if (presetMenu.getSelectedId() > 0) {
+            processor.setCurrentProgram(presetMenu.getSelectedId() - 1);
+            syncManual();
+        }
+    };
+    previousPreset.onClick = [this] {
+        processor.setCurrentProgram((processor.getCurrentProgram() + 49) % 50);
+        syncManual();
+    };
+    nextPreset.onClick = [this] {
+        processor.setCurrentProgram((processor.getCurrentProgram() + 1) % 50);
+        syncManual();
+    };
+
+    // Separate optional Reference workspace — closed by default and opened only on request.
+    referenceDrawer.setComponentID("reference-panel");
+    referenceDrawer.onPaint = [this](juce::Graphics &g) {
+        analysis.paintReferencePanel(g, referenceDrawer.getLocalBounds().toFloat());
+    };
+    referenceDrawer.addAndMakeVisible(loadReference);
+    referenceDrawer.addAndMakeVisible(useReferenceMode);
+    referenceDrawer.addAndMakeVisible(closeReference);
+    stage.addChildComponent(referenceDrawer);
+    referenceDrawer.setVisible(false);
+    useReferenceMode.setClickingTogglesState(true);
+    useReferenceMode.onClick = [this] {
+        referenceGuidanceEnabled = useReferenceMode.getToggleState();
+        setStatus(referenceGuidanceEnabled
+                      ? "Reference guidance enabled for Learn"
+                      : "Input-aware Learn active (reference guidance off)");
+    };
+    closeReference.onClick = [this] { referenceDrawer.setVisible(false); };
+    openReference.onClick = [this] {
+        drawer.setVisible(false);
+        referenceDrawer.setVisible(!referenceDrawer.isVisible());
+        if (referenceDrawer.isVisible())
+            referenceDrawer.toFront(false);
+    };
+
+    // Optional Details / Log drawer — closed by default.
     results.setMultiLine(true);
     results.setReadOnly(true);
     results.setFont(hardware.font(16));
-    results.setBorder(juce::BorderSize<int>(46, 16, 16, 16));
+    results.setBorder(juce::BorderSize<int>(48, 18, 18, 18));
     results.setText(
-        "D.A PLUGINS / LEARNING WORKBENCH\n\nChoose a mode and press LEARN for a parameter, "
-        "band/module, or all eligible controls. Play audio during capture. Results stay in this optional log and do not change your "
+        "D.A PLUGINS / LEARNING WORKBENCH\n\nPress CAPTURE INPUT, LEARN ALL, or a parameter/module "
+        "LEARN button while playing audio. Results stay in this optional log and do not change your "
         "settings until Preview or Apply.\n\nInput-aware learning uses measured features and "
-        "deterministic estimates, not a trained neural network. Reference guidance is currently "
-        "limited to EQ gains, stereo width and compressor makeup. Other proposals are "
-        "input/objective starting points, not exact reference matches.\n\nRecognized description "
-        "words: dark, warm, wide, smooth, cinematic. Negated goals are rejected; other unsupported words "
-        "are ignored.\n\nPreview auditions; Reject restores; Apply keeps; Undo restores one "
+        "deterministic estimates, not a trained neural network. Open REFERENCE... only when you "
+        "want optional reference-file guidance (currently limited to EQ gains, stereo width and "
+        "compressor makeup; other proposals are input/objective starting points, not exact "
+        "reference matches).\n\nPreview auditions; Reject restores; Apply keeps; Undo restores one "
         "learning operation. Manual changes invalidate older proposals.");
     drawer.addAndMakeVisible(results);
     drawer.addAndMakeVisible(closeResults);
@@ -85,23 +123,18 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     results.setComponentID("learning-log");
     closeResults.onClick = [this] { drawer.setVisible(false); };
     showResults.onClick = [this] {
+        referenceDrawer.setVisible(false);
         drawer.setVisible(!drawer.isVisible());
         if (drawer.isVisible())
             drawer.toFront(false);
     };
-    status.setFont(hardware.font(12));
-    status.setColour(juce::Label::textColourId, da::ui::muted);
+
+    status.setFont(hardware.font(16, true));
+    status.setJustificationType(juce::Justification::centredRight);
+    status.setColour(juce::Label::textColourId, juce::Colour(0xffb5b5c2));
     stage.addAndMakeVisible(status);
-    advanced.onClick = [this] {
-        advancedView = !advancedView;
-        updateControlPage();
-    };
-    mode.onChange = [this] {
-        description.setEnabled(mode.getSelectedId() == 3);
-        loadReference.setEnabled(mode.getSelectedId() == 2);
-    };
-    mode.onChange();
-    updateControlPage();
+
+    captureInput.onClick = [this] { startLearn("all"); };
     learnAll.onClick = [this] { startLearn("all"); };
     loadReference.onClick = [this] { load(); };
     preview.onClick = [this] {
@@ -133,8 +166,8 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
         else
             setStatus("No learning operation to undo");
     };
-    setStatus("Ready / Play audio to analyze / Manual control always");
-    setSize(1200, 820);
+    setStatus("Ready / Manual control always");
+    setSize(1200, 1240);
     startTimerHz(24);
 }
 DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
@@ -152,15 +185,19 @@ void DAPluginAudioProcessorEditor::setStatus(const juce::String &s) {
     analysis.setStatus(s.upToFirstOccurrenceOf("—", false, false));
 }
 void DAPluginAudioProcessorEditor::syncManual() {
-    if(processor.isLoadingProgram())return;
-    const auto generation=processor.presetGeneration();
+    if (processor.isLoadingProgram())
+        return;
+    const auto generation = processor.presetGeneration();
     auto values = processor.currentValues();
-    if(generation!=observedPresetGeneration) {
-        observedPresetGeneration=generation;
-        const auto revision=session.revision+1;
-        session=da::LearningSession(values);session.revision=revision;
-        lastValues=values;capturing=false;processor.cancelCapture();
-        presetMenu.setSelectedId(processor.getCurrentProgram()+1,juce::dontSendNotification);
+    if (generation != observedPresetGeneration) {
+        observedPresetGeneration = generation;
+        const auto revision = session.revision + 1;
+        session = da::LearningSession(values);
+        session.revision = revision;
+        lastValues = values;
+        capturing = false;
+        processor.cancelCapture();
+        presetMenu.setSelectedId(processor.getCurrentProgram() + 1, juce::dontSendNotification);
         setStatus("Preset / session loaded — pending learning cancelled");
         return;
     }
@@ -197,13 +234,11 @@ void DAPluginAudioProcessorEditor::startLearn(std::string requestedScope) {
     write();
     try {
         objective = {};
-        if (mode.getSelectedId() == 2) {
+        if (referenceGuidanceEnabled) {
             objective.mode = da::Mode::Reference;
             if (!reference.valid())
                 throw std::runtime_error("Reference unavailable — load a non-silent audio file");
         }
-        if (mode.getSelectedId() == 3)
-            objective = da::describe(description.getText().toStdString());
         if (!processor.requestCapture())
             throw std::runtime_error("Capture busy — play audio to finish the pending capture");
         scope = std::move(requestedScope);
@@ -278,7 +313,8 @@ void DAPluginAudioProcessorEditor::load() {
         });
 }
 void DAPluginAudioProcessorEditor::timerCallback() {
-    if(processor.isLoadingProgram())return;
+    if (processor.isLoadingProgram())
+        return;
     syncManual();
     std::vector<float> l, r;
     double sr = 0;
@@ -304,6 +340,9 @@ void DAPluginAudioProcessorEditor::timerCallback() {
             }
             reference = analyzedReference.features;
             analysis.setReference(analyzedReference);
+            referenceGuidanceEnabled = true;
+            useReferenceMode.setToggleState(true, juce::dontSendNotification);
+            referenceDrawer.repaint();
             setStatus("Reference available — RMS " + juce::String(da::db(float(reference.rms)), 1) +
                       " dBFS; guidance is not an exact match");
         } catch (const std::exception &e) {
@@ -332,64 +371,66 @@ void DAPluginAudioProcessorEditor::timerCallback() {
     analysis.consume(processor.scopeFifo, processor.displaySampleRate.load(),
                      processor.inputPeak.load(), processor.outputPeak.load(),
                      processor.reduction.load());
-    if(processor.kind==da::Kind::Delay) {
-        const bool sync=processor.parameters.getRawParameterValue("sync")->load()>.5f;
-        for(auto &c:controls)if(c->getComponentID()=="time"||c->getComponentID()=="modulation")c->slider.setEnabled(!sync);
+    if (processor.kind == da::Kind::Delay) {
+        const bool sync = processor.parameters.getRawParameterValue("sync")->load() > .5f;
+        for (auto &c : controls)
+            if (c->getComponentID() == "time" || c->getComponentID() == "modulation")
+                c->slider.setEnabled(!sync);
     }
-    const auto current=processor.getCurrentProgram();
-    bool modified=false;
-    for(size_t i=0;i<lastValues.size();++i)
-        modified|=std::abs(lastValues[i]-processor.factoryBank[size_t(current)].values[i])>1e-4f;
-    presetMenu.setText(juce::String(current+1).paddedLeft('0',2)+" / "+processor.getProgramName(current)+(modified?" *":""),juce::dontSendNotification);
-    presetMenu.setTooltip(modified?"Modified factory preset / save project to retain edits":"Factory preset / 50 available");
+    const auto current = processor.getCurrentProgram();
+    bool modified = false;
+    for (size_t i = 0; i < lastValues.size(); ++i)
+        modified |= std::abs(lastValues[i] - processor.factoryBank[size_t(current)].values[i]) > 1e-4f;
+    presetMenu.setText(juce::String(current + 1).paddedLeft('0', 2) + " / " +
+                           processor.getProgramName(current) + (modified ? " *" : ""),
+                       juce::dontSendNotification);
+    presetMenu.setTooltip(modified ? "Modified factory preset / save project to retain edits"
+                                   : "Factory preset / 50 available");
     chassis.repaint();
 }
-void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff030405)); }
+void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff101416)); }
 void DAPluginAudioProcessorEditor::paintDetails(juce::Graphics &g) {
-    if(processor.kind==da::Kind::Delay) {
-        const auto state=processor.tempoStatus.load();
-        const auto bpm=processor.projectBpm.load();
-        const auto sync=processor.parameters.getRawParameterValue("sync")->load()>.5f;
-        const auto division=int(processor.parameters.getRawParameterValue("division")->load());
-        auto text=juce::String(state==1?"HOST ":state==2?"HOLD ":"FALLBACK ")+juce::String(bpm,1)+" BPM";
-        if(sync)text+=" / "+juce::String(da::divisionNames[size_t(std::clamp(division,0,14))])+" / "+juce::String(da::syncedDelayMs(bpm,division),1)+" ms";
-        da::ui::label(g,hardware,text,{720,643,412,20},12,da::ui::muted,juce::Justification::centredRight);
+    if (processor.kind == da::Kind::Delay) {
+        const auto state = processor.tempoStatus.load();
+        const auto bpm = processor.projectBpm.load();
+        const auto sync = processor.parameters.getRawParameterValue("sync")->load() > .5f;
+        const auto division = int(processor.parameters.getRawParameterValue("division")->load());
+        auto text = juce::String(state == 1 ? "SYNC / " : state == 2 ? "HOLD / " : "FALLBACK / ") +
+                    juce::String(bpm, 0) + " BPM";
+        if (sync)
+            text += " / " + juce::String(da::divisionNames[size_t(std::clamp(division, 0, 14))]) +
+                    " / " + juce::String(da::syncedDelayMs(bpm, division), 0) + " ms";
+        da::ui::label(g, hardware, text, {164.f, 510.f, 640.f, 24.f}, 16.f,
+                      hardware.accentColour.interpolatedWith(juce::Colour(0xffc8c8d2), .45f),
+                      juce::Justification::centredLeft, true);
     }
-    da::ui::label(g, hardware, "LEARNING", {956, 151, 180, 24}, 15, da::ui::silver);
-    da::ui::label(g, hardware, "DESCRIBE / OPTIONAL ENGLISH KEYWORDS", {68, 643, 600, 20}, 12);
-    da::ui::label(g, hardware, "PREVIEW AUDITIONS / APPLY KEEPS / REJECT RESTORES",
-                  {68, 712, 800, 18}, 11);
-    da::ui::label(g, hardware, advancedView ? layout.title("advancedTitle") : layout.title("slogan"),
-                  {64, 377, 920, 24}, 13, da::ui::muted);
-}
-void DAPluginAudioProcessorEditor::updateControlPage() {
-    auto *specs = layout.data["controls"].getArray();
-    if (specs)
-        for (size_t i = 0; i < controls.size(); ++i)
-            controls[i]->setVisible(bool((*specs)[int(i)]["advanced"]) == advancedView);
-    for (auto &b : modules) b->setVisible(!advancedView);
-    advanced.setButtonText(advancedView ? "MAIN CONTROLS" : "ADVANCED");
-    advanced.setToggleState(advancedView, juce::dontSendNotification);
-    chassis.repaint();
 }
 void DAPluginAudioProcessorEditor::resized() {
-    const float scale = std::min(float(getWidth()) / 1200, float(getHeight()) / 820);
+    const float scale = std::min(float(getWidth()) / 1200.f, float(getHeight()) / 1240.f);
     stage.setTransform(juce::AffineTransform::scale(scale).translated(
-        (getWidth() - 1200 * scale) * .5f, (getHeight() - 820 * scale) * .5f));
-    presetMenu.setBounds(610,72,275,30);
-    previousPreset.setBounds(570,72,30,30);nextPreset.setBounds(895,72,30,30);
-    mode.setBounds(956, 185, 180, 30);
-    loadReference.setBounds(956, 224, 180, 30);
-    learnAll.setBounds(956, 263, 180, 34);
-    showResults.setBounds(956, 308, 180, 30);
-    advanced.setBounds(978, 376, 160, 28);
-    description.setBounds(68, 666, 1064, 40);
-    int x = 68;
+        (float(getWidth()) - 1200.f * scale) * .5f, (float(getHeight()) - 1240.f * scale) * .5f));
+    previousPreset.setBounds(599, 106, 45, 43);
+    presetMenu.setBounds(658, 106, 413, 43);
+    nextPreset.setBounds(1086, 106, 45, 43);
+
+    captureInput.setBounds(230, 608, 205, 36);
+    openReference.setBounds(449, 608, 205, 36);
+    learnAll.setBounds(668, 608, 205, 36);
+    showResults.setBounds(887, 608, 205, 36);
+
+    int x = 74;
     for (auto *b : {&preview, &apply, &reject, &undo}) {
-        b->setBounds(x, 738, 150, 28); x += 162;
+        b->setBounds(x, 1178, 150, 29);
+        x += 164;
     }
-    status.setBounds(68, 775, 1064, 22);
-    drawer.setBounds(54, 370, 1092, 398);
+    status.setBounds(730, 1178, 400, 29);
+
+    referenceDrawer.setBounds(200, 250, 800, 440);
+    loadReference.setBounds(32, 316, 220, 48);
+    useReferenceMode.setBounds(268, 316, 260, 48);
+    closeReference.setBounds(648, 20, 120, 36);
+
+    drawer.setBounds(55, 690, 1090, 448);
     results.setBounds(drawer.getLocalBounds());
-    closeResults.setBounds(862, 9, 212, 28);
+    closeResults.setBounds(856, 10, 218, 30);
 }

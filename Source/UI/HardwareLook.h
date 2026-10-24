@@ -2,11 +2,13 @@
 #include "Core/Suite.h"
 #include <JuceHeader.h>
 namespace da::ui {
-inline const juce::Colour ink{0xff080a0b}, crimson{0xffed173b}, silver{0xffd0d2d2},
-    muted{0xff92999b};
+inline const juce::Colour ink{0xff0e0e11}, crimson{0xffa28bd0}, silver{0xffd8d8df},
+    muted{0xffa6a6b0};
 class HardwareLook final : public juce::LookAndFeel_V4 {
   public:
-    HardwareLook();
+    explicit HardwareLook(juce::Colour accent = juce::Colour(0xffa28bd0));
+    void setAccent(juce::Colour c);
+    juce::Colour accentColour{0xffa28bd0};
     juce::Font font(float size, bool bold = false) const;
     juce::Typeface::Ptr getTypefaceForFont(const juce::Font &) override;
     void drawRotarySlider(juce::Graphics &, int, int, int, int, float, float, float,
@@ -28,13 +30,16 @@ struct Layout {
     explicit Layout(const juce::String &name);
     juce::Rectangle<int> area(const char *key) const;
     juce::String title(const char *key) const { return data[key].toString(); }
+    juce::Colour accent() const;
 };
 juce::Rectangle<int> rectangle(const juce::var &);
+void cutPanel(juce::Graphics &, juce::Rectangle<float>, juce::Colour fill, juce::Colour stroke,
+              float cut = 10.f);
 void panel(juce::Graphics &, juce::Rectangle<float>, bool accented = false);
 void label(juce::Graphics &, const HardwareLook &, juce::String, juce::Rectangle<float>,
-           float size = 14, juce::Colour colour = muted,
-           juce::Justification align = juce::Justification::centredLeft);
-// Procedurally painted hardware; no screenshot is used as the runtime interface.
+           float size = 16, juce::Colour colour = muted,
+           juce::Justification align = juce::Justification::centredLeft, bool bold = true);
+// Procedurally painted Noir Black hardware; no screenshot is used as the runtime interface.
 class Chassis final : public juce::Component {
   public:
     Chassis(const Layout &, const HardwareLook &);
@@ -44,7 +49,7 @@ class Chassis final : public juce::Component {
   private:
     const Layout &layout;
     const HardwareLook &look;
-    juce::Image weave, logo;
+    juce::Image logo;
 };
 class ParameterControl final : public juce::Component {
   public:
@@ -56,11 +61,13 @@ class ParameterControl final : public juce::Component {
 
   private:
     da::Parameter metadata;
-    juce::String caption;
+    juce::String caption, styleName;
+    int knobRadius = 28;
+    bool learnable = false;
     HardwareLook &look;
     juce::TextButton learnButton{"LEARN"};
     juce::ComboBox choiceMenu;
-    bool isMenu=false;
+    bool isMenu = false, isBandRow = false;
     std::vector<std::unique_ptr<juce::TextButton>> choices;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> attachment;
 };

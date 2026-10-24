@@ -8,7 +8,7 @@ for (const file of fs.readdirSync(directory).filter(f => f.endsWith('.svg'))) {
     const renderer = new Resvg(fs.readFileSync(path.join(directory, file)), {
         font: {
             fontFiles: ['RajdhaniMedium.ttf', 'RajdhaniSemiBold.ttf'].map(f => path.join(root, 'Design', 'Fonts', f)),
-            loadSystemFonts: false
+            loadSystemFonts: true
         },
         fitTo: { mode: 'width', value: 2400 }
     });

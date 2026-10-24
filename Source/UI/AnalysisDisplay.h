@@ -15,12 +15,14 @@ class AnalysisDisplay final : public juce::Component {
                  float reduction);
     void setParameters(std::vector<float> values) { parameters = std::move(values); }
     void setReference(const ReferenceDisplay &r) { reference = r; }
+    const ReferenceDisplay &currentReference() const { return reference; }
     void setStatus(juce::String s) {
         state = std::move(s);
         repaint();
     }
     void paint(juce::Graphics &) override;
     void paintDetail(juce::Graphics &, juce::Rectangle<float>);
+    void paintReferencePanel(juce::Graphics &, juce::Rectangle<float>) const;
     float currentOutputDb() const { return outDb; }
     float currentInputDb() const { return inDb; }
     float currentReduction() const { return gr; }
