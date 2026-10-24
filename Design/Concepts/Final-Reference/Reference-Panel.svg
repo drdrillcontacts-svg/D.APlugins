@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+<title>Optional reference panel — empty state design proposal</title>
+<rect width="800" height="440" rx="18" fill="#111114"/>
+<g font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#d0d0d6">
+<text x="32" y="48" fill="#a28bd0" font-size="24">REFERENCE</text>
+<text x="660" y="48">CLOSE</text>
+<text x="32" y="100">Optional workspace — opened only when requested</text>
+<rect x="32" y="128" width="736" height="160" rx="10" fill="#0e0e11" stroke="#414146"/>
+<text x="400" y="192" text-anchor="middle">No reference file selected</text>
+<text x="400" y="228" text-anchor="middle" fill="#a9a9b5">Load a file when you need reference-based analysis.</text>
+<rect x="32" y="316" width="220" height="48" rx="7" fill="#19191d" stroke="#a28bd0"/>
+<text x="142" y="347" text-anchor="middle" fill="#a28bd0">LOAD REFERENCE</text>
+<text x="32" y="408" font-size="16">SVG proposal only — no file loaded, no analysis performed.</text>
+</g></svg>

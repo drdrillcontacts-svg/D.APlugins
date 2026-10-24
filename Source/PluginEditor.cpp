@@ -1,105 +1,442 @@
 #include "PluginEditor.h"
-
+#include <chrono>
 namespace {
-const juce::Colour bg(0xff070809), panel(0xff0e1012), panel2(0xff151719),
- red(0xffff1738), redDark(0xff6f0b1c), white(0xffe8e9e9), grey(0xff85898e), grid(0xff292c30);
-juce::StringArray controls(juce::String n) {
- if(n=="DVerb") return {"PRE-DELAY","SIZE","DECAY","AI MATCH","TONE","MIX","WIDTH"};
- if(n=="DDelay") return {"TIME","FEEDBACK","FILTER","AI MATCH","TONE","MIX","WIDTH"};
- if(n=="DComp") return {"THRESHOLD","RATIO","ATTACK","AI MATCH","RELEASE","MIX","MAKE UP"};
- if(n=="DEQ") return {"LOW","BODY","PRESENCE","AI MATCH","AIR","MIX","GAIN"};
- if(n=="DSat") return {"DRIVE","TONE","DENSITY","AI MATCH","COLOR","MIX","OUTPUT"};
- if(n=="DTrans") return {"ATTACK","SUSTAIN","SENSITIVITY","AI MATCH","SHAPE","MIX","OUTPUT"};
- if(n=="DStereo") return {"WIDTH","DEPTH","CENTER","AI MATCH","SIDE","MIX","MONO"};
- if(n=="DSess") return {"FREQ","THRESHOLD","RANGE","AI MATCH","FOCUS","MIX","OUTPUT"};
- if(n=="DGate") return {"THRESHOLD","HOLD","ATTACK","AI MATCH","RELEASE","RANGE","OUTPUT"};
- return {"SPACE","COLOR","MOTION","AI MATCH","TONE","MIX","OUTPUT"};
+template <class T> bool ready(std::future<T> &f) {
+    return f.valid() && f.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
 }
-juce::String subtitle(juce::String n) {
- if(n=="DVerb") return "AI REVERB LEARNING"; if(n=="DDelay") return "AI DELAY LEARNING";
- if(n=="DComp") return "AI COMPRESSION"; if(n=="DEQ") return "AI EQUALIZER";
- if(n=="DSat") return "AI SATURATION"; if(n=="DTrans") return "AI TRANSIENT DESIGNER";
- if(n=="DStereo") return "AI STEREO DESIGNER"; if(n=="DSess") return "AI DE-ESSER";
- if(n=="DGate") return "AI GATE & EXPANDER"; return "AI MULTI-EFFECTS";
+} // namespace
+DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcessor &p)
+    : AudioProcessorEditor(&p), processor(p), layout(p.getName()), hardware(layout.accent()),
+      chassis(layout, hardware), analysis(p.kind, hardware), session(p.currentValues()),
+      lastValues(session.values) {
+    setLookAndFeel(&hardware);
+    setResizable(true, true);
+    setResizeLimits(896, 688, 1792, 1376);
+    getConstrainer()->setFixedAspectRatio(1120.0 / 860.0);
+    addAndMakeVisible(stage);
+    stage.setSize(1120, 860);
+    stage.addAndMakeVisible(chassis);
+    chassis.setBounds(0, 0, 1120, 860);
+    chassis.overlay = [this](juce::Graphics &g) { paintDetails(g); };
+    stage.addAndMakeVisible(analysis);
+    analysis.setBounds(22, 82, 1076, 204);
+    analysis.setParameters(lastValues);
+    if (auto *specs = layout.data["controls"].getArray())
+        for (auto &spec : *specs) {
+            auto id = spec["id"].toString().toStdString();
+            auto it = std::find_if(p.metadata.begin(), p.metadata.end(),
+                                   [&](const da::Parameter &m) { return m.id == id; });
+            if (it == p.metadata.end())
+                continue;
+            auto c = std::make_unique<da::ui::ParameterControl>(
+                p.parameters, *it, spec, hardware, [this, id] { startLearn(id); },
+                [this] { analysis.setParameters(processor.currentValues()); });
+            stage.addAndMakeVisible(*c);
+            c->setBounds(da::ui::rectangle(spec["rect"]));
+            controls.push_back(std::move(c));
+        }
+    if (auto *specs = layout.data["modules"].getArray())
+        for (auto &spec : *specs) {
+            auto b = std::make_unique<juce::TextButton>(spec["title"].toString());
+            b->onClick = [this, scopeName = spec["scope"].toString().toStdString()] {
+                startLearn(scopeName);
+            };
+            stage.addAndMakeVisible(*b);
+            b->setBounds(da::ui::rectangle(spec["rect"]));
+            modules.push_back(std::move(b));
+        }
+    for (auto *b : {&captureInput, &openReference, &learnAll, &showResults, &preview, &apply,
+                    &reject, &undo})
+        stage.addAndMakeVisible(*b);
+    learnAll.getProperties().set("accent", true);
+    apply.getProperties().set("accent", true);
+    loadReference.getProperties().set("accent", true);
+
+    observedPresetGeneration = processor.presetGeneration();
+    for (int i = 0; i < 50; ++i)
+        presetMenu.addItem(
+            juce::String(i + 1).paddedLeft('0', 2) + " / " + processor.getProgramName(i), i + 1);
+    presetMenu.setSelectedId(processor.getCurrentProgram() + 1, juce::dontSendNotification);
+    previousPreset.setTooltip("Previous factory preset");
+    nextPreset.setTooltip("Next factory preset");
+    presetMenu.setTooltip(
+        "50 factory presets. Loading replaces the full state; save your project first.");
+    stage.addAndMakeVisible(presetMenu);
+    stage.addAndMakeVisible(previousPreset);
+    stage.addAndMakeVisible(nextPreset);
+    presetMenu.onChange = [this] {
+        if (presetMenu.getSelectedId() > 0) {
+            processor.setCurrentProgram(presetMenu.getSelectedId() - 1);
+            syncManual();
+            analysis.setParameters(processor.currentValues());
+        }
+    };
+    previousPreset.onClick = [this] {
+        processor.setCurrentProgram((processor.getCurrentProgram() + 49) % 50);
+        syncManual();
+        analysis.setParameters(processor.currentValues());
+    };
+    nextPreset.onClick = [this] {
+        processor.setCurrentProgram((processor.getCurrentProgram() + 1) % 50);
+        syncManual();
+        analysis.setParameters(processor.currentValues());
+    };
+
+    // Separate optional Reference workspace — closed by default and opened only on request.
+    referenceDrawer.setComponentID("reference-panel");
+    referenceDrawer.onPaint = [this](juce::Graphics &g) {
+        analysis.paintReferencePanel(g, referenceDrawer.getLocalBounds().toFloat());
+    };
+    referenceDrawer.addAndMakeVisible(loadReference);
+    referenceDrawer.addAndMakeVisible(useReferenceMode);
+    referenceDrawer.addAndMakeVisible(closeReference);
+    stage.addChildComponent(referenceDrawer);
+    referenceDrawer.setVisible(false);
+    useReferenceMode.setClickingTogglesState(true);
+    useReferenceMode.onClick = [this] {
+        referenceGuidanceEnabled = useReferenceMode.getToggleState();
+        setStatus(referenceGuidanceEnabled
+                      ? "Reference guidance enabled for Learn"
+                      : "Input-aware Learn active (reference guidance off)");
+    };
+    closeReference.onClick = [this] { referenceDrawer.setVisible(false); };
+    openReference.onClick = [this] {
+        drawer.setVisible(false);
+        referenceDrawer.setVisible(!referenceDrawer.isVisible());
+        if (referenceDrawer.isVisible())
+            referenceDrawer.toFront(false);
+    };
+
+    // Optional Details / Log drawer — closed by default.
+    results.setMultiLine(true);
+    results.setReadOnly(true);
+    results.setFont(hardware.font(17.5f));
+    results.setBorder(juce::BorderSize<int>(48, 18, 18, 18));
+    results.setText(
+        "D.A PLUGINS / LEARNING WORKBENCH\n\nPress CAPTURE INPUT, LEARN ALL, or a parameter/module "
+        "LEARN button while playing audio. Results stay in this optional log and do not change your "
+        "settings until Preview or Apply.\n\nInput-aware learning uses measured features and "
+        "deterministic estimates, not a trained neural network. Open REFERENCE... only when you "
+        "want optional reference-file guidance (currently limited to EQ gains, stereo width and "
+        "compressor makeup; other proposals are input/objective starting points, not exact "
+        "reference matches).\n\nPreview auditions; Reject restores; Apply keeps; Undo restores one "
+        "learning operation. Manual changes invalidate older proposals.");
+    drawer.addAndMakeVisible(results);
+    drawer.addAndMakeVisible(closeResults);
+    stage.addChildComponent(drawer);
+    drawer.setVisible(false);
+    results.setComponentID("learning-log");
+    closeResults.onClick = [this] { drawer.setVisible(false); };
+    showResults.onClick = [this] {
+        referenceDrawer.setVisible(false);
+        drawer.setVisible(!drawer.isVisible());
+        if (drawer.isVisible())
+            drawer.toFront(false);
+    };
+
+    status.setFont(hardware.font(17.5f, true));
+    status.setJustificationType(juce::Justification::centredRight);
+    status.setColour(juce::Label::textColourId, juce::Colour(0xffe0e0ec));
+    stage.addAndMakeVisible(status);
+
+    captureInput.onClick = [this] { startLearn("all"); };
+    learnAll.onClick = [this] { startLearn("all"); };
+    loadReference.onClick = [this] { load(); };
+    preview.onClick = [this] {
+        syncManual();
+        if (session.preview())
+            write();
+        else
+            setStatus("No current suggestion to preview");
+    };
+    apply.onClick = [this] {
+        syncManual();
+        if (session.apply())
+            write();
+        else
+            setStatus("No current suggestion to apply");
+    };
+    reject.onClick = [this] {
+        syncManual();
+        session.reject();
+        ++session.revision;
+        capturing = false;
+        processor.cancelCapture();
+        write();
+    };
+    undo.onClick = [this] {
+        syncManual();
+        if (session.undo())
+            write();
+        else
+            setStatus("No learning operation to undo");
+    };
+    setStatus("Ready / Manual control always");
+    setSize(1120, 860);
+    startTimerHz(30);
 }
+DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
+    stopTimer();
+    processor.cancelCapture();
+    syncManual();
+    if (session.status == "Previewing") {
+        session.reject();
+        processor.writeValues(session.values);
+    }
+    setLookAndFeel(nullptr);
 }
-DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcessor& p)
- : AudioProcessorEditor(&p), processor(p) {
- setSize(900,620);
- auto names=controls(p.getName());
- const char* ids[]={"amount","mix","tone","width"};
- for(int i=0;i<7;++i) {
-   knobs[i].setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-   knobs[i].setTextBoxStyle(juce::Slider::TextBoxBelow,false,55,17);
-   knobs[i].setColour(juce::Slider::rotarySliderFillColourId,red);
-   knobs[i].setColour(juce::Slider::rotarySliderOutlineColourId,grid);
-   knobs[i].setColour(juce::Slider::thumbColourId,white);
-   knobs[i].setColour(juce::Slider::textBoxTextColourId,white);
-   knobs[i].setColour(juce::Slider::textBoxBackgroundColourId,panel);
-   knobs[i].setColour(juce::Slider::textBoxOutlineColourId,panel);
-   addAndMakeVisible(knobs[i]);
-   knobLabels[i].setText(names[i],juce::dontSendNotification);
-   knobLabels[i].setJustificationType(juce::Justification::centred);
-   knobLabels[i].setColour(juce::Label::textColourId,grey);
-   knobLabels[i].setFont(juce::Font(9.0f,juce::Font::bold));
-   addAndMakeVisible(knobLabels[i]);
- }
- for(int i=0;i<4;++i) attachments[i]=std::make_unique<Attachment>(p.parameters,ids[i],knobs[i]);
- for(auto* b:{&loadReference,&learnButton,&matchButton}) {
-   b->setColour(juce::TextButton::buttonColourId,b==&learnButton?red:(b==&matchButton?redDark:panel2));
-   b->setColour(juce::TextButton::textColourOffId,white);
-   b->setColour(juce::TextButton::textColourOnId,white);
-   addAndMakeVisible(*b);
- }
- loadReference.onClick=[this]{statusText="REFERENCE SLOT SELECTED  /  FILE LOADING NOT IMPLEMENTED";status.setText(statusText,juce::dontSendNotification);};
- learnButton.onClick=[this]{statusText="LEARN MODE  /  CONNECT AN AUDIO ANALYSIS MODEL";status.setText(statusText,juce::dontSendNotification);};
- matchButton.onClick=[this]{statusText="AI MATCH IS A UI PLACEHOLDER IN THIS BUILD";status.setText(statusText,juce::dontSendNotification);};
- modeBox.addItem("ROOM",1);modeBox.addItem("HALL",2);modeBox.addItem("PLATE",3);modeBox.addItem("SHIMMER",4);modeBox.setSelectedId(2);
- modeBox.setColour(juce::ComboBox::backgroundColourId,panel2);modeBox.setColour(juce::ComboBox::textColourId,white);modeBox.setColour(juce::ComboBox::outlineColourId,grid);addAndMakeVisible(modeBox);
- status.setText(statusText,juce::dontSendNotification);status.setColour(juce::Label::textColourId,grey);status.setFont(juce::Font(9.0f,juce::Font::bold));addAndMakeVisible(status);
+void DAPluginAudioProcessorEditor::setStatus(const juce::String &s) {
+    status.setText(s, juce::dontSendNotification);
+    analysis.setStatus(s.upToFirstOccurrenceOf(" - ", false, false));
 }
-void DAPluginAudioProcessorEditor::paint(juce::Graphics& g) {
- auto n=processor.getName();g.fillAll(bg);
- // brushed-metal top rail and red edge
- g.setColour(red);g.fillRect(0,0,getWidth(),3);g.setColour(juce::Colour(0xff202326));g.fillRect(0,3,getWidth(),43);
- g.setColour(white);g.setFont(juce::Font(22.0f,juce::Font::bold));g.drawText("D.A",20,7,48,27,juce::Justification::centredLeft);
- g.setColour(red);g.drawText("PLUGINS",69,9,86,24,juce::Justification::centredLeft);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("LEARN THE SOUND  /  RECREATE THE FEEL",20,31,330,12,juce::Justification::left);
- g.setColour(white);g.setFont(juce::Font(17.0f,juce::Font::bold));g.drawText(n.toUpperCase(),getWidth()/2-100,7,200,23,juce::Justification::centred);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText(subtitle(n),getWidth()/2-100,28,200,12,juce::Justification::centred);
- g.setColour(grey);g.drawText("V1.0     ◉  ⚙  ×",getWidth()-130,14,112,18,juce::Justification::right);
- // Main analysis screen
- g.setColour(panel);g.fillRoundedRectangle(14,55,getWidth()-28,152,8);
- g.setColour(grid);g.drawRoundedRectangle(14,55,getWidth()-28,152,8,1);
- g.setColour(panel2);g.fillRoundedRectangle(24,65,160,132,5);g.fillRoundedRectangle(194,65,420,132,5);g.fillRoundedRectangle(624,65, getWidth()-658,132,5);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));
- g.drawText("INPUT",32,71,100,12,juce::Justification::left);g.drawText("AI MATCH / ANALYSIS",205,71,180,12,juce::Justification::left);g.drawText("REFERENCE",635,71,120,12,juce::Justification::left);
- // red analysis grid and curve
- for(int i=0;i<8;++i)g.setColour(grid),g.drawLine(205.0f+i*56,89,205.0f+i*56,184,1.0f);
- for(int i=0;i<5;++i)g.setColour(grid),g.drawLine(205,91+i*22,604,91+i*22,1.0f);
- juce::Path curve;curve.startNewSubPath(207,102);
- for(int i=1;i<100;++i){float x=207+i*3.95f;float y=105+66.0f*(float(i)/100.0f)+10.0f*std::sin(i*.19f);curve.lineTo(x,y);}
- g.setColour(red.withAlpha(.22f));juce::Path fill=curve;fill.lineTo(600,184);fill.lineTo(207,184);fill.closeSubPath();g.fillPath(fill);
- g.setColour(red);g.strokePath(curve,juce::PathStrokeType(1.6f));
- // waveform strokes
- for(int i=0;i<65;++i){float x=35+i*2.0f;float h=8+std::abs(std::sin(i*.62f))*36;g.setColour(i%5==0?red:grey);g.drawLine(x,143-h/2,x,143+h/2,1.2f);}
- for(int i=0;i<65;++i){float x=638+i*2.0f;float h=4+std::abs(std::sin(i*.48f+1))*19;g.setColour(grey.withAlpha(.75f));g.drawLine(x,143-h/2,x,143+h/2,1.0f);}
- // lower modules
- g.setColour(panel);g.fillRoundedRectangle(14,217,getWidth()-28,118,8);g.setColour(grid);g.drawRoundedRectangle(14,217,getWidth()-28,118,8,1);
- g.setColour(panel);g.fillRoundedRectangle(14,344,430,210,8);g.fillRoundedRectangle(454,344,310,210,8);g.fillRoundedRectangle(774,217,112,337,8);
- g.setColour(grid);g.drawRoundedRectangle(14,344,430,210,8,1);g.drawRoundedRectangle(454,344,310,210,8,1);g.drawRoundedRectangle(774,217,112,337,8,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("REFERENCE MODE",25,352,150,14,juce::Justification::left);g.drawText("ADVANCED / CHARACTER",466,352,220,14,juce::Justification::left);g.drawText("OUTPUT",785,226,90,14,juce::Justification::centred);
- // output meter
- for(int i=0;i<22;++i){int y=257+i*11;g.setColour(i<15?red:(i<19?juce::Colour(0xff8e182a):grid));g.fillRect(796,y,10,7);g.fillRect(813,y,10,7);}
- g.setColour(grid);g.drawLine(790,505,870,505,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f));g.drawText("IN / OUT",790,516,80,12,juce::Justification::centred);
- // footer frame
- g.setColour(panel2);g.fillRect(14,563,getWidth()-28,39);g.setColour(redDark);g.fillRect(14,563,getWidth()-28,1);
- g.setColour(grey);g.setFont(juce::Font(8.0f,juce::Font::bold));g.drawText("D.A  |  "+n.toUpperCase(),25,576,250,15,juce::Justification::left);
- g.drawText("POWERED BY D.A NEURAL ENGINE  /  PROTOTYPE",getWidth()-340,576,310,15,juce::Justification::right);
+void DAPluginAudioProcessorEditor::syncManual() {
+    if (processor.isLoadingProgram())
+        return;
+    const auto generation = processor.presetGeneration();
+    auto values = processor.currentValues();
+    if (generation != observedPresetGeneration) {
+        observedPresetGeneration = generation;
+        const auto revision = session.revision + 1;
+        session = da::LearningSession(values);
+        session.revision = revision;
+        lastValues = values;
+        capturing = false;
+        processor.cancelCapture();
+        presetMenu.setSelectedId(processor.getCurrentProgram() + 1, juce::dontSendNotification);
+        setStatus("Preset / session loaded - pending learning cancelled");
+        return;
+    }
+    bool changed = false;
+    for (size_t i = 0; i < values.size(); ++i)
+        changed |= std::abs(values[i] - lastValues[i]) > 1e-5f;
+    if (changed) {
+        // Restore unaccepted preview values, but preserve each real host/manual edit.
+        session.reject();
+        for (size_t i = 0; i < values.size(); ++i)
+            if (std::abs(values[i] - lastValues[i]) > 1e-5f)
+                session.manual(i, values[i]);
+        ++session.revision;
+        processor.writeValues(session.values);
+        lastValues = processor.currentValues();
+        processor.cancelCapture();
+        capturing = false;
+        setStatus("Manual/host change - unaccepted learning cancelled");
+    }
+}
+void DAPluginAudioProcessorEditor::write() {
+    processor.writeValues(session.values);
+    lastValues = processor.currentValues();
+    analysis.setParameters(lastValues);
+    setStatus(session.status);
+}
+void DAPluginAudioProcessorEditor::startLearn(std::string requestedScope) {
+    syncManual();
+    if (capturing || learnWork.valid() || referenceWork.valid()) {
+        setStatus("Analysis busy - cancel or wait");
+        return;
+    }
+    session.reject();
+    ++session.revision;
+    write();
+    try {
+        objective = {};
+        if (referenceGuidanceEnabled) {
+            objective.mode = da::Mode::Reference;
+            if (!reference.valid())
+                throw std::runtime_error("Reference unavailable - load a non-silent audio file");
+        }
+        if (!processor.requestCapture())
+            throw std::runtime_error("Capture busy - play audio to finish the pending capture");
+        scope = std::move(requestedScope);
+        captureRevision = session.revision;
+        capturing = true;
+        captureStarted = juce::Time::currentTimeMillis();
+        setStatus("Analyzing - capturing 65,536 input samples; keep audio playing");
+    } catch (const std::exception &e) {
+        setStatus(juce::String("Failed: ") + e.what());
+    }
+}
+void DAPluginAudioProcessorEditor::launch(std::vector<float> l, std::vector<float> r, double sr) {
+    auto kind = processor.kind;
+    auto values = session.values;
+    auto target = reference;
+    auto goal = objective;
+    auto selected = scope;
+    auto revision = captureRevision;
+    learnWork = std::async(std::launch::async, [l = std::move(l), r = std::move(r), sr, kind,
+                                                values, target, goal, selected, revision] {
+        auto features = da::analyze(l.data(), r.data(), l.size(), sr);
+        return da::learn(kind, features, &target, goal, values, selected, revision);
+    });
+}
+void DAPluginAudioProcessorEditor::load() {
+    if (capturing || learnWork.valid() || referenceWork.valid()) {
+        setStatus("Analysis busy");
+        return;
+    }
+    chooser = std::make_unique<juce::FileChooser>("Choose reference (first 30 seconds analyzed)",
+                                                  juce::File{}, "*.wav;*.aiff;*.aif;*.flac");
+    auto safe = juce::Component::SafePointer<DAPluginAudioProcessorEditor>(this);
+    chooser->launchAsync(
+        juce::FileBrowserComponent::openMode | juce::FileBrowserComponent::canSelectFiles,
+        [safe](const juce::FileChooser &c) {
+            if (!safe)
+                return;
+            auto file = c.getResult();
+            if (!file.existsAsFile()) {
+                safe->setStatus("Cancelled - no reference selected");
+                return;
+            }
+            safe->syncManual();
+            safe->session.reject();
+            ++safe->session.revision;
+            safe->write();
+            safe->reference = {};
+            safe->analysis.setReference({});
+            safe->referenceRevision = safe->session.revision;
+            safe->setStatus("Analyzing reference - decoding up to 30 seconds on worker");
+            safe->referenceWork = std::async(std::launch::async, [file] {
+                juce::AudioFormatManager formats;
+                formats.registerBasicFormats();
+                std::unique_ptr<juce::AudioFormatReader> reader(formats.createReaderFor(file));
+                if (!reader || reader->numChannels == 0 || reader->sampleRate < 8000 ||
+                    reader->sampleRate > 384000 || reader->lengthInSamples < 1024)
+                    throw std::runtime_error("Unsupported, invalid or too-short reference file");
+                int length = int(std::min<juce::int64>(reader->lengthInSamples,
+                                                       juce::int64(reader->sampleRate * 30)));
+                juce::AudioBuffer<float> buffer(2, length);
+                buffer.clear();
+                if (!reader->read(&buffer, 0, length, 0, true, true))
+                    throw std::runtime_error("Reference decode failed");
+                if (reader->numChannels == 1)
+                    buffer.copyFrom(1, 0, buffer, 0, 0, length);
+                auto f = da::ui::summarizeReference(buffer, reader->sampleRate,
+                                                    file.getFileNameWithoutExtension());
+                if (!f.features.valid())
+                    throw std::runtime_error("Reference is silent or invalid");
+                return f;
+            });
+        });
+}
+void DAPluginAudioProcessorEditor::timerCallback() {
+    if (processor.isLoadingProgram())
+        return;
+    syncManual();
+    std::vector<float> l, r;
+    double sr = 0;
+    if (processor.takeCapture(l, r, sr)) {
+        if (capturing && captureRevision == session.revision) {
+            capturing = false;
+            launch(std::move(l), std::move(r), sr);
+        } else
+            capturing = false;
+    }
+    if (capturing && juce::Time::currentTimeMillis() - captureStarted > 15000) {
+        capturing = false;
+        processor.cancelCapture();
+        ++session.revision;
+        setStatus("Failed - capture timed out; transport must be running");
+    }
+    if (ready(referenceWork))
+        try {
+            auto analyzedReference = referenceWork.get();
+            if (referenceRevision != session.revision) {
+                setStatus("Cancelled - stale reference analysis discarded");
+                return;
+            }
+            reference = analyzedReference.features;
+            analysis.setReference(analyzedReference);
+            referenceGuidanceEnabled = true;
+            useReferenceMode.setToggleState(true, juce::dontSendNotification);
+            referenceDrawer.repaint();
+            setStatus("Reference available - RMS " + juce::String(da::db(float(reference.rms)), 1) +
+                      " dBFS; guidance is not an exact match");
+        } catch (const std::exception &e) {
+            setStatus(juce::String("Reference unavailable: ") + e.what());
+        }
+    if (ready(learnWork))
+        try {
+            auto proposal = learnWork.get();
+            juce::String message(proposal.limitation);
+            for (auto &s : proposal.values) {
+                const auto &p = processor.metadata[s.index];
+                message += "\n" + juce::String(p.module + " / " + p.name) + ": " +
+                           juce::String(session.values[s.index], 2) + " -> " +
+                           juce::String(s.value, 2) + " " + juce::String(p.unit) + " (confidence " +
+                           juce::String(s.confidence, 2) + ")\n" + juce::String(s.reason);
+            }
+            if (session.offer(std::move(proposal))) {
+                results.setText(message);
+                setStatus(session.status);
+            } else
+                setStatus("Cancelled - stale analysis discarded");
+        } catch (const std::exception &e) {
+            setStatus(juce::String("Failed: ") + e.what());
+        }
+    analysis.setParameters(processor.currentValues());
+    analysis.consume(processor.scopeFifo, processor.displaySampleRate.load(),
+                     processor.inputPeak.load(), processor.outputPeak.load(),
+                     processor.reduction.load());
+    if (processor.kind == da::Kind::Delay) {
+        const bool sync = processor.parameters.getRawParameterValue("sync")->load() > .5f;
+        for (auto &c : controls)
+            if (c->getComponentID() == "time" || c->getComponentID() == "modulation")
+                c->slider.setEnabled(!sync);
+    }
+    const auto current = processor.getCurrentProgram();
+    bool modified = false;
+    for (size_t i = 0; i < lastValues.size(); ++i)
+        modified |= std::abs(lastValues[i] - processor.factoryBank[size_t(current)].values[i]) > 1e-4f;
+    presetMenu.setText(juce::String(current + 1).paddedLeft('0', 2) + " / " +
+                           processor.getProgramName(current) + (modified ? " *" : ""),
+                       juce::dontSendNotification);
+    presetMenu.setTooltip(modified ? "Modified factory preset / save project to retain edits"
+                                   : "Factory preset / 50 available");
+    chassis.repaint();
+}
+void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff131316)); }
+void DAPluginAudioProcessorEditor::paintDetails(juce::Graphics &g) {
+    if (processor.kind == da::Kind::Delay) {
+        const auto state = processor.tempoStatus.load();
+        const auto bpm = processor.projectBpm.load();
+        const auto sync = processor.parameters.getRawParameterValue("sync")->load() > .5f;
+        const auto division = int(processor.parameters.getRawParameterValue("division")->load());
+        auto text = juce::String(state == 1 ? "SYNC / " : state == 2 ? "HOLD / " : "FALLBACK / ") +
+                    juce::String(bpm, 0) + " BPM";
+        if (sync)
+            text += " / " + juce::String(da::divisionNames[size_t(std::clamp(division, 0, 14))]) +
+                    " / " + juce::String(da::syncedDelayMs(bpm, division), 0) + " ms";
+        da::ui::label(g, hardware, text, {230.f, 355.f, 640.f, 24.f}, 16.5f,
+                      hardware.accentColour.interpolatedWith(juce::Colour(0xffe0e0ea), .35f),
+                      juce::Justification::centredLeft, true);
+    }
 }
 void DAPluginAudioProcessorEditor::resized() {
- modeBox.setBounds(25,374,185,25);loadReference.setBounds(25,406,185,27);learnButton.setBounds(25,443,185,30);matchButton.setBounds(25,483,185,27);
- status.setBounds(25,520,410,20);
- for(int i=0;i<7;++i){int x=24+i*123;knobLabels[i].setBounds(x,224,110,17);knobs[i].setBounds(x+5,239,100,88);}
+    // Stretch stage cleanly across the full editor bounds so there are zero side margins.
+    stage.setTransform(juce::AffineTransform::scale(float(getWidth()) / 1120.f,
+                                                    float(getHeight()) / 860.f));
+    previousPreset.setBounds(550, 28, 42, 36);
+    presetMenu.setBounds(600, 28, 452, 36);
+    nextPreset.setBounds(1060, 28, 42, 36);
+
+    captureInput.setBounds(170, 308, 220, 36);
+    openReference.setBounds(402, 308, 220, 36);
+    learnAll.setBounds(634, 308, 220, 36);
+    showResults.setBounds(866, 308, 226, 36);
+
+    int x = 14;
+    for (auto *b : {&preview, &apply, &reject, &undo}) {
+        b->setBounds(x, 814, 148, 34);
+        x += 158;
+    }
+    status.setBounds(650, 814, 456, 34);
+
+    referenceDrawer.setBounds(160, 140, 800, 360);
+    loadReference.setBounds(28, 258, 220, 44);
+    useReferenceMode.setBounds(264, 258, 260, 44);
+    closeReference.setBounds(648, 18, 124, 36);
+
+    drawer.setBounds(14, 382, 1092, 420);
+    results.setBounds(drawer.getLocalBounds());
+    closeResults.setBounds(856, 10, 220, 32);
 }

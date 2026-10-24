@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1240" viewBox="0 0 960 1240" role="img" aria-labelledby="title desc"><title id="title">DFX / Monolith / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="960" height="1240" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="912" height="1196" rx="18" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<text x="480.00" y="68.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="2">M O N O L I T H</text>
+<text x="480.00" y="134.00" fill="#d5ddd6" font-family="Arial, sans-serif" font-size="51" font-weight="400" text-anchor="middle" letter-spacing="-0.5">DFX</text>
+<rect x="63" y="171" width="834" height="306" rx="2" fill="#101718" stroke="#384447"/>
+<g id="illustrative-visual">
+<rect x="94.0" y="214" width="162.12" height="213" rx="5" fill="#191e20" stroke="#46504c"/>
+<text x="175.06" y="324.50" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">DRIVE</text>
+<path d="M256.12 320.5 L287.0 320.5" fill="none" stroke="#59635e" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="287.0" y="214" width="162.12" height="213" rx="5" fill="#191e20" stroke="#46504c"/>
+<text x="368.06" y="324.50" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">FILTER</text>
+<path d="M449.12 320.5 L480.0 320.5" fill="none" stroke="#59635e" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="480.0" y="214" width="162.12" height="213" rx="5" fill="#191e20" stroke="#46504c"/>
+<text x="561.06" y="324.50" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">DELAY</text>
+<path d="M642.12 320.5 L673.0 320.5" fill="none" stroke="#59635e" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="673.0" y="214" width="162.12" height="213" rx="5" fill="#191e20" stroke="#46504c"/>
+<text x="754.06" y="324.50" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="1">SPACE</text>
+</g>
+<text x="480.00" y="460.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="2">MULTI EFFECT</text>
+<g id="param-driveOn"><title>Enable saturation</title>
+<text x="102.62" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">DRIVE ON</text>
+<rect x="68.0" y="583.0" width="69.25" height="45" rx="4" fill="#191e20" stroke="#40494a"/>
+<text x="102.62" y="610.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+<text x="102.62" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+</g>
+<g id="param-drive"><title>Drive</title>
+<text x="207.88" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">DRIVE</text>
+<path d="M207.875 578.0 L207.875 753.5" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="190.875" y="725.5625" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="207.88" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">3 dB</text>
+<circle cx="248.5" cy="537.0" r="2" fill="#a6aca9" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-filterOn"><title>Enable filter</title>
+<text x="313.12" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">FILTER ON</text>
+<rect x="278.5" y="583.0" width="69.25" height="45" rx="4" fill="#191e20" stroke="#40494a"/>
+<text x="313.12" y="610.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+<text x="313.12" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+</g>
+<g id="param-filter"><title>Low pass</title>
+<text x="418.38" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">LOW PASS</text>
+<path d="M418.375 578.0 L418.375 753.5" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="401.375" y="631.1573033707865" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="418.38" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">12 kHz</text>
+<circle cx="459.0" cy="537.0" r="2" fill="#a6aca9" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-delayOn"><title>Enable delay</title>
+<text x="523.62" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">DELAY ON</text>
+<rect x="489.0" y="583.0" width="69.25" height="45" rx="4" fill="#191e20" stroke="#40494a"/>
+<text x="523.62" y="610.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+<text x="523.62" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+</g>
+<g id="param-time"><title>Time</title>
+<text x="628.88" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">TIME</text>
+<path d="M628.875 578.0 L628.875 753.5" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="611.875" y="725.6393196598299" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="628.88" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">250 ms</text>
+</g>
+<g id="param-feedback"><title>Feedback</title>
+<text x="734.12" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">FEEDBACK</text>
+<path d="M734.125 578.0 L734.125 753.5" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="717.125" y="689.0" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="734.12" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">30%</text>
+</g>
+<g id="param-delayMix"><title>Delay mix</title>
+<text x="839.38" y="543.00" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">DELAY MIX</text>
+<path d="M839.375 578.0 L839.375 753.5" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="822.375" y="712.4" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="839.38" y="796.50" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">20%</text>
+</g>
+<g id="param-reverbOn"><title>Enable ambience</title>
+<text x="102.62" y="851.50" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">REVERB ON</text>
+<rect x="68.0" y="891.5" width="69.25" height="45" rx="4" fill="#191e20" stroke="#40494a"/>
+<text x="102.62" y="918.50" fill="#a6aca9" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+<text x="102.62" y="1105.00" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">ON</text>
+</g>
+<g id="param-decay"><title>Decay</title>
+<text x="207.88" y="851.50" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">DECAY</text>
+<path d="M207.875 886.5 L207.875 1062.0" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="190.875" y="1024.8987341772151" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="207.88" y="1105.00" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">1.5 s</text>
+<circle cx="248.5" cy="845.5" r="2" fill="#a6aca9" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-reverbMix"><title>Ambience mix</title>
+<text x="313.12" y="851.50" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">SPACE MIX</text>
+<path d="M313.125 886.5 L313.125 1062.0" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="296.125" y="1020.9000000000001" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="313.12" y="1105.00" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">20%</text>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="418.38" y="851.50" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">MIX</text>
+<path d="M418.375 886.5 L418.375 1062.0" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="401.375" y="968.25" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="418.38" y="1105.00" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">50%</text>
+</g>
+<g id="param-output"><title>Output</title>
+<text x="523.62" y="851.50" fill="#aab2af" font-family="Arial, sans-serif" font-size="9" font-weight="400" text-anchor="middle" letter-spacing="0.2">OUTPUT</text>
+<path d="M523.625 886.5 L523.625 1062.0" fill="none" stroke="#414a4c" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="506.625" y="939.0" width="34" height="12" rx="2" fill="#969f9b" stroke="#c0c7c0"/>
+<text x="523.62" y="1105.00" fill="#d0d6cf" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="middle" letter-spacing="0">0 dB</text>
+</g>
+<path d="M50 1170 L910 1170" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="1197.00" fill="#a6aca9" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="556.80" y="1197.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="906.00" y="1197.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 05 / NO LIVE AUDIO</text>
+</svg>

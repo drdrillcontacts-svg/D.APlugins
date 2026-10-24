@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1280" viewBox="0 0 1000 1280" role="img" aria-labelledby="title description">
+<title id="title">D.A Plugins / DSess / Selected Reference / Red</title>
+<desc id="description">Editable design proposal, not a running plugin. Original D.A branding; matte graphite, sculpted controls, neutral highlights and red accents. Graphs are illustrative, not live readings.</desc>
+<defs>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#1a1a1a"/><stop offset=".4" stop-color="#121212"/><stop offset="1" stop-color="#1a1a1a"/></linearGradient>
+ <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#353535"/><stop offset=".15" stop-color="#212121"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient>
+ <linearGradient id="dial" x2="0" y2="1"><stop stop-color="#161616"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+ <radialGradient id="face"><stop stop-color="#232323"/><stop offset=".8" stop-color="#1e1e1e"/><stop offset="1" stop-color="#141414"/></radialGradient>
+ <linearGradient id="fade" x2="0" y2="1"><stop stop-color="#acacac" stop-opacity=".28"/><stop offset="1" stop-color="#acacac" stop-opacity="0"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#000" flood-opacity=".7"/></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1000" height="1280" fill="#0e0e0e"/>
+<rect x="39" y="33" width="922" height="1214" rx="31" fill="#080808" filter="url(#shadow)"/>
+<rect x="40" y="34" width="920" height="1212" rx="30" fill="url(#body)" stroke="#2a2a2a"/>
+<rect x="44" y="38" width="912" height="1204" rx="27" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+
+<g id="preset-header">
+<text x="78" y="100" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="600" fill="#d5d5d5" text-anchor="start" letter-spacing="-1">D.A</text>
+<rect x="295" y="65" width="381" height="46" rx="7" fill="#101010" stroke="#363636"/>
+<text x="313" y="94" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#cacaca" text-anchor="start" letter-spacing="0.4">Factory presets</text>
+<path d="M580 65 L580 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M628 65 L628 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M607 81 l-7 7 7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M649 81 l7 7 -7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="691" y="65" width="47" height="46" rx="7" fill="#111111" stroke="#363636"/>
+<path d="M707 79 h14 v19 h-14 z m4 5 h6 m-6 5 h6" fill="none" stroke="#a6a6a6" stroke-width="1.3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 80 L912 80" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 88 L912 88" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 96 L912 96" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="57" y="137" width="886" height="379" rx="27" fill="url(#bevel)" stroke="#292929"/>
+<rect x="70" y="150" width="860" height="351" rx="18" fill="#0d0d0d" stroke="#232323"/>
+<text x="91" y="236" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#d5d5d5" text-anchor="start" letter-spacing="3">DSESS</text>
+<text x="887" y="237" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#939393" text-anchor="end" letter-spacing="2">RESET</text>
+<g id="illustrative-display">
+<text x="91" y="193" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8c8c8c" text-anchor="start" letter-spacing="2.4">FOCUS / SIBILANCE CONTROL</text>
+<circle cx="865" cy="189" r="2.5" fill="#767676" stroke="none"/>
+<text x="881" y="193" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#686868" text-anchor="end" letter-spacing="1">STUDY</text>
+<path d="M150 370 L150 354.0" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M157 370 L157 350.7591464345076" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M164 370 L164 347.57298620269614" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M171 370 L171 344.49528962192096" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M178 370 L178 341.5779965539066" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M185 370 L185 338.870339856599" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M192 370 L192 336.41801451998975" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M199 370 L199 334.2624065077512" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M206 370 L206 332.4398943189166" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M213 370 L213 330.98123505659663" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M220 370 L220 329.91104536457016" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M227 370 L227 329.2473859915706" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M234 370 L234 329.0014569942508" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M241 370 L241 329.17740872264704" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M248 370 L248 329.7722717779886" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M255 370 L255 330.7760071249033" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M262 370 L262 332.1716755123121" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M269 370 L269 333.9357233438313" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M276 370 L276 336.0383801732717" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M283 370 L283 338.444161117017" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M290 370 L290 341.1124657044623" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M297 370 L297 343.9982630601862" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M304 370 L304 347.0528518545756" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M311 370 L311 350.22468219781297" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M318 370 L318 353.46022560676636" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M325 370 L325 351.29512163651964" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M332 370 L332 348.0961169819526" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M339 370 L339 344.9967475115189" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M346 370 L346 342.0493188421797" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M353 370 L353 339.30357240406573" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M360 370 L360 336.8058459913242" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M367 370 L367 334.5982917505564" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M374 370 L374 332.7181648007084" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M381 370 L381 331.19719448231007" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M388 370 L388 330.06104883143723" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M395 370 L395 329.328901284621" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M402 370 L402 329.01310686523505" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M409 370 L409 329.11899319758885" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M416 370 L416 329.64476965461466" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M423 370 L423 330.5815557716768" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M430 370 L430 331.91352774111215" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M437 370 L437 333.61817930846826" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M444 370 L444 335.6666906677793" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M451 370 L451 338.0243959233895" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M458 370 L458 340.651336261975" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M465 370 L465 343.5028820869099" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M472 370 L472 346.53040299647625" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M479 370 L479 349.6819597635484" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M486 370 L486 352.9029877629523" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M493 370 L493 351.80165315737594" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M500 370 L500 348.5698349849789" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M507 370 L507 345.4155325059069" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M514 370 L514 342.38441281862777" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M521 370 L521 339.51677759848275" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M528 370 L528 336.8458764256067" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M535 370 L535 334.39623966611856" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M542 370 L542 332.18215399878244" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M549 370 L549 330.2064528668596" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M556 370 L556 328.45983991036786" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M563 370 L563 326.9209937871928" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M570 370 L570 325.55770304568637" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M577 370 L577 324.3292350152094" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M584 370 L584 323.1900417835843" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M591 370 L591 322.09474610461" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M598 370 L598 321.00413976775076" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M605 370 L605 319.8916907646055" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M612 370 L612 318.74983216341286" fill="none" stroke="#565656" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M619 370 L619 317.5951435145987" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M626 370 L626 316.4714846198245" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M633 370 L633 315.45024091703027" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M640 370 L640 314.6271062680698" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M647 370 L647 314.1152472838373" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M654 370 L654 314.0352128240813" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M661 370 L661 311.24370147355313" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M668 370 L668 305.91486620679797" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M675 370 L675 301.4597776407306" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M682 370 L682 298.00845619603126" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M689 370 L689 295.6381453436197" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M696 370 L696 294.3698487167291" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M703 370 L703 294.1701349598179" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M710 370 L710 294.95786776937916" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M717 370 L717 296.6148673970737" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M724 370 L724 298.99903168027714" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M731 370 L731 301.9582143370185" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M738 370 L738 305.3432003561637" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M745 370 L745 309.0184048580665" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M752 370 L752 312.8693819787379" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M759 370 L759 316.8067687791141" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M766 370 L766 320.7668077806333" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M773 370 L773 324.70900938093087" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M780 370 L780 328.61178146057716" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M787 370 L787 332.4669526615839" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M794 370 L794 336.2740648086042" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M801 370 L801 340.0351480675613" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M808 370 L808 343.7504694528703" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M815 370 L815 347.415509757001" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M822 370 L822 351.01921453434835" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M829 370 L829 352.36262834099887" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M836 370 L836 349.3252252140842" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M843 370 L843 346.29848235766246" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M585 246 Q655 345 735 246" fill="none" stroke="#df4b4f" stroke-width="1.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500" y="399" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#909090" text-anchor="middle" letter-spacing="1.6">SIBILANCE FOCUS / 6 kHz</text>
+<text x="93" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9b9b9b" text-anchor="start" letter-spacing="1.6">CAPTURE</text>
+<circle cx="81" cy="441" r="3" fill="#df4b4f" stroke="none"/>
+<text x="215" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#717171" text-anchor="start" letter-spacing="1.6">REFERENCE</text>
+<text x="887" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="1.6">DETAILS</text>
+</g>
+<g id="param-frequency">
+<text x="91" y="596" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#d1d1d1" text-anchor="start" letter-spacing="3">DETECT FREQ</text>
+<text x="90" y="650" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="400" fill="#eeeeee" text-anchor="start" letter-spacing="0.1">6 kHz</text>
+<text x="91" y="682" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#999999" text-anchor="start" letter-spacing="2">PRECISION CONTROL</text>
+<text x="887" y="622" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="2">LEARN</text>
+</g>
+<g id="param-threshold">
+<title>Threshold</title>
+<text x="192.5" y="752" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">THRESHOLD</text>
+<circle cx="192.5" cy="809" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="192.5" cy="805" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="192.5" cy="805" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="192.5" cy="805" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M201.36643445991336 787.5986425826012 L205.30707199765263 779.8647059526461" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="192.5" y="863" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">-24 dB</text>
+<circle cx="233.2" cy="748" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-range">
+<title>Range</title>
+<text x="397.5" y="752" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">RANGE</text>
+<circle cx="397.5" cy="809" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="397.5" cy="805" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="397.5" cy="805" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="397.5" cy="805" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M383.69020456342673 791.1902045634267 L377.55251770272747 785.0525177027275" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="397.5" y="863" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">+6 dB</text>
+<circle cx="425.0" cy="748" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-attack">
+<title>Attack</title>
+<text x="602.5" y="752" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">ATTACK</text>
+<circle cx="602.5" cy="809" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="602.5" cy="805" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="602.5" cy="805" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="602.5" cy="805" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M586.8766160397173 816.7188213413116 L579.9328898351472 821.9271863818946" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="602.5" y="863" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">1 ms</text>
+</g>
+<g id="param-release">
+<title>Release</title>
+<text x="807.5" y="752" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">RELEASE</text>
+<circle cx="807.5" cy="809" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="807.5" cy="805" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="807.5" cy="805" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="807.5" cy="805" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M788.092800540785 807.1866662182977 L779.4673785589116 808.1585178708743" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="807.5" y="863" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">80 ms</text>
+<circle cx="841.6" cy="748" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-focus">
+<title>Focus</title>
+<text x="226.66666666666666" y="917" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">FOCUS</text>
+<circle cx="226.66666666666666" cy="974" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="226.66666666666666" cy="970" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="226.66666666666666" cy="970" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="226.66666666666666" cy="970" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M226.66666666666666 950.47 L226.66666666666666 941.79" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="226.66666666666666" y="1028" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">60%</text>
+<circle cx="254.16666666666666" cy="913" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-mix">
+<title>Mix</title>
+<text x="500.0" y="917" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">MIX</text>
+<circle cx="500.0" cy="974" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="500.0" cy="970" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="500.0" cy="970" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="500.0" cy="970" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M513.8097954365733 983.8097954365733 L519.9474822972725 989.9474822972725" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="500.0" y="1028" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">100%</text>
+</g>
+<g id="param-output">
+<title>Output</title>
+<text x="773.3333333333334" y="917" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#aaaaaa" text-anchor="middle" letter-spacing="1.1">OUTPUT</text>
+<circle cx="773.3333333333334" cy="974" r="36" fill="#070707" stroke="#111111"/>
+<circle cx="773.3333333333334" cy="970" r="34" fill="url(#bevel)" stroke="#3a3a3a"/>
+<circle cx="773.3333333333334" cy="970" r="31" fill="url(#dial)" stroke="#404040"/>
+<circle cx="773.3333333333334" cy="970" r="28" fill="none" stroke="#ffffff06"/>
+<path d="M787.1431287699066 956.1902045634267 L793.2808156306058 950.0525177027275" fill="none" stroke="#d2d2d2" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="773.3333333333334" y="1028" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#d2d2d2" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+</g>
+<path d="M76 1098 L924 1098" fill="none" stroke="#333333" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="165" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">CAPTURE INPUT</text>
+<text x="382" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">REFERENCE</text>
+<text x="602" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="middle" letter-spacing="1.2">LEARN ALL</text>
+<text x="817" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">DETAILS / LOG</text>
+<text x="76" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#969696" text-anchor="start" letter-spacing="1.6">D.A PLUGINS</text>
+<text x="924" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#929292" text-anchor="end" letter-spacing="1">DESIGN STUDY / NO LIVE AUDIO</text>
+</svg>

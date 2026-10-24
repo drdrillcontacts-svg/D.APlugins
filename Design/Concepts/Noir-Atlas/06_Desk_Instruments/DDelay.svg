@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc"><title id="title">DDelay / Desk Instruments / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1440" height="760" rx="0" fill="#101416" stroke="none"/>
+<rect x="24" y="22" width="1392" height="716" rx="18" fill="url(#matte)" stroke="#3b4244" filter="url(#shadow)"/>
+<rect x="39" y="38" width="1362" height="684" rx="38" fill="#171b1c" stroke="#3d4546" filter="url(#shadow)"/>
+<text x="77.00" y="83.00" fill="#9fb7be" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="2">D.A / DESK INSTRUMENTS</text>
+<text x="75.00" y="133.00" fill="#d7dcd6" font-family="Arial, sans-serif" font-size="35" font-weight="400" text-anchor="start" letter-spacing="-1">DDelay</text>
+<text x="1360.00" y="110.00" fill="#9fb7be" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="end" letter-spacing="2">STEREO DELAY</text>
+<rect x="75" y="161" width="1290" height="208" rx="19" fill="#111719" stroke="#3b4546"/>
+<g id="illustrative-visual">
+<path d="M108 303.54 L1332 303.54" fill="none" stroke="#3a464b" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M181.44 303.54 L181.44 209.16000000000003" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="181.44" cy="209.16000000000003" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M338.11199999999997 303.54 L338.11199999999997 233.62157633205948" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="338.11199999999997" cy="233.62157633205948" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M494.784 303.54 L494.784 251.74315778544582" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="494.784" cy="251.74315778544582" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M651.456 303.54 L651.456 265.1679555136823" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="651.456" cy="265.1679555136823" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M808.128 303.54 L808.128 275.11329027972636" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="808.128" cy="275.11329027972636" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M964.8 303.54 L964.8 282.4809754851912" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="964.8" cy="282.4809754851912" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M1121.4720000000002 303.54 L1121.4720000000002 287.9390909296467" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1121.4720000000002" cy="287.9390909296467" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+<path d="M1278.144 303.54 L1278.144 291.9825623014836" fill="none" stroke="#9fb7be" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1278.144" cy="291.9825623014836" r="3" fill="#9fb7be" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-time"><title>Time</title>
+<text x="145.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">TIME</text>
+<circle cx="145.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="145.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M129.16712514181518 464.148793755389 L120.28344218207329 463.29100469577594" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="145.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">375 ms</text>
+</g>
+<g id="param-feedback"><title>Feedback</title>
+<text x="307.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">FEEDBACK</text>
+<circle cx="307.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="307.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M297.5692602554037 452.19128037027855 L292.3831496779414 444.9276805686421" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="307.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">35%</text>
+</g>
+<g id="param-filter"><title>Filter</title>
+<text x="468.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">FILTER</text>
+<circle cx="468.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="468.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M456.5611919553148 454.39268700572984 L450.03147335994777 448.30841218737083" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="468.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">6 kHz</text>
+<circle cx="537.5" cy="423.0" r="2" fill="#9fb7be" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-pingpong"><title>Ping-pong</title>
+<text x="630.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">ROUTING</text>
+<circle cx="630.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="630.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M642.0303989745679 477.5303989745679 L648.3413269966578 483.8413269966578" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="630.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">PING PONG</text>
+</g>
+<g id="param-modulation"><title>Modulation</title>
+<text x="791.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">MOD DEPTH</text>
+<circle cx="791.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="791.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M775.9053984385228 470.8982231262866 L767.4172190305885 473.656199801083" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="791.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">10%</text>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="953.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">MIX</text>
+<circle cx="953.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="953.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M937.858166988362 459.3744940167976 L929.6125421606987 455.95904438293917" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="953.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">25%</text>
+</g>
+<g id="param-width"><title>Width</title>
+<text x="1114.75" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">WIDTH</text>
+<circle cx="1114.75" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1114.75" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1114.75 449.09 L1114.75 440.165" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1114.75" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">100%</text>
+<circle cx="1183.5" cy="423.0" r="2" fill="#9fb7be" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-output"><title>Output</title>
+<text x="1276.25" y="422.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">OUTPUT</text>
+<circle cx="1276.25" cy="468.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="1276.25" cy="465.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M1288.0303989745678 453.9696010254321 L1294.341326996658 447.6586730033422" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1276.25" y="518.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">0 dB</text>
+</g>
+<g id="param-sync"><title>Tempo sync</title>
+<text x="145.75" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">TEMPO SYNC</text>
+<circle cx="145.75" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="145.75" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M133.96960102543213 611.5303989745679 L127.65867300334217 617.8413269966578" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="145.75" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">FREE MS</text>
+</g>
+<g id="param-division"><title>Note division</title>
+<text x="307.25" y="556.00" fill="#b2b7b3" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="middle" letter-spacing="0.7">DIVISION</text>
+<circle cx="307.25" cy="602.75" r="32.75" fill="#0c0f10" stroke="#1b1f20" stroke-width="1"/>
+<circle cx="307.25" cy="599.75" r="29.75" fill="url(#dial)" stroke="#454b4d" stroke-width="1"/>
+<path d="M301.7475508278269 584.0249037170626 L298.7998101998771 575.6007449940604" fill="none" stroke="#9fb7be" stroke-width="2" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="307.25" y="652.50" fill="#d2d7d1" font-family="Arial, sans-serif" font-size="14" font-weight="400" text-anchor="middle" letter-spacing="0.1">1/8</text>
+</g>
+<path d="M50 690 L1390 690" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="717.00" fill="#9fb7be" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="835.20" y="717.00" fill="#a7b0aa" font-family="Arial, sans-serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1386.00" y="717.00" fill="#77847d" font-family="Arial, sans-serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 06 / NO LIVE AUDIO</text>
+</svg>

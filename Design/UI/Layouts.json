@@ -1,0 +1,2372 @@
+[
+  {
+    "name": "DVerb",
+    "subtitle": "REVERBERATION / LEARNING",
+    "role": "REVERBERATION",
+    "accent": "#a28bd0",
+    "slogan": "SPACE & CHARACTER",
+    "advancedTitle": "DIFFUSION & COLOUR",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "decay",
+        "label": "DECAY",
+        "rect": [
+          36,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          102.3,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "predelay",
+        "label": "PRE-DELAY",
+        "rect": [
+          189,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          254.9,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "size",
+        "label": "SIZE",
+        "rect": [
+          341,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          407.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "tone",
+        "label": "TONE",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          647,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          712.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          799,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          865.1,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "density",
+        "label": "DENSITY",
+        "rect": [
+          952,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          1017.7,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "diffusion",
+        "label": "DIFFUSION",
+        "rect": [
+          42,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          106,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "modulation",
+        "label": "MOD DEPTH",
+        "rect": [
+          202,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          266,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "lowcut",
+        "label": "LOW CUT",
+        "rect": [
+          362,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          426,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "midcut",
+        "label": "MID CUT",
+        "rect": [
+          522,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          586,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "mode",
+        "label": "CHARACTER",
+        "rect": [
+          702,
+          614,
+          368,
+          180
+        ],
+        "center": [
+          886,
+          692
+        ],
+        "radius": 25,
+        "style": "choice",
+        "options": [
+          "ROOM",
+          "HALL",
+          "PLATE",
+          "SHIMMER"
+        ],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN SPACE",
+        "scope": "Space",
+        "rect": [
+          794,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN COLOUR",
+        "scope": "Colour",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DDelay",
+    "subtitle": "STEREO DELAY / LEARNING",
+    "role": "STEREO DELAY",
+    "accent": "#6cb8d6",
+    "slogan": "ECHO & COLOUR",
+    "advancedTitle": "SYNC / MOTION / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "division",
+        "label": "DIVISION",
+        "rect": [
+          20,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          86,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary_discrete",
+        "options": [
+          "1/32",
+          "1/32 D",
+          "1/32 T",
+          "1/16",
+          "1/16 D",
+          "1/16 T",
+          "1/8",
+          "1/8 D",
+          "1/8 T",
+          "1/4",
+          "1/4 D",
+          "1/4 T",
+          "1/2",
+          "1/2 D",
+          "1/1"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "time",
+        "label": "TIME",
+        "rect": [
+          158,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          224,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "feedback",
+        "label": "FEEDBACK",
+        "rect": [
+          296,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          362,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "filter",
+        "label": "FILTER",
+        "rect": [
+          434,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          500,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "pingpong",
+        "label": "ROUTING",
+        "rect": [
+          584,
+          388,
+          224,
+          180
+        ],
+        "center": [
+          696,
+          466
+        ],
+        "radius": 28,
+        "style": "choice",
+        "options": [
+          "STEREO",
+          "PING PONG"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          826,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          892,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          964,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          1030,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "modulation",
+        "label": "MOD DEPTH",
+        "rect": [
+          140,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          204.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          496,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          560.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "sync",
+        "label": "TEMPO SYNC",
+        "rect": [
+          804,
+          614,
+          224,
+          180
+        ],
+        "center": [
+          916.0,
+          692
+        ],
+        "radius": 25,
+        "style": "choice",
+        "options": [
+          "FREE MS",
+          "SYNC"
+        ],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN ECHO",
+        "scope": "Echo",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DComp",
+    "subtitle": "DYNAMICS / LEARNING",
+    "role": "DYNAMICS",
+    "accent": "#d4a259",
+    "slogan": "DYNAMICS",
+    "advancedTitle": "KNEE / BLEND / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          67,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          132.8,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "ratio",
+        "label": "RATIO",
+        "rect": [
+          280,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          346.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          708,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          773.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "makeup",
+        "label": "MAKEUP",
+        "rect": [
+          921,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          987.2,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "knee",
+        "label": "KNEE",
+        "rect": [
+          140,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          204.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          496,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          560.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          852,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          916.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN DYNAMICS",
+        "scope": "Dynamics",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DEQ",
+    "subtitle": "FOUR-BAND EQ / LEARNING",
+    "role": "FOUR-BAND EQ",
+    "accent": "#68c29a",
+    "slogan": "BAND 02 / SELECTED",
+    "advancedTitle": "BANDS 01 / 03 / 04",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "b2gain",
+        "label": "B2 GAIN",
+        "rect": [
+          84,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          150,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "b2freq",
+        "label": "B2 FREQ",
+        "rect": [
+          294,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          360,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "b2q",
+        "label": "B2 Q",
+        "rect": [
+          504,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          570,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "b2shape",
+        "label": "B2 SHAPE",
+        "rect": [
+          705,
+          388,
+          340,
+          180
+        ],
+        "center": [
+          875,
+          466
+        ],
+        "radius": 28,
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "b1freq",
+        "label": "FREQ",
+        "rect": [
+          28,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          82.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b1gain",
+        "label": "GAIN",
+        "rect": [
+          142,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          196.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "b1q",
+        "label": "Q",
+        "rect": [
+          256,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          310.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b1shape",
+        "label": "",
+        "rect": [
+          32,
+          760,
+          332,
+          32
+        ],
+        "center": [
+          198.0,
+          776.0
+        ],
+        "radius": 0,
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b3freq",
+        "label": "FREQ",
+        "rect": [
+          390,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          444.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b3gain",
+        "label": "GAIN",
+        "rect": [
+          504,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          558.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "b3q",
+        "label": "Q",
+        "rect": [
+          618,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          672.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b3shape",
+        "label": "",
+        "rect": [
+          394,
+          760,
+          332,
+          32
+        ],
+        "center": [
+          560.0,
+          776.0
+        ],
+        "radius": 0,
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b4freq",
+        "label": "FREQ",
+        "rect": [
+          752,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          806.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b4gain",
+        "label": "GAIN",
+        "rect": [
+          866,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          920.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "b4q",
+        "label": "Q",
+        "rect": [
+          980,
+          638,
+          108,
+          118
+        ],
+        "center": [
+          1034.0,
+          697.0
+        ],
+        "radius": 21,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "b4shape",
+        "label": "",
+        "rect": [
+          756,
+          760,
+          332,
+          32
+        ],
+        "center": [
+          922.0,
+          776.0
+        ],
+        "radius": 0,
+        "style": "choice",
+        "options": [
+          "BELL",
+          "LOW SHELF",
+          "HIGH SHELF"
+        ],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN BAND 1",
+        "scope": "Band 1",
+        "rect": [
+          482,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN BAND 2",
+        "scope": "Band 2",
+        "rect": [
+          638,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN BAND 3",
+        "scope": "Band 3",
+        "rect": [
+          794,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN BAND 4",
+        "scope": "Band 4",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DSat",
+    "subtitle": "SATURATION / LEARNING",
+    "role": "SATURATION",
+    "accent": "#d86c6c",
+    "slogan": "HARMONIC COLOUR",
+    "advancedTitle": "CHARACTER / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "drive",
+        "label": "DRIVE",
+        "rect": [
+          94,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          159.5,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "tone",
+        "label": "TONE",
+        "rect": [
+          360,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          426.5,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "density",
+        "label": "DENSITY",
+        "rect": [
+          628,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          693.5,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          894,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          960.5,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mode",
+        "label": "CHARACTER",
+        "rect": [
+          123,
+          614,
+          340,
+          180
+        ],
+        "center": [
+          293.0,
+          692
+        ],
+        "radius": 25,
+        "style": "choice",
+        "options": [
+          "SOFT",
+          "HARD",
+          "ASYMMETRIC"
+        ],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          763,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          827.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN COLOUR",
+        "scope": "Colour",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DTrans",
+    "subtitle": "TRANSIENT SHAPING / LEARNING",
+    "role": "TRANSIENT SHAPING",
+    "accent": "#de8854",
+    "slogan": "ENVELOPE",
+    "advancedTitle": "OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          67,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          132.8,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "sustain",
+        "label": "SUSTAIN",
+        "rect": [
+          280,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          346.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "sensitivity",
+        "label": "SENSITIVITY",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "shape",
+        "label": "SHAPE",
+        "rect": [
+          708,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          773.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          921,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          987.2,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          496,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          560.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN ENVELOPE",
+        "scope": "Envelope",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DStereo",
+    "subtitle": "STEREO IMAGE / LEARNING",
+    "role": "STEREO IMAGE",
+    "accent": "#6f95de",
+    "slogan": "MID / SIDE IMAGE",
+    "advancedTitle": "MONO CHECK",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "width",
+        "label": "WIDTH",
+        "rect": [
+          67,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          132.8,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "center",
+        "label": "CENTER",
+        "rect": [
+          280,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          346.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "side",
+        "label": "SIDE",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "depth",
+        "label": "DEPTH",
+        "rect": [
+          708,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          773.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          921,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          987.2,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "mono",
+        "label": "MONO CHECK",
+        "rect": [
+          448,
+          614,
+          224,
+          180
+        ],
+        "center": [
+          560.0,
+          692
+        ],
+        "radius": 25,
+        "style": "choice",
+        "options": [
+          "STEREO",
+          "MONO"
+        ],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN IMAGE",
+        "scope": "Image",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DSess",
+    "subtitle": "SIBILANCE CONTROL / LEARNING",
+    "role": "SIBILANCE CONTROL",
+    "accent": "#5cc2be",
+    "slogan": "SIBILANCE CONTROL",
+    "advancedTitle": "TIMING / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "frequency",
+        "label": "DETECT FREQ",
+        "rect": [
+          67,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          132.8,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          280,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          346.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "range",
+        "label": "RANGE",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "focus",
+        "label": "FOCUS",
+        "rect": [
+          708,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          773.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          921,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          987.2,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          140,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          204.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          496,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          560.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          852,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          916.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN SIBILANCE",
+        "scope": "Sibilance",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DGate",
+    "subtitle": "NOISE GATE / LEARNING",
+    "role": "NOISE GATE",
+    "accent": "#b3c662",
+    "slogan": "OPEN / HOLD / RELEASE",
+    "advancedTitle": "HYSTERESIS / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "threshold",
+        "label": "THRESHOLD",
+        "rect": [
+          67,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          132.8,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "attack",
+        "label": "ATTACK",
+        "rect": [
+          280,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          346.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "hold",
+        "label": "HOLD",
+        "rect": [
+          494,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "release",
+        "label": "RELEASE",
+        "rect": [
+          708,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          773.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "range",
+        "label": "RANGE",
+        "rect": [
+          921,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          987.2,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "hysteresis",
+        "label": "HYSTERESIS",
+        "rect": [
+          229,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          293.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          763,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          827.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN GATE",
+        "scope": "Gate",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DFX",
+    "subtitle": "MULTI EFFECT / LEARNING",
+    "role": "MULTI EFFECT",
+    "accent": "#cf7ca8",
+    "slogan": "DRIVE / FILTER / DELAY",
+    "advancedTitle": "FEEDBACK / AMBIENCE / OUTPUT",
+    "canvas": [
+      1120,
+      860
+    ],
+    "analysisRect": [
+      22,
+      82,
+      1076,
+      204
+    ],
+    "learningRect": [
+      14,
+      302,
+      1092,
+      48
+    ],
+    "mainPanelRect": [
+      14,
+      382,
+      1092,
+      192
+    ],
+    "advancedPanelRect": [
+      14,
+      608,
+      1092,
+      194
+    ],
+    "controls": [
+      {
+        "id": "mix",
+        "label": "MIX",
+        "rect": [
+          36,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          102.3,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "driveOn",
+        "label": "DRIVE ON",
+        "rect": [
+          188,
+          388,
+          134,
+          180
+        ],
+        "center": [
+          254.9,
+          466
+        ],
+        "radius": 28,
+        "style": "choice",
+        "options": [
+          "OFF",
+          "ON"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "drive",
+        "label": "DRIVE",
+        "rect": [
+          341,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          407.4,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "filterOn",
+        "label": "FILTER ON",
+        "rect": [
+          493,
+          388,
+          134,
+          180
+        ],
+        "center": [
+          560.0,
+          466
+        ],
+        "radius": 28,
+        "style": "choice",
+        "options": [
+          "OFF",
+          "ON"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "filter",
+        "label": "LOW PASS",
+        "rect": [
+          647,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          712.6,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": true
+      },
+      {
+        "id": "delayOn",
+        "label": "DELAY ON",
+        "rect": [
+          798,
+          388,
+          134,
+          180
+        ],
+        "center": [
+          865.1,
+          466
+        ],
+        "radius": 28,
+        "style": "choice",
+        "options": [
+          "OFF",
+          "ON"
+        ],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "time",
+        "label": "TIME",
+        "rect": [
+          952,
+          388,
+          132,
+          180
+        ],
+        "center": [
+          1017.7,
+          466
+        ],
+        "radius": 28,
+        "style": "rotary",
+        "options": [],
+        "advanced": false,
+        "learnable": false
+      },
+      {
+        "id": "feedback",
+        "label": "FEEDBACK",
+        "rect": [
+          51,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          115.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "delayMix",
+        "label": "DELAY MIX",
+        "rect": [
+          229,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          293.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "reverbOn",
+        "label": "REVERB ON",
+        "rect": [
+          404,
+          614,
+          134,
+          180
+        ],
+        "center": [
+          471.0,
+          692
+        ],
+        "radius": 25,
+        "style": "choice",
+        "options": [
+          "OFF",
+          "ON"
+        ],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "decay",
+        "label": "DECAY",
+        "rect": [
+          585,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          649.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": true
+      },
+      {
+        "id": "reverbMix",
+        "label": "SPACE MIX",
+        "rect": [
+          763,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          827.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      },
+      {
+        "id": "output",
+        "label": "OUTPUT",
+        "rect": [
+          941,
+          614,
+          128,
+          180
+        ],
+        "center": [
+          1005.0,
+          692
+        ],
+        "radius": 25,
+        "style": "rotary",
+        "options": [],
+        "advanced": true,
+        "learnable": false
+      }
+    ],
+    "modules": [
+      {
+        "title": "LEARN SATURATION",
+        "scope": "Saturation",
+        "rect": [
+          638,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN FILTER",
+        "scope": "Filter",
+        "rect": [
+          794,
+          354,
+          148,
+          25
+        ]
+      },
+      {
+        "title": "LEARN AMBIENCE",
+        "scope": "Ambience",
+        "rect": [
+          950,
+          354,
+          148,
+          25
+        ]
+      }
+    ]
+  }
+]

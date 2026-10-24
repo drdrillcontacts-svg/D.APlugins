@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc"><title id="title">DVerb / Atelier / Noir Atlas</title><desc id="desc">Original static design proposal. Graphs are illustrative, not live or measured. All existing parameters represented. No DSP changes.</desc><defs>
+<linearGradient id="matte" x2="0" y2="1"><stop stop-color="#242729"/><stop offset="1" stop-color="#17191b"/></linearGradient>
+<linearGradient id="dial" x2="0" y2="1"><stop stop-color="#35383a"/><stop offset="1" stop-color="#202325"/></linearGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+<filter id="smallshadow" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter></defs>
+<rect x="0" y="0" width="1400" height="900" rx="0" fill="#101416" stroke="none"/>
+<text x="70.00" y="62.00" fill="#c4b7a2" font-family="Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="3">D.A / ATELIER</text>
+<text x="64.00" y="151.00" fill="#d4cec1" font-family="Georgia, serif" font-size="78" font-weight="400" text-anchor="start" letter-spacing="-3">DVerb</text>
+<text x="1326.00" y="77.00" fill="#c4b7a2" font-family="Arial, sans-serif" font-size="12" font-weight="400" text-anchor="end" letter-spacing="2">REVERBERATION</text>
+<text x="1326.00" y="119.00" fill="#8f948c" font-family="Georgia, serif" font-size="15" font-weight="400" text-anchor="end" letter-spacing="0">50 / factory</text>
+<path d="M70 183 L1330 183" fill="none" stroke="#5c5f56" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g id="illustrative-visual">
+<path d="M149.24 619.4000000000001 V266.6 L455.0 249.8 L760.76 266.6 V619.4000000000001 L455.0 636.2 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.13" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M160.80235294117648 612.9764705882353 V273.0235294117647 L455.0 256.2235294117647 L749.1976470588236 273.0235294117647 V612.9764705882353 L455.0 629.7764705882353 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.175" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M172.36470588235295 606.5529411764705 V279.4470588235294 L455.0 262.6470588235294 L737.635294117647 279.4470588235294 V606.5529411764705 L455.0 623.3529411764705 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.22" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M183.92705882352942 600.1294117647059 V285.8705882352941 L455.0 269.0705882352941 L726.0729411764705 285.8705882352941 V600.1294117647059 L455.0 616.9294117647058 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.265" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M195.4894117647059 593.7058823529412 V292.29411764705884 L455.0 275.49411764705883 L714.5105882352941 292.29411764705884 V593.7058823529412 L455.0 610.5058823529412 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.31" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M207.05176470588236 587.2823529411764 V298.71764705882356 L455.0 281.91764705882355 L702.9482352941177 298.71764705882356 V587.2823529411764 L455.0 604.0823529411764 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.355" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M218.61411764705883 580.8588235294117 V305.1411764705882 L455.0 288.3411764705882 L691.3858823529412 305.1411764705882 V580.8588235294117 L455.0 597.6588235294116 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M230.17647058823528 574.4352941176471 V311.56470588235294 L455.0 294.7647058823529 L679.8235294117648 311.56470588235294 V574.4352941176471 L455.0 591.2352941176471 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.445" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M241.73882352941177 568.0117647058823 V317.98823529411766 L455.0 301.18823529411765 L668.2611764705882 317.98823529411766 V568.0117647058823 L455.0 584.8117647058823 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.49" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M253.30117647058825 561.5882352941176 V324.4117647058823 L455.0 307.6117647058823 L656.6988235294118 324.4117647058823 V561.5882352941176 L455.0 578.3882352941175 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.5349999999999999" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M264.8635294117647 555.164705882353 V330.8352941176471 L455.0 314.0352941176471 L645.1364705882352 330.8352941176471 V555.164705882353 L455.0 571.964705882353 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.58" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M276.42588235294113 548.7411764705882 V337.25882352941176 L454.99999999999994 320.45882352941175 L633.5741176470588 337.25882352941176 V548.7411764705882 L454.99999999999994 565.5411764705882 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.625" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M287.98823529411766 542.3176470588235 V343.6823529411765 L455.0 326.88235294117646 L622.0117647058823 343.6823529411765 V542.3176470588235 L455.0 559.1176470588234 Z" fill="none" stroke="#c4b7a2" stroke-width="1" opacity="0.67" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="86.00" y="718.00" fill="#8f988e" font-family="Georgia, serif" font-size="13" font-weight="400" text-anchor="start" letter-spacing="3">SOUND, CONSIDERED.</text>
+<g id="param-predelay"><title>Pre-delay</title>
+<text x="896.00" y="231.00" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">PRE-DELAY</text>
+<text x="1088.00" y="231.00" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">20 ms</text>
+<path d="M896.0 289.1666666666667 L1088.0 289.1666666666667" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1085.0" cy="225.0" r="2" fill="#c4b7a2" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-size"><title>Size</title>
+<text x="1106.00" y="231.00" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">SIZE</text>
+<text x="1298.00" y="231.00" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">60%</text>
+<path d="M1106.0 289.1666666666667 L1298.0 289.1666666666667" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-decay"><title>Decay</title>
+<text x="896.00" y="325.17" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">DECAY</text>
+<text x="1088.00" y="325.17" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">2 s</text>
+<path d="M896.0 383.33333333333337 L1088.0 383.33333333333337" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1085.0" cy="319.1666666666667" r="2" fill="#c4b7a2" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-tone"><title>Tone</title>
+<text x="1106.00" y="325.17" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">TONE</text>
+<text x="1298.00" y="325.17" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">10 kHz</text>
+<path d="M1106.0 383.33333333333337 L1298.0 383.33333333333337" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1295.0" cy="319.1666666666667" r="2" fill="#c4b7a2" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-mix"><title>Mix</title>
+<text x="896.00" y="419.33" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">MIX</text>
+<text x="1088.00" y="419.33" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">25%</text>
+<path d="M896.0 477.50000000000006 L1088.0 477.50000000000006" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-width"><title>Width</title>
+<text x="1106.00" y="419.33" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">WIDTH</text>
+<text x="1298.00" y="419.33" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">100%</text>
+<path d="M1106.0 477.50000000000006 L1298.0 477.50000000000006" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1295.0" cy="413.33333333333337" r="2" fill="#c4b7a2" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-density"><title>Density</title>
+<text x="896.00" y="513.50" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">DENSITY</text>
+<text x="1088.00" y="513.50" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">70%</text>
+<path d="M896.0 571.6666666666666 L1088.0 571.6666666666666" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-diffusion"><title>Diffusion</title>
+<text x="1106.00" y="513.50" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">DIFFUSION</text>
+<text x="1298.00" y="513.50" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">70%</text>
+<path d="M1106.0 571.6666666666666 L1298.0 571.6666666666666" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-modulation"><title>Modulation</title>
+<text x="896.00" y="607.67" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">MOD DEPTH</text>
+<text x="1088.00" y="607.67" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">10%</text>
+<path d="M896.0 665.8333333333334 L1088.0 665.8333333333334" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-lowcut"><title>Low cut</title>
+<text x="1106.00" y="607.67" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">LOW CUT</text>
+<text x="1298.00" y="607.67" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">120 Hz</text>
+<path d="M1106.0 665.8333333333334 L1298.0 665.8333333333334" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="1295.0" cy="601.6666666666667" r="2" fill="#c4b7a2" stroke="none" stroke-width="1"/>
+</g>
+<g id="param-midcut"><title>Mid cut</title>
+<text x="896.00" y="701.83" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">MID CUT</text>
+<text x="1088.00" y="701.83" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">-1 dB</text>
+<path d="M896.0 760.0 L1088.0 760.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="param-mode"><title>Room/Hall/Plate/Shimmer</title>
+<text x="1106.00" y="701.83" fill="#a9afad" font-family="Georgia, serif" font-size="11" font-weight="400" text-anchor="start" letter-spacing="0.8">CHARACTER</text>
+<text x="1298.00" y="701.83" fill="#d8dbd5" font-family="Georgia, serif" font-size="17" font-weight="400" text-anchor="end" letter-spacing="0.2">HALL</text>
+<path d="M1106.0 760.0 L1298.0 760.0" fill="none" stroke="#333a3c" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<path d="M50 830 L1350 830" fill="none" stroke="#343e40" stroke-width="1" opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="54.00" y="857.00" fill="#c4b7a2" font-family="Georgia, serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1.1">CAPTURE   /   REFERENCE   /   LEARN</text>
+<text x="812.00" y="857.00" fill="#a7b0aa" font-family="Georgia, serif" font-size="10" font-weight="400" text-anchor="start" letter-spacing="1">DETAILS / LOG</text>
+<text x="1346.00" y="857.00" fill="#77847d" font-family="Georgia, serif" font-size="8" font-weight="400" text-anchor="end" letter-spacing="0.8">CONCEPT / 02 / NO LIVE AUDIO</text>
+</svg>

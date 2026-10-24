@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1280" viewBox="0 0 1000 1280" role="img" aria-labelledby="title description">
+<title id="title">D.A Plugins / DEQ / Selected Reference / Red</title>
+<desc id="description">Editable design proposal, not a running plugin. Original D.A branding; matte graphite, sculpted controls, neutral highlights and red accents. Graphs are illustrative, not live readings.</desc>
+<defs>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#1a1a1a"/><stop offset=".4" stop-color="#121212"/><stop offset="1" stop-color="#1a1a1a"/></linearGradient>
+ <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#353535"/><stop offset=".15" stop-color="#212121"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient>
+ <linearGradient id="dial" x2="0" y2="1"><stop stop-color="#161616"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+ <radialGradient id="face"><stop stop-color="#232323"/><stop offset=".8" stop-color="#1e1e1e"/><stop offset="1" stop-color="#141414"/></radialGradient>
+ <linearGradient id="fade" x2="0" y2="1"><stop stop-color="#acacac" stop-opacity=".28"/><stop offset="1" stop-color="#acacac" stop-opacity="0"/></linearGradient>
+ <filter id="shadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#000" flood-opacity=".7"/></filter>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1000" height="1280" fill="#0e0e0e"/>
+<rect x="39" y="33" width="922" height="1214" rx="31" fill="#080808" filter="url(#shadow)"/>
+<rect x="40" y="34" width="920" height="1212" rx="30" fill="url(#body)" stroke="#2a2a2a"/>
+<rect x="44" y="38" width="912" height="1204" rx="27" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+
+<g id="preset-header">
+<text x="78" y="100" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="600" fill="#d5d5d5" text-anchor="start" letter-spacing="-1">D.A</text>
+<rect x="295" y="65" width="381" height="46" rx="7" fill="#101010" stroke="#363636"/>
+<text x="313" y="94" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#cacaca" text-anchor="start" letter-spacing="0.4">Factory presets</text>
+<path d="M580 65 L580 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M628 65 L628 111" fill="none" stroke="#3d3d3d" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M607 81 l-7 7 7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M649 81 l7 7 -7 7" fill="none" stroke="#bcbcbc" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="691" y="65" width="47" height="46" rx="7" fill="#111111" stroke="#363636"/>
+<path d="M707 79 h14 v19 h-14 z m4 5 h6 m-6 5 h6" fill="none" stroke="#a6a6a6" stroke-width="1.3" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 80 L912 80" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 88 L912 88" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M890 96 L912 96" fill="none" stroke="#b9b9b9" stroke-width="1.8" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="57" y="137" width="886" height="379" rx="27" fill="url(#bevel)" stroke="#292929"/>
+<rect x="70" y="150" width="860" height="351" rx="18" fill="#0d0d0d" stroke="#232323"/>
+<text x="91" y="236" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#d5d5d5" text-anchor="start" letter-spacing="3">DEQ</text>
+<text x="887" y="237" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#939393" text-anchor="end" letter-spacing="2">RESET</text>
+<g id="illustrative-display">
+<text x="91" y="193" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8c8c8c" text-anchor="start" letter-spacing="2.4">SCULPT / FOUR-BAND EQUALIZER</text>
+<circle cx="865" cy="189" r="2.5" fill="#767676" stroke="none"/>
+<text x="881" y="193" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#686868" text-anchor="end" letter-spacing="1">STUDY</text>
+<path d="M190 230 L190 365" fill="none" stroke="#242424" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 230 L345 365" fill="none" stroke="#242424" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M500 230 L500 365" fill="none" stroke="#242424" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M655 230 L655 365" fill="none" stroke="#242424" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M810 230 L810 365" fill="none" stroke="#242424" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 300 L870 300" fill="none" stroke="#393939" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M130 298.89 L135 298.57 L140 298.18 L145 297.71 L150 297.16 L155 296.53 L160 295.81 L165 295.00 L170 294.12 L175 293.17 L180 292.17 L185 291.14 L190 290.11 L195 289.09 L200 288.13 L205 287.25 L210 286.48 L215 285.85 L220 285.39 L225 285.10 L230 285.00 L235 285.10 L240 285.39 L245 285.85 L250 286.48 L255 287.25 L260 288.13 L265 289.09 L270 290.11 L275 291.14 L280 292.17 L285 293.17 L290 294.12 L295 295.00 L300 295.81 L305 296.53 L310 297.16 L315 297.71 L320 298.18 L325 298.57 L330 298.89 L335 299.15 L340 299.36 L345 299.52 L350 299.65 L355 299.74 L360 299.82 L365 299.87 L370 299.91 L375 299.94 L380 299.96 L385 299.97 L390 299.98 L395 299.99 L400 299.99 L405 299.99 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 300.00 L450 300.00 L455 300.00 L460 300.00 L465 300.00 L470 300.00 L475 300.00 L480 300.00 L485 300.00 L490 300.00 L495 300.00 L500 300.00 L505 300.00 L510 300.00 L515 300.00 L520 300.00 L525 300.00 L530 300.00 L535 300.00 L540 300.00 L545 300.00 L550 300.00 L555 300.00 L560 300.00 L565 300.00 L570 300.00 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 300.00 L635 300.00 L640 300.00 L645 300.00 L650 300.00 L655 300.00 L660 300.00 L665 300.00 L670 300.00 L675 300.00 L680 300.00 L685 300.00 L690 300.00 L695 300.00 L700 300.00 L705 300.00 L710 300.00 L715 300.00 L720 300.00 L725 300.00 L730 300.00 L735 300.00 L740 300.00 L745 300.00 L750 300.00 L755 300.00 L760 300.00 L765 300.00 L770 300.00 L775 300.00 L780 300.00 L785 300.00 L790 300.00 L795 300.00 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#c5c5c5" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="230" cy="285" r="4" fill="#c5c5c5" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.01 L215 300.01 L220 300.01 L225 300.02 L230 300.03 L235 300.05 L240 300.08 L245 300.11 L250 300.16 L255 300.24 L260 300.33 L265 300.46 L270 300.64 L275 300.87 L280 301.16 L285 301.53 L290 302.00 L295 302.58 L300 303.28 L305 304.12 L310 305.11 L315 306.25 L320 307.55 L325 309.00 L330 310.58 L335 312.29 L340 314.09 L345 315.94 L350 317.81 L355 319.63 L360 321.36 L365 322.95 L370 324.33 L375 325.46 L380 326.31 L385 326.82 L390 327.00 L395 326.82 L400 326.31 L405 325.46 L410 324.33 L415 322.95 L420 321.36 L425 319.63 L430 317.81 L435 315.94 L440 314.09 L445 312.29 L450 310.58 L455 309.00 L460 307.55 L465 306.25 L470 305.11 L475 304.12 L480 303.28 L485 302.58 L490 302.00 L495 301.53 L500 301.16 L505 300.87 L510 300.64 L515 300.46 L520 300.33 L525 300.24 L530 300.16 L535 300.11 L540 300.08 L545 300.05 L550 300.03 L555 300.02 L560 300.01 L565 300.01 L570 300.01 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 300.00 L635 300.00 L640 300.00 L645 300.00 L650 300.00 L655 300.00 L660 300.00 L665 300.00 L670 300.00 L675 300.00 L680 300.00 L685 300.00 L690 300.00 L695 300.00 L700 300.00 L705 300.00 L710 300.00 L715 300.00 L720 300.00 L725 300.00 L730 300.00 L735 300.00 L740 300.00 L745 300.00 L750 300.00 L755 300.00 L760 300.00 L765 300.00 L770 300.00 L775 300.00 L780 300.00 L785 300.00 L790 300.00 L795 300.00 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#c5c5c5" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="390" cy="327" r="4" fill="#c5c5c5" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.00 L215 300.00 L220 300.00 L225 300.00 L230 300.00 L235 300.00 L240 300.00 L245 300.00 L250 300.00 L255 300.00 L260 300.00 L265 300.00 L270 300.00 L275 300.00 L280 300.00 L285 300.00 L290 300.00 L295 300.00 L300 300.00 L305 300.00 L310 300.00 L315 300.00 L320 300.00 L325 300.00 L330 300.00 L335 300.00 L340 300.00 L345 300.00 L350 300.00 L355 300.00 L360 300.00 L365 300.00 L370 300.00 L375 300.00 L380 300.00 L385 300.00 L390 300.00 L395 300.00 L400 300.00 L405 300.00 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 299.99 L450 299.99 L455 299.98 L460 299.97 L465 299.96 L470 299.94 L475 299.91 L480 299.87 L485 299.81 L490 299.73 L495 299.62 L500 299.48 L505 299.29 L510 299.06 L515 298.75 L520 298.37 L525 297.90 L530 297.33 L535 296.64 L540 295.84 L545 294.91 L550 293.85 L555 292.67 L560 291.38 L565 289.98 L570 288.52 L575 287.01 L580 285.49 L585 284.00 L590 282.59 L595 281.30 L600 280.17 L605 279.25 L610 278.56 L615 278.14 L620 278.00 L625 278.14 L630 278.56 L635 279.25 L640 280.17 L645 281.30 L650 282.59 L655 284.00 L660 285.49 L665 287.01 L670 288.52 L675 289.98 L680 291.38 L685 292.67 L690 293.85 L695 294.91 L700 295.84 L705 296.64 L710 297.33 L715 297.90 L720 298.37 L725 298.75 L730 299.06 L735 299.29 L740 299.48 L745 299.62 L750 299.73 L755 299.81 L760 299.87 L765 299.91 L770 299.94 L775 299.96 L780 299.97 L785 299.98 L790 299.99 L795 299.99 L800 300.00 L805 300.00 L810 300.00 L815 300.00 L820 300.00 L825 300.00 L830 300.00 L835 300.00 L840 300.00 L845 300.00 L850 300.00 L855 300.00 L860 300.00 L865 300.00 L870 300.00" fill="none" stroke="#c5c5c5" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="620" cy="278" r="4" fill="#c5c5c5" stroke="none"/>
+<path d="M130 300.00 L135 300.00 L140 300.00 L145 300.00 L150 300.00 L155 300.00 L160 300.00 L165 300.00 L170 300.00 L175 300.00 L180 300.00 L185 300.00 L190 300.00 L195 300.00 L200 300.00 L205 300.00 L210 300.00 L215 300.00 L220 300.00 L225 300.00 L230 300.00 L235 300.00 L240 300.00 L245 300.00 L250 300.00 L255 300.00 L260 300.00 L265 300.00 L270 300.00 L275 300.00 L280 300.00 L285 300.00 L290 300.00 L295 300.00 L300 300.00 L305 300.00 L310 300.00 L315 300.00 L320 300.00 L325 300.00 L330 300.00 L335 300.00 L340 300.00 L345 300.00 L350 300.00 L355 300.00 L360 300.00 L365 300.00 L370 300.00 L375 300.00 L380 300.00 L385 300.00 L390 300.00 L395 300.00 L400 300.00 L405 300.00 L410 300.00 L415 300.00 L420 300.00 L425 300.00 L430 300.00 L435 300.00 L440 300.00 L445 300.00 L450 300.00 L455 300.00 L460 300.00 L465 300.00 L470 300.00 L475 300.00 L480 300.00 L485 300.00 L490 300.00 L495 300.00 L500 300.00 L505 300.00 L510 300.00 L515 300.00 L520 300.00 L525 300.00 L530 300.00 L535 300.00 L540 300.00 L545 300.00 L550 300.00 L555 300.00 L560 300.00 L565 300.00 L570 300.00 L575 300.00 L580 300.00 L585 300.00 L590 300.00 L595 300.00 L600 300.00 L605 300.00 L610 300.00 L615 300.00 L620 300.00 L625 300.00 L630 299.99 L635 299.99 L640 299.99 L645 299.98 L650 299.97 L655 299.95 L660 299.93 L665 299.90 L670 299.86 L675 299.81 L680 299.74 L685 299.65 L690 299.53 L695 299.38 L700 299.18 L705 298.95 L710 298.66 L715 298.32 L720 297.92 L725 297.45 L730 296.93 L735 296.34 L740 295.69 L745 294.99 L750 294.26 L755 293.50 L760 292.75 L765 292.00 L770 291.30 L775 290.65 L780 290.09 L785 289.63 L790 289.28 L795 289.07 L800 289.00 L805 289.07 L810 289.28 L815 289.63 L820 290.09 L825 290.65 L830 291.30 L835 292.00 L840 292.75 L845 293.50 L850 294.26 L855 294.99 L860 295.69 L865 296.34 L870 296.93" fill="none" stroke="#c5c5c5" stroke-width="1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="800" cy="289" r="4" fill="#c5c5c5" stroke="none"/>
+<path d="M130 298.89 L135 298.57 L140 298.18 L145 297.71 L150 297.16 L155 296.53 L160 295.81 L165 295.00 L170 294.12 L175 293.17 L180 292.17 L185 291.14 L190 290.11 L195 289.09 L200 288.13 L205 287.25 L210 286.49 L215 285.86 L220 285.40 L225 285.12 L230 285.03 L235 285.15 L240 285.46 L245 285.97 L250 286.65 L255 287.49 L260 288.46 L265 289.56 L270 290.74 L275 292.01 L280 293.33 L285 294.71 L290 296.12 L295 297.58 L300 299.09 L305 300.65 L310 302.27 L315 303.96 L320 305.72 L325 307.56 L330 309.47 L335 311.44 L340 313.45 L345 315.46 L350 317.45 L355 319.37 L360 321.18 L365 322.82 L370 324.24 L375 325.40 L380 326.26 L385 326.80 L390 326.98 L395 326.81 L400 326.30 L405 325.46 L410 324.33 L415 322.95 L420 321.36 L425 319.63 L430 317.80 L435 315.94 L440 314.09 L445 312.28 L450 310.57 L455 308.98 L460 307.52 L465 306.21 L470 305.05 L475 304.03 L480 303.15 L485 302.39 L490 301.73 L495 301.16 L500 300.64 L505 300.16 L510 299.69 L515 299.21 L520 298.70 L525 298.13 L530 297.49 L535 296.76 L540 295.92 L545 294.96 L550 293.89 L555 292.69 L560 291.39 L565 289.99 L570 288.53 L575 287.01 L580 285.49 L585 284.00 L590 282.59 L595 281.30 L600 280.17 L605 279.25 L610 278.56 L615 278.14 L620 278.00 L625 278.14 L630 278.56 L635 279.24 L640 280.16 L645 281.28 L650 282.56 L655 283.96 L660 285.42 L665 286.91 L670 288.38 L675 289.80 L680 291.12 L685 292.32 L690 293.38 L695 294.28 L700 295.02 L705 295.59 L710 295.99 L715 296.22 L720 296.29 L725 296.20 L730 295.98 L735 295.63 L740 295.17 L745 294.61 L750 293.99 L755 293.31 L760 292.61 L765 291.91 L770 291.23 L775 290.61 L780 290.06 L785 289.61 L790 289.27 L795 289.06 L800 289.00 L805 289.07 L810 289.28 L815 289.62 L820 290.09 L825 290.65 L830 291.30 L835 292.00 L840 292.75 L845 293.50 L850 294.26 L855 294.99 L860 295.69 L865 296.34 L870 296.93" fill="none" stroke="#c5c5c5" stroke-width="2.5" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="150" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b6b6b" text-anchor="middle" letter-spacing="0">20</text>
+<text x="330" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b6b6b" text-anchor="middle" letter-spacing="0">100</text>
+<text x="500" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b6b6b" text-anchor="middle" letter-spacing="0">1k</text>
+<text x="680" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b6b6b" text-anchor="middle" letter-spacing="0">5k</text>
+<text x="850" y="397" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#6b6b6b" text-anchor="middle" letter-spacing="0">20k Hz</text>
+<text x="93" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#9b9b9b" text-anchor="start" letter-spacing="1.6">CAPTURE</text>
+<circle cx="81" cy="441" r="3" fill="#df4b4f" stroke="none"/>
+<text x="215" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#717171" text-anchor="start" letter-spacing="1.6">REFERENCE</text>
+<text x="887" y="445" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="1.6">DETAILS</text>
+</g>
+<g id="param-b2gain">
+<text x="91" y="596" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#d1d1d1" text-anchor="start" letter-spacing="3">GAIN</text>
+<text x="90" y="650" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="400" fill="#eeeeee" text-anchor="start" letter-spacing="0.1">-2.5 dB</text>
+<text x="91" y="682" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#999999" text-anchor="start" letter-spacing="2">SELECTED / BAND 02</text>
+<text x="887" y="622" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#df4b4f" text-anchor="end" letter-spacing="2">LEARN</text>
+</g>
+<rect x="84" y="770" width="190" height="267" rx="10" fill="#151515" stroke="#303030"/>
+<text x="100" y="800" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#a0a0a0" text-anchor="start" letter-spacing="1.5">BAND 1</text>
+<g id="param-b1freq">
+<text x="100" y="841" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">FREQ</text>
+<text x="258" y="862" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">100 Hz</text>
+</g>
+<g id="param-b1gain">
+<text x="100" y="892" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">GAIN</text>
+<text x="258" y="913" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">+1.5 dB</text>
+<circle cx="144" cy="888" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-b1q">
+<text x="100" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">Q</text>
+<text x="258" y="964" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b1shape">
+<text x="100" y="994" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">SHAPE</text>
+<text x="258" y="1015" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">BELL</text>
+</g>
+<rect x="298" y="770" width="190" height="267" rx="10" fill="#151515" stroke="#5a5a5a"/>
+<text x="314" y="800" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#cccccc" text-anchor="start" letter-spacing="1.5">BAND 2</text>
+<g id="param-b2freq">
+<text x="314" y="841" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">FREQ</text>
+<text x="472" y="862" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">400 Hz</text>
+</g>
+<g id="mirror-b2gain">
+<text x="314" y="892" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">GAIN</text>
+<text x="472" y="913" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">-2.5 dB</text>
+<circle cx="358" cy="888" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-b2q">
+<text x="314" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">Q</text>
+<text x="472" y="964" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b2shape">
+<text x="314" y="994" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">SHAPE</text>
+<text x="472" y="1015" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">BELL</text>
+</g>
+<rect x="512" y="770" width="190" height="267" rx="10" fill="#151515" stroke="#303030"/>
+<text x="528" y="800" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#a0a0a0" text-anchor="start" letter-spacing="1.5">BAND 3</text>
+<g id="param-b3freq">
+<text x="528" y="841" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">FREQ</text>
+<text x="686" y="862" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">2.5 kHz</text>
+</g>
+<g id="param-b3gain">
+<text x="528" y="892" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">GAIN</text>
+<text x="686" y="913" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">+2 dB</text>
+<circle cx="572" cy="888" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-b3q">
+<text x="528" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">Q</text>
+<text x="686" y="964" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b3shape">
+<text x="528" y="994" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">SHAPE</text>
+<text x="686" y="1015" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">BELL</text>
+</g>
+<rect x="726" y="770" width="190" height="267" rx="10" fill="#151515" stroke="#303030"/>
+<text x="742" y="800" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="400" fill="#a0a0a0" text-anchor="start" letter-spacing="1.5">BAND 4</text>
+<g id="param-b4freq">
+<text x="742" y="841" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">FREQ</text>
+<text x="900" y="862" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">10 kHz</text>
+</g>
+<g id="param-b4gain">
+<text x="742" y="892" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">GAIN</text>
+<text x="900" y="913" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">+1 dB</text>
+<circle cx="786" cy="888" r="2.4" fill="#df4b4f" stroke="none"/>
+</g>
+<g id="param-b4q">
+<text x="742" y="943" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">Q</text>
+<text x="900" y="964" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">0.707</text>
+</g>
+<g id="param-b4shape">
+<text x="742" y="994" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#a2a2a2" text-anchor="start" letter-spacing="0.5">SHAPE</text>
+<text x="900" y="1015" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#d0d0d0" text-anchor="end" letter-spacing="0.1">BELL</text>
+</g>
+<path d="M76 1098 L924 1098" fill="none" stroke="#333333" stroke-width="1" opacity="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="165" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">CAPTURE INPUT</text>
+<text x="382" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">REFERENCE</text>
+<text x="602" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#df4b4f" text-anchor="middle" letter-spacing="1.2">LEARN ALL</text>
+<text x="817" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#b3b3b3" text-anchor="middle" letter-spacing="1.2">DETAILS / LOG</text>
+<text x="76" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#969696" text-anchor="start" letter-spacing="1.6">D.A PLUGINS</text>
+<text x="924" y="1212" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#929292" text-anchor="end" letter-spacing="1">DESIGN STUDY / NO LIVE AUDIO</text>
+</svg>

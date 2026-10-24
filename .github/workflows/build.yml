@@ -1,23 +1,53 @@
-name: Build D.A Plugins
+name: Build and test D.A Plugins
 on: [push, pull_request, workflow_dispatch]
+# Share the branch group across push/PR events to avoid duplicate ten-plugin builds.
+concurrency:
+  group: da-plugins-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
-  build:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure portable core with sanitizers
+        run: cmake -S . -B build-core -DDA_BUILD_PLUGINS=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer"
+      - run: cmake --build build-core --parallel 2
+      - run: ctest --test-dir build-core --output-on-failure
+  plugins:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: windows-latest
-          - os: macos-14
+        os: [windows-latest, macos-14, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
-      - uses: lukka/get-cmake@latest
-      - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-      - name: Build
-        run: cmake --build build --config Release --parallel 2
+      - name: Linux JUCE dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev libjack-jackd2-dev libfreetype6-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libgl1-mesa-dev pkg-config xvfb
+      - name: Configure all ten targets
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DDA_BUILD_UI_SNAPSHOTS=${{ runner.os == 'Linux' && 'ON' || 'OFF' }}
+      - name: Build native UI snapshot runner
+        if: runner.os == 'Linux'
+        run: cmake --build build --target da_ui_snapshots --parallel 4
+      - name: Render all ten actual JUCE editors
+        if: runner.os == 'Linux'
+        run: xvfb-run -a ./build/da_ui_snapshots_artefacts/Release/da_ui_snapshots "$PWD/build/native-ui-previews"
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Linux'
+        with:
+          name: native-juce-ui-previews
+          path: build/native-ui-previews/*.png
+          if-no-files-found: error
+      - name: Build all formats
+        run: cmake --build build --config Release --parallel 4
+      - name: Core tests
+        run: ctest --test-dir build -C Release --output-on-failure
       - uses: actions/upload-artifact@v4
         with:
-          name: da-plugins-${{ runner.os }}
-          path: build
-          if-no-files-found: warn
+          name: da-plugins-development-${{ runner.os }}
+          path: |
+            build/*_artefacts/Release/**
+          if-no-files-found: error
