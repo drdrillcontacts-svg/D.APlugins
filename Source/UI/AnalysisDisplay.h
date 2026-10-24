@@ -13,12 +13,19 @@ class AnalysisDisplay final : public juce::Component {
     AnalysisDisplay(da::Kind, const HardwareLook &);
     void consume(da::ScopeFifo &, double sampleRate, float inputPeak, float outputPeak,
                  float reduction);
-    void setParameters(std::vector<float> values) { parameters = std::move(values); }
+    void setParameters(std::vector<float> values) {
+        if (parameters != values) {
+            parameters = std::move(values);
+            repaint();
+        }
+    }
     void setReference(const ReferenceDisplay &r) { reference = r; }
     const ReferenceDisplay &currentReference() const { return reference; }
     void setStatus(juce::String s) {
-        state = std::move(s);
-        repaint();
+        if (state != s) {
+            state = std::move(s);
+            repaint();
+        }
     }
     void paint(juce::Graphics &) override;
     void paintDetail(juce::Graphics &, juce::Rectangle<float>);

@@ -11,7 +11,7 @@ for layout in layouts:
  name=layout['name'];controls=layout['controls'];ids=[c['id'] for c in controls]
  assert set(ids)=={m['id'] for m in metadata[name]} and len(ids)==len(set(ids)),name
  for c in controls:
-  x,y,w,h=c['rect'];assert 0<x<x+w<1200 and 0<y<y+h<1240,(name,c)
+  x,y,w,h=c['rect'];assert 0<x<x+w<1120 and 0<y<y+h<860,(name,c)
   m=next(m for m in metadata[name] if m['id']==c['id'])
   assert c['learnable']==m['learnable'],(name,c['id'],'Learn policy mismatch')
   if c['options']:assert len(c['options'])==int(m['max']-m['min']+1),(name,c)
@@ -26,7 +26,7 @@ for layout in layouts:
  assert (root/f'Design/UI-Previews/{name}-Advanced.svg').exists()
  for m in layout['modules']:
   assert any(p['module']==m['scope'] and p['learnable'] for p in metadata[name]),(name,m)
- assert layout['canvas']==[1200,1240]
+ assert layout['canvas']==[1120,860]
  print('PASS',name,len(ids),'parameters, non-overlapping controls, choice ranges, design export')
 assert sum(len(s['controls']) for s in layouts)==92
 

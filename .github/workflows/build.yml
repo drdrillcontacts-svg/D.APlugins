@@ -31,7 +31,7 @@ jobs:
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DDA_BUILD_UI_SNAPSHOTS=${{ runner.os == 'Linux' && 'ON' || 'OFF' }}
       - name: Build native UI snapshot runner
         if: runner.os == 'Linux'
-        run: cmake --build build --target da_ui_snapshots --parallel 2
+        run: cmake --build build --target da_ui_snapshots --parallel 4
       - name: Render all ten actual JUCE editors
         if: runner.os == 'Linux'
         run: xvfb-run -a ./build/da_ui_snapshots_artefacts/Release/da_ui_snapshots "$PWD/build/native-ui-previews"
@@ -42,7 +42,7 @@ jobs:
           path: build/native-ui-previews/*.png
           if-no-files-found: error
       - name: Build all formats
-        run: cmake --build build --config Release --parallel 2
+        run: cmake --build build --config Release --parallel 4
       - name: Core tests
         run: ctest --test-dir build -C Release --output-on-failure
       - uses: actions/upload-artifact@v4

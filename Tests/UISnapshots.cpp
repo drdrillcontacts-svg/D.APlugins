@@ -33,6 +33,17 @@ juce::Component *findById(juce::Component &root, const juce::String &id) {
             return result;
     return nullptr;
 }
+bool imagesDiffer(const juce::Image &a, const juce::Image &b) {
+    if (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight())
+        return true;
+    int diffPixels = 0;
+    for (int y = 0; y < a.getHeight(); ++y)
+        for (int x = 0; x < a.getWidth(); ++x)
+            if (a.getPixelAt(x, y) != b.getPixelAt(x, y))
+                if (++diffPixels > 4)
+                    return true;
+    return false;
+}
 struct TempoPlayHead : juce::AudioPlayHead {
     double bpm = 120;
     bool available = true;
@@ -53,7 +64,6 @@ bool near(float a, float b) {
     return std::abs(a - b) <= 1e-5f * std::max(1.f, std::max(std::abs(a), std::abs(b)));
 }
 // Run with a display server, e.g. xvfb-run -a ./da_ui_snapshots <output-directory>.
-// These are actual JUCE component snapshots; the SVG design studies are not used here.
 int main(int argc, char **argv) {
     juce::ScopedJuceInitialiser_GUI init;
     juce::File out =
@@ -117,11 +127,12 @@ int main(int argc, char **argv) {
             processor.setCurrentProgram(0);
         }
         std::unique_ptr<juce::AudioProcessorEditor> editor(processor.createEditor());
-        editor->setSize(1200, 1240);
+        editor->setSize(1120, 860);
         std::vector<da::ui::ParameterControl *> controls;
         collect(*editor, controls);
         if (controls.size() != processor.metadata.size())
             return fail(name, 5);
+        int reactiveCount = 0;
         for (auto *c : controls) {
             if (!c->isVisible())
                 return fail(name, 27);
@@ -134,9 +145,14 @@ int main(int argc, char **argv) {
             if (!learnButton || learnButton->isVisible() != da::canLearn(processor.kind, id))
                 return fail(name, 16);
             auto original = processor.currentValues();
-            c->slider.setValue(it->max, juce::sendNotificationSync);
-            if (!near(processor.parameters.getRawParameterValue(id)->load(), it->max))
+            auto beforeDisp = editor->createComponentSnapshot({76, 114, 968, 160}, true, 1.f);
+            float testVal = std::abs(it->max - it->initial) > 1e-4f ? it->max : it->min;
+            c->slider.setValue(testVal, juce::sendNotificationSync);
+            if (!near(processor.parameters.getRawParameterValue(id)->load(), testVal))
                 return fail(name, 7);
+            auto afterDisp = editor->createComponentSnapshot({76, 114, 968, 160}, true, 1.f);
+            if (imagesDiffer(beforeDisp, afterDisp))
+                ++reactiveCount;
             c->slider.setValue(it->initial, juce::sendNotificationSync);
             auto restored = processor.currentValues();
             for (size_t i = 0; i < restored.size(); ++i)
@@ -145,6 +161,9 @@ int main(int argc, char **argv) {
             if (it->unit == "Hz" && !c->slider.getTextFromValue(it->initial).contains("Hz"))
                 return fail(name, 9);
         }
+        // Every plugin's display curve must dynamically respond when parameters change.
+        if (reactiveCount < int(controls.size()) / 2)
+            return fail(name, 28);
         juce::AudioBuffer<float> b(2, 256);
         juce::MidiBuffer midi;
         for (int block = 0; block < 80; ++block) {
@@ -160,13 +179,13 @@ int main(int argc, char **argv) {
         }
         juce::MessageManager::getInstance()->runDispatchLoopUntil(90);
         auto image = editor->createComponentSnapshot(editor->getLocalBounds(), true, 2.f);
-        if (!image.isValid() || image.getWidth() != 2400 || image.getHeight() != 2480)
+        if (!image.isValid() || image.getWidth() != 2240 || image.getHeight() != 1720)
             return fail(name, 2);
         auto stream = out.getChildFile(juce::String(name) + ".png").createOutputStream();
         if (!stream || !juce::PNGImageFormat().writeImageToStream(image, *stream))
             return fail(name, 3);
         std::cout << "Native JUCE snapshot: " << name << " / " << processor.metadata.size()
-                  << " controls\n";
+                  << " controls (" << reactiveCount << " reactive on graph)\n";
         auto *learn = findButton(*editor, "LEARN ALL");
         auto *log = findLog(*editor);
         auto *details = findButton(*editor, "DETAILS / LOG");
@@ -223,7 +242,7 @@ int main(int argc, char **argv) {
                 return fail(name, 18);
         controls.front()->slider.setValue(chosenMeta->initial, juce::sendNotificationSync);
         juce::MessageManager::getInstance()->runDispatchLoopUntil(70);
-        editor->setSize(750, 775); // exercise the supported minimum aspect-ratio layout
+        editor->setSize(896, 688); // exercise the supported minimum aspect-ratio layout
         auto small = editor->createComponentSnapshot(editor->getLocalBounds());
         if (!small.isValid())
             return fail(name, 4);

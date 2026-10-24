@@ -11,15 +11,16 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
       lastValues(session.values) {
     setLookAndFeel(&hardware);
     setResizable(true, true);
-    setResizeLimits(750, 775, 1800, 1860);
-    getConstrainer()->setFixedAspectRatio(1200.0 / 1240.0);
+    setResizeLimits(896, 688, 1792, 1376);
+    getConstrainer()->setFixedAspectRatio(1120.0 / 860.0);
     addAndMakeVisible(stage);
-    stage.setSize(1200, 1240);
+    stage.setSize(1120, 860);
     stage.addAndMakeVisible(chassis);
-    chassis.setBounds(0, 0, 1200, 1240);
+    chassis.setBounds(0, 0, 1120, 860);
     chassis.overlay = [this](juce::Graphics &g) { paintDetails(g); };
     stage.addAndMakeVisible(analysis);
-    analysis.setBounds(70, 207, 1060, 342);
+    analysis.setBounds(22, 82, 1076, 204);
+    analysis.setParameters(lastValues);
     if (auto *specs = layout.data["controls"].getArray())
         for (auto &spec : *specs) {
             auto id = spec["id"].toString().toStdString();
@@ -27,8 +28,9 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
                                    [&](const da::Parameter &m) { return m.id == id; });
             if (it == p.metadata.end())
                 continue;
-            auto c = std::make_unique<da::ui::ParameterControl>(p.parameters, *it, spec, hardware,
-                                                                [this, id] { startLearn(id); });
+            auto c = std::make_unique<da::ui::ParameterControl>(
+                p.parameters, *it, spec, hardware, [this, id] { startLearn(id); },
+                [this] { analysis.setParameters(processor.currentValues()); });
             stage.addAndMakeVisible(*c);
             c->setBounds(da::ui::rectangle(spec["rect"]));
             controls.push_back(std::move(c));
@@ -66,15 +68,18 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
         if (presetMenu.getSelectedId() > 0) {
             processor.setCurrentProgram(presetMenu.getSelectedId() - 1);
             syncManual();
+            analysis.setParameters(processor.currentValues());
         }
     };
     previousPreset.onClick = [this] {
         processor.setCurrentProgram((processor.getCurrentProgram() + 49) % 50);
         syncManual();
+        analysis.setParameters(processor.currentValues());
     };
     nextPreset.onClick = [this] {
         processor.setCurrentProgram((processor.getCurrentProgram() + 1) % 50);
         syncManual();
+        analysis.setParameters(processor.currentValues());
     };
 
     // Separate optional Reference workspace — closed by default and opened only on request.
@@ -105,7 +110,7 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
     // Optional Details / Log drawer — closed by default.
     results.setMultiLine(true);
     results.setReadOnly(true);
-    results.setFont(hardware.font(16));
+    results.setFont(hardware.font(17.5f));
     results.setBorder(juce::BorderSize<int>(48, 18, 18, 18));
     results.setText(
         "D.A PLUGINS / LEARNING WORKBENCH\n\nPress CAPTURE INPUT, LEARN ALL, or a parameter/module "
@@ -129,9 +134,9 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
             drawer.toFront(false);
     };
 
-    status.setFont(hardware.font(16, true));
+    status.setFont(hardware.font(17.5f, true));
     status.setJustificationType(juce::Justification::centredRight);
-    status.setColour(juce::Label::textColourId, juce::Colour(0xffb5b5c2));
+    status.setColour(juce::Label::textColourId, juce::Colour(0xffe0e0ec));
     stage.addAndMakeVisible(status);
 
     captureInput.onClick = [this] { startLearn("all"); };
@@ -167,8 +172,8 @@ DAPluginAudioProcessorEditor::DAPluginAudioProcessorEditor(DAPluginAudioProcesso
             setStatus("No learning operation to undo");
     };
     setStatus("Ready / Manual control always");
-    setSize(1200, 1240);
-    startTimerHz(24);
+    setSize(1120, 860);
+    startTimerHz(30);
 }
 DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
     stopTimer();
@@ -182,7 +187,7 @@ DAPluginAudioProcessorEditor::~DAPluginAudioProcessorEditor() {
 }
 void DAPluginAudioProcessorEditor::setStatus(const juce::String &s) {
     status.setText(s, juce::dontSendNotification);
-    analysis.setStatus(s.upToFirstOccurrenceOf("—", false, false));
+    analysis.setStatus(s.upToFirstOccurrenceOf(" - ", false, false));
 }
 void DAPluginAudioProcessorEditor::syncManual() {
     if (processor.isLoadingProgram())
@@ -198,7 +203,7 @@ void DAPluginAudioProcessorEditor::syncManual() {
         capturing = false;
         processor.cancelCapture();
         presetMenu.setSelectedId(processor.getCurrentProgram() + 1, juce::dontSendNotification);
-        setStatus("Preset / session loaded — pending learning cancelled");
+        setStatus("Preset / session loaded - pending learning cancelled");
         return;
     }
     bool changed = false;
@@ -215,18 +220,19 @@ void DAPluginAudioProcessorEditor::syncManual() {
         lastValues = processor.currentValues();
         processor.cancelCapture();
         capturing = false;
-        setStatus("Manual/host change — unaccepted learning cancelled");
+        setStatus("Manual/host change - unaccepted learning cancelled");
     }
 }
 void DAPluginAudioProcessorEditor::write() {
     processor.writeValues(session.values);
     lastValues = processor.currentValues();
+    analysis.setParameters(lastValues);
     setStatus(session.status);
 }
 void DAPluginAudioProcessorEditor::startLearn(std::string requestedScope) {
     syncManual();
     if (capturing || learnWork.valid() || referenceWork.valid()) {
-        setStatus("Analysis busy — cancel or wait");
+        setStatus("Analysis busy - cancel or wait");
         return;
     }
     session.reject();
@@ -237,15 +243,15 @@ void DAPluginAudioProcessorEditor::startLearn(std::string requestedScope) {
         if (referenceGuidanceEnabled) {
             objective.mode = da::Mode::Reference;
             if (!reference.valid())
-                throw std::runtime_error("Reference unavailable — load a non-silent audio file");
+                throw std::runtime_error("Reference unavailable - load a non-silent audio file");
         }
         if (!processor.requestCapture())
-            throw std::runtime_error("Capture busy — play audio to finish the pending capture");
+            throw std::runtime_error("Capture busy - play audio to finish the pending capture");
         scope = std::move(requestedScope);
         captureRevision = session.revision;
         capturing = true;
         captureStarted = juce::Time::currentTimeMillis();
-        setStatus("Analyzing — capturing 65,536 input samples; keep audio playing");
+        setStatus("Analyzing - capturing 65,536 input samples; keep audio playing");
     } catch (const std::exception &e) {
         setStatus(juce::String("Failed: ") + e.what());
     }
@@ -278,7 +284,7 @@ void DAPluginAudioProcessorEditor::load() {
                 return;
             auto file = c.getResult();
             if (!file.existsAsFile()) {
-                safe->setStatus("Cancelled — no reference selected");
+                safe->setStatus("Cancelled - no reference selected");
                 return;
             }
             safe->syncManual();
@@ -288,7 +294,7 @@ void DAPluginAudioProcessorEditor::load() {
             safe->reference = {};
             safe->analysis.setReference({});
             safe->referenceRevision = safe->session.revision;
-            safe->setStatus("Analyzing reference — decoding up to 30 seconds on worker");
+            safe->setStatus("Analyzing reference - decoding up to 30 seconds on worker");
             safe->referenceWork = std::async(std::launch::async, [file] {
                 juce::AudioFormatManager formats;
                 formats.registerBasicFormats();
@@ -329,13 +335,13 @@ void DAPluginAudioProcessorEditor::timerCallback() {
         capturing = false;
         processor.cancelCapture();
         ++session.revision;
-        setStatus("Failed — capture timed out; transport must be running");
+        setStatus("Failed - capture timed out; transport must be running");
     }
     if (ready(referenceWork))
         try {
             auto analyzedReference = referenceWork.get();
             if (referenceRevision != session.revision) {
-                setStatus("Cancelled — stale reference analysis discarded");
+                setStatus("Cancelled - stale reference analysis discarded");
                 return;
             }
             reference = analyzedReference.features;
@@ -343,7 +349,7 @@ void DAPluginAudioProcessorEditor::timerCallback() {
             referenceGuidanceEnabled = true;
             useReferenceMode.setToggleState(true, juce::dontSendNotification);
             referenceDrawer.repaint();
-            setStatus("Reference available — RMS " + juce::String(da::db(float(reference.rms)), 1) +
+            setStatus("Reference available - RMS " + juce::String(da::db(float(reference.rms)), 1) +
                       " dBFS; guidance is not an exact match");
         } catch (const std::exception &e) {
             setStatus(juce::String("Reference unavailable: ") + e.what());
@@ -363,11 +369,11 @@ void DAPluginAudioProcessorEditor::timerCallback() {
                 results.setText(message);
                 setStatus(session.status);
             } else
-                setStatus("Cancelled — stale analysis discarded");
+                setStatus("Cancelled - stale analysis discarded");
         } catch (const std::exception &e) {
             setStatus(juce::String("Failed: ") + e.what());
         }
-    analysis.setParameters(lastValues);
+    analysis.setParameters(processor.currentValues());
     analysis.consume(processor.scopeFifo, processor.displaySampleRate.load(),
                      processor.inputPeak.load(), processor.outputPeak.load(),
                      processor.reduction.load());
@@ -388,7 +394,7 @@ void DAPluginAudioProcessorEditor::timerCallback() {
                                    : "Factory preset / 50 available");
     chassis.repaint();
 }
-void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff101416)); }
+void DAPluginAudioProcessorEditor::paint(juce::Graphics &g) { g.fillAll(juce::Colour(0xff131316)); }
 void DAPluginAudioProcessorEditor::paintDetails(juce::Graphics &g) {
     if (processor.kind == da::Kind::Delay) {
         const auto state = processor.tempoStatus.load();
@@ -400,37 +406,37 @@ void DAPluginAudioProcessorEditor::paintDetails(juce::Graphics &g) {
         if (sync)
             text += " / " + juce::String(da::divisionNames[size_t(std::clamp(division, 0, 14))]) +
                     " / " + juce::String(da::syncedDelayMs(bpm, division), 0) + " ms";
-        da::ui::label(g, hardware, text, {164.f, 510.f, 640.f, 24.f}, 16.f,
-                      hardware.accentColour.interpolatedWith(juce::Colour(0xffc8c8d2), .45f),
+        da::ui::label(g, hardware, text, {230.f, 355.f, 640.f, 24.f}, 16.5f,
+                      hardware.accentColour.interpolatedWith(juce::Colour(0xffe0e0ea), .35f),
                       juce::Justification::centredLeft, true);
     }
 }
 void DAPluginAudioProcessorEditor::resized() {
-    const float scale = std::min(float(getWidth()) / 1200.f, float(getHeight()) / 1240.f);
-    stage.setTransform(juce::AffineTransform::scale(scale).translated(
-        (float(getWidth()) - 1200.f * scale) * .5f, (float(getHeight()) - 1240.f * scale) * .5f));
-    previousPreset.setBounds(599, 106, 45, 43);
-    presetMenu.setBounds(658, 106, 413, 43);
-    nextPreset.setBounds(1086, 106, 45, 43);
+    // Stretch stage cleanly across the full editor bounds so there are zero side margins.
+    stage.setTransform(juce::AffineTransform::scale(float(getWidth()) / 1120.f,
+                                                    float(getHeight()) / 860.f));
+    previousPreset.setBounds(550, 28, 42, 36);
+    presetMenu.setBounds(600, 28, 452, 36);
+    nextPreset.setBounds(1060, 28, 42, 36);
 
-    captureInput.setBounds(230, 608, 205, 36);
-    openReference.setBounds(449, 608, 205, 36);
-    learnAll.setBounds(668, 608, 205, 36);
-    showResults.setBounds(887, 608, 205, 36);
+    captureInput.setBounds(170, 308, 220, 36);
+    openReference.setBounds(402, 308, 220, 36);
+    learnAll.setBounds(634, 308, 220, 36);
+    showResults.setBounds(866, 308, 226, 36);
 
-    int x = 74;
+    int x = 14;
     for (auto *b : {&preview, &apply, &reject, &undo}) {
-        b->setBounds(x, 1178, 150, 29);
-        x += 164;
+        b->setBounds(x, 814, 148, 34);
+        x += 158;
     }
-    status.setBounds(730, 1178, 400, 29);
+    status.setBounds(650, 814, 456, 34);
 
-    referenceDrawer.setBounds(200, 250, 800, 440);
-    loadReference.setBounds(32, 316, 220, 48);
-    useReferenceMode.setBounds(268, 316, 260, 48);
-    closeReference.setBounds(648, 20, 120, 36);
+    referenceDrawer.setBounds(160, 140, 800, 360);
+    loadReference.setBounds(28, 258, 220, 44);
+    useReferenceMode.setBounds(264, 258, 260, 44);
+    closeReference.setBounds(648, 18, 124, 36);
 
-    drawer.setBounds(55, 690, 1090, 448);
+    drawer.setBounds(14, 382, 1092, 420);
     results.setBounds(drawer.getLocalBounds());
-    closeResults.setBounds(856, 10, 218, 30);
+    closeResults.setBounds(856, 10, 220, 32);
 }
